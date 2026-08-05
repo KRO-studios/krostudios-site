@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>מדיניות פרטיות — Kro Studios</title>
-<meta name="description" content="מדיניות הפרטיות של אפליקציות Kro Studios">
+<title>Privacy Policy — Kro Studios</title>
+<meta name="description" content="Privacy policy for Kro Studios apps">
 <style>
 :root{
   --ink:#0F0B06;--raise:#1B1409;--gold:#C9A84C;--pink:#EFA0BE;
@@ -57,7 +57,7 @@ a:hover,a:focus-visible{color:var(--pink)}
 
 [data-lang]{display:none}
 [data-lang].on{display:block}
-[dir]#en{direction:ltr;text-align:left}
+#he{direction:rtl;text-align:right}
 
 .foot{margin-top:46px;padding-top:22px;
       border-top:1px solid rgba(201,168,76,.22);
@@ -71,18 +71,18 @@ a:hover,a:focus-visible{color:var(--pink)}
 <div class="wrap">
 
   <a href="index.html"><img class="mark" src="logo.png" alt="Kro Studios"></a>
-  <a class="back" href="index.html">← חזרה</a>
+  <a class="back" href="index.html">← Back</a>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">עודכן לאחרונה: אוגוסט 2026</p>
+  <p class="updated">Last updated: August 2026</p>
 
   <div class="langs">
-    <button id="b-he" aria-pressed="true"  onclick="pick('he')">עברית</button>
-    <button id="b-en" aria-pressed="false" onclick="pick('en')">English</button>
+    <button id="b-he" aria-pressed="false" onclick="pick('he')">עברית</button>
+    <button id="b-en" aria-pressed="true"  onclick="pick('en')">English</button>
   </div>
 
   <!-- ── Hebrew ─────────────────────────────────────── -->
-  <div id="he" data-lang class="on">
+  <div id="he" data-lang dir="rtl">
     <section>
       <h2>מבוא</h2>
       <p>מדיניות פרטיות זו מסבירה אילו נתונים אפליקציית ״חידון תנ״ך״ אוספת, כיצד הם נשמרים ולשם מה הם משמשים. שימוש באפליקציה מהווה הסכמה לתנאים המפורטים כאן.</p>
@@ -134,7 +134,7 @@ a:hover,a:focus-visible{color:var(--pink)}
   </div>
 
   <!-- ── English ────────────────────────────────────── -->
-  <div id="en" data-lang dir="ltr">
+  <div id="en" data-lang class="on">
     <section>
       <h2>Introduction</h2>
       <p>This privacy policy explains what data the "Tanakh Quiz" app collects, how it is stored, and what it is used for. Using the app constitutes agreement to the terms described here.</p>
