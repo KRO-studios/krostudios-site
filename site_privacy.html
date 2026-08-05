@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>מדיניות פרטיות — Kro Studios</title>
+<meta name="description" content="מדיניות הפרטיות של אפליקציות Kro Studios">
+<style>
+:root{
+  --ink:#0F0B06;--raise:#1B1409;--gold:#C9A84C;--pink:#EFA0BE;
+  --cream:#E8DEC6;--dim:#8B7A5C;--cell:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--ink);color:var(--cream);
+  font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif;
+  background-image:
+    linear-gradient(rgba(201,168,76,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.045) 1px,transparent 1px);
+  background-size:var(--cell) var(--cell);
+}
+.wrap{max-width:720px;margin:0 auto;padding:52px 24px 80px}
+
+.mark{width:104px;height:auto;display:block;margin:0 auto 24px;
+      image-rendering:pixelated}
+.back{display:inline-block;font:600 11px/1 ui-monospace,Menlo,monospace;
+      letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+      text-decoration:none;margin-bottom:34px}
+.back:hover,.back:focus-visible{color:var(--gold)}
+
+h1{font:700 13px/1 ui-monospace,Menlo,monospace;letter-spacing:.34em;
+   text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+   padding-inline-start:.34em}
+.updated{color:var(--dim);font-size:13px;margin-bottom:34px}
+
+/* language switch — two states, no dropdown for two options */
+.langs{display:flex;gap:1px;margin-bottom:38px;
+       border:1px solid rgba(201,168,76,.22);width:fit-content}
+.langs button{
+  background:transparent;border:0;color:var(--dim);cursor:pointer;
+  font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;
+  padding:11px 20px;transition:background .14s,color .14s}
+.langs button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+.langs button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+
+section{margin-bottom:30px}
+h2{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;
+   text-transform:uppercase;color:var(--gold);margin-bottom:11px}
+p{color:var(--cream);opacity:.9;margin-bottom:11px}
+ul{list-style:none;margin:11px 0}
+li{position:relative;padding-inline-start:20px;margin-bottom:9px;
+   color:var(--cream);opacity:.9}
+li::before{content:"";position:absolute;inset-inline-start:2px;top:.62em;
+           width:6px;height:6px;background:var(--pink)}  /* a pixel, not a dot */
+a{color:var(--gold)}
+a:hover,a:focus-visible{color:var(--pink)}
+
+[data-lang]{display:none}
+[data-lang].on{display:block}
+[dir]#en{direction:ltr;text-align:left}
+
+.foot{margin-top:46px;padding-top:22px;
+      border-top:1px solid rgba(201,168,76,.22);
+      color:var(--dim);font-size:13px}
+
+@media (max-width:520px){.wrap{padding:36px 18px 60px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="index.html"><img class="mark" src="logo.png" alt="Kro Studios"></a>
+  <a class="back" href="index.html">← חזרה</a>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">עודכן לאחרונה: אוגוסט 2026</p>
+
+  <div class="langs">
+    <button id="b-he" aria-pressed="true"  onclick="pick('he')">עברית</button>
+    <button id="b-en" aria-pressed="false" onclick="pick('en')">English</button>
+  </div>
+
+  <!-- ── Hebrew ─────────────────────────────────────── -->
+  <div id="he" data-lang class="on">
+    <section>
+      <h2>מבוא</h2>
+      <p>מדיניות פרטיות זו מסבירה אילו נתונים אפליקציית ״חידון תנ״ך״ אוספת, כיצד הם נשמרים ולשם מה הם משמשים. שימוש באפליקציה מהווה הסכמה לתנאים המפורטים כאן.</p>
+    </section>
+    <section>
+      <h2>מידע שאנו אוספים</h2>
+      <p><strong>שם השחקן</strong> — השם שתבחרו להזין מוצג לצד הציון שלכם בטבלת המובילים הגלובלית. אין צורך בהרשמה, התחברות, כתובת אימייל או כל פרט מזהה אחר.</p>
+      <p><strong>נתוני משחק</strong> — ציון, התקדמות, רצף ימי משחק, מטבעות ורכישות שנעשו בתוך האפליקציה. רוב הנתונים נשמרים רק על גבי המכשיר שלכם; רק השם והציון נשלחים לשרת לצורך טבלת המובילים.</p>
+      <p><strong>מידע טכני</strong> — כמו כל אפליקציה המשתמשת בפרסומות ובשירותי גוגל, ייתכן שמידע טכני על המכשיר ייאסף על ידי ספקי צד שלישי, כמפורט למטה.</p>
+    </section>
+    <section>
+      <h2>שירותי צד שלישי</h2>
+      <p>האפליקציה משתמשת בשירותים הבאים של Google, שלכל אחד מהם מדיניות פרטיות משלו:</p>
+      <ul>
+        <li><strong>Google Firebase / Firestore</strong> — לאחסון נתוני טבלת המובילים.</li>
+        <li><strong>Google AdMob</strong> — להצגת פרסומות. AdMob עשויה לאסוף מזהי מכשיר לצורכי התאמת פרסומות.</li>
+        <li><strong>Google Play Billing</strong> — לעיבוד רכישות בתוך האפליקציה. פרטי אשראי אינם נשמרים ואינם נגישים לנו — כל התשלום מטופל ישירות על ידי Google.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>כיצד אנו משתמשים במידע</h2>
+      <ul>
+        <li>הצגת טבלת מובילים גלובלית על בסיס שם וציון.</li>
+        <li>עיבוד רכישות שביצעתם בתוך האפליקציה.</li>
+        <li>הצגת פרסומות (חלקן מתגמלות, לבחירתכם).</li>
+      </ul>
+      <p>איננו מוכרים או משתפים מידע אישי עם צדדים שלישיים למטרות שיווק שאינן קשורות לשירותים שתוארו לעיל.</p>
+    </section>
+    <section>
+      <h2>פרטיות ילדים</h2>
+      <p>האפליקציה אינה מיועדת באופן ספציפי לילדים מתחת לגיל 13, ואיננו אוספים ביודעין מידע מזהה מילדים בגיל זה. אם נודע לנו כי נאסף מידע כזה בטעות, נפעל למחיקתו.</p>
+    </section>
+    <section>
+      <h2>אבטחת מידע</h2>
+      <p>אנו נוקטים באמצעים סבירים להגנה על הנתונים השמורים, אך כמו בכל שירות מקוון, איננו יכולים להבטיח אבטחה מוחלטת.</p>
+    </section>
+    <section>
+      <h2>הזכויות שלכם</h2>
+      <p>מכיוון שהאפליקציה אינה דורשת הרשמה, רשומה בטבלת המובילים אינה ניתנת לקישור ישיר לזהותכם האמיתית. אם תרצו להסיר את הרשומה שלכם מטבלת המובילים, תוכלו לפנות אלינו בפרטים שלמטה בצירוף השם שהופיע באפליקציה.</p>
+    </section>
+    <section>
+      <h2>שינויים במדיניות</h2>
+      <p>מדיניות זו עשויה להתעדכן מעת לעת. שינויים מהותיים ישתקפו בעמוד זה עם תאריך עדכון חדש.</p>
+    </section>
+    <section>
+      <h2>יצירת קשר</h2>
+      <p>לשאלות בנוגע למדיניות פרטיות זו: <a href="mailto:hello@krostudios.com">hello@krostudios.com</a></p>
+    </section>
+  </div>
+
+  <!-- ── English ────────────────────────────────────── -->
+  <div id="en" data-lang dir="ltr">
+    <section>
+      <h2>Introduction</h2>
+      <p>This privacy policy explains what data the "Tanakh Quiz" app collects, how it is stored, and what it is used for. Using the app constitutes agreement to the terms described here.</p>
+    </section>
+    <section>
+      <h2>Information We Collect</h2>
+      <p><strong>Player name</strong> — the name you choose to enter is shown alongside your score on the global leaderboard. No registration, login, email address, or other identifying detail is required.</p>
+      <p><strong>Game data</strong> — score, progress, day streak, coins, and purchases made within the app. Most of this is stored only on your own device; only your name and score are sent to a server, for the leaderboard.</p>
+      <p><strong>Technical information</strong> — like any app that uses ads and Google services, technical device information may be collected by third-party providers, as detailed below.</p>
+    </section>
+    <section>
+      <h2>Third-Party Services</h2>
+      <p>The app uses the following Google services, each with its own privacy policy:</p>
+      <ul>
+        <li><strong>Google Firebase / Firestore</strong> — for storing leaderboard data.</li>
+        <li><strong>Google AdMob</strong> — for displaying ads. AdMob may collect device identifiers for ad personalisation.</li>
+        <li><strong>Google Play Billing</strong> — for processing in-app purchases. Credit card details are never stored or accessible to us; all payment is handled directly by Google.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>How We Use Information</h2>
+      <ul>
+        <li>Displaying a global leaderboard based on name and score.</li>
+        <li>Processing in-app purchases you make.</li>
+        <li>Displaying ads (some rewarded, at your choice).</li>
+      </ul>
+      <p>We do not sell or share personal information with third parties for marketing purposes unrelated to the services described above.</p>
+    </section>
+    <section>
+      <h2>Children's Privacy</h2>
+      <p>The app is not specifically directed at children under the age of 13, and we do not knowingly collect identifying information from children of this age. If we become aware that such information was collected by mistake, we will act to delete it.</p>
+    </section>
+    <section>
+      <h2>Data Security</h2>
+      <p>We take reasonable measures to protect stored data, but as with any online service, we cannot guarantee absolute security.</p>
+    </section>
+    <section>
+      <h2>Your Rights</h2>
+      <p>Since the app does not require registration, a leaderboard entry cannot be directly linked to your real identity. If you would like your entry removed from the leaderboard, contact us at the address below along with the name that appeared in the app.</p>
+    </section>
+    <section>
+      <h2>Changes to This Policy</h2>
+      <p>This policy may be updated from time to time. Material changes will be reflected on this page with a new update date.</p>
+    </section>
+    <section>
+      <h2>Contact Us</h2>
+      <p>For questions regarding this privacy policy: <a href="mailto:hello@krostudios.com">hello@krostudios.com</a></p>
+    </section>
+  </div>
+
+  <p class="foot">Kro Studios · hello@krostudios.com</p>
+
+</div>
+
+<script>
+function pick(l){
+  document.querySelectorAll('[data-lang]').forEach(function(n){
+    n.classList.toggle('on', n.id === l);
+  });
+  document.getElementById('b-he').setAttribute('aria-pressed', l === 'he');
+  document.getElementById('b-en').setAttribute('aria-pressed', l === 'en');
+  document.documentElement.lang = l;
+}
+</script>
+</body>
+</html>
