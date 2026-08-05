@@ -72,17 +72,16 @@ h1{font:700 14px/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
 .store img{height:52px;width:auto;display:block}
 
 /* ── YouTube ── */
-.tube{display:block;margin-top:26px;border:1px solid rgba(201,168,76,.28);
-      background:var(--raise);text-decoration:none;color:inherit;overflow:hidden;
+.tube{display:inline-flex;align-items:center;gap:11px;margin-top:26px;
+      border:1px solid rgba(201,168,76,.28);background:var(--raise);
+      padding:12px 20px;text-decoration:none;
       transition:border-color .12s,transform .12s;
       animation:boot .4s steps(3) .78s both}
 .tube:hover,.tube:focus-visible{border-color:var(--gold);transform:translate(0,-2px)}
 .tube:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-.tube img{width:100%;height:auto;display:block}
-.tube .bar{display:flex;align-items:center;justify-content:center;gap:9px;
-           padding:13px 16px}
-.tube .bar span{font:600 11px/1 ui-monospace,Menlo,monospace;
-                letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.tube img{height:22px;width:auto;display:block}
+.tube span{font:600 11px/1 ui-monospace,Menlo,monospace;
+           letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 
 footer{margin-top:32px;font-size:13px;color:var(--dim);
        animation:boot .4s steps(3) .86s both}
@@ -124,13 +123,8 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
   </div>
 
   <a class="tube" href="https://www.youtube.com/@KROstudios">
-    <img src="youtube-banner.jpg" alt="">
-    <span class="bar">
-      <svg width="18" height="13" viewBox="0 0 18 13" aria-hidden="true">
-        <path d="M17.6 2A2.3 2.3 0 0 0 16 .4C14.6 0 9 0 9 0S3.4 0 2 .4A2.3 2.3 0 0 0 .4 2 24 24 0 0 0 0 6.5 24 24 0 0 0 .4 11 2.3 2.3 0 0 0 2 12.6c1.4.4 7 .4 7 .4s5.6 0 7-.4A2.3 2.3 0 0 0 17.6 11a24 24 0 0 0 .4-4.5A24 24 0 0 0 17.6 2ZM7.2 9.2V3.8l4.7 2.7Z" fill="#C9A84C"/>
-      </svg>
-      <span>Watch on YouTube</span>
-    </span>
+    <img src="youtube.png" alt="">
+    <span>Watch on YouTube</span>
   </a>
 
   <footer>
@@ -186,6 +180,16 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
     out.innerHTML = '<span class="said">You get the idea.</span>' +
       '<span class="spark"><i></i><i></i><i></i></span>';
     car.style.display = 'none';
+
+    // the second beat, then round again
+    setTimeout(function(){
+      car.style.display = '';
+      out.innerHTML = '<span class="said">And if you didn\u2019t\u2026</span>';
+      setTimeout(function(){
+        buf = ''; i = 0; out.textContent = '';
+        typeStep();
+      }, 1600);
+    }, 2000);
   }
 
   setTimeout(typeStep, 1100);
