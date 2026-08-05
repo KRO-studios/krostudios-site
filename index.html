@@ -2,26 +2,125 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kro Studios</title>
+<meta name="description" content="Kro Studios — אולפן עצמאי. משחקים ואפליקציות.">
 <style>
-body{font-family:system-ui,-apple-system,sans-serif;background:#1A1006;
-     color:#E8DEC6;display:flex;align-items:center;justify-content:center;
-     min-height:100vh;margin:0;text-align:center;padding:20px}
-h1{color:#C9A84C;font-size:2.5rem;margin-bottom:.5rem;letter-spacing:1px}
-p{margin:.6rem 0;line-height:1.6}
-a{color:#C9A84C;text-decoration:none}
-a:hover{text-decoration:underline}
-.rule{width:60px;height:1px;background:#C9A84C;opacity:.5;margin:1.5rem auto}
+/* The mark is a pixel cursor, so the page is built on a pixel grid:
+   hard corners everywhere, square markers, monospace display, and
+   steps instead of easing. The cursor itself becomes the pointer. */
+:root{
+  --ink:#0F0B06; --raise:#1B1409; --gold:#C9A84C;
+  --pink:#EFA0BE; --cream:#E8DEC6; --dim:#8B7A5C; --cell:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:var(--ink); color:var(--cream);
+  font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:40px 24px;
+  background-image:
+    linear-gradient(rgba(201,168,76,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.05) 1px,transparent 1px);
+  background-size:var(--cell) var(--cell);
+  /* the logo's own cursor, as the actual pointer */
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M3 2h3v3H3zM6 5h3v3H6zM9 8h3v3H9zM12 11h3v3h-3zM15 14h3v3h-3zM3 5h3v3H3zM3 8h3v3H3zM3 11h3v3H3zM3 14h3v3H3zM3 17h3v3H3zM6 17h3v3H6zM9 14h3v3H9z' fill='%23C9A84C'/%3E%3C/svg%3E") 3 2, auto;
+}
+
+.wrap{max-width:520px;width:100%;text-align:center}
+
+/* ── boot sequence: the studio switching on ── */
+.mark{
+  width:172px;height:auto;display:block;margin:0 auto 30px;
+  image-rendering:pixelated;
+  animation:boot .5s steps(4) both;
+}
+@keyframes boot{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+
+h1{
+  font:700 14px/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  letter-spacing:.46em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:20px; padding-inline-start:.46em;
+  animation:boot .4s steps(3) .2s both;
+}
+
+.line{
+  font-size:19px; color:var(--cream); margin-bottom:8px;
+  animation:boot .4s steps(3) .35s both;
+}
+.caret{
+  display:inline-block;width:10px;height:1.05em;background:var(--pink);
+  vertical-align:-3px;margin-inline-start:6px;
+  animation:blink 1.15s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+.sub{
+  font:600 11px/1.8 ui-monospace,Menlo,monospace;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dim);
+  animation:boot .4s steps(3) .5s both;
+}
+
+.rule{height:1px;background:var(--gold);opacity:.25;margin:38px 0 30px;
+      animation:boot .4s steps(3) .6s both}
+
+/* ── store buttons: pixel-bordered, not vendor badges ── */
+.stores{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+        animation:boot .4s steps(3) .7s both}
+.store{display:inline-block;transition:transform .12s,opacity .12s}
+.store:hover,.store:focus-visible{transform:translate(0,-2px);opacity:.88}
+.store:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+/* Height is the only thing normalised — Apple requires the artwork itself
+   stay unmodified, and neither badge may be smaller than the other. */
+.store img{height:52px;width:auto;display:block}
+
+footer{margin-top:34px;font-size:13px;color:var(--dim);
+       animation:boot .4s steps(3) .8s both}
+footer a{color:var(--gold);text-decoration:none;
+         border-bottom:1px solid rgba(201,168,76,.32)}
+footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)}
+.dot{opacity:.4;margin:0 9px}
+
+@media (max-width:520px){
+  .mark{width:132px}
+  h1{font-size:12px;letter-spacing:.34em;padding-inline-start:.34em}
+  .line{font-size:17px}
+  .store img{height:46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
-<div>
-<h1>Kro Studios</h1>
-<p>אפליקציות ומשחקים בעברית</p>
-<div class="rule"></div>
-<p><a href="privacy.html">מדיניות פרטיות</a></p>
-<p><a href="mailto:hello@krostudios.com">hello@krostudios.com</a></p>
+<div class="wrap">
+
+  <img class="mark" src="logo.png" alt="Kro Studios">
+  <h1>Kro Studios</h1>
+
+  <p class="line">בונים דברים מגניבים<span class="caret"></span></p>
+  <p class="sub">משחקים ואפליקציות</p>
+
+  <div class="rule"></div>
+
+  <div class="stores">
+    <!-- Apple's guidelines: black badge when multiple platforms appear,
+         App Store first in the lineup, artwork never modified. -->
+    <a class="store" href="https://apps.apple.com/">
+      <img src="badge-appstore.svg" alt="Download on the App Store">
+    </a>
+    <a class="store" href="https://play.google.com/store/apps/dev?id=YOUR_DEV_ID">
+      <img src="badge-googleplay.png" alt="Get it on Google Play">
+    </a>
+  </div>
+
+  <footer>
+    <a href="privacy.html">מדיניות פרטיות</a>
+    <span class="dot">•</span>
+    <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+  </footer>
+
 </div>
 </body>
 </html>
