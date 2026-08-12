@@ -34,7 +34,13 @@ body{
    would read as a different site. */
 .markbox{position:relative;display:inline-block;margin:0 auto 30px;
          line-height:0}
-.mark{width:230px;height:auto;display:block;
+
+/* The sting is H.264, which cannot carry an alpha channel, so it ships
+   on solid black. mix-blend-mode:screen drops black to transparent
+   against the near-black page — the artwork floats, no video box.
+   Aspect ratio is fixed so the page never reflows while it loads. */
+.mark{width:230px;height:auto;aspect-ratio:560/480;display:block;
+      mix-blend-mode:screen;
       image-rendering:pixelated;animation:boot .5s steps(4) both;
       -webkit-tap-highlight-color:transparent;
       transition:filter .1s steps(2)}
@@ -147,26 +153,11 @@ footer a{color:var(--gold);text-decoration:none;
 footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)}
 .dot{opacity:.4;margin:0 9px}
 
-/* ── DEV LINE ──────────────────────────────────────────────────────
-   Sits under the main contact row, quieter than it, because the joke
-   works better if you have to notice it. */
-.dev{margin-top:20px;padding-top:18px;
-     border-top:1px solid rgba(201,168,76,.14)}
-.dev-mail{font-size:13px}
-.devtype{min-height:1.7em;margin-top:7px;
-         font:600 12px/1.7 ui-monospace,Menlo,monospace;
-         letter-spacing:.05em;color:var(--dim)}
-.devtype .beg{color:var(--pink)}
-.caret-sm{display:inline-block;width:7px;height:.95em;background:var(--pink);
-          vertical-align:-2px;margin-left:4px;
-          animation:blink 1.1s steps(1) infinite}
-
 @media (max-width:520px){
   .mark{width:168px}
   h1{font-size:12px;letter-spacing:.34em;padding-left:.34em}
   .line{font-size:18px}
   .type{font-size:13px}
-  .devtype{font-size:11px}
   .store img{height:46px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -177,7 +168,9 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
 
   <div class="markbox">
     <button class="markbtn" id="markbtn" aria-label="Kro Studios — poke the logo">
-      <img class="mark" id="mark" src="logo.png" alt="Kro Studios">
+      <video class="mark" id="mark" src="logo-sting.mp4"
+             autoplay muted playsinline preload="auto"
+             poster="logo.png"></video>
     </button>
     <span class="easter" id="easter"></span>
   </div>
@@ -209,11 +202,6 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
     <a href="privacy.html">Privacy Policy</a>
     <span class="dot">•</span>
     <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
-
-    <div class="dev">
-      <span class="dev-mail"><a href="mailto:dev@krostudios.com">dev@krostudios.com</a></span>
-      <p class="devtype"><span id="d"></span><span class="caret-sm" id="dc"></span></p>
-    </div>
   </footer>
 
 </div>
@@ -222,7 +210,8 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
 /* ─────────────────────────────────────────────────────────────────
    1. THE MARK
    Click it and it takes the hit: teleports around its own pixel grid,
-   flashes, throws pixels. Hammer it and the reaction escalates.
+   flashes, throws pixels — and replays the sting from the top, so the
+   logo redraws itself each time you poke it.
    ───────────────────────────────────────────────────────────────── */
 (function(){
   var btn  = document.getElementById('markbtn');
@@ -233,6 +222,15 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
 
   var reduce = window.matchMedia &&
                matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Under reduced motion the sting shouldn't play at all — freeze it
+  // on its final frame so the logo is still a logo.
+  if (reduce && mark.tagName === 'VIDEO'){
+    mark.removeAttribute('autoplay');
+    mark.addEventListener('loadedmetadata', function(){
+      try { mark.currentTime = mark.duration || 0; } catch(e){}
+    });
+  }
 
   var hits = 0, cooloff = null, busy = false;
 
@@ -265,6 +263,11 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
   function hit(){
     if (reduce){ return; }
     hits++;
+
+    // Poking it makes it redraw itself from scratch.
+    if (mark.tagName === 'VIDEO'){
+      try { mark.currentTime = 0; mark.play(); } catch(e){}
+    }
 
     // Reaction scales with enthusiasm.
     var hard = hits >= 4;
@@ -361,73 +364,6 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
   }
 
   setTimeout(typeStep, 1100);
-})();
-
-
-/* ─────────────────────────────────────────────────────────────────
-   3. THE DEV LINE
-   Opens like a normal invitation and loses its composure. The
-   tagline above escalates by speeding UP; this one falls apart by
-   slowing DOWN — begging has a different rhythm to mania. The loop
-   is the punchline: it never stops asking.
-   ───────────────────────────────────────────────────────────────── */
-(function(){
-  var out = document.getElementById('d');
-  var car = document.getElementById('dc');
-  if(!out) return;
-
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
-    out.textContent = 'Write to our dev team. They are waiting.';
-    if (car) car.style.display = 'none';
-    return;
-  }
-
-  var steps = [
-    {t:'You can write to our dev team.', hold:1000, speed:44},
-    {t:' They read every one.',          hold:800,  speed:44},
-    {t:' They have no life.',            hold:700,  speed:40},
-    {t:' They have nothing.',            hold:620,  speed:44},
-    {t:' They are waiting.',             hold:900,  speed:52},
-    {t:' Please.',                       hold:1100, speed:64, beg:true},
-    {t:' Please.',                       hold:2400, speed:88, beg:true}
-  ];
-
-  var i = 0, buf = '';
-
-  function typeStep(){
-    if (i >= steps.length) return loop();
-    var s = steps[i], n = 0, sp = s.speed || 48;
-    (function tick(){
-      if (n <= s.t.length){
-        var head = buf, tail = s.t.slice(0, n);
-        // The pleading half turns pink as it lands.
-        out.innerHTML = s.beg
-          ? head + '<span class="beg">' + tail + '</span>'
-          : head + tail;
-        n++;
-        setTimeout(tick, sp);
-      } else {
-        buf += s.beg
-          ? '<span class="beg">' + s.t + '</span>'
-          : s.t;
-        i++;
-        setTimeout(typeStep, s.hold);
-      }
-    })();
-  }
-
-  function loop(){
-    // A beat of silence before it starts over — the pause is what
-    // makes the restart funny rather than just repetitive.
-    out.innerHTML = '';
-    setTimeout(function(){
-      buf = ''; i = 0;
-      typeStep();
-    }, 1400);
-  }
-
-  // Offset from the tagline above so the two aren't typing in unison.
-  setTimeout(typeStep, 2400);
 })();
 </script>
 </body>
