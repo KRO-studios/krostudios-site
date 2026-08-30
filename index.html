@@ -146,6 +146,17 @@ h1{font:700 14px/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
 .tube span{font:600 11px/1 ui-monospace,Menlo,monospace;
            letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 
+/* A secondary path, deliberately quiet. The homepage's job is still
+   "this is Kro Studios" — this line exists so Google can DISCOVER the
+   practice page (crawlers follow links; an orphan page can go unindexed
+   indefinitely) and so a curious visitor has somewhere to go. It is not
+   competing for the headline. */
+.extra{display:block;margin-top:20px;font:600 11px/1.6 ui-monospace,Menlo,monospace;
+       letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+       text-decoration:none;animation:boot .4s steps(3) .82s both}
+.extra:hover,.extra:focus-visible{color:var(--gold)}
+.extra:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+
 footer{margin-top:32px;font-size:13px;color:var(--dim);
        animation:boot .4s steps(3) .86s both}
 footer a{color:var(--gold);text-decoration:none;
@@ -197,6 +208,8 @@ footer a:hover,footer a:focus-visible{color:var(--pink);border-color:var(--pink)
     <img src="youtube.png" alt="">
     <span>Watch on YouTube</span>
   </a>
+
+  <a class="extra" href="chidon-hatanach.html">חידון התנ״ך — שאלות לתרגול</a>
 
   <footer>
     <a href="privacy.html">Privacy Policy</a>
