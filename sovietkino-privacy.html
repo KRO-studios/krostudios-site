@@ -1,0 +1,1939 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="referrer" content="no-referrer">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'none'; img-src 'self'; font-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+  >
+  <meta name="robots" content="index,follow">
+  <meta
+    name="description"
+    content="Политика конфиденциальности игры «Советское кино: Викторина» для Android и iOS."
+  >
+  <link
+    rel="canonical"
+    href="https://krostudios.com/sovietkino-privacy.html"
+  >
+  <title>Политика конфиденциальности — Советское кино: Викторина</title>
+
+  <style>
+    @font-face {
+      font-family: "PT Sans Narrow";
+      src: url("sovietkino-privacy-assets/fonts/PTSansNarrow-Bold.ttf")
+        format("truetype");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Golos Text";
+      src: url("sovietkino-privacy-assets/fonts/GolosText-Regular.ttf")
+        format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Golos Text";
+      src: url("sovietkino-privacy-assets/fonts/GolosText-SemiBold.ttf")
+        format("truetype");
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+    }
+
+    :root {
+      --paper: #f7e4c9;
+      --ink: #1e1e1e;
+      --charcoal: #46453a;
+      --cinema: #0a0a0a;
+      --red: #b0281f;
+      --gold: #d9a233;
+      --paper-soft: #f2d9b7;
+      --rule: rgba(70, 69, 58, 0.42);
+      --page: 1120px;
+      --reading: 72ch;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--cinema);
+      color: var(--ink);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 280px;
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(70, 69, 58, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 69, 58, 0.025) 1px, transparent 1px);
+      background-size: 23px 23px;
+      color: var(--ink);
+      font-family: "Golos Text", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.68;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--red);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--ink);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 0;
+      box-shadow: 0 0 0 6px var(--paper);
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      inset: 12px auto auto 12px;
+      padding: 12px 16px;
+      transform: translateY(-160%);
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(247, 228, 201, 0.22);
+      background: var(--cinema);
+      color: var(--paper);
+    }
+
+    .site-header__inner {
+      width: min(calc(100% - 32px), var(--page));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .studio-link {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      gap: 12px;
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .studio-mark {
+      width: 27px;
+      height: 27px;
+      position: relative;
+      border: 2px solid var(--gold);
+    }
+
+    .studio-mark::before,
+    .studio-mark::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+    }
+
+    .studio-mark::before {
+      left: 4px;
+      top: 4px;
+    }
+
+    .studio-mark::after {
+      right: 4px;
+      bottom: 4px;
+      background: var(--red);
+    }
+
+    .language-switch {
+      display: none;
+      min-height: 48px;
+      border: 1px solid rgba(247, 228, 201, 0.38);
+    }
+
+    .js .language-switch {
+      display: inline-flex;
+    }
+
+    .language-switch button {
+      min-width: 76px;
+      min-height: 48px;
+      padding: 10px 18px;
+      border: 0;
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .language-switch button + button {
+      border-left: 1px solid rgba(247, 228, 201, 0.38);
+    }
+
+    .language-switch button[aria-pressed="true"] {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--cinema);
+      color: var(--paper);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      width: min(42vw, 560px);
+      height: 128%;
+      right: -8%;
+      top: -12%;
+      transform: skewX(-13deg);
+      background: var(--red);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 46%;
+      height: 18px;
+      right: 8%;
+      bottom: 42px;
+      transform: skewX(-32deg);
+      border-top: 5px solid var(--gold);
+      border-bottom: 5px solid var(--gold);
+    }
+
+    .hero__inner {
+      width: min(calc(100% - 32px), var(--page));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(280px, 0.78fr);
+      align-items: center;
+      gap: clamp(30px, 7vw, 88px);
+      padding: clamp(54px, 8vw, 94px) 0 clamp(68px, 9vw, 110px);
+    }
+
+    .document-kicker {
+      display: inline-block;
+      margin: 0 0 20px;
+      padding: 8px 12px 7px;
+      border-left: 7px solid var(--red);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(54px, 8.6vw, 112px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.84;
+      text-transform: uppercase;
+    }
+
+    .hero-title--ru {
+      display: block;
+      font-size: 0.56em;
+      line-height: 0.9;
+      overflow-wrap: anywhere;
+    }
+
+    .hero__app-name {
+      margin: 28px 0 0;
+      color: var(--gold);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(24px, 3.2vw, 38px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .document-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin: 26px 0 0;
+      color: var(--paper-soft);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero__art {
+      position: relative;
+      justify-self: end;
+      width: min(100%, 380px);
+      aspect-ratio: 1;
+      padding: 20px;
+    }
+
+    .hero__art::before {
+      content: "";
+      position: absolute;
+      inset: 9% 3% 3% 9%;
+      transform: rotate(5deg);
+      border: 4px solid var(--paper);
+      background: var(--gold);
+      box-shadow: 13px 13px 0 var(--ink);
+    }
+
+    .hero__art img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: rotate(-5deg);
+      border: 4px solid var(--ink);
+    }
+
+    .projector-beams {
+      position: absolute;
+      z-index: -1;
+      inset: auto 0 11% -20%;
+      height: 96px;
+      pointer-events: none;
+    }
+
+    .projector-beams i {
+      position: absolute;
+      left: 0;
+      width: 64%;
+      height: 13px;
+      transform: skewX(-34deg);
+      background: var(--gold);
+    }
+
+    .projector-beams i:nth-child(1) {
+      top: 3px;
+    }
+
+    .projector-beams i:nth-child(2) {
+      top: 37px;
+    }
+
+    .projector-beams i:nth-child(3) {
+      top: 71px;
+    }
+
+    .policy-shell {
+      width: min(calc(100% - 32px), var(--page));
+      margin: 0 auto;
+      padding: clamp(38px, 6vw, 78px) 0 clamp(72px, 9vw, 120px);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 248px minmax(0, var(--reading));
+      justify-content: space-between;
+      align-items: start;
+      gap: clamp(36px, 7vw, 86px);
+    }
+
+    .contents {
+      position: sticky;
+      top: 24px;
+      border-top: 10px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .contents h2 {
+      margin: 0;
+      padding: 15px 0 12px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--red);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 24px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .contents ol {
+      margin: 0;
+      padding: 8px 0;
+      list-style: none;
+      counter-reset: contents;
+    }
+
+    .contents li {
+      counter-increment: contents;
+      border-bottom: 1px solid rgba(70, 69, 58, 0.18);
+    }
+
+    .contents li:last-child {
+      border-bottom: 0;
+    }
+
+    .contents a {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      min-height: 48px;
+      align-items: center;
+      padding: 8px 2px;
+      color: var(--charcoal);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.28;
+      text-decoration: none;
+    }
+
+    .contents a::before {
+      content: counter(contents, decimal-leading-zero);
+      color: var(--red);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 17px;
+    }
+
+    .contents a:hover {
+      color: var(--red);
+    }
+
+    .policy-article {
+      min-width: 0;
+    }
+
+    .policy-article[hidden] {
+      display: none;
+    }
+
+    .language-note {
+      display: block;
+      margin: 0 0 28px;
+      padding: 14px 16px;
+      border: 2px solid var(--ink);
+      background: var(--gold);
+      font-weight: 600;
+    }
+
+    .js .language-note {
+      display: none;
+    }
+
+    [data-language-copy][hidden] {
+      display: none;
+    }
+
+    .at-a-glance {
+      position: relative;
+      margin-bottom: 54px;
+      padding: clamp(24px, 4vw, 38px);
+      border: 3px solid var(--ink);
+      background: var(--gold);
+      box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    .at-a-glance::after {
+      content: "";
+      position: absolute;
+      width: 74px;
+      height: 16px;
+      top: -9px;
+      right: 24px;
+      transform: skewX(-28deg);
+      background: var(--red);
+    }
+
+    .at-a-glance h2 {
+      margin: 0 0 18px;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(31px, 5vw, 45px);
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .at-a-glance ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .at-a-glance li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .at-a-glance li::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      left: 0;
+      top: 0.48em;
+      background: var(--red);
+    }
+
+    .policy-section {
+      scroll-margin-top: 24px;
+      margin: 0 0 58px;
+      padding-top: 20px;
+      border-top: 2px solid var(--ink);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      align-items: start;
+      gap: 18px;
+      margin: 0 0 25px;
+    }
+
+    .frame-number {
+      display: grid;
+      min-height: 74px;
+      place-items: center;
+      background: var(--red);
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .section-heading__text small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(32px, 5vw, 48px);
+      letter-spacing: -0.015em;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .policy-section h3 {
+      margin: 30px 0 9px;
+      color: var(--red);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 25px;
+      letter-spacing: 0.025em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .policy-section p,
+    .policy-section ul {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .policy-section ul {
+      padding-left: 24px;
+    }
+
+    .policy-section li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .policy-section li::marker {
+      color: var(--red);
+    }
+
+    .data-ledger {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 26px 0 30px;
+    }
+
+    .ledger-card {
+      min-height: 100%;
+      padding: 18px;
+      border: 2px solid var(--ink);
+      background: rgba(247, 228, 201, 0.74);
+    }
+
+    .ledger-card:nth-child(2),
+    .ledger-card:nth-child(3) {
+      background: var(--paper-soft);
+    }
+
+    .ledger-card__label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 7px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .ledger-card h3 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 24px;
+    }
+
+    .ledger-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.52;
+    }
+
+    .notice {
+      margin: 26px 0;
+      padding: 18px 20px;
+      border-left: 9px solid var(--red);
+      background: var(--charcoal);
+      color: var(--paper);
+    }
+
+    .notice strong {
+      color: var(--paper);
+    }
+
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 28px;
+      padding: clamp(24px, 5vw, 42px);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .contact-card::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 40px;
+      right: -34px;
+      bottom: 24px;
+      transform: skewX(-28deg);
+      border-top: 10px solid var(--gold);
+      border-bottom: 10px solid var(--red);
+      pointer-events: none;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: clamp(31px, 5vw, 46px);
+    }
+
+    .contact-card p {
+      position: relative;
+      z-index: 1;
+      max-width: 44ch;
+    }
+
+    .contact-card a {
+      color: var(--paper);
+      font-weight: 600;
+    }
+
+    .contact-card a:hover {
+      color: var(--gold);
+    }
+
+    .site-footer {
+      overflow: hidden;
+      background: var(--cinema);
+      color: var(--paper-soft);
+    }
+
+    .filmstrip {
+      height: 38px;
+      border-top: 4px solid var(--gold);
+      border-bottom: 4px solid var(--gold);
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent 0 18px,
+        var(--paper) 18px 39px,
+        transparent 39px 57px
+      );
+      opacity: 0.9;
+    }
+
+    .site-footer__inner {
+      width: min(calc(100% - 32px), var(--page));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 0 34px;
+      font-size: 13px;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    .site-footer a {
+      color: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .hero__inner {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 0.56fr);
+        gap: 26px;
+      }
+
+      .policy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contents {
+        position: static;
+      }
+
+      .contents ol {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 24px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        font-size: 16px;
+      }
+
+      .site-header__inner {
+        min-height: 82px;
+        align-items: center;
+      }
+
+      .studio-link {
+        letter-spacing: 0.12em;
+      }
+
+      .language-switch button {
+        min-width: 62px;
+        padding-inline: 13px;
+      }
+
+      .hero::before {
+        width: 56vw;
+        height: 44%;
+        top: auto;
+        right: -17%;
+        bottom: -10%;
+      }
+
+      .hero::after {
+        width: 58%;
+        right: -4%;
+        bottom: 26px;
+      }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        padding-top: 48px;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+
+      .hero-title--ru {
+        font-size: 0.72em;
+      }
+
+      .hero__art {
+        width: min(76vw, 330px);
+        justify-self: center;
+      }
+
+      .contents ol,
+      .at-a-glance ul,
+      .data-ledger {
+        grid-template-columns: 1fr;
+      }
+
+      .at-a-glance {
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+
+      .site-footer__inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .site-header__inner,
+      .hero__inner,
+      .policy-shell,
+      .site-footer__inner {
+        width: min(calc(100% - 24px), var(--page));
+      }
+
+      .studio-link {
+        font-size: 13px;
+      }
+
+      .studio-mark {
+        display: none;
+      }
+
+      .section-heading {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 13px;
+      }
+
+      .frame-number {
+        min-height: 58px;
+        font-size: 28px;
+      }
+
+      .contact-card::after {
+        opacity: 0.42;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    @media (forced-colors: active) {
+      * {
+        forced-color-adjust: auto;
+      }
+
+      .hero__art,
+      .projector-beams,
+      .filmstrip,
+      .at-a-glance::after,
+      .contact-card::after {
+        display: none;
+      }
+    }
+
+    @media print {
+      :root {
+        --paper: #ffffff;
+        --ink: #000000;
+        --charcoal: #222222;
+        --cinema: #ffffff;
+        --red: #000000;
+        --gold: #eeeeee;
+        --paper-soft: #f4f4f4;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 11pt;
+      }
+
+      .site-header,
+      .hero__art,
+      .projector-beams,
+      .contents,
+      .filmstrip,
+      .language-switch,
+      .skip-link {
+        display: none !important;
+      }
+
+      .hero,
+      .site-footer {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .hero::before,
+      .hero::after,
+      .contact-card::after,
+      .at-a-glance::after {
+        display: none;
+      }
+
+      .hero__inner,
+      .policy-shell,
+      .site-footer__inner {
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      .hero__inner,
+      .policy-grid {
+        display: block;
+      }
+
+      .hero h1 {
+        color: #000000;
+        font-size: 48pt;
+      }
+
+      .hero__app-name,
+      .document-meta {
+        color: #000000;
+      }
+
+      .at-a-glance,
+      .contact-card {
+        box-shadow: none;
+        background: #f4f4f4;
+        color: #000000;
+      }
+
+      .contact-card a {
+        color: #000000;
+      }
+
+      .policy-section {
+        break-inside: avoid;
+      }
+
+      a {
+        color: #000000;
+      }
+
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+      }
+    }
+  </style>
+
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#policy-content">К содержанию / Skip to policy</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="studio-link" href="https://krostudios.com/">
+        <span class="studio-mark" aria-hidden="true"></span>
+        <span>KRO Studios</span>
+      </a>
+
+      <div class="language-switch" aria-label="Выбор языка / Language selector">
+        <button
+          type="button"
+          data-language-button="ru"
+          aria-pressed="true"
+          aria-controls="ru-policy"
+        >Рус</button>
+        <button
+          type="button"
+          data-language-button="en"
+          aria-pressed="false"
+          aria-controls="en-policy"
+        >Eng</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="policy-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div>
+          <p class="document-kicker">
+            <span data-language-copy="ru">Киноархив · документ 01</span>
+            <span data-language-copy="en" hidden>Film archive · document 01</span>
+          </p>
+          <h1 id="hero-title">
+            <span class="hero-title--ru" data-language-copy="ru">Политика<br>конфиденци&shy;альности</span>
+            <span data-language-copy="en" hidden>Privacy policy</span>
+          </h1>
+          <p class="hero__app-name" lang="ru">Советское кино: Викторина</p>
+          <p class="document-meta">
+            <span data-language-copy="ru">Android · iOS</span>
+            <span data-language-copy="ru">Версия 1.0</span>
+            <span data-language-copy="ru">Обновлено <time datetime="2026-09-02">2 сентября 2026</time></span>
+            <span data-language-copy="en" hidden>Android · iOS</span>
+            <span data-language-copy="en" hidden>Version 1.0</span>
+            <span data-language-copy="en" hidden>Updated <time datetime="2026-09-02">September 2, 2026</time></span>
+          </p>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <div class="projector-beams"><i></i><i></i><i></i></div>
+          <img
+            src="sovietkino-privacy-assets/app-icon.png"
+            width="1024"
+            height="1024"
+            alt=""
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="policy-shell">
+      <p class="language-note">
+        JavaScript отключён, поэтому ниже показаны обе языковые версии.
+        JavaScript is disabled, so both language versions appear below.
+      </p>
+
+      <article
+        id="ru-policy"
+        class="policy-article"
+        lang="ru"
+        data-language-panel="ru"
+      >
+        <div class="policy-grid">
+          <nav class="contents" aria-label="Содержание политики">
+            <h2>Содержание</h2>
+            <ol>
+              <li><a href="#ru-scope">О документе</a></li>
+              <li><a href="#ru-data">Какие данные</a></li>
+              <li><a href="#ru-purpose">Зачем они нужны</a></li>
+              <li><a href="#ru-sharing">Кому передаются</a></li>
+              <li><a href="#ru-ads">Реклама и выбор</a></li>
+              <li><a href="#ru-retention">Хранение и удаление</a></li>
+              <li><a href="#ru-safety">Безопасность и дети</a></li>
+              <li><a href="#ru-contact">Изменения и контакты</a></li>
+            </ol>
+          </nav>
+
+          <div>
+            <aside class="at-a-glance" aria-labelledby="ru-glance-title">
+              <h2 id="ru-glance-title">Коротко</h2>
+              <ul>
+                <li>Для игры не нужны регистрация, настоящее имя, телефон или email.</li>
+                <li>Большая часть прогресса хранится только на устройстве.</li>
+                <li>Для рейтинга создаётся случайный анонимный Firebase ID.</li>
+                <li>AdMob работает через форму согласия; приложение не запрашивает ATT/IDFA.</li>
+              </ul>
+            </aside>
+
+            <section id="ru-scope" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">01</span>
+                <div class="section-heading__text">
+                  <small>Кадр 01</small>
+                  <h2>О документе и разработчике</h2>
+                </div>
+              </div>
+
+              <p>
+                Эта политика описывает, как KRO Studios обрабатывает данные в
+                мобильной игре <strong>«Советское кино: Викторина»</strong>
+                для Android и iOS с идентификатором
+                <code>com.krostudios.sovietkino</code>. Она относится к самой
+                игре, её онлайн-рейтингу, рекламе и обращениям в поддержку.
+              </p>
+              <p>
+                KRO Studios является разработчиком, ответственным за игру и
+                эту политику. По вопросам конфиденциальности можно написать на
+                <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>.
+              </p>
+              <p>
+                Игра рассчитана на широкую аудиторию. Мы не просим игрока
+                создавать именной профиль и не запрашиваем настоящее имя,
+                email, номер телефона или почтовый адрес для начала игры.
+              </p>
+            </section>
+
+            <section id="ru-data" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">02</span>
+                <div class="section-heading__text">
+                  <small>Кадр 02</small>
+                  <h2>Какие данные обрабатываются</h2>
+                </div>
+              </div>
+
+              <div class="data-ledger">
+                <div class="ledger-card">
+                  <span class="ledger-card__label">На устройстве</span>
+                  <h3>Игровой прогресс</h3>
+                  <p>Ответы, статистика, билеты, таймеры, жетоны, задания, достижения, значки и настройки.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">Firebase</span>
+                  <h3>Анонимный ID</h3>
+                  <p>Случайный технический идентификатор без email, телефона, пароля и настоящего имени.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">Рейтинг</span>
+                  <h3>Результаты</h3>
+                  <p>Выбранный псевдоним, очки, место, значок и техническая запись сыгранного раунда.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">AdMob</span>
+                  <h3>Рекламные данные</h3>
+                  <p>IP-адрес, примерное местоположение, идентификаторы, взаимодействия с рекламой и диагностика.</p>
+                </div>
+              </div>
+
+              <h3>Данные, которые остаются на устройстве</h3>
+              <p>
+                Игра обычно сохраняет локально завершённые вопросы, историю и
+                статистику, состояние раунда, билеты и время их пополнения,
+                жетоны, задания, достижения, купленные за игровые жетоны
+                значки, дневные лимиты, настройки звука и текста, а также факт
+                прохождения обучения. Эти данные нужны для продолжения игры и
+                не отправляются в KRO Studios как единый профиль.
+              </p>
+              <p>
+                Операционная система может включать часть локальных данных в
+                резервную копию устройства в соответствии с настройками вашей
+                учётной записи Apple или Google. Такие резервные копии
+                контролируются поставщиком платформы, а не KRO Studios.
+              </p>
+
+              <h3>Анонимная авторизация Firebase</h3>
+              <p>
+                Для онлайн-рейтинга Google Firebase автоматически создаёт
+                случайный анонимный идентификатор пользователя (UID). Он
+                позволяет отличать записи одного игрока от другого без формы
+                регистрации. Firebase также может обрабатывать технические
+                сведения, необходимые для подключения, безопасности и работы
+                SDK, включая IP-адрес и сведения о версии приложения и
+                устройства.
+              </p>
+
+              <h3>Рейтинг и записи раундов</h3>
+              <p>
+                После соревновательного раунда в Google Cloud Firestore могут
+                сохраняться UID, выбранный из встроенного списка игровой
+                псевдоним, недельные и общие очки, неделя рейтинга, выбранный
+                кинозначок и время обновления. Другие игроки видят в рейтинге
+                псевдоним, очки, место и значок. Не используйте псевдоним как
+                способ сообщить настоящее имя или другие личные сведения.
+              </p>
+              <p>
+                Для целостности подсчёта отдельно сохраняется запись раунда:
+                идентификатор раунда, очки и их состав, число правильных
+                ответов и заданных вопросов, процент точности, выбранная тема
+                или режиссёр, уровень, результат победы, неделя и время. Эти
+                записи не показываются другим игрокам. Тренировочные раунды в
+                рейтинг не отправляются.
+              </p>
+
+              <h3>Реклама и обращения</h3>
+              <p>
+                Google Mobile Ads (AdMob) и участвующие рекламные партнёры
+                могут обрабатывать IP-адрес и основанное на нём примерное
+                местоположение, сведения о приложении и устройстве, Android
+                advertising ID, App Set ID и другие разрешённые идентификаторы.
+                SDK также может собирать сведения о запуске приложения,
+                нажатиях, показах и просмотрах видео, а также диагностику,
+                включая время запуска, зависания и энергопотребление.
+                Конкретная обработка зависит от платформы, региона, системных
+                настроек и вашего выбора в форме конфиденциальности.
+              </p>
+              <p>
+                Если вы пишете в поддержку, мы получаем адрес отправителя,
+                текст сообщения и сведения, которые вы решили приложить. При
+                нажатии «Поделиться» игра передаёт подготовленный результат в
+                системное меню отправки; выбранное вами стороннее приложение
+                обрабатывает его по собственной политике.
+              </p>
+
+              <div class="notice">
+                <strong>Чего сейчас нет:</strong> игра не содержит отдельные
+                Firebase Analytics или Crashlytics, не обрабатывает платежи,
+                не отправляет push-уведомления и не запрашивает точную
+                геолокацию, контакты, камеру, микрофон или медиатеку.
+              </div>
+            </section>
+
+            <section id="ru-purpose" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">03</span>
+                <div class="section-heading__text">
+                  <small>Кадр 03</small>
+                  <h2>Зачем используются данные</h2>
+                </div>
+              </div>
+
+              <ul>
+                <li>Чтобы сохранять прогресс и восстанавливать незавершённый раунд.</li>
+                <li>Чтобы создать анонимную игровую идентичность и вести недельный и общий рейтинг.</li>
+                <li>Чтобы предотвратить повторное начисление очков и рекламных наград.</li>
+                <li>Чтобы показать выбранный псевдоним и значок другим участникам рейтинга.</li>
+                <li>Чтобы показывать баннеры и добровольные вознаграждаемые объявления и финансировать игру.</li>
+                <li>Чтобы поддерживать безопасность, диагностировать ошибки и отвечать на обращения.</li>
+                <li>Чтобы выполнить требования закона, платформ и рекламных правил.</li>
+              </ul>
+              <p>
+                В зависимости от страны основанием обработки может быть
+                предоставление запрошенной функции игры, законный интерес в
+                безопасности и целостности сервиса, ваше согласие на
+                определённые рекламные операции либо обязанность соблюдать
+                применимое право.
+              </p>
+            </section>
+
+            <section id="ru-sharing" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">04</span>
+                <div class="section-heading__text">
+                  <small>Кадр 04</small>
+                  <h2>Кому передаются данные</h2>
+                </div>
+              </div>
+
+              <p>
+                KRO Studios самостоятельно не продаёт ваши личные данные. Для
+                работы отдельных функций сведения могут передаваться следующим
+                получателям:
+              </p>
+              <ul>
+                <li>
+                  <strong>Google Firebase Authentication и Cloud Firestore</strong>
+                  — анонимная авторизация, хранение рейтинга и защита записей.
+                </li>
+                <li>
+                  <strong>Google AdMob и рекламные партнёры</strong> — показ,
+                  измерение, ограничение мошенничества и, только когда это
+                  разрешено, персонализация рекламы. Список доступен в
+                  «Настроить параметры» формы согласия.
+                </li>
+                <li>
+                  <strong>Apple и Google</strong> — распространение приложения,
+                  системные службы, резервное копирование и безопасность
+                  платформы в соответствии с настройками устройства.
+                </li>
+                <li>
+                  <strong>Выбранный сервис отправки</strong> — только когда вы
+                  сами нажали «Поделиться» и выбрали получателя.
+                </li>
+              </ul>
+              <p>
+                Подробнее о работе Google с данными можно узнать в
+                <a href="https://policies.google.com/privacy">Политике конфиденциальности Google</a>
+                и материале
+                <a href="https://policies.google.com/technologies/partner-sites">«Как Google использует данные с сайтов и приложений партнёров»</a>.
+              </p>
+              <p>
+                Поставщики могут обрабатывать данные в разных странах. При
+                необходимости они используют предусмотренные законом механизмы
+                международной передачи и собственные меры защиты.
+              </p>
+              <p>
+                Когда поставщик обрабатывает данные от имени KRO Studios, его
+                договор или опубликованные условия требуют использовать их
+                только для разрешённых целей и обеспечивать такую же или
+                эквивалентную защиту, как в этой политике. Это не относится к
+                сервису отправки, который вы самостоятельно выбрали после
+                нажатия «Поделиться».
+              </p>
+            </section>
+
+            <section id="ru-ads" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">05</span>
+                <div class="section-heading__text">
+                  <small>Кадр 05</small>
+                  <h2>Реклама и ваш выбор</h2>
+                </div>
+              </div>
+
+              <p>
+                В странах ЕЭЗ, Великобритании и Швейцарии при необходимости
+                показывается форма Google User Messaging Platform (UMP). В ней
+                можно согласиться, отказаться или подробно настроить цели и
+                рекламных партнёров. Отказ не блокирует основную игру, но может
+                привести к показу ограниченной или неперсонализированной
+                рекламы либо к отсутствию доступного объявления.
+              </p>
+              <p>
+                Когда Google требует постоянную точку доступа, изменить выбор
+                можно в игре: <strong>Кинопаспорт → Настройки → Параметры
+                конфиденциальности</strong>. Отзыв согласия не влияет на
+                законность обработки, выполненной до отзыва.
+              </p>
+              <p>
+                Версия для iOS не показывает системный запрос App Tracking
+                Transparency и не настроена на доступ к IDFA. Это не означает
+                полного отсутствия технических идентификаторов: AdMob и
+                Firebase могут использовать другие идентификаторы приложения
+                или устройства, IP-адрес и диагностические сведения в пределах
+                разрешений системы и вашего выбора. На Android Google Mobile
+                Ads может использовать сбрасываемый Android advertising ID
+                согласно настройкам устройства и применимым правилам.
+              </p>
+              <p>
+                Эта веб-страница сама не устанавливает cookies, не сохраняет
+                языковой выбор в cookies или веб-хранилище и не содержит
+                аналитики, рекламных тегов или сторонних шрифтов. Выбранный
+                язык отражается только во фрагменте адреса после символа #.
+              </p>
+            </section>
+
+            <section id="ru-retention" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">06</span>
+                <div class="section-heading__text">
+                  <small>Кадр 06</small>
+                  <h2>Хранение, права и удаление</h2>
+                </div>
+              </div>
+
+              <h3>Срок хранения</h3>
+              <p>
+                Локальные данные остаются на устройстве, пока вы не очистите
+                данные приложения или не удалите его; резервная копия системы
+                может храниться дольше по правилам Apple или Google. Анонимный
+                Firebase UID, рейтинг, профиль значка и записи раундов обычно
+                хранятся, пока работает рейтинг и они нужны для подсчёта,
+                предотвращения дублей, безопасности и разрешения споров.
+              </p>
+              <p>
+                Мы не устанавливаем искусственный единый срок для всех записей.
+                Данные удаляются или обезличиваются, когда больше не нужны для
+                описанных целей, при подтверждённом запросе, либо когда этого
+                требует закон. Ограниченный минимум может сохраняться дольше,
+                если это необходимо для безопасности, предотвращения
+                злоупотреблений или выполнения юридической обязанности.
+              </p>
+              <p>
+                Переписка с поддержкой хранится столько, сколько разумно
+                необходимо для ответа, продолжения обращения, защиты от
+                злоупотреблений и выполнения юридических обязанностей.
+              </p>
+
+              <h3>Ваши права</h3>
+              <p>
+                В зависимости от вашего места жительства вы можете запросить
+                доступ, исправление, удаление, ограничение или перенос данных,
+                возразить против определённой обработки, отозвать согласие и
+                обратиться в местный орган по защите данных.
+              </p>
+              <p>
+                Для запроса напишите на
+                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20privacy%20request">hello@krostudios.com</a>
+                с темой «Soviet Kino privacy request». Поскольку профиль
+                анонимный и не связан с email или настоящим именем, мы можем
+                попросить указать игровой псевдоним и дополнительные сведения,
+                достаточные для безопасного поиска записи. Мы не удалим данные
+                другого игрока без разумной проверки принадлежности.
+              </p>
+              <p>
+                Удаление приложения или очистка его данных удаляет локальный
+                прогресс, но само по себе не гарантирует удаление уже
+                отправленной записи рейтинга. Для серверных данных используйте
+                контакт выше. Управление рекламным согласием выполняется
+                отдельно через параметры конфиденциальности в игре.
+              </p>
+            </section>
+
+            <section id="ru-safety" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">07</span>
+                <div class="section-heading__text">
+                  <small>Кадр 07</small>
+                  <h2>Безопасность и дети</h2>
+                </div>
+              </div>
+
+              <h3>Безопасность</h3>
+              <p>
+                Мы используем разумные технические и организационные меры:
+                соединения с сервисами Google шифруются при передаче,
+                Firestore ограничивает изменение записей владельцем
+                анонимного UID, а рейтинг принимает только заранее заданный
+                формат данных. Ни один способ хранения или передачи не может
+                гарантировать абсолютную безопасность.
+              </p>
+
+              <h3>Дети</h3>
+              <p>
+                Игра предназначена для широкой аудитории и не направлена
+                специально на детей младше 13 лет. Мы сознательно не просим
+                ребёнка сообщать настоящее имя, email, телефон или адрес. Если
+                вы родитель или опекун и считаете, что ребёнок передал личные
+                данные, напишите нам — мы рассмотрим запрос и примем
+                соответствующие меры. Когда местный закон требует согласия
+                взрослого, ребёнок должен пользоваться онлайн-функциями только
+                с разрешения родителя или опекуна.
+              </p>
+            </section>
+
+            <section id="ru-contact" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">08</span>
+                <div class="section-heading__text">
+                  <small>Кадр 08</small>
+                  <h2>Изменения и контакты</h2>
+                </div>
+              </div>
+
+              <p>
+                Мы можем обновлять эту политику, если меняются функции игры,
+                поставщики или требования закона. Новая версия появится на
+                этой странице с обновлённой датой. Существенные изменения,
+                требующие нового выбора, будут показаны в приложении или форме
+                согласия, когда это необходимо.
+              </p>
+              <p>
+                Русская и английская версии должны передавать один смысл. Если
+                вы заметили расхождение, сообщите нам, и мы его исправим.
+              </p>
+
+              <div class="contact-card">
+                <h3>Связаться с KRO Studios</h3>
+                <p>
+                  Вопросы, запрос доступа или удаления данных:
+                  <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+                </p>
+                <p>Приложение: «Советское кино: Викторина»</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+
+      <article
+        id="en-policy"
+        class="policy-article"
+        lang="en"
+        data-language-panel="en"
+      >
+        <div class="policy-grid">
+          <nav class="contents" aria-label="Policy contents">
+            <h2>Contents</h2>
+            <ol>
+              <li><a href="#en-scope">About this policy</a></li>
+              <li><a href="#en-data">Data we handle</a></li>
+              <li><a href="#en-purpose">Why we use it</a></li>
+              <li><a href="#en-sharing">Who receives it</a></li>
+              <li><a href="#en-ads">Ads and choices</a></li>
+              <li><a href="#en-retention">Retention and deletion</a></li>
+              <li><a href="#en-safety">Security and children</a></li>
+              <li><a href="#en-contact">Changes and contact</a></li>
+            </ol>
+          </nav>
+
+          <div>
+            <aside class="at-a-glance" aria-labelledby="en-glance-title">
+              <h2 id="en-glance-title">At a glance</h2>
+              <ul>
+                <li>No registration, real name, phone number, or email is needed to play.</li>
+                <li>Most gameplay progress remains on your device.</li>
+                <li>Firebase creates a random anonymous ID for the leaderboard.</li>
+                <li>AdMob is consent-gated; the app does not request ATT or IDFA.</li>
+              </ul>
+            </aside>
+
+            <section id="en-scope" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">01</span>
+                <div class="section-heading__text">
+                  <small>Frame 01</small>
+                  <h2>About this policy and developer</h2>
+                </div>
+              </div>
+
+              <p>
+                This policy explains how KRO Studios handles data in the
+                <strong lang="ru">“Советское кино: Викторина”</strong> (“Soviet Cinema:
+                Quiz”) mobile game for Android and iOS, whose identifier is
+                <code>com.krostudios.sovietkino</code>. It covers the game,
+                online leaderboard, advertising, and support communications.
+              </p>
+              <p>
+                KRO Studios is the developer responsible for the game and this
+                policy. For privacy questions, contact
+                <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>.
+              </p>
+              <p>
+                The game is intended for a general audience. We do not ask a
+                player to create a named profile or provide a real name, email
+                address, telephone number, or postal address to start playing.
+              </p>
+            </section>
+
+            <section id="en-data" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">02</span>
+                <div class="section-heading__text">
+                  <small>Frame 02</small>
+                  <h2>Data that is handled</h2>
+                </div>
+              </div>
+
+              <div class="data-ledger">
+                <div class="ledger-card">
+                  <span class="ledger-card__label">On device</span>
+                  <h3>Game progress</h3>
+                  <p>Answers, statistics, tickets, timers, tokens, missions, achievements, badges, and settings.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">Firebase</span>
+                  <h3>Anonymous ID</h3>
+                  <p>A random technical identifier without an email, phone number, password, or real name.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">Leaderboard</span>
+                  <h3>Results</h3>
+                  <p>Your selected nickname, score, rank, badge, and a technical record of a played round.</p>
+                </div>
+                <div class="ledger-card">
+                  <span class="ledger-card__label">AdMob</span>
+                  <h3>Advertising data</h3>
+                  <p>IP address, general location, identifiers, ad interactions, and diagnostic information.</p>
+                </div>
+              </div>
+
+              <h3>Data kept on your device</h3>
+              <p>
+                The game normally stores completed questions, history and
+                statistics, round state, tickets and refill times, tokens,
+                missions, achievements, badges purchased with in-game tokens,
+                daily limits, sound and text settings, and onboarding state
+                locally. This information is needed to continue the game and
+                is not sent to KRO Studios as one combined player profile.
+              </p>
+              <p>
+                Your operating system may include some local data in a device
+                backup according to your Apple or Google account settings.
+                Those backups are controlled by the platform provider, not KRO
+                Studios.
+              </p>
+
+              <h3>Firebase anonymous authentication</h3>
+              <p>
+                For the online leaderboard, Google Firebase automatically
+                creates a random anonymous user identifier (UID). It lets the
+                service distinguish one player's records from another without
+                a registration form. Firebase may also process technical data
+                needed for connectivity, security, and SDK operation,
+                including an IP address and app/device version information.
+              </p>
+
+              <h3>Leaderboard and round records</h3>
+              <p>
+                After a competitive round, Google Cloud Firestore may store the
+                UID, a game nickname selected from the built-in list, weekly
+                and all-time scores, leaderboard week, selected movie badge,
+                and update time. Other players see the nickname, scores, rank,
+                and badge on the leaderboard. Do not use the nickname as a way
+                to disclose a real name or other personal information.
+              </p>
+              <p>
+                To protect score integrity, a separate round record stores a
+                round ID, score and score components, correct and attempted
+                question counts, accuracy, selected topic or director, tier,
+                win result, leaderboard week, and timestamp. These records are
+                not displayed to other players. Training rounds are not
+                submitted to the leaderboard.
+              </p>
+
+              <h3>Advertising and communications</h3>
+              <p>
+                Google Mobile Ads (AdMob) and participating advertising
+                partners may process an IP address and IP-based general
+                location, app and device information, the Android advertising
+                ID, App Set ID, and other permitted identifiers. The SDK may
+                also collect app launches, taps, ad impressions and video
+                views, plus diagnostics such as launch time, hangs, and energy
+                usage. The exact processing depends on the platform, region,
+                system settings, and choices in the privacy form.
+              </p>
+              <p>
+                If you contact support, we receive the sender address, message,
+                and details you choose to attach. When you tap Share, the game
+                passes prepared result content to the system share sheet; the
+                third-party destination you select handles it under its own
+                policy.
+              </p>
+
+              <div class="notice">
+                <strong>Not currently present:</strong> the game has no separate
+                Firebase Analytics or Crashlytics integration, does not process
+                payments, sends no push notifications, and requests no precise
+                location, contacts, camera, microphone, or media-library access.
+              </div>
+            </section>
+
+            <section id="en-purpose" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">03</span>
+                <div class="section-heading__text">
+                  <small>Frame 03</small>
+                  <h2>Why the data is used</h2>
+                </div>
+              </div>
+
+              <ul>
+                <li>To save progress and recover an unfinished round.</li>
+                <li>To create an anonymous game identity and operate weekly and all-time leaderboards.</li>
+                <li>To prevent duplicate score and advertising-reward grants.</li>
+                <li>To display the selected nickname and badge to other leaderboard participants.</li>
+                <li>To show banners and optional rewarded ads and fund the game.</li>
+                <li>To maintain security, diagnose failures, and answer support requests.</li>
+                <li>To meet legal, platform, and advertising-policy requirements.</li>
+              </ul>
+              <p>
+                Depending on your country, the basis for processing may be
+                providing a game feature you requested, legitimate interests
+                in service security and integrity, your consent to particular
+                advertising operations, or compliance with applicable law.
+              </p>
+            </section>
+
+            <section id="en-sharing" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">04</span>
+                <div class="section-heading__text">
+                  <small>Frame 04</small>
+                  <h2>Who receives the data</h2>
+                </div>
+              </div>
+
+              <p>
+                KRO Studios does not itself sell your personal information. To
+                operate particular features, information may be sent to these
+                recipients:
+              </p>
+              <ul>
+                <li>
+                  <strong>Google Firebase Authentication and Cloud Firestore</strong>
+                  — anonymous authentication, leaderboard storage, and record
+                  protection.
+                </li>
+                <li>
+                  <strong>Google AdMob and advertising partners</strong> — ad
+                  delivery, measurement, fraud prevention, and, only when
+                  allowed, personalization. The available list appears under
+                  “Manage options” in the consent form.
+                </li>
+                <li>
+                  <strong>Apple and Google</strong> — app distribution, system
+                  services, backups, and platform security according to your
+                  device settings.
+                </li>
+                <li>
+                  <strong>Your selected sharing service</strong> — only when
+                  you tap Share and choose a destination yourself.
+                </li>
+              </ul>
+              <p>
+                Learn more in the
+                <a href="https://policies.google.com/privacy">Google Privacy Policy</a>
+                and
+                <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a>.
+              </p>
+              <p>
+                Providers may process data in different countries. Where
+                required, they use legally recognized transfer mechanisms and
+                their own safeguards for international processing.
+              </p>
+              <p>
+                When a provider processes data on behalf of KRO Studios, its
+                agreement or published terms require use only for authorized
+                purposes and the same or equivalent protection described in
+                this policy. This does not apply to a sharing destination you
+                independently select after tapping Share.
+              </p>
+            </section>
+
+            <section id="en-ads" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">05</span>
+                <div class="section-heading__text">
+                  <small>Frame 05</small>
+                  <h2>Advertising and your choices</h2>
+                </div>
+              </div>
+
+              <p>
+                Where required in the EEA, United Kingdom, and Switzerland, the
+                game displays a Google User Messaging Platform (UMP) form. You
+                can consent, decline, or manage purposes and advertising
+                partners in detail. Declining does not block the core game, but
+                it may result in limited or non-personalized ads, or no
+                available ad.
+              </p>
+              <p>
+                When Google requires a persistent entry point, you can change
+                your choice in the game under <strong>Kinopassport → Settings →
+                Privacy options</strong>. Withdrawing consent does not affect
+                processing that was lawful before withdrawal.
+              </p>
+              <p>
+                The iOS version does not display an App Tracking Transparency
+                request and is not configured to access IDFA. This does not
+                mean that no technical identifiers exist: AdMob and Firebase
+                may use other app- or device-bounded identifiers, IP addresses,
+                and diagnostic data within system permissions and your choices.
+                On Android, Google Mobile Ads may use the resettable Android
+                advertising ID subject to device settings and applicable rules.
+              </p>
+              <p>
+                This webpage itself sets no cookies, stores no language
+                preference in cookies or web storage, and contains no
+                analytics, advertising tags, or third-party fonts. The selected
+                language is reflected only in the URL fragment after #.
+              </p>
+            </section>
+
+            <section id="en-retention" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">06</span>
+                <div class="section-heading__text">
+                  <small>Frame 06</small>
+                  <h2>Retention, rights, and deletion</h2>
+                </div>
+              </div>
+
+              <h3>Retention period</h3>
+              <p>
+                Local data remains on your device until you clear the app's
+                data or uninstall it; a system backup may remain longer under
+                Apple or Google rules. The anonymous Firebase UID, leaderboard,
+                badge profile, and round records are normally retained while
+                the leaderboard operates and the records are needed for score
+                calculation, duplicate prevention, security, and dispute
+                handling.
+              </p>
+              <p>
+                We do not impose one artificial fixed period on every record.
+                Data is deleted or anonymized when it is no longer needed for
+                the purposes described, after a verified request, or when the
+                law requires it. A limited minimum may remain longer where
+                needed for security, abuse prevention, or a legal obligation.
+              </p>
+              <p>
+                Support correspondence is retained only as long as reasonably
+                needed to answer and follow up on the request, prevent abuse,
+                and meet legal obligations.
+              </p>
+
+              <h3>Your rights</h3>
+              <p>
+                Depending on where you live, you may request access,
+                correction, deletion, restriction, or portability; object to
+                certain processing; withdraw consent; and complain to your
+                local data-protection authority.
+              </p>
+              <p>
+                To make a request, email
+                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20privacy%20request">hello@krostudios.com</a>
+                with the subject “Soviet Kino privacy request.” Because the
+                profile is anonymous and is not linked to your email or real
+                name, we may ask for the game nickname and additional details
+                sufficient to locate the record safely. We will not delete
+                another player's information without reasonable verification.
+              </p>
+              <p>
+                Uninstalling the app or clearing its data removes local
+                progress, but does not by itself guarantee removal of a
+                leaderboard record that was already submitted. Use the contact
+                above for server data. Advertising consent is managed
+                separately through the in-game privacy options.
+              </p>
+            </section>
+
+            <section id="en-safety" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">07</span>
+                <div class="section-heading__text">
+                  <small>Frame 07</small>
+                  <h2>Security and children</h2>
+                </div>
+              </div>
+
+              <h3>Security</h3>
+              <p>
+                We use reasonable technical and organizational safeguards:
+                connections to Google services are encrypted in transit,
+                Firestore restricts record changes to the owner of the
+                anonymous UID, and the leaderboard accepts only predefined
+                data shapes. No storage or transmission method can guarantee
+                absolute security.
+              </p>
+
+              <h3>Children</h3>
+              <p>
+                The game is intended for a general audience and is not
+                specifically directed to children under 13. We do not
+                knowingly ask a child for a real name, email, phone number, or
+                address. If you are a parent or guardian and believe a child
+                submitted personal information, contact us so we can review
+                the request and take appropriate action. Where local law
+                requires adult authorization, a child should use online
+                features only with a parent or guardian's permission.
+              </p>
+            </section>
+
+            <section id="en-contact" class="policy-section">
+              <div class="section-heading">
+                <span class="frame-number" aria-hidden="true">08</span>
+                <div class="section-heading__text">
+                  <small>Frame 08</small>
+                  <h2>Changes and contact</h2>
+                </div>
+              </div>
+
+              <p>
+                We may update this policy when game features, providers, or
+                legal requirements change. The new version will appear on this
+                page with a revised date. Material changes that require a new
+                choice will be presented in the app or consent form where
+                necessary.
+              </p>
+              <p>
+                The Russian and English versions are intended to have the same
+                meaning. If you notice a discrepancy, tell us and we will
+                correct it.
+              </p>
+
+              <div class="contact-card">
+                <h3>Contact KRO Studios</h3>
+                <p>
+                  Questions, access requests, or deletion requests:
+                  <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+                </p>
+                <p>App: <span lang="ru">“Советское кино: Викторина”</span></p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="filmstrip" aria-hidden="true"></div>
+    <div class="site-footer__inner">
+      <p>KRO Studios · <span lang="ru">Советское кино: Викторина</span></p>
+      <p>
+        <a href="https://krostudios.com/">krostudios.com</a>
+        ·
+        <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var panels = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-panel]")
+      );
+      var buttons = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-button]")
+      );
+      var heroCopies = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-copy]")
+      );
+      var titles = {
+        ru: "Политика конфиденциальности — Советское кино: Викторина",
+        en: "Privacy Policy — Советское кино: Викторина"
+      };
+
+      function languageFromHash() {
+        return window.location.hash.indexOf("#en") === 0 ? "en" : "ru";
+      }
+
+      function showLanguage(language, updateHash) {
+        panels.forEach(function (panel) {
+          var active = panel.getAttribute("data-language-panel") === language;
+          panel.hidden = !active;
+        });
+
+        buttons.forEach(function (button) {
+          var active = button.getAttribute("data-language-button") === language;
+          button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+
+        heroCopies.forEach(function (copy) {
+          copy.hidden = copy.getAttribute("data-language-copy") !== language;
+        });
+
+        document.documentElement.lang = language;
+        document.title = titles[language];
+
+        if (updateHash && window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", language === "en" ? "#en" : "#ru");
+        }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          showLanguage(button.getAttribute("data-language-button"), true);
+        });
+      });
+
+      window.addEventListener("hashchange", function () {
+        showLanguage(languageFromHash(), false);
+      });
+
+      showLanguage(languageFromHash(), false);
+    }());
+  </script>
+</body>
+</html>
