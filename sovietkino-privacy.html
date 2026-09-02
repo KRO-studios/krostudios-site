@@ -141,7 +141,7 @@
 
     .site-header__inner {
       width: min(calc(100% - 32px), var(--page));
-      min-height: 72px;
+      min-height: 88px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -150,44 +150,19 @@
     }
 
     .studio-link {
-      display: inline-flex;
-      min-height: 48px;
-      align-items: center;
-      gap: 12px;
-      color: var(--paper);
-      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      display: inline-grid;
+      min-width: 88px;
+      min-height: 88px;
+      place-items: center;
+      line-height: 0;
       text-decoration: none;
-      text-transform: uppercase;
     }
 
-    .studio-mark {
-      width: 27px;
-      height: 27px;
-      position: relative;
-      border: 2px solid var(--gold);
-    }
-
-    .studio-mark::before,
-    .studio-mark::after {
-      content: "";
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-    }
-
-    .studio-mark::before {
-      left: 4px;
-      top: 4px;
-    }
-
-    .studio-mark::after {
-      right: 4px;
-      bottom: 4px;
-      background: var(--red);
+    .studio-logo {
+      width: 88px;
+      height: 88px;
+      max-width: none;
+      object-fit: contain;
     }
 
     .language-switch {
@@ -772,12 +747,16 @@
       }
 
       .site-header__inner {
-        min-height: 82px;
+        min-height: 84px;
         align-items: center;
       }
 
-      .studio-link {
-        letter-spacing: 0.12em;
+      .studio-link,
+      .studio-logo {
+        width: 82px;
+        min-width: 82px;
+        height: 82px;
+        min-height: 82px;
       }
 
       .language-switch button {
@@ -840,12 +819,12 @@
         width: min(calc(100% - 24px), var(--page));
       }
 
-      .studio-link {
-        font-size: 13px;
-      }
-
-      .studio-mark {
-        display: none;
+      .studio-link,
+      .studio-logo {
+        width: 76px;
+        min-width: 76px;
+        height: 76px;
+        min-height: 76px;
       }
 
       .section-heading {
@@ -980,8 +959,13 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a class="studio-link" href="https://krostudios.com/">
-        <span class="studio-mark" aria-hidden="true"></span>
-        <span>KRO Studios</span>
+        <img
+          class="studio-logo"
+          src="sovietkino-privacy-assets/kro-studios-logo.png"
+          width="1254"
+          height="1254"
+          alt="KRO Studios"
+        >
       </a>
 
       <div class="language-switch" aria-label="Выбор языка / Language selector">
