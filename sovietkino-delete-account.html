@@ -1025,6 +1025,19 @@
             восстановления рейтинга и удаляются, когда основание прекращается.
           </p>
           <p>
+            Для защиты от повторной записи удалённых данных другим устройством
+            или ещё действующим токеном Firebase временно сохраняется только
+            техническая метка: анонимный UID в ключе документа и время её
+            окончания. Сначала устанавливается резервный срок до 30 дней,
+            чтобы прерванный запрос можно было безопасно повторить, но UID не
+            сохранялся бессрочно. После успешного удаления срок сокращается до
+            двух часов; затем Firestore обычно удаляет метку автоматически в
+            течение следующих 24 часов. В ней нет псевдонима, очков, истории
+            игры, данных устройства или рекламы. Незавершённую операцию нужно
+            повторить в приложении или решить через поддержку до окончания
+            резервного срока.
+          </p>
+          <p>
             После удаления прежние онлайн-очки, место, профиль и записи раундов
             восстановить нельзя. Эта установка не создаёт новый UID
             автоматически: онлайн-рейтинг остаётся отключён, а локальная игра
@@ -1223,6 +1236,19 @@
             prevention, dispute resolution, or a legal obligation. It is not
             used to restore the leaderboard and is removed when the retention
             ground ends.
+          </p>
+          <p>
+            To stop another device or a still-valid Firebase token from
+            recreating deleted records, we temporarily retain only a technical
+            write-block marker: the anonymous UID as the document key and its
+            expiry time. It initially has a fallback expiry of up to 30 days,
+            allowing an interrupted request to be retried without retaining
+            the UID indefinitely. After successful deletion, the expiry is
+            shortened to two hours; Firestore then ordinarily removes the
+            marker automatically within the following 24 hours. It contains no
+            nickname, score, gameplay, device, or advertising data. An
+            incomplete operation must be retried in the app or resolved through
+            support before the fallback period ends.
           </p>
           <p>
             Former online scores, rank, profile, and round records cannot be

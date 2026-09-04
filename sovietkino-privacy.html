@@ -1346,6 +1346,21 @@
                 необходимо для ответа, продолжения обращения, защиты от
                 злоупотреблений и выполнения юридических обязанностей.
               </p>
+              <p>
+                После подтверждения запроса на удаление создаётся временная
+                метка, блокирующая повторную запись: анонимный Firebase UID в
+                ключе документа и время окончания. Она нужна, чтобы
+                другое устройство или ещё действующий токен не создали
+                удалённые записи снова.
+                Сначала устанавливается резервный срок до 30 дней, чтобы
+                прерванный запрос можно было безопасно повторить, но UID не
+                сохранялся бессрочно. После успешного удаления срок сокращается
+                до двух часов; затем Firestore обычно удаляет метку
+                автоматически в течение следующих 24 часов. В ней нет
+                псевдонима, очков, истории игры, данных устройства или рекламы.
+                Незавершённую операцию нужно повторить в приложении или решить
+                через поддержку до окончания резервного срока.
+              </p>
 
               <h3>Ваши права</h3>
               <p>
@@ -1796,6 +1811,20 @@
                 Support correspondence is retained only as long as reasonably
                 needed to answer and follow up on the request, prevent abuse,
                 and meet legal obligations.
+              </p>
+              <p>
+                After the deletion request is confirmed, a temporary write-block
+                marker is created: the anonymous Firebase UID as the document
+                key and an expiry time. It prevents another device or a
+                still-valid token from recreating deleted records. It initially
+                has a fallback expiry of up to 30 days, allowing an interrupted
+                request to be retried without retaining the UID indefinitely.
+                After successful deletion, the expiry is shortened to two hours;
+                Firestore then ordinarily removes the marker automatically within
+                the following 24 hours. It contains no nickname, score, gameplay,
+                device, or advertising data. An incomplete operation must be
+                retried in the app or resolved through support before the fallback
+                period ends.
               </p>
 
               <h3>Your rights</h3>
