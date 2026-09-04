@@ -1000,10 +1000,10 @@
           <p class="hero__app-name" lang="ru">Советское кино. Проверим?</p>
           <p class="document-meta">
             <span data-language-copy="ru">Android · iOS</span>
-            <span data-language-copy="ru">Версия 1.0</span>
+            <span data-language-copy="ru">Версия 1.1</span>
             <span data-language-copy="ru">Обновлено <time datetime="2026-09-04">4 сентября 2026</time></span>
             <span data-language-copy="en" hidden>Android · iOS</span>
-            <span data-language-copy="en" hidden>Version 1.0</span>
+            <span data-language-copy="en" hidden>Version 1.1</span>
             <span data-language-copy="en" hidden>Updated <time datetime="2026-09-04">September 4, 2026</time></span>
           </p>
         </div>
@@ -1054,7 +1054,7 @@
                 <li>Для игры не нужны регистрация, настоящее имя, телефон или email.</li>
                 <li>Большая часть прогресса хранится только на устройстве.</li>
                 <li>Для рейтинга создаётся случайный анонимный Firebase ID.</li>
-                <li>AdMob работает через форму согласия; приложение не запрашивает ATT/IDFA.</li>
+                <li>Анонимную учётную запись и её онлайн-данные можно удалить в игре.</li>
               </ul>
             </aside>
 
@@ -1354,21 +1354,64 @@
                 возразить против определённой обработки, отозвать согласие и
                 обратиться в местный орган по защите данных.
               </p>
+              <h3>Удаление анонимной учётной записи</h3>
               <p>
-                Для запроса напишите на
-                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20privacy%20request">hello@krostudios.com</a>
-                с темой «Soviet Kino privacy request». Поскольку профиль
-                анонимный и не связан с email или настоящим именем, мы можем
-                попросить указать игровой псевдоним и дополнительные сведения,
-                достаточные для безопасного поиска записи. Мы не удалим данные
-                другого игрока без разумной проверки принадлежности.
+                Самый безопасный и быстрый способ — открыть в игре
+                <strong>Кинопаспорт → УЧЁТНАЯ ЗАПИСЬ → УДАЛИТЬ УЧЁТНУЮ
+                ЗАПИСЬ И ДАННЫЕ</strong>. После подтверждения игра отправляет
+                защищённый запрос от текущей анонимной учётной записи. Для
+                этого не требуются настоящее имя, email или пароль.
+              </p>
+              <p>
+                Запрос удаляет анонимную учётную запись Firebase и UID, запись
+                недельного и общего рейтинга, игровой псевдоним, место и
+                выбранный кинозначок, профиль значка, а также все связанные с
+                UID технические записи соревновательных раундов и их
+                результаты. Удаление окончательное: прежний рейтинг и
+                онлайн-профиль восстановить нельзя.
+              </p>
+              <p>
+                Локальный прогресс на устройстве сохраняется: пройденные
+                вопросы, история и статистика, билеты и таймеры, жетоны,
+                задания, достижения, купленные за игровые жетоны значки,
+                дневные лимиты, настройки и обучение не удаляются этим
+                действием. Локально сохранённый псевдоним рейтинга и
+                технические очереди, связанные со старым UID, очищаются, чтобы
+                удалённые результаты не отправились снова.
+                После завершения эта установка игры не создаёт новую учётную
+                запись автоматически: онлайн-рейтинг остаётся отключён, а
+                локальная игра и сохранённый прогресс продолжают работать.
               </p>
               <p>
                 Удаление приложения или очистка его данных удаляет локальный
                 прогресс, но само по себе не гарантирует удаление уже
-                отправленной записи рейтинга. Для серверных данных используйте
-                контакт выше. Управление рекламным согласием выполняется
-                отдельно через параметры конфиденциальности в игре.
+                отправленных онлайн-записей. Если доступа к игре больше нет,
+                воспользуйтесь нашей
+                <a href="sovietkino-delete-account.html#ru-deletion">страницей удаления учётной записи</a>
+                или напишите на
+                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request">hello@krostudios.com</a>.
+                Анонимный UID или псевдоним помогает найти запись, но сам по
+                себе не доказывает, кому она принадлежит; перед удалением мы
+                можем запросить дополнительные сведения для разумной и
+                безопасной проверки.
+              </p>
+              <p>
+                Запрос из игры обычно выполняется во время подтверждённой
+                операции. Обращения в поддержку рассматриваются без
+                неоправданной задержки, обычно в течение 30 дней; если нужно
+                больше времени, мы сообщим ожидаемый срок. Ограниченный объём
+                сведений может храниться дольше только там и столько, где и
+                сколько это обоснованно необходимо для безопасности,
+                предотвращения злоупотреблений, разрешения спора или выполнения
+                юридической обязанности. Такие сведения не используются для
+                восстановления удалённого рейтинга и удаляются, когда основание
+                для хранения прекращается.
+              </p>
+              <p>
+                Удаление учётной записи не изменяет рекламное согласие и не
+                сбрасывает системные рекламные идентификаторы. Управление
+                рекламным согласием выполняется отдельно через параметры
+                конфиденциальности в игре.
               </p>
             </section>
 
@@ -1466,7 +1509,7 @@
                 <li>No registration, real name, phone number, or email is needed to play.</li>
                 <li>Most gameplay progress remains on your device.</li>
                 <li>Firebase creates a random anonymous ID for the leaderboard.</li>
-                <li>AdMob is consent-gated; the app does not request ATT or IDFA.</li>
+                <li>You can delete the anonymous account and its online data in the game.</li>
               </ul>
             </aside>
 
@@ -1762,21 +1805,61 @@
                 certain processing; withdraw consent; and complain to your
                 local data-protection authority.
               </p>
+              <h3>Deleting the anonymous account</h3>
               <p>
-                To make a request, email
-                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20privacy%20request">hello@krostudios.com</a>
-                with the subject “Soviet Kino privacy request.” Because the
-                profile is anonymous and is not linked to your email or real
-                name, we may ask for the game nickname and additional details
-                sufficient to locate the record safely. We will not delete
-                another player's information without reasonable verification.
+                The safest and fastest route is in the game at
+                <strong>Kinopassport → Account → Delete account and
+                data</strong>. After confirmation, the game sends a secure
+                request from the current anonymous account. No real name,
+                email address, or password is required.
+              </p>
+              <p>
+                The request deletes the Firebase anonymous account and UID;
+                the weekly and all-time leaderboard entry; game nickname,
+                rank, and selected movie badge; the badge profile; and every
+                UID-linked technical competitive-round record and result.
+                Deletion is permanent: the former leaderboard position and
+                online profile cannot be restored.
+              </p>
+              <p>
+                Local progress on the device is retained. Completed questions,
+                history and statistics, tickets and timers, tokens, missions,
+                achievements, badges purchased with in-game tokens, daily
+                limits, settings, and onboarding are not removed by this
+                action. The locally stored leaderboard nickname and technical
+                queues bound to the old UID are cleared so deleted results
+                cannot be submitted again. After completion,
+                this installation does not silently create a replacement
+                account: the online leaderboard remains disabled while local
+                gameplay and retained progress continue to work.
               </p>
               <p>
                 Uninstalling the app or clearing its data removes local
-                progress, but does not by itself guarantee removal of a
-                leaderboard record that was already submitted. Use the contact
-                above for server data. Advertising consent is managed
-                separately through the in-game privacy options.
+                progress, but does not by itself guarantee removal of online
+                records already submitted. If you no longer have access to the
+                game, use our
+                <a href="sovietkino-delete-account.html#en-deletion">account-deletion page</a>
+                or email
+                <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request">hello@krostudios.com</a>.
+                An anonymous UID or nickname can help locate a record, but does
+                not by itself prove ownership; we may request additional
+                information for reasonable, secure verification before
+                deletion.
+              </p>
+              <p>
+                An in-app request normally completes during the confirmed
+                operation. Support requests are handled without undue delay,
+                ordinarily within 30 days; if more time is needed, we will tell
+                you the expected timing. A limited amount of information may
+                be retained longer only where, and for as long as, reasonably
+                necessary for security, abuse prevention, dispute resolution,
+                or a legal obligation. It is not used to restore a deleted
+                leaderboard and is removed when the retention ground ends.
+              </p>
+              <p>
+                Account deletion does not change advertising consent or reset
+                system advertising identifiers. Advertising consent remains a
+                separate choice under the in-game privacy options.
               </p>
             </section>
 
@@ -1855,6 +1938,8 @@
       <p>KRO Studios · <span lang="ru">Советское кино. Проверим?</span></p>
       <p>
         <a href="https://krostudios.com/">krostudios.com</a>
+        ·
+        <a href="sovietkino-delete-account.html">Удаление аккаунта / Account deletion</a>
         ·
         <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
       </p>

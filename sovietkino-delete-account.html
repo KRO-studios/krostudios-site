@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="referrer" content="no-referrer">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'none'; img-src 'self'; font-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+  >
+  <meta name="robots" content="index,follow">
+  <meta
+    name="description"
+    content="Удаление анонимной учётной записи и онлайн-данных игры «Советское кино. Проверим?» для Android и iOS."
+  >
+  <link
+    rel="canonical"
+    href="https://krostudios.com/sovietkino-delete-account.html"
+  >
+  <title>Удаление учётной записи — Советское кино. Проверим?</title>
+
+  <style>
+    @font-face {
+      font-family: "PT Sans Narrow";
+      src: url("sovietkino-privacy-assets/fonts/PTSansNarrow-Bold.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Golos Text";
+      src: url("sovietkino-privacy-assets/fonts/GolosText-Regular.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Golos Text";
+      src: url("sovietkino-privacy-assets/fonts/GolosText-SemiBold.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+    }
+
+    :root {
+      --paper: #f7e4c9;
+      --paper-soft: #f2d9b7;
+      --ink: #1e1e1e;
+      --cinema: #0a0a0a;
+      --charcoal: #46453a;
+      --red: #b0281f;
+      --gold: #d9a233;
+      --page: 1120px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 280px;
+      background: var(--cinema);
+      color: var(--ink);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(70, 69, 58, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 69, 58, 0.025) 1px, transparent 1px);
+      background-size: 23px 23px;
+      color: var(--ink);
+      font-family: "Golos Text", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.68;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--red);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--ink);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--paper);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    code {
+      padding: 0.08em 0.3em;
+      background: rgba(30, 30, 30, 0.09);
+      font-size: 0.88em;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      inset: 12px auto auto 12px;
+      padding: 12px 16px;
+      transform: translateY(-180%);
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(247, 228, 201, 0.22);
+      background: var(--cinema);
+      color: var(--paper);
+    }
+
+    .site-header__inner {
+      width: min(calc(100% - 32px), var(--page));
+      min-height: 88px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .studio-link {
+      display: inline-grid;
+      width: 88px;
+      height: 88px;
+      place-items: center;
+      line-height: 0;
+      text-decoration: none;
+    }
+
+    .studio-logo {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+    }
+
+    .language-switch {
+      display: none;
+      min-height: 48px;
+      border: 1px solid rgba(247, 228, 201, 0.38);
+    }
+
+    .js .language-switch {
+      display: inline-flex;
+    }
+
+    .language-switch button {
+      min-width: 76px;
+      min-height: 48px;
+      border: 0;
+      border-right: 1px solid rgba(247, 228, 201, 0.38);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .language-switch button:last-child {
+      border-right: 0;
+    }
+
+    .language-switch button[aria-pressed="true"] {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 12px solid var(--ink);
+      background: var(--red);
+      color: var(--paper);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: min(42vw, 560px);
+      height: 145%;
+      right: -5%;
+      top: -24%;
+      transform: rotate(18deg);
+      background: var(--gold);
+    }
+
+    .hero::after {
+      width: 34%;
+      height: 18px;
+      left: -5%;
+      bottom: 38px;
+      transform: rotate(-4deg);
+      background: var(--cinema);
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 32px), var(--page));
+      min-height: 410px;
+      margin: 0 auto;
+      padding: clamp(56px, 8vw, 96px) 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(230px, 0.42fr);
+      align-items: center;
+      gap: clamp(34px, 8vw, 96px);
+    }
+
+    .document-kicker {
+      margin: 0 0 15px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(58px, 9vw, 116px);
+      letter-spacing: -0.035em;
+      line-height: 0.82;
+      text-transform: uppercase;
+    }
+
+    .hero__app-name {
+      margin: 28px 0 0;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(25px, 4vw, 38px);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .document-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin: 18px 0 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero__art {
+      position: relative;
+      justify-self: end;
+      width: min(100%, 290px);
+      transform: rotate(3deg);
+    }
+
+    .hero__art::before {
+      content: "";
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      border: 4px solid var(--cinema);
+      background: var(--paper);
+    }
+
+    .hero__art img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border: 4px solid var(--cinema);
+    }
+
+    .page-shell {
+      width: min(calc(100% - 32px), var(--page));
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 92px) 0;
+    }
+
+    .language-note {
+      margin: 0 0 30px;
+      padding: 14px 16px;
+      border: 2px solid var(--ink);
+      background: var(--gold);
+      font-weight: 600;
+    }
+
+    .js .language-note,
+    [data-language-copy][hidden],
+    .language-panel[hidden] {
+      display: none;
+    }
+
+    .status-card {
+      position: relative;
+      margin: 0 0 54px;
+      padding: clamp(25px, 5vw, 46px);
+      border: 3px solid var(--ink);
+      background: var(--gold);
+      box-shadow: 12px 12px 0 var(--ink);
+    }
+
+    .status-card::before {
+      content: "";
+      position: absolute;
+      width: 88px;
+      height: 17px;
+      right: 28px;
+      top: -10px;
+      transform: skewX(-28deg);
+      background: var(--red);
+    }
+
+    .status-card__label {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 8px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .status-card h2 {
+      margin: 0 0 18px;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: clamp(38px, 6vw, 62px);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .status-card p {
+      max-width: 74ch;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .route {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 5px;
+      margin: 25px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .route li {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--cinema);
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 17px;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .route li:not(:last-child)::after {
+      content: "→";
+      margin-left: 14px;
+      color: var(--gold);
+    }
+
+    .status-card .alternate-request {
+      margin-top: 18px;
+      font-size: 15px;
+    }
+
+    .alternate-request a {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .section {
+      margin: 0 0 62px;
+      padding-top: 22px;
+      border-top: 2px solid var(--ink);
+      scroll-margin-top: 24px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      align-items: start;
+      gap: 18px;
+      margin-bottom: 27px;
+    }
+
+    .frame-number {
+      display: grid;
+      min-height: 74px;
+      place-items: center;
+      background: var(--red);
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .section-heading small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .section h2,
+    .section h3 {
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 51px);
+      letter-spacing: -0.015em;
+      line-height: 0.98;
+    }
+
+    .section h3 {
+      margin: 30px 0 9px;
+      color: var(--red);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .section p,
+    .section ul,
+    .section ol {
+      max-width: 78ch;
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .steps,
+    .data-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: none;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .steps li,
+    .data-card {
+      min-height: 100%;
+      padding: 22px;
+      border: 2px solid var(--ink);
+      background: rgba(247, 228, 201, 0.78);
+    }
+
+    .steps li:nth-child(2),
+    .steps li:nth-child(3),
+    .data-card:nth-child(2),
+    .data-card:nth-child(3) {
+      background: var(--paper-soft);
+    }
+
+    .step-number,
+    .data-label {
+      display: inline-block;
+      margin-bottom: 11px;
+      padding: 4px 8px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .steps strong,
+    .data-card strong {
+      display: block;
+      margin-bottom: 7px;
+      font-family: "PT Sans Narrow", "Arial Narrow", sans-serif;
+      font-size: 24px;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .steps p,
+    .data-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.52;
+    }
+
+    .keep-card,
+    .warning-card {
+      margin: 26px 0;
+      padding: 22px 24px;
+      border-left: 10px solid var(--red);
+      background: var(--charcoal);
+      color: var(--paper);
+    }
+
+    .keep-card strong,
+    .warning-card strong {
+      color: var(--gold);
+    }
+
+    .keep-card p,
+    .warning-card p {
+      margin: 0;
+    }
+
+    .support-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 48px);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .support-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -85px;
+      bottom: -85px;
+      transform: rotate(45deg);
+      background: var(--red);
+    }
+
+    .support-card h3 {
+      margin-top: 0;
+      color: var(--gold);
+      font-size: clamp(31px, 5vw, 45px);
+    }
+
+    .support-card a {
+      color: var(--gold);
+    }
+
+    .request-button {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-top: 8px;
+      padding: 13px 18px;
+      border: 2px solid var(--gold);
+      background: var(--gold);
+      color: var(--ink) !important;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .request-button:hover {
+      background: var(--paper);
+      border-color: var(--paper);
+    }
+
+    .site-footer {
+      background: var(--cinema);
+      color: var(--paper);
+    }
+
+    .filmstrip {
+      height: 28px;
+      background:
+        linear-gradient(90deg, transparent 0 14px, var(--paper) 14px 30px, transparent 30px 44px) 0 6px / 44px 16px repeat-x,
+        var(--red);
+    }
+
+    .site-footer__inner {
+      width: min(calc(100% - 32px), var(--page));
+      margin: 0 auto;
+      padding: 34px 0 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    .site-footer a {
+      color: var(--paper);
+    }
+
+    @media (max-width: 760px) {
+      .hero__inner {
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr) 112px;
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 14vw, 78px);
+      }
+
+      .hero__art {
+        width: 112px;
+      }
+
+      .hero__art::before {
+        inset: 9px -9px -9px 9px;
+        border-width: 3px;
+      }
+
+      .hero__art img {
+        border-width: 3px;
+      }
+
+      .route {
+        display: grid;
+      }
+
+      .route li:not(:last-child)::after {
+        margin-left: auto;
+      }
+
+      .steps,
+      .data-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer__inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        font-size: 16px;
+      }
+
+      .site-header__inner,
+      .page-shell,
+      .hero__inner,
+      .site-footer__inner {
+        width: min(calc(100% - 24px), var(--page));
+      }
+
+      .studio-link,
+      .studio-logo {
+        width: 72px;
+        height: 72px;
+      }
+
+      .site-header__inner {
+        min-height: 72px;
+      }
+
+      .language-switch button {
+        min-width: 62px;
+      }
+
+      .hero__inner {
+        padding: 46px 0 58px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero__art {
+        display: none;
+      }
+
+      .document-meta {
+        display: grid;
+      }
+
+      .status-card {
+        box-shadow: 7px 7px 0 var(--ink);
+      }
+
+      .section-heading {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 13px;
+      }
+
+      .frame-number {
+        min-height: 58px;
+        font-size: 27px;
+      }
+
+      .steps li,
+      .data-card {
+        padding: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero__art,
+      .language-switch,
+      .filmstrip {
+        display: none !important;
+      }
+
+      .hero {
+        border: 0;
+        background: #fff;
+        color: #000;
+      }
+
+      .hero__inner,
+      .page-shell {
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      .status-card,
+      .steps li,
+      .data-card,
+      .support-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#deletion-content">К содержанию / Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="studio-link" href="https://krostudios.com/" aria-label="KRO Studios — главная">
+        <img
+          class="studio-logo"
+          src="sovietkino-privacy-assets/kro-studios-logo.png"
+          width="1254"
+          height="1254"
+          alt="KRO Studios"
+        >
+      </a>
+
+      <div class="language-switch" aria-label="Выбор языка / Language selector">
+        <button
+          type="button"
+          data-language-button="ru"
+          aria-pressed="true"
+          aria-controls="ru-deletion"
+        >Рус</button>
+        <button
+          type="button"
+          data-language-button="en"
+          aria-pressed="false"
+          aria-controls="en-deletion"
+        >Eng</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="deletion-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div>
+          <p class="document-kicker">
+            <span data-language-copy="ru">Киноархив · документ 02</span>
+            <span data-language-copy="en" hidden>Film archive · document 02</span>
+          </p>
+          <h1 id="hero-title">
+            <span data-language-copy="ru">Удаление<br>аккаунта</span>
+            <span data-language-copy="en" hidden>Account<br>deletion</span>
+          </h1>
+          <p class="hero__app-name" lang="ru">Советское кино. Проверим?</p>
+          <p class="document-meta">
+            <span data-language-copy="ru">Android · iOS</span>
+            <span data-language-copy="ru">Обновлено <time datetime="2026-09-04">4 сентября 2026</time></span>
+            <span data-language-copy="en" hidden>Android · iOS</span>
+            <span data-language-copy="en" hidden>Updated <time datetime="2026-09-04">September 4, 2026</time></span>
+          </p>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <img
+            src="sovietkino-privacy-assets/app-icon.png"
+            width="1024"
+            height="1024"
+            alt=""
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="page-shell">
+      <p class="language-note">
+        JavaScript отключён, поэтому ниже показаны обе языковые версии.
+        JavaScript is disabled, so both language versions appear below.
+      </p>
+
+      <article
+        id="ru-deletion"
+        class="language-panel"
+        lang="ru"
+        data-language-panel="ru"
+      >
+        <aside class="status-card" aria-labelledby="ru-status-title">
+          <span class="status-card__label">Безопасный путь в приложении</span>
+          <h2 id="ru-status-title">Удалите онлайн-профиль прямо в игре</h2>
+          <p>
+            Если игра всё ещё установлена, используйте этот способ: запрос
+            будет подписан текущей анонимной учётной записью, поэтому KRO
+            Studios сможет безопасно удалить именно ваши онлайн-данные.
+          </p>
+          <ol class="route" aria-label="Путь в приложении">
+            <li>Кинопаспорт</li>
+            <li>Учётная запись</li>
+            <li>Удалить учётную запись и данные</li>
+          </ol>
+          <p class="alternate-request">
+            Игра больше недоступна?
+            <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request">Отправьте запрос на удаление по email</a>.
+          </p>
+        </aside>
+
+        <section class="section" id="ru-how">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">01</span>
+            <div>
+              <small>Кадр 01</small>
+              <h2>Как удалить данные в игре</h2>
+            </div>
+          </div>
+
+          <ol class="steps">
+            <li>
+              <span class="step-number">Шаг 1</span>
+              <strong>Откройте Кинопаспорт</strong>
+              <p>Перейдите в раздел учётной записи после запуска игры.</p>
+            </li>
+            <li>
+              <span class="step-number">Шаг 2</span>
+              <strong>Выберите удаление</strong>
+              <p>Нажмите «УДАЛИТЬ УЧЁТНУЮ ЗАПИСЬ И ДАННЫЕ».</p>
+            </li>
+            <li>
+              <span class="step-number">Шаг 3</span>
+              <strong>Проверьте последствия</strong>
+              <p>Прочитайте список удаляемых онлайн-данных. Действие необратимо.</p>
+            </li>
+            <li>
+              <span class="step-number">Шаг 4</span>
+              <strong>Подтвердите запрос</strong>
+              <p>Дождитесь сообщения об успешном завершении, прежде чем закрывать игру.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" id="ru-removed">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">02</span>
+            <div>
+              <small>Кадр 02</small>
+              <h2>Что будет удалено</h2>
+            </div>
+          </div>
+
+          <p>
+            Подтверждённый запрос удаляет учётную запись Firebase и все
+            онлайн-записи KRO Studios, связанные с её случайным UID:
+          </p>
+
+          <div class="data-cards">
+            <div class="data-card">
+              <span class="data-label">Firebase Auth</span>
+              <strong>Анонимная учётная запись</strong>
+              <p>Случайный UID и возможность снова обратиться к старому онлайн-профилю.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Рейтинг</span>
+              <strong>Позиция игрока</strong>
+              <p>Псевдоним, недельные и общие очки, неделя, значок и время обновления.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Профиль</span>
+              <strong>Кинозначок</strong>
+              <p>Связанный с UID профиль значка и его техническая история обновления.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Раунды</span>
+              <strong>Соревновательные записи</strong>
+              <p>Идентификаторы и результаты раундов, состав очков, точность, тема, уровень, неделя и время.</p>
+            </div>
+          </div>
+
+          <div class="keep-card">
+            <p>
+              <strong>Локальный прогресс сохраняется.</strong> Пройденные
+              вопросы, история, статистика, билеты, таймеры, жетоны, задания,
+              достижения, купленные за игровые жетоны значки, дневные лимиты,
+              настройки и обучение остаются на устройстве. Очищаются только
+              локальный псевдоним рейтинга и технические очереди, привязанные к
+              удалённому UID. Эта
+              установка игры не создаёт новую учётную запись автоматически:
+              онлайн-рейтинг остаётся отключён, а локальная игра продолжается.
+            </p>
+          </div>
+
+          <p>
+            Удаление не меняет выбор рекламного согласия, не сбрасывает
+            системные рекламные идентификаторы и не удаляет данные, которыми
+            Google управляет независимо. Эти настройки доступны отдельно в
+            параметрах конфиденциальности игры и устройства.
+          </p>
+        </section>
+
+        <section class="section" id="ru-help">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">03</span>
+            <div>
+              <small>Кадр 03</small>
+              <h2>Если доступа к игре больше нет</h2>
+            </div>
+          </div>
+
+          <div class="support-card">
+            <h3>Отправьте запрос в KRO Studios</h3>
+            <p>
+              Напишите на <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+              и укажите, что хотите удалить анонимную учётную запись игры
+              «Советское кино. Проверим?» (<code>com.krostudios.sovietkino</code>).
+            </p>
+            <a
+              class="request-button"
+              href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request"
+            >Отправить запрос по email</a>
+          </div>
+
+          <h3>Что можно приложить</h3>
+          <ul>
+            <li>Player ID из раздела учётной записи, если вы сохранили его;</li>
+            <li>игровой псевдоним и выбранный кинозначок;</li>
+            <li>платформу — Android или iOS — и примерную дату последней игры;</li>
+            <li>снимок экрана профиля или рейтинга, если он у вас остался.</li>
+          </ul>
+
+          <div class="warning-card">
+            <p>
+              <strong>Важно:</strong> UID или псевдоним помогает найти запись,
+              но сам по себе не доказывает право удалить её. Для защиты других
+              игроков мы можем попросить дополнительные несекретные сведения.
+              Никогда не отправляйте пароль, данные банковской карты или копию
+              удостоверения личности.
+            </p>
+          </div>
+
+          <p>
+            Если безопасно подтвердить принадлежность записи невозможно, мы
+            объясним, какие доступные сведения или действия могут помочь. Мы не
+            удаляем онлайн-профиль другого игрока только по известному UID или
+            публичному псевдониму.
+          </p>
+        </section>
+
+        <section class="section" id="ru-timing">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">04</span>
+            <div>
+              <small>Кадр 04</small>
+              <h2>Срок и результат</h2>
+            </div>
+          </div>
+
+          <p>
+            Запрос из игры обычно выполняется во время подтверждённой операции.
+            Обращение по email рассматривается без неоправданной задержки,
+            обычно в течение 30 дней. Если проверка или обработка потребует
+            больше времени, мы сообщим ожидаемый срок и подтвердим завершение.
+          </p>
+          <p>
+            Ограниченный объём сведений может храниться дольше только там и
+            столько, где и сколько это обоснованно необходимо для безопасности,
+            предотвращения злоупотреблений, разрешения спора или выполнения
+            юридической обязанности. Такие сведения не используются для
+            восстановления рейтинга и удаляются, когда основание прекращается.
+          </p>
+          <p>
+            После удаления прежние онлайн-очки, место, профиль и записи раундов
+            восстановить нельзя. Эта установка не создаёт новый UID
+            автоматически: онлайн-рейтинг остаётся отключён, а локальная игра
+            и сохранённый прогресс продолжают работать.
+          </p>
+          <p>
+            Подробнее об обработке данных см. в
+            <a href="sovietkino-privacy.html#ru-policy">Политике конфиденциальности</a>.
+          </p>
+        </section>
+      </article>
+
+      <article
+        id="en-deletion"
+        class="language-panel"
+        lang="en"
+        data-language-panel="en"
+      >
+        <aside class="status-card" aria-labelledby="en-status-title">
+          <span class="status-card__label">Secure in-app route</span>
+          <h2 id="en-status-title">Delete your online profile in the game</h2>
+          <p>
+            If the game is still installed, use this route. The request is
+            authenticated by the current anonymous account, allowing KRO
+            Studios to remove the correct online records safely.
+          </p>
+          <ol class="route" aria-label="In-app route">
+            <li>Kinopassport</li>
+            <li>Account</li>
+            <li>Delete account and data</li>
+          </ol>
+          <p class="alternate-request">
+            No longer have the game?
+            <a href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request">Email an account-deletion request</a>.
+          </p>
+        </aside>
+
+        <section class="section" id="en-how">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">01</span>
+            <div>
+              <small>Frame 01</small>
+              <h2>How to delete in the game</h2>
+            </div>
+          </div>
+
+          <ol class="steps">
+            <li>
+              <span class="step-number">Step 1</span>
+              <strong>Open Kinopassport</strong>
+              <p>Go to the Account section after starting the game.</p>
+            </li>
+            <li>
+              <span class="step-number">Step 2</span>
+              <strong>Choose deletion</strong>
+              <p>Tap “Delete account and data.”</p>
+            </li>
+            <li>
+              <span class="step-number">Step 3</span>
+              <strong>Review the effect</strong>
+              <p>Read the online-data list carefully. Deletion cannot be undone.</p>
+            </li>
+            <li>
+              <span class="step-number">Step 4</span>
+              <strong>Confirm the request</strong>
+              <p>Wait for the completion message before closing the game.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" id="en-removed">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">02</span>
+            <div>
+              <small>Frame 02</small>
+              <h2>What will be deleted</h2>
+            </div>
+          </div>
+
+          <p>
+            A confirmed request deletes the Firebase account and every KRO
+            Studios online record associated with its random UID:
+          </p>
+
+          <div class="data-cards">
+            <div class="data-card">
+              <span class="data-label">Firebase Auth</span>
+              <strong>Anonymous account</strong>
+              <p>The random UID and the ability to access the former online profile again.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Leaderboard</span>
+              <strong>Player position</strong>
+              <p>Nickname, weekly and all-time scores, week, badge, and update timestamp.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Profile</span>
+              <strong>Movie badge</strong>
+              <p>The UID-linked badge profile and its technical update history.</p>
+            </div>
+            <div class="data-card">
+              <span class="data-label">Rounds</span>
+              <strong>Competitive records</strong>
+              <p>Round IDs and results, score components, accuracy, topic, tier, week, and timestamps.</p>
+            </div>
+          </div>
+
+          <div class="keep-card">
+            <p>
+              <strong>Local progress is retained.</strong> Completed questions,
+              history, statistics, tickets, timers, tokens, missions,
+              achievements, badges purchased with in-game tokens, daily limits,
+              settings, and onboarding remain on the device. Only the locally
+              stored leaderboard nickname and technical queues bound to the
+              deleted UID are cleared. This installation
+              does not silently create a replacement account; its online
+              leaderboard remains disabled while local gameplay continues.
+            </p>
+          </div>
+
+          <p>
+            Deletion does not change advertising consent, reset system
+            advertising identifiers, or remove data that Google controls
+            independently. Those choices remain available separately in the
+            game's and device's privacy settings.
+          </p>
+        </section>
+
+        <section class="section" id="en-help">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">03</span>
+            <div>
+              <small>Frame 03</small>
+              <h2>If you no longer have the game</h2>
+            </div>
+          </div>
+
+          <div class="support-card">
+            <h3>Send a request to KRO Studios</h3>
+            <p>
+              Email <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+              and state that you want to delete the anonymous account for
+              <span lang="ru">“Советское кино. Проверим?”</span>
+              (<code>com.krostudios.sovietkino</code>).
+            </p>
+            <a
+              class="request-button"
+              href="mailto:hello@krostudios.com?subject=Soviet%20Kino%20account%20deletion%20request"
+            >Email a deletion request</a>
+          </div>
+
+          <h3>Helpful information</h3>
+          <ul>
+            <li>the Player ID from the Account section, if you saved it;</li>
+            <li>the game nickname and selected movie badge;</li>
+            <li>Android or iOS and the approximate date you last played;</li>
+            <li>a profile or leaderboard screenshot, if one is still available.</li>
+          </ul>
+
+          <div class="warning-card">
+            <p>
+              <strong>Important:</strong> a UID or nickname can help locate a
+              record, but does not by itself prove authority to delete it. To
+              protect other players, we may ask for additional non-secret
+              information. Never send a password, payment-card data, or an
+              identity-document copy.
+            </p>
+          </div>
+
+          <p>
+            If record ownership cannot be verified safely, we will explain what
+            available information or action may help. We do not delete another
+            player's online profile solely from a known UID or public nickname.
+          </p>
+        </section>
+
+        <section class="section" id="en-timing">
+          <div class="section-heading">
+            <span class="frame-number" aria-hidden="true">04</span>
+            <div>
+              <small>Frame 04</small>
+              <h2>Timing and result</h2>
+            </div>
+          </div>
+
+          <p>
+            An in-app request normally completes during the confirmed
+            operation. Email requests are handled without undue delay,
+            ordinarily within 30 days. If verification or processing needs
+            more time, we will provide an expected timeline and confirm when
+            deletion is complete.
+          </p>
+          <p>
+            A limited amount of information may be retained longer only where,
+            and for as long as, reasonably necessary for security, abuse
+            prevention, dispute resolution, or a legal obligation. It is not
+            used to restore the leaderboard and is removed when the retention
+            ground ends.
+          </p>
+          <p>
+            Former online scores, rank, profile, and round records cannot be
+            restored after deletion. This installation does not automatically
+            create a replacement UID: its online leaderboard remains disabled,
+            while local gameplay and retained progress continue.
+          </p>
+          <p>
+            For complete details, read the
+            <a href="sovietkino-privacy.html#en-policy">Privacy Policy</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="filmstrip" aria-hidden="true"></div>
+    <div class="site-footer__inner">
+      <p>KRO Studios · <span lang="ru">Советское кино. Проверим?</span></p>
+      <p>
+        <a href="sovietkino-privacy.html">Privacy policy</a>
+        ·
+        <a href="mailto:hello@krostudios.com">hello@krostudios.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var panels = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-panel]")
+      );
+      var buttons = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-button]")
+      );
+      var heroCopies = Array.prototype.slice.call(
+        document.querySelectorAll("[data-language-copy]")
+      );
+      var titles = {
+        ru: "Удаление учётной записи — Советское кино. Проверим?",
+        en: "Account deletion — Советское кино. Проверим?"
+      };
+
+      function languageFromHash() {
+        return window.location.hash.indexOf("#en") === 0 ? "en" : "ru";
+      }
+
+      function showLanguage(language, updateHash) {
+        panels.forEach(function (panel) {
+          panel.hidden = panel.getAttribute("data-language-panel") !== language;
+        });
+
+        buttons.forEach(function (button) {
+          var active = button.getAttribute("data-language-button") === language;
+          button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+
+        heroCopies.forEach(function (copy) {
+          copy.hidden = copy.getAttribute("data-language-copy") !== language;
+        });
+
+        document.documentElement.lang = language;
+        document.title = titles[language];
+
+        if (updateHash && window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", language === "en" ? "#en" : "#ru");
+        }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          showLanguage(button.getAttribute("data-language-button"), true);
+        });
+      });
+
+      window.addEventListener("hashchange", function () {
+        showLanguage(languageFromHash(), false);
+      });
+
+      showLanguage(languageFromHash(), false);
+    }());
+  </script>
+</body>
+</html>
