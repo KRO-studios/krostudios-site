@@ -12,7 +12,7 @@
   <meta name="robots" content="index,follow">
   <meta
     name="description"
-    content="Удаление анонимной учётной записи и онлайн-данных игры «Советское кино. Проверим?» для Android и iOS."
+    content="Как запросить удаление анонимной учётной записи и онлайн-данных игры «Советское кино. Проверим?» для Android и iOS."
   >
   <link
     rel="canonical"
@@ -815,9 +815,11 @@
           <p class="hero__app-name" lang="ru">Советское кино. Проверим?</p>
           <p class="document-meta">
             <span data-language-copy="ru">Android · iOS</span>
-            <span data-language-copy="ru">Обновлено <time datetime="2026-09-04">4 сентября 2026</time></span>
+            <span data-language-copy="ru">Версия 1.1</span>
+            <span data-language-copy="ru">Обновлено <time datetime="2026-09-06">6 сентября 2026</time></span>
             <span data-language-copy="en" hidden>Android · iOS</span>
-            <span data-language-copy="en" hidden>Updated <time datetime="2026-09-04">September 4, 2026</time></span>
+            <span data-language-copy="en" hidden>Version 1.1</span>
+            <span data-language-copy="en" hidden>Updated <time datetime="2026-09-06">September 6, 2026</time></span>
           </p>
         </div>
 
@@ -845,12 +847,14 @@
         data-language-panel="ru"
       >
         <aside class="status-card" aria-labelledby="ru-status-title">
-          <span class="status-card__label">Безопасный путь в приложении</span>
-          <h2 id="ru-status-title">Удалите онлайн-профиль прямо в игре</h2>
+          <span class="status-card__label">Подтверждённый запрос из приложения</span>
+          <h2 id="ru-status-title">Отправьте запрос на удаление прямо в игре</h2>
           <p>
             Если игра всё ещё установлена, используйте этот способ: запрос
             будет подписан текущей анонимной учётной записью, поэтому KRO
             Studios сможет безопасно удалить именно ваши онлайн-данные.
+            Новые онлайн-записи блокируются сразу, а удаление завершается
+            в течение 7 календарных дней.
           </p>
           <ol class="route" aria-label="Путь в приложении">
             <li>Кинопаспорт</li>
@@ -891,7 +895,11 @@
             <li>
               <span class="step-number">Шаг 4</span>
               <strong>Подтвердите запрос</strong>
-              <p>Дождитесь сообщения об успешном завершении, прежде чем закрывать игру.</p>
+              <p>
+                Дождитесь сообщения «ЗАПРОС НА УДАЛЕНИЕ ПРИНЯТ». После подтверждения
+                игра выходит из анонимной онлайн-учётной записи; локальная игра и прогресс
+                сохраняются. Затем игру можно закрыть.
+              </p>
             </li>
           </ol>
         </section>
@@ -906,8 +914,8 @@
           </div>
 
           <p>
-            Подтверждённый запрос удаляет учётную запись Firebase и все
-            онлайн-записи KRO Studios, связанные с её случайным UID:
+            После ручной обработки подтверждённого запроса KRO Studios удаляет
+            учётную запись Firebase и все онлайн-записи, связанные с её случайным UID:
           </p>
 
           <div class="data-cards">
@@ -1012,10 +1020,16 @@
           </div>
 
           <p>
-            Запрос из игры обычно выполняется во время подтверждённой операции.
-            Обращение по email рассматривается без неоправданной задержки,
-            обычно в течение 30 дней. Если проверка или обработка потребует
-            больше времени, мы сообщим ожидаемый срок и подтвердим завершение.
+            Запрос из игры подтверждается автоматически после записи в защищённую очередь
+            и выполняется KRO Studios в течение 7 календарных дней. Новые онлайн-записи
+            блокируются сразу; до завершения прежние имя, очки и значок могут оставаться
+            видимыми в рейтинге. Статус и подтверждение завершения можно увидеть в Кинопаспорте
+            при следующей проверке через интернет.
+          </p>
+          <p>
+            Запрос по email выполняется в течение 7 календарных дней после разумной проверки
+            принадлежности записи. KRO Studios подтвердит завершение ответным письмом. UID или
+            псевдоним помогает найти запись, но сам по себе не доказывает право на её удаление.
           </p>
           <p>
             Ограниченный объём сведений может храниться дольше только там и
@@ -1025,17 +1039,27 @@
             восстановления рейтинга и удаляются, когда основание прекращается.
           </p>
           <p>
-            Для защиты от повторной записи удалённых данных другим устройством
-            или ещё действующим токеном Firebase временно сохраняется только
-            техническая метка: анонимный UID в ключе документа и время её
-            окончания. Сначала устанавливается резервный срок до 30 дней,
-            чтобы прерванный запрос можно было безопасно повторить, но UID не
-            сохранялся бессрочно. После успешного удаления срок сокращается до
-            двух часов; затем Firestore обычно удаляет метку автоматически в
-            течение следующих 24 часов. В ней нет псевдонима, очков, истории
-            игры, данных устройства или рекламы. Незавершённую операцию нужно
-            повторить в приложении или решить через поддержку до окончания
-            резервного срока.
+            После приёма запроса Cloud Firestore атомарно создаёт две технические
+            записи. Закрытая запись запроса содержит случайный анонимный UID, статус,
+            неугадываемый номер запроса и время его отправки; она сразу блокирует новые
+            записи рейтинга. Отдельная квитанция по неугадываемому номеру не содержит UID
+            или данных игрока и позволяет вышедшей из учётной записи игре проверить статус.
+            Незавершённая закрытая запись не удаляется только из-за возраста: она остаётся
+            до завершения обработки и продолжает блокировать онлайн-записи.
+          </p>
+          <p>
+            После успешного удаления KRO Studios одновременно отмечает закрытую запись
+            и квитанцию как завершённые. Закрытая UID-запись сохраняется ещё не менее двух часов,
+            чтобы другое устройство или ещё действующий токен Firebase не создали данные снова. Во время
+            следующей ежедневной технической обработки KRO Studios снова проверяет, что учётная запись
+            и онлайн-данные отсутствуют, и удаляет закрытую запись вручную.
+          </p>
+          <p>
+            Квитанция без UID и данных игрока сохраняется в течение 30 дней после завершения,
+            чтобы вышедшая из учётной записи игра могла показать подтверждение удаления, а затем
+            удаляется вручную в ходе ежедневной обработки. В ней есть только неугадываемый номер
+            запроса, статус и технические временные метки; в ней нет псевдонима, очков, истории игры,
+            данных устройства или рекламы.
           </p>
           <p>
             После удаления прежние онлайн-очки, место, профиль и записи раундов
@@ -1057,12 +1081,14 @@
         data-language-panel="en"
       >
         <aside class="status-card" aria-labelledby="en-status-title">
-          <span class="status-card__label">Secure in-app route</span>
-          <h2 id="en-status-title">Delete your online profile in the game</h2>
+          <span class="status-card__label">Authenticated in-app request</span>
+          <h2 id="en-status-title">Send a deletion request in the game</h2>
           <p>
             If the game is still installed, use this route. The request is
             authenticated by the current anonymous account, allowing KRO
-            Studios to remove the correct online records safely.
+            Studios to remove the correct online records safely. New online
+            writes are blocked immediately, and deletion is completed within
+            7 calendar days.
           </p>
           <ol class="route" aria-label="In-app route">
             <li>Kinopassport</li>
@@ -1103,7 +1129,11 @@
             <li>
               <span class="step-number">Step 4</span>
               <strong>Confirm the request</strong>
-              <p>Wait for the completion message before closing the game.</p>
+              <p>
+                Wait for the “DELETION REQUEST ACCEPTED” message. After acknowledgment,
+                the game signs out of the anonymous online account; local play and progress
+                remain. You may then close the game.
+              </p>
             </li>
           </ol>
         </section>
@@ -1118,8 +1148,9 @@
           </div>
 
           <p>
-            A confirmed request deletes the Firebase account and every KRO
-            Studios online record associated with its random UID:
+            After manually processing the authenticated request, KRO Studios
+            deletes the Firebase account and every online record associated
+            with its random UID:
           </p>
 
           <div class="data-cards">
@@ -1224,11 +1255,18 @@
           </div>
 
           <p>
-            An in-app request normally completes during the confirmed
-            operation. Email requests are handled without undue delay,
-            ordinarily within 30 days. If verification or processing needs
-            more time, we will provide an expected timeline and confirm when
-            deletion is complete.
+            An in-app request is authenticated automatically when it is written
+            to the protected queue and is completed by KRO Studios within
+            7 calendar days. New online writes are blocked immediately; until
+            completion, the former nickname, scores, and badge may remain
+            visible on the leaderboard. The status and completion confirmation
+            appear in Kinopassport on a later online check.
+          </p>
+          <p>
+            An email request is completed within 7 calendar days after
+            reasonable verification that the record belongs to the requester.
+            KRO Studios confirms completion by reply. A UID or nickname helps
+            locate a record, but does not by itself prove authority to delete it.
           </p>
           <p>
             A limited amount of information may be retained longer only where,
@@ -1238,17 +1276,30 @@
             ground ends.
           </p>
           <p>
-            To stop another device or a still-valid Firebase token from
-            recreating deleted records, we temporarily retain only a technical
-            write-block marker: the anonymous UID as the document key and its
-            expiry time. It initially has a fallback expiry of up to 30 days,
-            allowing an interrupted request to be retried without retaining
-            the UID indefinitely. After successful deletion, the expiry is
-            shortened to two hours; Firestore then ordinarily removes the
-            marker automatically within the following 24 hours. It contains no
-            nickname, score, gameplay, device, or advertising data. An
-            incomplete operation must be retried in the app or resolved through
-            support before the fallback period ends.
+            When a request is accepted, Cloud Firestore atomically creates two
+            technical records. A private request record contains the random
+            anonymous UID, status, an unguessable request number, and request
+            time; it immediately blocks new leaderboard writes. A separate
+            receipt keyed by the unguessable number contains no UID or player
+            data and lets the signed-out game check the request status. An
+            incomplete private request is not removed merely because of age: it
+            remains until processing finishes and continues blocking online
+            writes.
+          </p>
+          <p>
+            After successful deletion, KRO Studios atomically marks the private
+            record and receipt completed. The private UID record remains for at
+            least two more hours so another device or a still-valid Firebase
+            token cannot recreate data. During the next daily technical run,
+            KRO Studios verifies again that the account and online records are
+            absent and removes the private record manually.
+          </p>
+          <p>
+            The no-UID receipt is retained for 30 days after completion so the
+            signed-out game can display confirmation, then is removed manually
+            during daily processing. It contains only the unguessable request
+            number, status, and technical timestamps; it contains no nickname,
+            score, gameplay, device, or advertising data.
           </p>
           <p>
             Former online scores, rank, profile, and round records cannot be
