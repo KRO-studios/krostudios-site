@@ -43,8 +43,11 @@ def main() -> None:
     require(
         source,
         "Last updated: September 2026",
-        "name, score, and selected badge",
-        "השם, הציון והתג הנבחר",
+        "name, score, selected badge, and anonymous account identifier",
+        "השם, הציון, התג הנבחר ומזהה החשבון האנונימי",
+        "random anonymous Firebase account identifier",
+        "מזהה אקראי של חשבון Firebase אנונימי",
+        "Google Firebase Authentication / Firestore",
         "Google Play Billing on Android and Apple App Store / StoreKit on iOS",
         "Google Play Billing ב-Android וה-App Store / StoreKit של Apple ב-iOS",
         "Advertising Choices",

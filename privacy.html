@@ -89,15 +89,15 @@ a:hover,a:focus-visible{color:var(--pink)}
     </section>
     <section>
       <h2>מידע שאנו אוספים</h2>
-      <p><strong>שם השחקן</strong> — השם שתבחרו להזין מוצג לצד הציון שלכם בטבלת המובילים הגלובלית, יחד עם תג עיצוב אופציונלי שתבחרו לרכוש (אם בכלל). אין צורך בהרשמה, התחברות, כתובת אימייל או כל פרט מזהה אחר.</p>
-      <p><strong>נתוני משחק</strong> — ציון, התקדמות, רצף ימי משחק, מטבעות ורכישות שנעשו בתוך האפליקציה. רוב הנתונים נשמרים רק על גבי המכשיר שלכם; רק השם, הציון והתג הנבחר נשלחים לשרת לצורך טבלת המובילים.</p>
+      <p><strong>שם השחקן</strong> — השם שתבחרו להזין מוצג לצד הציון שלכם בטבלת המובילים הגלובלית, יחד עם תג עיצוב אופציונלי שתבחרו לרכוש (אם בכלל). אין צורך בהרשמה או התחברות גלויות, בכתובת אימייל או בכל פרט מזהה אחר. כדי למנוע משחקנים אחרים לדרוס את הרשומה שלכם בטבלה, האפליקציה יוצרת ברקע מזהה אקראי של חשבון Firebase אנונימי.</p>
+      <p><strong>נתוני משחק</strong> — ציון, התקדמות, רצף ימי משחק, מטבעות ורכישות שנעשו בתוך האפליקציה. רוב הנתונים נשמרים רק על גבי המכשיר שלכם; רק השם, הציון, התג הנבחר ומזהה החשבון האנונימי נשלחים לשרת לצורך טבלת המובילים.</p>
       <p><strong>מידע טכני</strong> — כמו כל אפליקציה המשתמשת בפרסומות ובשירותי גוגל, ייתכן שמידע טכני על המכשיר ייאסף על ידי ספקי צד שלישי, כמפורט למטה.</p>
     </section>
     <section>
       <h2>שירותי צד שלישי</h2>
       <p>האפליקציה משתמשת בשירותי צד שלישי, וכל אחד מהם כפוף לתנאי הפרטיות שלו:</p>
       <ul>
-        <li><strong>Google Firebase / Firestore</strong> — לשמירת נתוני טבלת המובילים (שם, ציון ותג).</li>
+        <li><strong>Google Firebase Authentication / Firestore</strong> — ליצירת מזהה אקראי של חשבון אנונימי ולשמירת נתוני טבלת המובילים (שם, ציון ותג).</li>
         <li><strong>Google AdMob</strong> — להצגת פרסומות באנר ופרסומות מתוגמלות. ייתכן ש-AdMob אוסף מזהי מכשיר לצורך התאמת פרסומות, בהתאם למדיניות הפרטיות של Google.</li>
         <li><strong>Google Play Billing ב-Android וה-App Store / StoreKit של Apple ב-iOS</strong> — לעיבוד רכישות בתוך האפליקציה, לרבות חבילות מטבעות והסרת פרסומות. פרטי התשלום והחיוב מטופלים בידי חנות האפליקציות הרלוונטית ואינם נשמרים או נגישים לנו.</li>
       </ul>
@@ -125,7 +125,7 @@ a:hover,a:focus-visible{color:var(--pink)}
     </section>
     <section>
       <h2>הזכויות שלכם</h2>
-      <p>מכיוון שהאפליקציה אינה דורשת הרשמה, רשומה בטבלת המובילים אינה ניתנת לקישור ישיר לזהותכם האמיתית. אם תרצו להסיר את הרשומה שלכם מטבלת המובילים, תוכלו לפנות אלינו בפרטים שלמטה בצירוף השם שהופיע באפליקציה.</p>
+      <p>מכיוון שהאפליקציה אינה דורשת חשבון גלוי או פרטים מזהים, רשומה בטבלת המובילים אינה ניתנת לקישור ישיר לזהותכם האמיתית. אם תרצו להסיר את הרשומה שלכם מטבלת המובילים, תוכלו לפנות אלינו בפרטים שלמטה בצירוף השם שהופיע באפליקציה.</p>
     </section>
     <section>
       <h2>שינויים במדיניות</h2>
@@ -145,15 +145,15 @@ a:hover,a:focus-visible{color:var(--pink)}
     </section>
     <section>
       <h2>Information We Collect</h2>
-      <p><strong>Player name</strong> — the name you choose to enter is shown alongside your score on the global leaderboard, together with an optional cosmetic badge you may choose to purchase (if any). No registration, login, email address, or other identifying detail is required.</p>
-      <p><strong>Game data</strong> — score, progress, day streak, coins, and purchases made within the app. Most of this is stored only on your own device; only your name, score, and selected badge are sent to a server, for the leaderboard.</p>
+      <p><strong>Player name</strong> — the name you choose to enter is shown alongside your score on the global leaderboard, together with an optional cosmetic badge you may choose to purchase (if any). No visible registration, login, email address, or other identifying detail is required. To prevent other players from overwriting your leaderboard row, the app creates a random anonymous Firebase account identifier in the background.</p>
+      <p><strong>Game data</strong> — score, progress, day streak, coins, and purchases made within the app. Most of this is stored only on your own device; only your name, score, selected badge, and anonymous account identifier are sent to a server for the leaderboard.</p>
       <p><strong>Technical information</strong> — like any app that uses ads and Google services, technical device information may be collected by third-party providers, as detailed below.</p>
     </section>
     <section>
       <h2>Third-Party Services</h2>
       <p>The app uses third-party services, each governed by its own privacy terms:</p>
       <ul>
-        <li><strong>Google Firebase / Firestore</strong> — for storing leaderboard data (name, score, and badge).</li>
+        <li><strong>Google Firebase Authentication / Firestore</strong> — for creating a random anonymous account identifier and storing leaderboard data (name, score, and badge).</li>
         <li><strong>Google AdMob</strong> — for displaying banner and rewarded ads. AdMob may collect device identifiers for ad personalization purposes, in accordance with Google's privacy policy.</li>
         <li><strong>Google Play Billing on Android and Apple App Store / StoreKit on iOS</strong> — for processing in-app purchases, including coin packs and ad removal. Payment and billing details are handled by the applicable app store and are never stored by or accessible to us.</li>
       </ul>
@@ -181,7 +181,7 @@ a:hover,a:focus-visible{color:var(--pink)}
     </section>
     <section>
       <h2>Your Rights</h2>
-      <p>Since the app does not require registration, a leaderboard entry cannot be directly linked to your real identity. If you would like your entry removed from the leaderboard, contact us at the address below along with the name that appeared in the app.</p>
+      <p>Since the app does not require a visible account or identifying information, a leaderboard entry cannot be directly linked to your real identity. If you would like your entry removed from the leaderboard, contact us at the address below along with the name that appeared in the app.</p>
     </section>
     <section>
       <h2>Changes to This Policy</h2>
