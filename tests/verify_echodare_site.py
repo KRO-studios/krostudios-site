@@ -229,6 +229,9 @@ def main() -> int:
         "hello@krostudios.com",
         "Google Mobile Ads (AdMob)",
         "User Messaging Platform (UMP)",
+        "marks all ad requests for teen treatment",
+        "PG-or-lower content label",
+        "intended for teens and adults aged 13 and older",
         "not directed to children under 13",
         "does not sell",
     )
