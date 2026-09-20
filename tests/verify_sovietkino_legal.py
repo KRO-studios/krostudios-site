@@ -114,6 +114,7 @@ def main() -> None:
     )
     require(
         combined,
+        "Советское кино: Угадай слово",
         "7 календарных дней",
         "7 calendar days",
         "неугадываемый номер запроса",
@@ -123,6 +124,7 @@ def main() -> None:
     )
     forbid(
         combined,
+        "Советское кино. Проверим?",
         "обычно выполняется во время подтверждённой операции",
         "normally completes during the confirmed operation",
         "резервный срок до 30 дней",
