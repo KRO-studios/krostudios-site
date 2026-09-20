@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Echo Dare Support | Kro Studios</title>
+  <meta name="description" content="Help, troubleshooting, and contact information for the Echo Dare reverse-voice party game.">
+  <meta name="theme-color" content="#101324">
+  <link rel="canonical" href="https://krostudios.com/echodare-support.html">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #101324;
+      --panel: #1a1d35;
+      --cream: #fff8ea;
+      --muted: #bbb9cf;
+      --purple: #7448f2;
+      --cyan: #4ddfe8;
+      --coral: #ff5f7a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 90% 5%, rgba(116,72,242,.18), transparent 26rem),
+        radial-gradient(circle at 5% 95%, rgba(255,95,122,.09), transparent 25rem),
+        var(--ink);
+      font: 16px/1.68 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: var(--cyan); }
+    a:hover, a:focus-visible { color: var(--cream); }
+    .skip {
+      position: fixed;
+      inset: 10px auto auto 10px;
+      z-index: 10;
+      padding: 9px 13px;
+      color: var(--ink);
+      background: var(--cream);
+      transform: translateY(-160%);
+    }
+    .skip:focus { transform: none; }
+    .shell { width: min(820px, calc(100% - 36px)); margin: 0 auto; }
+    header { padding: 26px 0 20px; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .studio {
+      color: var(--cream);
+      font: 800 12px/1 ui-monospace, "SFMono-Regular", Menlo, monospace;
+      letter-spacing: .22em;
+      text-decoration: none;
+    }
+    .back { color: var(--muted); font-size: 14px; }
+    main { padding: 68px 0 96px; }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cyan);
+      font: 800 12px/1.4 ui-monospace, "SFMono-Regular", Menlo, monospace;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0; font-size: clamp(42px, 8vw, 68px); line-height: 1; letter-spacing: -.045em; }
+    .lede { max-width: 690px; margin: 22px 0 0; color: var(--muted); font-size: 19px; }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 32px 0 58px;
+    }
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 13px;
+      color: var(--cream);
+      background: linear-gradient(110deg, var(--purple), #b33bd6);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button.secondary { border: 1px solid rgba(255,255,255,.16); background: transparent; }
+    .button:hover, .button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    h2 { margin: 0 0 18px; font-size: 30px; }
+    .faq { display: grid; gap: 14px; }
+    details {
+      padding: 20px 22px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 18px;
+      background: rgba(26,29,53,.86);
+    }
+    summary { cursor: pointer; font-size: 18px; font-weight: 800; }
+    summary::marker { color: var(--coral); }
+    details p { margin: 14px 0 0; color: #e5e1ec; }
+    .tip {
+      margin-top: 50px;
+      padding: 23px;
+      border-left: 4px solid var(--coral);
+      background: var(--panel);
+    }
+    .tip h2 { margin-bottom: 8px; font-size: 22px; }
+    .tip p { margin: 0; color: #e5e1ec; }
+    footer { padding: 28px 0 44px; border-top: 1px solid rgba(255,255,255,.1); color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    @media (max-width: 520px) {
+      main { padding-top: 46px; }
+      nav { align-items: flex-start; }
+      details { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to support</a>
+  <header class="shell">
+    <nav aria-label="Support navigation">
+      <a class="studio" href="/">KRO STUDIOS</a>
+      <a class="back" href="echodare.html">← Echo Dare</a>
+    </nav>
+  </header>
+
+  <main class="shell" id="main">
+    <p class="eyebrow">Echo Dare</p>
+    <h1>How can we help?</h1>
+    <p class="lede">Try the quick fixes below. If Echo Dare still misbehaves, email Kro Studios with your device model, operating-system version, and what happened just before the problem.</p>
+
+    <div class="contact">
+      <a class="button" href="mailto:hello@krostudios.com?subject=Echo%20Dare%20support">Email Echo Dare support</a>
+      <a class="button secondary" href="echodare-privacy.html">Read the privacy policy</a>
+    </div>
+
+    <section aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Quick answers</h2>
+      <div class="faq">
+        <details>
+          <summary>Where can I install Echo Dare?</summary>
+          <p>The first Google Play and App Store releases are coming soon. Official, app-specific download links will appear on the <a href="echodare.html">Echo Dare page</a> when each store listing is ready.</p>
+        </details>
+
+        <details>
+          <summary>Why can’t Echo Dare use the microphone?</summary>
+          <p>Open your device settings, find Echo Dare, and allow microphone access. Return to the game and tap the visible Record control again. Echo Dare asks for access only when recording is needed.</p>
+        </details>
+
+        <details>
+          <summary>Why does the game say my clip is too quiet?</summary>
+          <p>Move to a quieter spot, hold the phone about a hand’s width from the speaker, and speak clearly for the whole phrase. Avoid covering the microphone. Then record the turn again.</p>
+        </details>
+
+        <details>
+          <summary>I cannot hear playback. What should I check?</summary>
+          <p>Turn up media volume and check whether sound is being sent to headphones, a Bluetooth speaker, or another audio device. Disconnecting that device and replaying the clip often resolves unexpected routing.</p>
+        </details>
+
+        <details>
+          <summary>How do sharing and winner cards work?</summary>
+          <p>Sharing starts only when you choose a Share action. Echo Dare opens your device’s share sheet, where you select a destination or cancel. A clip or winner card is not uploaded to Kro Studios.</p>
+        </details>
+
+        <details>
+          <summary>Where can I change advertising privacy choices?</summary>
+          <p>Open Settings &amp; privacy inside Echo Dare. When advertising privacy choices are required for your region, a button appears there so you can review them. The same screen always links to the full Echo Dare privacy policy.</p>
+        </details>
+
+        <details>
+          <summary>How do I remove local game data?</summary>
+          <p>Use your device’s app-storage controls or uninstall Echo Dare. Your operating system may retain eligible settings or progress in a device backup if backup is enabled.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="tip" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Still stuck?</h2>
+      <p>Email <a href="mailto:hello@krostudios.com?subject=Echo%20Dare%20support">hello@krostudios.com</a>. Please do not attach private voice recordings unless you deliberately want us to receive and inspect them.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-links">
+      <a href="echodare.html">Echo Dare</a>
+      <a href="echodare-privacy.html">Privacy</a>
+      <a href="/">Kro Studios</a>
+    </div>
+  </footer>
+</body>
+</html>

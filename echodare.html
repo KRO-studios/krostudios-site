@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Echo Dare — Reverse Voice Party Game | Kro Studios</title>
+  <meta name="description" content="Say it forwards, copy it backwards, and reveal the hilarious result. Echo Dare is a one-phone voice party game for 2–12 players.">
+  <meta name="theme-color" content="#101324">
+  <link rel="canonical" href="https://krostudios.com/echodare.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Echo Dare — Reverse Voice Party Game">
+  <meta property="og:description" content="One phone. 2–12 players. Instant reverse-voice chaos.">
+  <meta property="og:url" content="https://krostudios.com/echodare.html">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #101324;
+      --panel: #181d35;
+      --panel-2: #202746;
+      --cream: #fff7e8;
+      --muted: #b7b7cf;
+      --purple: #7448f2;
+      --magenta: #be37da;
+      --cyan: #43d9ff;
+      --lime: #b7f53f;
+      --coral: #ff587b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 88% 8%, rgba(116,72,242,.22), transparent 28rem),
+        radial-gradient(circle at 8% 92%, rgba(255,88,123,.12), transparent 26rem),
+        var(--ink);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    .skip {
+      position: fixed;
+      inset: 10px auto auto 10px;
+      z-index: 20;
+      padding: 10px 14px;
+      color: var(--ink);
+      background: var(--cream);
+      transform: translateY(-160%);
+    }
+    .skip:focus { transform: none; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header { padding: 24px 0; }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .studio {
+      color: var(--cream);
+      font: 800 13px/1 ui-monospace, "SFMono-Regular", Menlo, monospace;
+      letter-spacing: .24em;
+      text-decoration: none;
+    }
+    .navlinks { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: 14px; }
+    .navlinks a:hover, .navlinks a:focus-visible { color: var(--cyan); }
+    main { overflow: hidden; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 88px);
+      min-height: 680px;
+      padding: 70px 0 96px;
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--cyan);
+      font: 800 12px/1.4 ui-monospace, "SFMono-Regular", Menlo, monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    .gradient {
+      color: transparent;
+      background: linear-gradient(110deg, var(--cream) 8%, #cbbdff 46%, var(--cyan));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    .lede { max-width: 660px; margin: 28px 0 0; color: var(--muted); font-size: clamp(19px, 2.2vw, 24px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button.primary { border: 0; background: linear-gradient(110deg, var(--purple), var(--magenta)); }
+    .button:hover, .button:focus-visible { transform: translateY(-2px); outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .availability { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .store {
+      padding: 7px 11px;
+      border: 1px solid rgba(183,183,207,.24);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .phone {
+      position: relative;
+      width: min(390px, 88vw);
+      aspect-ratio: .72;
+      margin: 0 auto;
+      padding: 36px 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 46px;
+      background: linear-gradient(160deg, #211246, #11172c 62%, #0a2030);
+      box-shadow: 0 38px 90px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.12);
+      transform: rotate(2deg);
+    }
+    .phone::before, .phone::after {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border: 3px solid rgba(116,72,242,.16);
+      border-radius: 50%;
+      content: "";
+    }
+    .phone::before { top: -115px; right: -165px; }
+    .phone::after { right: -95px; bottom: -190px; border-color: rgba(255,88,123,.13); }
+    .appmark {
+      position: relative;
+      z-index: 1;
+      display: inline-grid;
+      width: 82px;
+      height: 82px;
+      place-items: center;
+      border-radius: 24px;
+      background: linear-gradient(150deg, #4917b8, #260d7b);
+      box-shadow: 0 12px 30px rgba(0,0,0,.32);
+      font-size: 44px;
+    }
+    .phone h2 { position: relative; z-index: 1; margin: 34px 0 8px; font-size: 38px; line-height: 1.05; }
+    .phone p { position: relative; z-index: 1; margin: 0; color: var(--muted); }
+    .wave {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      height: 110px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 42px 0 32px;
+    }
+    .wave span { width: 10px; border-radius: 99px; background: linear-gradient(var(--cyan), var(--purple), var(--coral)); }
+    .wave span:nth-child(1), .wave span:nth-child(9) { height: 28%; }
+    .wave span:nth-child(2), .wave span:nth-child(8) { height: 50%; }
+    .wave span:nth-child(3), .wave span:nth-child(7) { height: 76%; }
+    .wave span:nth-child(4), .wave span:nth-child(6) { height: 58%; }
+    .wave span:nth-child(5) { height: 100%; }
+    .score { position: relative; z-index: 1; padding: 18px; border-radius: 18px; background: rgba(255,255,255,.07); }
+    .score strong { color: var(--lime); font-size: 28px; }
+    .section { padding: 92px 0; }
+    .section h2 { max-width: 760px; margin: 0 0 16px; font-size: clamp(32px, 5vw, 54px); line-height: 1.05; letter-spacing: -.035em; }
+    .section-intro { max-width: 680px; margin: 0 0 34px; color: var(--muted); font-size: 19px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { padding: 26px; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; background: rgba(32,39,70,.7); }
+    .number { color: var(--cyan); font: 800 13px/1 ui-monospace, Menlo, monospace; letter-spacing: .14em; }
+    .card h3 { margin: 18px 0 8px; font-size: 23px; }
+    .card p { margin: 0; color: var(--muted); }
+    .privacy {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      padding: clamp(28px, 5vw, 50px);
+      border: 1px solid rgba(67,217,255,.25);
+      border-radius: 28px;
+      background: linear-gradient(120deg, rgba(67,217,255,.08), rgba(116,72,242,.1));
+    }
+    .privacy h2 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 44px); }
+    .privacy p { max-width: 720px; margin: 0; color: var(--muted); }
+    footer { margin-top: 84px; padding: 32px 0 46px; border-top: 1px solid rgba(255,255,255,.1); color: var(--muted); }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer a:hover, footer a:focus-visible { color: var(--cyan); }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; padding-top: 44px; }
+      .grid { grid-template-columns: 1fr; }
+      .privacy { grid-template-columns: 1fr; }
+      .phone { transform: none; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(1120px, calc(100% - 28px)); }
+      .navlinks a:first-child { display: none; }
+      .hero { min-height: auto; padding-bottom: 70px; }
+      .section { padding: 68px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="shell">
+    <nav aria-label="Primary navigation">
+      <a class="studio" href="/">KRO STUDIOS</a>
+      <div class="navlinks">
+        <a href="#how">How it works</a>
+        <a href="echodare-privacy.html">Privacy</a>
+        <a href="echodare-support.html">Support</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">One phone · 2–12 players · instant chaos</p>
+        <h1 id="hero-title"><span class="gradient">Say it forwards.</span><br>Copy it backwards.</h1>
+        <p class="lede">Echo Dare is a pass-and-play reverse-voice party game that turns a short recording into a ridiculous sound relay. Imitate the impossible noise, flip it back, and reveal what your friends actually said.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:hello@krostudios.com?subject=Echo%20Dare%20early%20access">Join the first playtest</a>
+          <a class="button" href="#how">See how it plays</a>
+        </div>
+        <div class="availability" aria-label="Release availability">
+          <span class="store">Google Play · coming soon</span>
+          <span class="store">App Store · coming soon</span>
+        </div>
+      </div>
+
+      <div class="phone" role="img" aria-label="Echo Dare game illustration showing a microphone waveform and a score of 87">
+        <div class="appmark" aria-hidden="true">🎙️</div>
+        <h2>Make some noise.</h2>
+        <p>The reverse voice party game.</p>
+        <div class="wave" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="score"><strong>87</strong> / 100 Echo Match</div>
+      </div>
+    </section>
+
+    <section class="section shell" id="how" aria-labelledby="how-title">
+      <p class="eyebrow">Fast to learn. Hard to say.</p>
+      <h2 id="how-title">The laugh lands in three beats.</h2>
+      <p class="section-intro">No account, game server, or pile of phones. Gather around one device and start a round.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="number">01 · SAY IT</span>
+          <h3>Record the secret dare</h3>
+          <p>The Maker reads a phrase or performs a sound. Echo Dare reverses the clip directly on the device.</p>
+        </article>
+        <article class="card">
+          <span class="number">02 · ECHO IT</span>
+          <h3>Copy the backwards sound</h3>
+          <p>Pass the phone. The next player hears only the strange reversed version and imitates it as closely as possible.</p>
+        </article>
+        <article class="card">
+          <span class="number">03 · REVEAL IT</span>
+          <h3>Flip it and compare</h3>
+          <p>Hear both voices, reveal the Echo Match, react as a room, and crown the party's best accidental linguist.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" aria-labelledby="party-title">
+      <p class="eyebrow">Built for the room</p>
+      <h2 id="party-title">Tiny setup. Loud payoff.</h2>
+      <div class="grid">
+        <article class="card"><h3>Choose the vibe</h3><p>Mix It Up, Say It Silly, or Sound Chaos decks keep every group feeling different.</p></article>
+        <article class="card"><h3>Everyone gets a turn</h3><p>Fair rotating roles, fast rematches, party awards, room reactions, and a local leaderboard.</p></article>
+        <article class="card"><h3>Share only when you choose</h3><p>Create a winner card or explicitly share a decoded clip through your phone's normal share sheet.</p></article>
+      </div>
+    </section>
+
+    <section class="shell privacy" aria-labelledby="privacy-title">
+      <div>
+        <h2 id="privacy-title">Your voices stay in the room.</h2>
+        <p>Voice clips are processed on your device and are not uploaded to an Echo Dare server. A clip leaves the App only if you choose to share it. Core gameplay works offline; internet access may be used for advertising and consent messages.</p>
+      </div>
+      <a class="button" href="echodare-privacy.html">Read the privacy policy</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>© 2026 Kro Studios · Echo Dare</span>
+      <div class="footer-links">
+        <a href="echodare-privacy.html">Privacy</a>
+        <a href="echodare-support.html">Support</a>
+        <a href="mailto:hello@krostudios.com?subject=Echo%20Dare%20support">hello@krostudios.com</a>
+        <a href="/">Kro Studios</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

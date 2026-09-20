@@ -22,3 +22,19 @@ Run the static contract check before publishing:
 ```sh
 python3 tests/verify_sovietkino_legal.py
 ```
+
+## Echo Dare pages
+
+The Echo Dare marketing, privacy, and support pages are maintained in:
+
+- `echodare.html`
+- `echodare-privacy.html`
+- `echodare-support.html`
+
+The app-specific privacy page must remain separate from `privacy.html`, which belongs to Tanakh Quiz. The root `app-ads.txt` record is shared across Kro Studios apps.
+
+Run the Echo Dare static contract, accessibility, link, and publisher-record check before publishing:
+
+```sh
+python3 tests/verify_echodare_site.py
+```
