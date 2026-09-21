@@ -204,6 +204,8 @@ def main() -> int:
         "Voice clips are processed on your device and are not uploaded to an Echo Dare server.",
         "A clip leaves the App only if you choose to share it.",
         "Core gameplay works offline",
+        "Add session-only names and inside jokes",
+        "Echo Match is a playful comparison of timing, sound shape, and pauses; it does not recognize words or meaning.",
     )
     for statement in landing_contract:
         if statement not in landing:
@@ -225,7 +227,7 @@ def main() -> int:
 
     privacy = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-privacy.html", "")))
     privacy_contract = (
-        "Last updated: September 20, 2026",
+        "Last updated: September 21, 2026",
         "hello@krostudios.com",
         "Google Mobile Ads (AdMob)",
         "User Messaging Platform (UMP)",
@@ -234,10 +236,21 @@ def main() -> int:
         "intended for teens and adults aged 13 and older",
         "not directed to children under 13",
         "does not sell",
+        "It does not transcribe or recognize speech.",
+        "Optional custom phrases are also held only for the active local party.",
     )
     for statement in privacy_contract:
         if statement not in privacy:
             fail(errors, "echodare-privacy.html", f"missing privacy contract text: {statement!r}")
+
+    support = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-support.html", "")))
+    support_contract = (
+        "Open app settings",
+        "Return to the game and tap Try this turn again.",
+    )
+    for statement in support_contract:
+        if statement not in support:
+            fail(errors, "echodare-support.html", f"missing support contract text: {statement!r}")
 
     if errors:
         print("Echo Dare website verification failed:", file=sys.stderr)
