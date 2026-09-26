@@ -185,6 +185,10 @@ def main() -> int:
     frame_asset = ROOT / "tanakh-quiz" / "assets" / "iphone-real-frame-v3.png"
     if "/tanakh-quiz/assets/iphone-real-frame-v3.png" not in source or not frame_asset.is_file():
         fail(errors, "tanakh-quiz/index.html: missing photorealistic iPhone frame")
+    if "inset:4.7526% 6.0417% 4.1016%" not in source:
+        fail(errors, "tanakh-quiz/index.html: app screenshots are not aligned to the iPhone frame aperture")
+    if "object-fit:cover;object-position:50% 0" not in source:
+        fail(errors, "tanakh-quiz/index.html: screenshots must retain their natural Dynamic Island inset")
     if source.count('class="device-slide') != 5:
         fail(errors, "tanakh-quiz/index.html: hero carousel must contain five UI screens")
     if "var interval = 7000" not in source:
