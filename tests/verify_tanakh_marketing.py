@@ -16,6 +16,7 @@ LANDING = ROOT / "tanakh-quiz" / "index.html"
 CANONICAL = "https://krostudios.com/tanakh-quiz/"
 APPLE = "https://apps.apple.com/app/id6797598421"
 GOOGLE = "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz"
+SOCIAL_IMAGE = "https://krostudios.com/tanakh-quiz/assets/social-cover.png"
 DISCOVERY_PAGES = (
     ROOT / "index.html",
     ROOT / "chidon-hatanach.html",
@@ -165,6 +166,28 @@ def main() -> int:
     for name in ("og:type", "og:locale", "og:title", "og:description", "og:url", "og:image"):
         if not normalized(parser.meta_properties.get(name, "")):
             fail(errors, f"tanakh-quiz/index.html: missing {name}")
+    if parser.meta_properties.get("og:image") != SOCIAL_IMAGE:
+        fail(errors, f"tanakh-quiz/index.html: og:image must be {SOCIAL_IMAGE}")
+    if not (ROOT / "tanakh-quiz" / "assets" / "social-cover.png").is_file():
+        fail(errors, "tanakh-quiz/index.html: social cover image is missing")
+
+    expected_ui_assets = (
+        "ui-categories.jpg",
+        "ui-gameplay.jpg",
+        "ui-correct.jpg",
+        "ui-daily.jpg",
+        "ui-leaderboard.jpg",
+        "ui-difficulty.jpg",
+    )
+    for asset in expected_ui_assets:
+        if f"/tanakh-quiz/assets/{asset}" not in source:
+            fail(errors, f"tanakh-quiz/index.html: missing current UI asset {asset!r}")
+    if source.count('class="device-slide') != 5:
+        fail(errors, "tanakh-quiz/index.html: hero carousel must contain five UI screens")
+    if "var interval = 7000" not in source:
+        fail(errors, "tanakh-quiz/index.html: hero carousel must use the slower seven-second interval")
+    if "feature-graphic.jpg" in source:
+        fail(errors, "tanakh-quiz/index.html: obsolete feature graphic is still referenced")
 
     duplicates = sorted({identifier for identifier in parser.ids if parser.ids.count(identifier) > 1})
     if duplicates:
