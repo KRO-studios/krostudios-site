@@ -166,7 +166,7 @@ h1{
   transition:transform .16s ease,filter .16s ease;
 }
 .store-badge:hover{transform:translateY(-3px);filter:brightness(1.08)}
-.store-badge:focus-visible,.text-link:focus-visible,.site-nav a:focus-visible,.brand:focus-visible,.answer:focus-visible,.carousel-button:focus-visible,.carousel-dot:focus-visible{
+.store-badge:focus-visible,.text-link:focus-visible,.site-nav a:focus-visible,.brand:focus-visible,.answer:focus-visible{
   outline:3px solid var(--coral);
   outline-offset:4px;
 }
@@ -190,38 +190,33 @@ h1{
 .app-carousel{
   position:relative;
   z-index:2;
-  display:grid;
-  justify-items:center;
-  width:min(310px,76vw);
+  width:min(340px,80vw);
 }
-.iphone-shell{
+.app-carousel:focus-visible{outline:3px solid var(--coral);outline-offset:9px;border-radius:42px}
+.iphone-device{
   position:relative;
   width:100%;
-  aspect-ratio:49/100;
-  border-radius:17% / 8.35%;
-  background:
-    linear-gradient(90deg,#47150c 0%,#a83d19 1.7%,#ff9c59 3.2%,#c74a20 5%,#f17a38 6.2%,#c2481f 7.1%,#9a3218 8.3%,#d95d29 50%,#9a3218 91.7%,#c2481f 92.9%,#f17a38 93.8%,#c74a20 95%,#ff9c59 96.8%,#a83d19 98.3%,#47150c 100%);
-  box-shadow:0 34px 72px rgba(0,0,0,.45),0 0 0 1px rgba(255,190,137,.56),inset 0 0 0 2px rgba(78,22,10,.7);
-  isolation:isolate;
+  aspect-ratio:15/32;
+  filter:drop-shadow(0 34px 48px rgba(0,0,0,.5));
 }
-.iphone-shell::before{
-  content:"";
+.iphone-frame{
   position:absolute;
-  z-index:4;
-  inset:3px;
-  border:1px solid rgba(255,214,177,.5);
-  border-radius:inherit;
-  box-shadow:inset 0 0 0 1px rgba(71,20,9,.72),inset 0 0 15px rgba(255,180,110,.18);
+  z-index:3;
+  inset:0;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:fill;
   pointer-events:none;
 }
 .iphone-screen{
   position:absolute;
   z-index:2;
-  inset:2.2% 5.102%;
+  inset:3.451% 4.167% 3.19%;
   overflow:hidden;
   border-radius:14.545% / 6.695%;
   background:#080808;
-  box-shadow:0 0 0 4px #050608,inset 0 0 14px rgba(0,0,0,.7);
+  box-shadow:inset 0 0 12px rgba(0,0,0,.3);
 }
 .device-slide{
   position:absolute;
@@ -233,47 +228,6 @@ h1{
 }
 .device-slide.is-active{opacity:1;visibility:visible}
 .device-slide img{width:100%;height:100%;object-fit:fill}
-.phone-button{
-  position:absolute;
-  z-index:1;
-  width:5px;
-  border-radius:3px;
-  background:linear-gradient(90deg,#4d180d,#db5d2a 52%,#6f2412);
-  box-shadow:0 2px 5px rgba(0,0,0,.45);
-}
-.phone-button--action{inset:19% auto auto -4px;height:4.6%}
-.phone-button--up{inset:25.5% auto auto -4px;height:10.5%}
-.phone-button--down{inset:38.2% auto auto -4px;height:10.5%}
-.phone-button--power{inset:30% -4px auto auto;height:15.5%}
-.slide-caption{
-  min-height:1.6em;
-  margin:15px 0 7px;
-  color:var(--cream-2);
-  font-size:.92rem;
-  font-weight:750;
-  text-align:center;
-}
-.carousel-controls{display:flex;align-items:center;justify-content:center;gap:7px;direction:rtl;width:max-content;max-width:calc(100vw - 36px);flex-wrap:wrap}
-.carousel-button,.carousel-dot{
-  display:inline-grid;
-  place-items:center;
-  min-width:44px;
-  min-height:44px;
-  padding:0;
-  border:1px solid rgba(255,247,231,.25);
-  border-radius:999px;
-  background:rgba(6,27,44,.78);
-  color:var(--cream);
-  cursor:pointer;
-  line-height:1;
-  transition:background .16s ease,border-color .16s ease,transform .16s ease;
-}
-.carousel-button:hover,.carousel-dot:hover{border-color:var(--teal);background:var(--navy-3);transform:translateY(-1px)}
-.carousel-button:disabled{cursor:default;opacity:.5;transform:none}
-.carousel-dots{display:flex;align-items:center;gap:3px}
-.carousel-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.carousel-dot[aria-current="true"]::before{width:20px;background:var(--gold)}
-.carousel-dot[aria-current="true"]{border-color:rgba(244,197,82,.6)}
 .mode-strip{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
@@ -442,7 +396,7 @@ h1{
   .hero{grid-template-columns:1fr;min-height:auto;text-align:center}
   .hero-copy{display:flex;flex-direction:column;align-items:center}
   .store-row{justify-content:center}
-  .app-carousel{width:min(286px,72vw)}
+  .app-carousel{width:min(310px,76vw)}
   .proof-grid,.content-grid{grid-template-columns:1fr}
   .proof-copy{max-width:720px;margin:0 auto;text-align:center}
   .check-list{display:inline-grid;text-align:start}
@@ -455,11 +409,9 @@ h1{
   .site-header{padding-inline:15px}
   .brand span{display:none}
   .hero{padding-inline:18px}
-  .app-carousel{width:min(246px,72vw)}
+  .app-carousel{width:min(280px,80vw)}
   .orbit-one{width:290px;height:290px}
   .orbit-two{width:350px;height:350px}
-  .slide-caption{font-size:.86rem}
-  .carousel-controls{gap:3px}
   .mode-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mode{min-height:132px;padding:17px 12px}
   .answers{grid-template-columns:1fr}
@@ -493,10 +445,6 @@ h1{
   .download .store-badge,.download .store-badge img{width:100%;height:auto;max-height:58px;object-fit:contain}
   .site-footer{flex-direction:column;align-items:center;text-align:center}
   .site-footer div{justify-content:center}
-}
-@media(max-width:390px){
-  .carousel-controls{max-width:270px;flex-wrap:wrap}
-  .carousel-dots{flex-basis:100%;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -541,44 +489,27 @@ h1{
       <div class="phone-stage">
         <span class="orbit orbit-one" aria-hidden="true"></span>
         <span class="orbit orbit-two" aria-hidden="true"></span>
-        <div class="app-carousel" role="region" aria-roledescription="קרוסלה" aria-label="מסכים עדכניים מתוך חידון התנ״ך" data-app-carousel>
-          <div class="iphone-shell">
-            <span class="phone-button phone-button--action" aria-hidden="true"></span>
-            <span class="phone-button phone-button--up" aria-hidden="true"></span>
-            <span class="phone-button phone-button--down" aria-hidden="true"></span>
-            <span class="phone-button phone-button--power" aria-hidden="true"></span>
+        <div class="app-carousel" role="region" aria-roledescription="קרוסלה" aria-label="מסכים עדכניים מתוך חידון התנ״ך; המיקוד משהה את ההחלפה" tabindex="0" data-app-carousel>
+          <div class="iphone-device">
+            <img class="iphone-frame" src="/tanakh-quiz/assets/iphone-real-frame-v3.png" width="720" height="1536" alt="" fetchpriority="high" decoding="async">
             <div class="iphone-screen">
-              <figure class="device-slide is-active" role="group" aria-roledescription="שקופית" aria-label="1 מתוך 5" aria-hidden="false" data-caption="בחירת נושא, ספר ורמת קושי">
+              <figure class="device-slide is-active" role="group" aria-roledescription="שקופית" aria-label="1 מתוך 5" aria-hidden="false">
                 <img src="/tanakh-quiz/assets/ui-categories.jpg" width="660" height="1434" alt="מסך בחירת נושא וספר בחידון התנ״ך" fetchpriority="high" decoding="async">
               </figure>
-              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="2 מתוך 5" aria-hidden="true" data-caption="השלמת פסוקים ומשחקי מילים">
+              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="2 מתוך 5" aria-hidden="true">
                 <img src="/tanakh-quiz/assets/ui-gameplay.jpg" width="660" height="1434" alt="מסך השלמת פסוק בממשק החדש של חידון התנ״ך" decoding="async">
               </figure>
-              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="3 מתוך 5" aria-hidden="true" data-caption="תשובה מיידית, ניקוד והסבר">
-                <img src="/tanakh-quiz/assets/ui-correct.jpg" width="660" height="1434" loading="lazy" alt="מסך תשובה נכונה וניקוד בחידון התנ״ך" decoding="async">
+              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="3 מתוך 5" aria-hidden="true">
+                <img src="/tanakh-quiz/assets/ui-correct.jpg" width="660" height="1434" alt="מסך תשובה נכונה וניקוד בחידון התנ״ך" decoding="async">
               </figure>
-              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="4 מתוך 5" aria-hidden="true" data-caption="אתגר תנ״ך חדש בכל יום">
-                <img src="/tanakh-quiz/assets/ui-daily.jpg" width="660" height="1434" loading="lazy" alt="מסך האתגר היומי בחידון התנ״ך" decoding="async">
+              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="4 מתוך 5" aria-hidden="true">
+                <img src="/tanakh-quiz/assets/ui-daily.jpg" width="660" height="1434" alt="מסך האתגר היומי בחידון התנ״ך" decoding="async">
               </figure>
-              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="5 מתוך 5" aria-hidden="true" data-caption="טבלת מובילים ותחרות עם חברים">
-                <img src="/tanakh-quiz/assets/ui-leaderboard.jpg" width="660" height="1434" loading="lazy" alt="טבלת המובילים בחידון התנ״ך" decoding="async">
+              <figure class="device-slide" role="group" aria-roledescription="שקופית" aria-label="5 מתוך 5" aria-hidden="true">
+                <img src="/tanakh-quiz/assets/ui-leaderboard.jpg" width="660" height="1434" alt="טבלת המובילים בחידון התנ״ך" decoding="async">
               </figure>
             </div>
           </div>
-          <p class="slide-caption" data-carousel-caption>בחירת נושא, ספר ורמת קושי</p>
-          <div class="carousel-controls" aria-label="שליטה בתמונות האפליקציה">
-            <button class="carousel-button" type="button" data-carousel-toggle aria-label="השהיית החלפת התמונות" aria-pressed="false"><span data-carousel-toggle-icon aria-hidden="true">Ⅱ</span></button>
-            <button class="carousel-button" type="button" data-carousel-prev aria-label="צילום מסך קודם"><span aria-hidden="true">→</span></button>
-            <button class="carousel-button" type="button" data-carousel-next aria-label="צילום מסך הבא"><span aria-hidden="true">←</span></button>
-            <div class="carousel-dots" aria-label="בחירת צילום מסך">
-              <button class="carousel-dot" type="button" data-carousel-dot="0" aria-label="הצגת צילום מסך 1 מתוך 5" aria-current="true"></button>
-              <button class="carousel-dot" type="button" data-carousel-dot="1" aria-label="הצגת צילום מסך 2 מתוך 5"></button>
-              <button class="carousel-dot" type="button" data-carousel-dot="2" aria-label="הצגת צילום מסך 3 מתוך 5"></button>
-              <button class="carousel-dot" type="button" data-carousel-dot="3" aria-label="הצגת צילום מסך 4 מתוך 5"></button>
-              <button class="carousel-dot" type="button" data-carousel-dot="4" aria-label="הצגת צילום מסך 5 מתוך 5"></button>
-            </div>
-          </div>
-          <p class="sr-only" aria-live="polite" aria-atomic="true" data-carousel-status></p>
         </div>
       </div>
     </section>
@@ -734,36 +665,21 @@ h1{
   if (!carousel) return;
 
   var slides = Array.prototype.slice.call(carousel.querySelectorAll('.device-slide'));
-  var dots = Array.prototype.slice.call(carousel.querySelectorAll('[data-carousel-dot]'));
-  var caption = carousel.querySelector('[data-carousel-caption]');
-  var status = carousel.querySelector('[data-carousel-status]');
-  var toggle = carousel.querySelector('[data-carousel-toggle]');
-  var toggleIcon = carousel.querySelector('[data-carousel-toggle-icon]');
-  var previous = carousel.querySelector('[data-carousel-prev]');
-  var next = carousel.querySelector('[data-carousel-next]');
+  if (!slides.length) return;
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var current = 0;
   var timer = 0;
-  var userPaused = false;
   var interactionPaused = false;
   var inView = true;
   var interval = 7000;
 
-  function showSlide(index,userInitiated){
+  function showSlide(index){
     current = (index + slides.length) % slides.length;
     slides.forEach(function(slide,slideIndex){
       var active = slideIndex === current;
       slide.classList.toggle('is-active',active);
       slide.setAttribute('aria-hidden',active ? 'false' : 'true');
     });
-    dots.forEach(function(dot,dotIndex){
-      if (dotIndex === current) dot.setAttribute('aria-current','true');
-      else dot.removeAttribute('aria-current');
-    });
-
-    var text = slides[current].getAttribute('data-caption') || '';
-    caption.textContent = text;
-    if (userInitiated) status.textContent = 'צילום ' + (current + 1) + ' מתוך ' + slides.length + ': ' + text;
   }
 
   function stop(){
@@ -773,52 +689,18 @@ h1{
   }
 
   function canPlay(){
-    return !motion.matches && !userPaused && !interactionPaused && inView && !document.hidden;
+    return slides.length > 1 && !motion.matches && !interactionPaused && inView && !document.hidden;
   }
 
   function schedule(){
     stop();
     if (!canPlay()) return;
     timer = window.setTimeout(function(){
-      showSlide(current + 1,false);
+      showSlide(current + 1);
       schedule();
     },interval);
   }
 
-  function updateToggle(){
-    if (motion.matches){
-      toggle.disabled = true;
-      toggle.setAttribute('aria-label','החלפת תמונות אוטומטית מושבתת לפי העדפת התנועה');
-      toggle.setAttribute('aria-pressed','false');
-      toggleIcon.textContent = '▶';
-      return;
-    }
-    toggle.disabled = false;
-    toggle.setAttribute('aria-pressed',userPaused ? 'true' : 'false');
-    toggle.setAttribute('aria-label',userPaused ? 'הפעלת החלפת התמונות' : 'השהיית החלפת התמונות');
-    toggleIcon.textContent = userPaused ? '▶' : 'Ⅱ';
-  }
-
-  function navigate(index){
-    userPaused = true;
-    stop();
-    updateToggle();
-    showSlide(index,true);
-  }
-
-  toggle.addEventListener('click',function(){
-    userPaused = !userPaused;
-    updateToggle();
-    schedule();
-  });
-  previous.addEventListener('click',function(){navigate(current - 1)});
-  next.addEventListener('click',function(){navigate(current + 1)});
-  dots.forEach(function(dot){
-    dot.addEventListener('click',function(){navigate(Number(dot.getAttribute('data-carousel-dot')))});
-  });
-
-  carousel.addEventListener('mouseenter',function(){interactionPaused = true;stop()});
-  carousel.addEventListener('mouseleave',function(){interactionPaused = false;schedule()});
   carousel.addEventListener('focusin',function(){interactionPaused = true;stop()});
   carousel.addEventListener('focusout',function(event){
     if (carousel.contains(event.relatedTarget)) return;
@@ -834,15 +716,10 @@ h1{
     },{threshold:.25}).observe(carousel);
   }
 
-  function motionChanged(){
-    updateToggle();
-    schedule();
-  }
-  if (motion.addEventListener) motion.addEventListener('change',motionChanged);
-  else if (motion.addListener) motion.addListener(motionChanged);
+  if (motion.addEventListener) motion.addEventListener('change',schedule);
+  else if (motion.addListener) motion.addListener(schedule);
 
-  showSlide(0,false);
-  updateToggle();
+  showSlide(0);
   schedule();
 })();
 </script>

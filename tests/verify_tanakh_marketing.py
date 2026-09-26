@@ -182,10 +182,23 @@ def main() -> int:
     for asset in expected_ui_assets:
         if f"/tanakh-quiz/assets/{asset}" not in source:
             fail(errors, f"tanakh-quiz/index.html: missing current UI asset {asset!r}")
+    frame_asset = ROOT / "tanakh-quiz" / "assets" / "iphone-real-frame-v3.png"
+    if "/tanakh-quiz/assets/iphone-real-frame-v3.png" not in source or not frame_asset.is_file():
+        fail(errors, "tanakh-quiz/index.html: missing photorealistic iPhone frame")
     if source.count('class="device-slide') != 5:
         fail(errors, "tanakh-quiz/index.html: hero carousel must contain five UI screens")
     if "var interval = 7000" not in source:
         fail(errors, "tanakh-quiz/index.html: hero carousel must use the slower seven-second interval")
+    for obsolete_control in (
+        "carousel-controls",
+        "carousel-button",
+        "carousel-dot",
+        "slide-caption",
+        "iphone-shell",
+        "phone-button",
+    ):
+        if obsolete_control in source:
+            fail(errors, f"tanakh-quiz/index.html: obsolete visible carousel UI remains: {obsolete_control}")
     if "feature-graphic.jpg" in source:
         fail(errors, "tanakh-quiz/index.html: obsolete feature graphic is still referenced")
 
