@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>חידון התנ״ך — משחק מילים וטריוויה בעברית | Kro Studios</title>
+<meta name="description" content="חידון התנ״ך הוא משחק מילים וטריוויה בעברית: השלימו פסוקים, זהו דמויות ומקומות וגלו מי אמר למי. חינם ל-iPhone ולאנדרואיד.">
+<link rel="canonical" href="https://krostudios.com/tanakh-quiz/">
+<meta name="theme-color" content="#082238">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Kro Studios">
+<meta property="og:title" content="חידון התנ״ך — משחק מילים וטריוויה בעברית">
+<meta property="og:description" content="כמה טוב אתם באמת מכירים את התנ״ך? השלימו פסוקים, זהו דמויות ומקומות ושחקו בחידות מן התורה, הנביאים והכתובים.">
+<meta property="og:url" content="https://krostudios.com/tanakh-quiz/">
+<meta property="og:image" content="https://krostudios.com/tanakh-quiz/assets/feature-graphic.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:image:alt" content="חידון התנ״ך — משחק מילים בעברית לאייפון ולאנדרואיד">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="חידון התנ״ך — משחק מילים וטריוויה בעברית">
+<meta name="twitter:description" content="השלימו פסוקים, זהו דמויות ומקומות וגלו מי אמר למי.">
+<meta name="twitter:image" content="https://krostudios.com/tanakh-quiz/assets/feature-graphic.jpg">
+<link rel="icon" href="/tanakh-quiz/assets/app-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "חידון התנ״ך",
+  "alternateName": "Tanakh Quiz",
+  "url": "https://krostudios.com/tanakh-quiz/",
+  "image": "https://krostudios.com/tanakh-quiz/assets/app-icon.png",
+  "description": "משחק מילים וטריוויה בעברית עם השלמת פסוקים, דמויות, מקומות ושאלות מי אמר למי מן התורה, הנביאים והכתובים.",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Android, iOS",
+  "inLanguage": "he",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "ILS"
+  },
+  "downloadUrl": [
+    "https://apps.apple.com/app/id6797598421",
+    "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kro Studios",
+    "url": "https://krostudios.com/"
+  }
+}
+</script>
+<style>
+:root{
+  color-scheme:dark;
+  --navy:#061b2c;
+  --navy-2:#0d2c46;
+  --navy-3:#123754;
+  --cream:#fff7e7;
+  --cream-2:#eadfc9;
+  --muted:#b8ccda;
+  --teal:#58dbc8;
+  --teal-dark:#0f786e;
+  --gold:#f4c552;
+  --coral:#ff9b86;
+  --line:#294c66;
+  --shadow:0 28px 70px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--navy);
+  color:var(--cream);
+  font:17px/1.65 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit}
+.skip-link{
+  position:fixed;
+  z-index:100;
+  inset:10px auto auto 10px;
+  transform:translateY(-150%);
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--cream);
+  color:var(--navy);
+  font-weight:700;
+}
+.skip-link:focus{transform:none}
+.site-header{
+  position:relative;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  max-width:1240px;
+  margin:0 auto;
+  padding:17px clamp(20px,5vw,64px);
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:11px;
+  color:var(--cream);
+  text-decoration:none;
+  font-weight:800;
+  white-space:nowrap;
+}
+.brand img{width:46px;height:46px;border-radius:13px;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.site-nav{display:flex;align-items:center;gap:25px}
+.site-nav a{text-decoration:none;font-weight:650;color:var(--cream-2)}
+.site-nav a:hover{color:var(--teal)}
+.site-nav .nav-cta{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  padding:8px 18px;
+  border-radius:999px;
+  background:var(--cream);
+  color:var(--navy);
+}
+.hero-wrap{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 16%,rgba(244,197,82,.24),transparent 24%),
+    radial-gradient(circle at 85% 16%,rgba(255,155,134,.2),transparent 26%),
+    linear-gradient(155deg,var(--navy-2),var(--navy));
+}
+.hero{
+  max-width:1240px;
+  min-height:650px;
+  display:grid;
+  grid-template-columns:minmax(0,1.04fr) minmax(320px,.78fr);
+  align-items:center;
+  gap:clamp(36px,7vw,94px);
+  margin:0 auto;
+  padding:clamp(54px,8vw,104px) clamp(22px,6vw,76px);
+}
+.eyebrow{
+  margin:0 0 10px;
+  color:var(--teal);
+  font-size:.92rem;
+  font-weight:800;
+  letter-spacing:.035em;
+}
+h1,h2,h3,p{overflow-wrap:anywhere}
+h1{
+  max-width:720px;
+  margin:0 0 18px;
+  font-size:clamp(2.35rem,5.3vw,4.85rem);
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+.hero-copy>p:not(.eyebrow){max-width:660px;margin:0;color:var(--muted);font-size:clamp(1.02rem,1.7vw,1.25rem)}
+.store-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
+.store-badge{
+  display:inline-flex;
+  min-height:52px;
+  border-radius:10px;
+  transition:transform .16s ease,filter .16s ease;
+}
+.store-badge:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.store-badge:focus-visible,.text-link:focus-visible,.site-nav a:focus-visible,.brand:focus-visible,.answer:focus-visible{
+  outline:3px solid var(--coral);
+  outline-offset:4px;
+}
+.store-badge img{width:auto;height:52px}
+.fineprint{margin-top:13px!important;font-size:.9rem!important;color:var(--muted)!important}
+.phone-stage{position:relative;min-height:500px;display:grid;place-items:center;isolation:isolate}
+.orbit{position:absolute;border-radius:50%;pointer-events:none}
+.orbit-one{width:360px;height:360px;background:rgba(88,219,200,.14)}
+.orbit-two{width:458px;height:458px;border:1px dashed rgba(244,197,82,.54)}
+.phone{
+  position:relative;
+  z-index:2;
+  width:min(274px,72vw);
+  border:7px solid var(--coral);
+  border-radius:38px;
+  box-shadow:var(--shadow);
+  transform:rotate(-3deg);
+}
+.app-seal{
+  position:absolute;
+  z-index:3;
+  width:88px;
+  height:88px;
+  inset:auto 5% 7% auto;
+  border-radius:23px;
+  box-shadow:0 18px 42px rgba(0,0,0,.35);
+}
+.mode-strip{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px;
+  border-block:1px solid var(--line);
+  background:var(--line);
+}
+.mode{
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:22px;
+  text-align:center;
+  background:var(--navy-2);
+}
+.mode svg{width:25px;height:25px;color:var(--teal)}
+.mode strong{font-size:1.02rem}
+.mode span{color:var(--muted);font-size:.91rem}
+.section{padding:clamp(62px,8vw,102px) clamp(20px,7vw,84px)}
+.section-inner{max-width:1120px;margin:0 auto}
+.section-heading{max-width:720px;margin:0 auto 34px;text-align:center}
+.section-heading h2{margin:6px 0 10px;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.2}
+.section-heading p{margin:0;color:var(--muted)}
+.quiz-card{
+  max-width:780px;
+  margin:0 auto;
+  padding:clamp(24px,4.6vw,46px);
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:var(--navy-2);
+  box-shadow:0 22px 62px rgba(0,0,0,.22);
+}
+.verse{
+  margin:0 0 27px;
+  color:var(--cream);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.22rem,2.7vw,1.72rem);
+  line-height:1.8;
+  text-align:center;
+}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.answer{
+  min-height:52px;
+  padding:10px 16px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--navy);
+  color:var(--cream);
+  cursor:pointer;
+  font-weight:750;
+}
+.answer:hover{border-color:var(--teal)}
+.answer.correct{border-color:var(--teal);background:rgba(88,219,200,.16)}
+.answer.wrong{border-color:var(--coral);background:rgba(255,155,134,.16)}
+.quiz-result{min-height:1.7em;margin:18px 0 0;text-align:center;color:var(--muted)}
+.proof{
+  background:var(--navy-2);
+  border-block:1px solid var(--line);
+}
+.proof-grid{
+  max-width:1180px;
+  display:grid;
+  grid-template-columns:minmax(0,.75fr) minmax(420px,1.25fr);
+  align-items:center;
+  gap:clamp(34px,6vw,76px);
+  margin:0 auto;
+}
+.proof-copy h2{margin:8px 0 14px;font-size:clamp(1.8rem,3.4vw,2.75rem);line-height:1.2}
+.proof-copy p{color:var(--muted)}
+.feature-image{border-radius:24px;box-shadow:var(--shadow)}
+.check-list{display:grid;gap:12px;margin:25px 0 0;padding:0;list-style:none}
+.check-list li{position:relative;padding-inline-start:30px;color:var(--cream-2)}
+.check-list li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--teal);font-weight:900}
+.content-section{background:linear-gradient(180deg,var(--navy),#081f33)}
+.content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,7vw,84px);align-items:start}
+.content-copy h2{margin:0 0 18px;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.2}
+.content-copy h3{margin:28px 0 8px;font-size:1.2rem;color:var(--teal)}
+.content-copy p{margin:0 0 15px;color:var(--muted)}
+.content-cards{display:grid;gap:15px}
+.resource-card{
+  display:block;
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:var(--navy-2);
+  text-decoration:none;
+  transition:transform .16s ease,border-color .16s ease;
+}
+.resource-card:hover{transform:translateY(-3px);border-color:var(--teal)}
+.resource-card:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.resource-card span{display:block;margin-bottom:5px;color:var(--teal);font-size:.84rem;font-weight:800}
+.resource-card strong{display:block;font-size:1.2rem}
+.resource-card p{margin:7px 0 0;color:var(--muted);font-size:.94rem}
+.daily-note{
+  margin-top:16px;
+  padding:18px 20px;
+  border-inline-start:4px solid var(--gold);
+  border-radius:12px;
+  background:rgba(244,197,82,.1);
+  color:var(--cream-2);
+}
+.download{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:24px;
+  padding:36px clamp(22px,6vw,76px);
+  background:var(--cream);
+  color:var(--navy);
+}
+.download>img{width:82px;height:82px;border-radius:21px;box-shadow:0 12px 28px rgba(4,21,34,.2)}
+.download h2{margin:0;font-size:clamp(1.45rem,2.8vw,2.2rem)}
+.download p{margin:4px 0 0;color:#415c70}
+.download .store-row{margin:0}
+.site-footer{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  max-width:1240px;
+  margin:0 auto;
+  padding:28px clamp(20px,5vw,64px);
+  color:var(--muted);
+  font-size:.9rem;
+}
+.site-footer div{display:flex;gap:18px;flex-wrap:wrap}
+.site-footer a{text-underline-offset:4px}
+.site-footer a:hover{color:var(--teal)}
+@media(max-width:860px){
+  .site-nav a:not(.nav-cta){display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;text-align:center}
+  .hero-copy{display:flex;flex-direction:column;align-items:center}
+  .store-row{justify-content:center}
+  .phone-stage{min-height:540px}
+  .proof-grid,.content-grid{grid-template-columns:1fr}
+  .proof-copy{max-width:720px;margin:0 auto;text-align:center}
+  .check-list{display:inline-grid;text-align:start}
+  .proof-grid .feature-image{grid-row:1}
+  .download{grid-template-columns:auto 1fr}
+  .download .store-row{grid-column:1/-1}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .site-header{padding-inline:15px}
+  .brand span{display:none}
+  .hero{padding-inline:18px}
+  .phone-stage{min-height:485px}
+  .phone{width:246px}
+  .orbit-one{width:290px;height:290px}
+  .orbit-two{width:350px;height:350px}
+  .app-seal{width:76px;height:76px;inset:auto 1% 8% auto}
+  .mode-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mode{min-height:132px;padding:17px 12px}
+  .answers{grid-template-columns:1fr}
+  .proof-grid{gap:28px}
+  .feature-image{border-radius:16px}
+  .download{grid-template-columns:1fr;text-align:center}
+  .download>img{margin:0 auto}
+  .download .store-row{grid-column:auto;flex-direction:column;align-items:stretch}
+  .download .store-badge,.download .store-badge img{width:100%;height:auto;max-height:58px;object-fit:contain}
+  .site-footer{flex-direction:column;align-items:center;text-align:center}
+  .site-footer div{justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">דלגו לתוכן</a>
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Kro Studios — דף הבית">
+    <img src="/tanakh-quiz/assets/app-icon.png" width="46" height="46" alt="">
+    <span>חידון התנ״ך</span>
+  </a>
+  <nav class="site-nav" aria-label="ניווט ראשי">
+    <a href="#how">איך משחקים</a>
+    <a href="#modes">סוגי שאלות</a>
+    <a href="#practice">עוד תרגול</a>
+    <a class="nav-cta" href="#download">להורדה</a>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="hero-wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">משחק מילים וטריוויה בעברית</p>
+        <h1 id="page-title">כמה טוב אתם באמת מכירים את התנ״ך?</h1>
+        <p>השלימו פסוקים, זהו דמויות ומקומות וגלו מי אמר למי — במשחק מהיר וצבעוני מן התורה, הנביאים והכתובים.</p>
+        <div class="store-row" aria-label="הורדת חידון התנ״ך">
+          <a class="store-badge" href="https://apps.apple.com/app/id6797598421" aria-label="הורדת חידון התנ״ך מ-App Store">
+            <img src="/badge-appstore.svg" width="156" height="52" alt="הורדה ב-App Store">
+          </a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz" aria-label="הורדת חידון התנ״ך מ-Google Play">
+            <img src="/tanakh-quiz/assets/badge-googleplay.png" width="150" height="52" alt="קבלו את זה ב-Google Play">
+          </a>
+        </div>
+        <p class="fineprint">חינם · בעברית · ל-iPhone ולאנדרואיד</p>
+      </div>
+
+      <div class="phone-stage" aria-label="צילום מסך עדכני מתוך חידון התנ״ך">
+        <span class="orbit orbit-one" aria-hidden="true"></span>
+        <span class="orbit orbit-two" aria-hidden="true"></span>
+        <img class="phone" src="/tanakh-quiz/assets/gameplay.jpg" width="660" height="1434" alt="שאלת מי אמר למי בממשק החדש של חידון התנ״ך" fetchpriority="high">
+        <img class="app-seal" src="/tanakh-quiz/assets/app-icon.png" width="88" height="88" alt="">
+      </div>
+    </section>
+  </div>
+
+  <section class="mode-strip" id="modes" aria-label="סוגי שאלות במשחק">
+    <div class="mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>
+      <strong>השלמת פסוקים</strong>
+      <span>מילה חסרה, אות אחר אות</span>
+    </div>
+    <div class="mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M6 19c.7-3.4 2.7-5 6-5s5.3 1.6 6 5"/></svg>
+      <strong>דמויות</strong>
+      <span>מלכים, נביאים, שופטים וגיבורים</span>
+    </div>
+    <div class="mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s6-5.3 6-11a6 6 0 1 0-12 0c0 5.7 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+      <strong>מקומות</strong>
+      <span>ארץ ישראל, מצרים, בבל ועוד</span>
+    </div>
+    <div class="mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 5h14v10H9l-4 4V5Z"/><path d="M9 9h6M9 12h4"/></svg>
+      <strong>מי אמר למי?</strong>
+      <span>ציטוטים מן המקרא וההקשר שלהם</span>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="quiz-title">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">נסו שאלה אחת</p>
+        <h2 id="quiz-title">השלימו את הפסוק</h2>
+        <p>בחרו את המילה החסרה וגלו מיד אם צדקתם.</p>
+      </div>
+      <div class="quiz-card">
+        <blockquote class="verse">״לֹא־טוֹב הֱיוֹת הָאָדָם לְבַדּוֹ; אֶעֱשֶׂה־לּוֹ ___ כְּנֶגְדּוֹ״</blockquote>
+        <div class="answers" role="group" aria-label="תשובות אפשריות">
+          <button class="answer" type="button" data-answer="correct">עֵזֶר</button>
+          <button class="answer" type="button" data-answer="wrong">בַּיִת</button>
+          <button class="answer" type="button" data-answer="wrong">שֵׁם</button>
+          <button class="answer" type="button" data-answer="wrong">קוֹל</button>
+        </div>
+        <p class="quiz-result" id="quiz-result" aria-live="polite">בחרו תשובה כדי לגלות.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section proof" aria-labelledby="proof-title">
+    <div class="proof-grid">
+      <div class="proof-copy">
+        <p class="eyebrow">משחק שנראה כמו שהוא מרגיש</p>
+        <h2 id="proof-title">מגלים, טועים, לומדים וממשיכים</h2>
+        <p>משוב צבעוני, רמזים, רמות קושי וטבלת מובילים הופכים את הידע בתנ״ך למשחק שאפשר לפתוח לכמה דקות — ולהישאר לעוד סיבוב.</p>
+        <ul class="check-list">
+          <li>מאות חידות מן המקרא</li>
+          <li>שלוש רמות קושי וסיבובים קצרים</li>
+          <li>אתגר יומי חדש בתוך האפליקציה</li>
+        </ul>
+      </div>
+      <img class="feature-image" src="/tanakh-quiz/assets/feature-graphic.jpg" width="1024" height="500" loading="lazy" decoding="async" alt="חידון התנ״ך במכשירי iPhone ואנדרואיד עם משחק פסוקים וטבלת מובילים">
+    </div>
+  </section>
+
+  <section class="section content-section" id="practice" aria-labelledby="practice-title">
+    <div class="section-inner content-grid">
+      <div class="content-copy">
+        <p class="eyebrow">חידון תנ״ך ומשחקי מילים</p>
+        <h2 id="practice-title">דרך מהנה לחזור אל הסיפורים, הפסוקים והדמויות</h2>
+        <p>חידון התנ״ך משלב טריוויה תנ״כית עם משחק מילים בעברית. בכל סיבוב פוגשים שאלות על התורה, הנביאים והכתובים: ספר בראשית ושמות, מלכים ושופטים, ישעיהו וירמיהו, תהלים, משלי, רות, אסתר ועוד.</p>
+        <p>אפשר לתרגל השלמת פסוקים, ניחוש מילים, זיהוי דמויות בתנ״ך, מקומות במקרא ושאלות ״מי אמר למי״. המשחק מתאים למי שאוהבים חידות בעברית, למי שרוצים לרענן ידע כללי ולמי שמתכוננים לחידון התנ״ך.</p>
+        <h3>לא חייבים לדעת הכול כדי להתחיל</h3>
+        <p>בחרו רמת קושי, השתמשו ברמז כשצריך ולמדו מן התשובה. כל סיבוב קצר, ולכן קל לחזור לעוד שאלה בבית, בדרך או בהפסקה.</p>
+        <div class="daily-note"><strong>האתגר היומי נמצא באפליקציה בלבד.</strong> פתחו את המשחק כדי לקבל חידה חדשה ולשמור על רצף.</div>
+      </div>
+
+      <div class="content-cards" aria-label="תכנים נוספים על התנ״ך">
+        <a class="resource-card" href="/chidon-hatanach.html">
+          <span>48 שאלות עם תשובות</span>
+          <strong>שאלות לתרגול לחידון התנ״ך</strong>
+          <p>שאלות לפי ספרים, הסברים וטיפים להכנה.</p>
+        </a>
+        <a class="resource-card" href="/psukim-mefursamim.html">
+          <span>תורה · נביאים · כתובים</span>
+          <strong>פסוקים מפורסמים מהתנ״ך</strong>
+          <p>פסוקים מוכרים, מקורם וההקשר שלהם.</p>
+        </a>
+        <a class="resource-card" href="#download">
+          <span>חינם ל-iPhone ולאנדרואיד</span>
+          <strong>מוכנים לעוד שאלה?</strong>
+          <p>עברו להורדה ובחרו את החנות שמתאימה לכם.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="download" id="download" aria-labelledby="download-title">
+    <img src="/tanakh-quiz/assets/app-icon.png" width="82" height="82" loading="lazy" alt="">
+    <div>
+      <h2 id="download-title">השאלה הבאה כבר מחכה</h2>
+      <p>הורידו את חידון התנ״ך ושחקו בעברית — בחינם.</p>
+    </div>
+    <div class="store-row" aria-label="קישורים לחנויות האפליקציות">
+      <a class="store-badge" href="https://apps.apple.com/app/id6797598421" aria-label="הורדת חידון התנ״ך מ-App Store">
+        <img src="/badge-appstore.svg" width="156" height="52" loading="lazy" alt="הורדה ב-App Store">
+      </a>
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz" aria-label="הורדת חידון התנ״ך מ-Google Play">
+        <img src="/tanakh-quiz/assets/badge-googleplay.png" width="150" height="52" loading="lazy" alt="קבלו את זה ב-Google Play">
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span>© Kro Studios · חידון התנ״ך</span>
+  <div>
+    <a href="/">Kro Studios</a>
+    <a href="/privacy.html">מדיניות פרטיות</a>
+    <a href="mailto:hello@krostudios.com">יצירת קשר</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var answers = document.querySelectorAll('.answer');
+  var result = document.getElementById('quiz-result');
+  if (!answers.length || !result) return;
+
+  answers.forEach(function(answer){
+    answer.addEventListener('click', function(){
+      answers.forEach(function(item){
+        item.classList.remove('correct','wrong');
+        item.removeAttribute('aria-pressed');
+      });
+
+      var correct = answer.getAttribute('data-answer') === 'correct';
+      answer.classList.add(correct ? 'correct' : 'wrong');
+      answer.setAttribute('aria-pressed','true');
+      result.textContent = correct
+        ? 'נכון — עֵזֶר. הפסוק מופיע בבראשית ב׳, י״ח.'
+        : 'כמעט. התשובה היא עֵזֶר — בראשית ב׳, י״ח.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
