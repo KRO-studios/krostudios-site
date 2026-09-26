@@ -189,6 +189,12 @@ def main() -> int:
         fail(errors, "tanakh-quiz/index.html: app screenshots are not aligned to the iPhone frame aperture")
     if "object-fit:cover;object-position:50% 0" not in source:
         fail(errors, "tanakh-quiz/index.html: screenshots must retain their natural Dynamic Island inset")
+    if source.count('class="iphone-device showcase-phone') != 3:
+        fail(errors, "tanakh-quiz/index.html: feature cover must use three realistic iPhone mockups")
+    if source.count('/tanakh-quiz/assets/iphone-real-frame-v3.png') != 4:
+        fail(errors, "tanakh-quiz/index.html: every phone must use the realistic graphite frame")
+    if "ui-screen" in source:
+        fail(errors, "tanakh-quiz/index.html: obsolete flat screenshot cards remain in the feature cover")
     if source.count('class="device-slide') != 5:
         fail(errors, "tanakh-quiz/index.html: hero carousel must contain five UI screens")
     if "var interval = 7000" not in source:
