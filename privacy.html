@@ -3,78 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Policy — Kro Studios</title>
-<meta name="description" content="Privacy policy for Kro Studios apps">
-<style>
-:root{
-  --ink:#0F0B06;--raise:#1B1409;--gold:#C9A84C;--pink:#EFA0BE;
-  --cream:#E8DEC6;--dim:#8B7A5C;--cell:22px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:var(--ink);color:var(--cream);
-  font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif;
-  background-image:
-    linear-gradient(rgba(201,168,76,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(201,168,76,.045) 1px,transparent 1px);
-  background-size:var(--cell) var(--cell);
-}
-.wrap{max-width:720px;margin:0 auto;padding:52px 24px 80px}
-
-.mark{width:104px;height:auto;display:block;margin:0 auto 24px;
-      image-rendering:pixelated}
-.back{display:inline-block;font:600 11px/1 ui-monospace,Menlo,monospace;
-      letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
-      text-decoration:none;margin-bottom:34px}
-.back:hover,.back:focus-visible{color:var(--gold)}
-
-h1{font:700 13px/1 ui-monospace,Menlo,monospace;letter-spacing:.34em;
-   text-transform:uppercase;color:var(--gold);margin-bottom:10px;
-   padding-inline-start:.34em}
-.updated{color:var(--dim);font-size:13px;margin-bottom:34px}
-
-/* language switch — two states, no dropdown for two options */
-.langs{display:flex;gap:1px;margin-bottom:38px;
-       border:1px solid rgba(201,168,76,.22);width:fit-content}
-.langs button{
-  background:transparent;border:0;color:var(--dim);cursor:pointer;
-  font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;
-  padding:11px 20px;transition:background .14s,color .14s}
-.langs button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
-.langs button:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-
-section{margin-bottom:30px}
-h2{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;
-   text-transform:uppercase;color:var(--gold);margin-bottom:11px}
-p{color:var(--cream);opacity:.9;margin-bottom:11px}
-ul{list-style:none;margin:11px 0}
-li{position:relative;padding-inline-start:20px;margin-bottom:9px;
-   color:var(--cream);opacity:.9}
-li::before{content:"";position:absolute;inset-inline-start:2px;top:.62em;
-           width:6px;height:6px;background:var(--pink)}  /* a pixel, not a dot */
-a{color:var(--gold)}
-a:hover,a:focus-visible{color:var(--pink)}
-
-[data-lang]{display:none}
-[data-lang].on{display:block}
-#he{direction:rtl;text-align:right}
-
-.foot{margin-top:46px;padding-top:22px;
-      border-top:1px solid rgba(201,168,76,.22);
-      color:var(--dim);font-size:13px}
-
-@media (max-width:520px){.wrap{padding:36px 18px 60px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+<title>Tanakh Quiz Privacy Policy — Kro Studios</title>
+<meta name="description" content="Privacy policy for the Tanakh Quiz app by Kro Studios, including leaderboard data, Firebase, advertising and in-app purchases.">
+<link rel="canonical" href="https://krostudios.com/privacy.html">
+<meta name="theme-color" content="#061b2c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tanakh Quiz Privacy Policy">
+<meta property="og:description" content="How Tanakh Quiz handles game data, leaderboard entries, advertising choices and purchases.">
+<meta property="og:url" content="https://krostudios.com/privacy.html">
+<meta property="og:image" content="https://krostudios.com/tanakh-quiz/assets/social-cover.png">
+<link rel="icon" href="/tanakh-quiz/assets/app-icon.png">
+<link rel="stylesheet" href="/tanakh-quiz/assets/content-pages.css">
+<link rel="stylesheet" href="/tanakh-quiz/assets/privacy-page.css">
 </head>
-<body>
-<div class="wrap">
+<body class="privacy-page">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <a href="index.html"><img class="mark" src="logo.png" alt="Kro Studios"></a>
-  <a class="back" href="index.html">← Back</a>
+<header class="site-header">
+  <a class="brand" href="/tanakh-quiz/" aria-label="Tanakh Quiz home">
+    <img src="/tanakh-quiz/assets/app-icon.png" width="46" height="46" alt="">
+    <span>Tanakh Quiz</span>
+  </a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="/tanakh-quiz/">App</a>
+    <a href="/chidon-hatanach.html">Practice</a>
+    <a href="/psukim-mefursamim.html">Verses</a>
+    <a class="nav-cta" href="mailto:hello@krostudios.com">Contact</a>
+  </nav>
+</header>
 
-  <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: September 2026</p>
+<main id="main">
+  <section class="policy-hero" aria-labelledby="policy-title">
+    <img class="policy-icon" src="/tanakh-quiz/assets/app-icon.png" width="92" height="92" alt="">
+    <h1 id="policy-title">Privacy Policy</h1>
+    <p class="updated">Last updated: September 2026</p>
+    <a class="policy-back" href="/tanakh-quiz/">← Back to Tanakh Quiz</a>
+  </section>
+
+  <section class="policy-main">
+    <div class="policy-card">
 
   <div class="langs">
     <button id="b-he" aria-pressed="false" onclick="pick('he')">עברית</button>
@@ -193,9 +160,21 @@ a:hover,a:focus-visible{color:var(--pink)}
     </section>
   </div>
 
-  <p class="foot">Kro Studios · hello@krostudios.com</p>
+      <p class="policy-foot">Kro Studios · hello@krostudios.com</p>
+    </div>
+  </section>
+</main>
 
-</div>
+<footer class="site-footer">
+  <span>© Kro Studios · Tanakh Quiz</span>
+  <div>
+    <a href="/">Kro Studios</a>
+    <a href="/tanakh-quiz/">App</a>
+    <a href="/chidon-hatanach.html">Practice</a>
+    <a href="/psukim-mefursamim.html">Verses</a>
+    <a href="mailto:hello@krostudios.com">Contact</a>
+  </div>
+</footer>
 
 <script>
 function pick(l){

@@ -1,0 +1,37 @@
+.policy-hero{
+  padding:clamp(48px,7vw,82px) 20px;
+  border-bottom:1px solid rgba(88,219,200,.18);
+  background:
+    radial-gradient(circle at 18% 22%,rgba(244,197,82,.15),transparent 30%),
+    radial-gradient(circle at 82% 70%,rgba(88,219,200,.13),transparent 31%),
+    linear-gradient(135deg,#081f33,#071b2c 58%,#10304a);
+  text-align:center;
+}
+.policy-icon{width:92px;height:92px;margin:0 auto 20px;border-radius:23px;box-shadow:0 18px 40px rgba(0,0,0,.32)}
+.policy-hero h1{margin:0;color:var(--cream);font-size:clamp(2.15rem,5vw,3.8rem);line-height:1.12}
+.policy-hero .updated{margin:11px 0 0;color:#b9cedc}
+.policy-back{display:inline-flex;margin-top:20px;color:var(--teal);font-weight:800;text-underline-offset:4px}
+.policy-main{padding:clamp(48px,7vw,82px) clamp(16px,5vw,48px);background:linear-gradient(180deg,var(--paper-2),var(--paper));color:var(--ink)}
+.policy-card{max-width:900px;min-width:0;margin:0 auto;padding:clamp(22px,5vw,54px);border:1px solid var(--paper-line);border-radius:28px;background:rgba(255,255,255,.5);box-shadow:0 22px 60px rgba(70,49,15,.1);overflow-wrap:anywhere}
+.langs{display:flex;width:fit-content;gap:5px;margin:0 auto 34px;padding:5px;border:1px solid rgba(25,50,71,.16);border-radius:13px;background:rgba(25,50,71,.07)}
+.langs button{min-width:112px;min-height:44px;padding:9px 18px;border:0;border-radius:9px;background:transparent;color:var(--ink-2);cursor:pointer;font:750 .9rem/1 system-ui,-apple-system,"Segoe UI",sans-serif}
+.langs button[aria-pressed="true"]{background:var(--navy-2);color:var(--cream);box-shadow:0 7px 18px rgba(6,27,44,.16)}
+.policy-card section{margin:0 0 20px;padding:21px 23px;border:1px solid rgba(25,50,71,.12);border-radius:17px;background:rgba(255,250,240,.7)}
+.policy-card section:last-child{margin-bottom:0}
+.policy-card h2{margin:0 0 10px;color:var(--ink);font-size:1.16rem;line-height:1.35}
+.policy-card p{margin:0 0 11px;color:var(--ink-2)}
+.policy-card p:last-child{margin-bottom:0}
+.policy-card ul{margin:10px 0;padding-inline-start:24px;color:var(--ink-2)}
+.policy-card li{margin-bottom:8px;padding-inline-start:3px}
+.policy-card strong{color:var(--ink)}
+.policy-card a{color:#146f67;font-weight:750;text-underline-offset:3px}
+[data-lang]{display:none}
+[data-lang].on{display:block}
+#he{direction:rtl;text-align:right}
+.policy-foot{margin:30px 0 0;color:#71808a;text-align:center;font-size:.9rem}
+@media(max-width:560px){
+  .policy-card{padding:18px;border-radius:20px}
+  .policy-card section{padding:17px}
+  .langs{width:100%}
+  .langs button{min-width:0;flex:1}
+}

@@ -22,6 +22,18 @@ DISCOVERY_PAGES = (
     ROOT / "chidon-hatanach.html",
     ROOT / "psukim-mefursamim.html",
 )
+SUPPORT_PAGES = (
+    (
+        ROOT / "chidon-hatanach.html",
+        "https://krostudios.com/chidon-hatanach.html",
+        "ui-categories.jpg",
+    ),
+    (
+        ROOT / "psukim-mefursamim.html",
+        "https://krostudios.com/psukim-mefursamim.html",
+        "ui-gameplay.jpg",
+    ),
+)
 
 
 class PageParser(HTMLParser):
@@ -291,6 +303,81 @@ def main() -> int:
         except (json.JSONDecodeError, AttributeError) as error:
             fail(errors, f"tanakh-quiz/index.html: invalid JSON-LD: {error}")
 
+    for page, expected_canonical, expected_screen in SUPPORT_PAGES:
+        page_source = page.read_text(encoding="utf-8")
+        page_parser = PageParser()
+        page_parser.feed(page_source)
+        page_parser.close()
+        page_name = page.name
+
+        if page_parser.html_lang != "he" or page_parser.html_dir != "rtl":
+            fail(errors, f'{page_name}: expected lang="he" and dir="rtl"')
+        if page_parser.main_count != 1:
+            fail(errors, f"{page_name}: must contain exactly one main element")
+        page_headings = [
+            normalized("".join(parts))
+            for parts in page_parser.h1_parts
+            if normalized("".join(parts))
+        ]
+        if len(page_headings) != 1:
+            fail(errors, f"{page_name}: must contain exactly one nonempty h1")
+        if page_parser.canonical != expected_canonical:
+            fail(errors, f"{page_name}: canonical must be {expected_canonical}")
+        if '/tanakh-quiz/assets/content-pages.css' not in page_source:
+            fail(errors, f"{page_name}: missing the current Tanakh product stylesheet")
+        if '/tanakh-quiz/assets/iphone-real-frame-v3.png' not in page_source:
+            fail(errors, f"{page_name}: missing the realistic iPhone frame")
+        if f'/tanakh-quiz/assets/{expected_screen}' not in page_source:
+            fail(errors, f"{page_name}: missing current UI image {expected_screen!r}")
+
+        page_hrefs: list[str] = []
+        page_badges: list[tuple[str, str]] = []
+        for link in page_parser.links:
+            href = str(link["href"])
+            page_hrefs.append(href)
+            images = link["images"]
+            assert isinstance(images, list)
+            for image in images:
+                image_src = str(image.get("src") or "")
+                if "badge" in image_src.lower():
+                    page_badges.append((image_src, href))
+        if page_hrefs.count(APPLE) != 2 or page_hrefs.count(GOOGLE) != 2:
+            fail(errors, f"{page_name}: each exact store listing must appear twice")
+        if '/tanakh-quiz/' not in page_hrefs:
+            fail(errors, f"{page_name}: missing link to the app landing page")
+        for image_src, href in page_badges:
+            if "appstore" in image_src.lower():
+                if image_src != "/badge-appstore.svg" or href != APPLE:
+                    fail(errors, f"{page_name}: App Store badge is not normalized or direct")
+            elif image_src != "/tanakh-quiz/assets/badge-googleplay.png" or href != GOOGLE:
+                fail(errors, f"{page_name}: Google Play badge is not normalized or direct")
+        for image in page_parser.images:
+            src = image["src"] or ""
+            if image["alt"] is None:
+                fail(errors, f"{page_name}: image {src!r} is missing alt")
+            target = local_target(page, src)
+            if target is not None and not target.is_file():
+                fail(errors, f"{page_name}: missing local image {src!r}")
+        for legacy_reference in (
+            "feature-graphic.jpg",
+            "/tanakh-quiz/assets/gameplay.jpg",
+            "iphone-real-frame-v2",
+            'src="badge-googleplay.png"',
+        ):
+            if legacy_reference in page_source:
+                fail(errors, f"{page_name}: obsolete UI reference remains: {legacy_reference}")
+
+    privacy_source = (ROOT / "privacy.html").read_text(encoding="utf-8")
+    for required_privacy_shell in (
+        '/tanakh-quiz/assets/content-pages.css',
+        '/tanakh-quiz/assets/privacy-page.css',
+        '/tanakh-quiz/assets/app-icon.png',
+        'href="/tanakh-quiz/"',
+        '<main id="main">',
+    ):
+        if required_privacy_shell not in privacy_source:
+            fail(errors, f"privacy.html: missing current Tanakh product shell: {required_privacy_shell}")
+
     for page in DISCOVERY_PAGES:
         page_source = page.read_text(encoding="utf-8")
         if not re.search(r'href=["\']/tanakh-quiz/["\']', page_source):
@@ -305,6 +392,11 @@ def main() -> int:
     robots = (ROOT / "robots.txt").read_text(encoding="utf-8") if (ROOT / "robots.txt").is_file() else ""
     if CANONICAL not in sitemap:
         fail(errors, "sitemap.xml: missing Tanakh Quiz landing page")
+    for _, support_canonical, _ in SUPPORT_PAGES:
+        if support_canonical not in sitemap:
+            fail(errors, f"sitemap.xml: missing support page {support_canonical}")
+    if re.search(r"https://krostudios\.com/daily/?(?:<|\s|$)", sitemap, re.IGNORECASE):
+        fail(errors, "sitemap.xml: obsolete /daily URL remains")
     if "https://krostudios.com/sitemap.xml" not in robots:
         fail(errors, "robots.txt: missing sitemap declaration")
 

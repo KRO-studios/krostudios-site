@@ -2,6 +2,22 @@
 
 This repository is the static site served at `https://krostudios.com/`.
 
+## Tanakh Quiz pages
+
+The Tanakh Quiz landing page, Hebrew Bible practice pages, and bilingual privacy page are maintained in:
+
+- `tanakh-quiz/index.html`
+- `chidon-hatanach.html`
+- `psukim-mefursamim.html`
+- `privacy.html`
+
+Run both Tanakh contracts before publishing:
+
+```sh
+python3 tests/verify_tanakh_marketing.py
+python3 tests/verify_tanakh_privacy.py
+```
+
 ## Soviet Kino legal pages
 
 The Russian/English privacy and account-deletion disclosures are maintained in:
