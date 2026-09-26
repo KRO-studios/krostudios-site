@@ -192,7 +192,6 @@ h1{
   z-index:2;
   width:min(340px,80vw);
 }
-.app-carousel:focus-visible{outline:3px solid var(--coral);outline-offset:9px;border-radius:42px}
 .iphone-device{
   position:relative;
   width:100%;
@@ -489,7 +488,7 @@ h1{
       <div class="phone-stage">
         <span class="orbit orbit-one" aria-hidden="true"></span>
         <span class="orbit orbit-two" aria-hidden="true"></span>
-        <div class="app-carousel" role="region" aria-roledescription="קרוסלה" aria-label="מסכים עדכניים מתוך חידון התנ״ך; המיקוד משהה את ההחלפה" tabindex="0" data-app-carousel>
+        <div class="app-carousel" role="region" aria-roledescription="קרוסלה" aria-label="מסכים עדכניים מתוך חידון התנ״ך המתחלפים אוטומטית" data-app-carousel>
           <div class="iphone-device">
             <img class="iphone-frame" src="/tanakh-quiz/assets/iphone-real-frame-v3.png" width="720" height="1536" alt="" fetchpriority="high" decoding="async">
             <div class="iphone-screen">
@@ -666,11 +665,8 @@ h1{
 
   var slides = Array.prototype.slice.call(carousel.querySelectorAll('.device-slide'));
   if (!slides.length) return;
-  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var current = 0;
   var timer = 0;
-  var interactionPaused = false;
-  var inView = true;
   var interval = 7000;
 
   function showSlide(index){
@@ -689,7 +685,7 @@ h1{
   }
 
   function canPlay(){
-    return slides.length > 1 && !motion.matches && !interactionPaused && inView && !document.hidden;
+    return slides.length > 1 && !document.hidden;
   }
 
   function schedule(){
@@ -701,23 +697,7 @@ h1{
     },interval);
   }
 
-  carousel.addEventListener('focusin',function(){interactionPaused = true;stop()});
-  carousel.addEventListener('focusout',function(event){
-    if (carousel.contains(event.relatedTarget)) return;
-    interactionPaused = false;
-    schedule();
-  });
   document.addEventListener('visibilitychange',schedule);
-
-  if ('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      inView = entries[0].isIntersecting;
-      schedule();
-    },{threshold:.25}).observe(carousel);
-  }
-
-  if (motion.addEventListener) motion.addEventListener('change',schedule);
-  else if (motion.addListener) motion.addListener(schedule);
 
   showSlide(0);
   schedule();

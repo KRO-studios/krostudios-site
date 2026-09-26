@@ -189,6 +189,15 @@ def main() -> int:
         fail(errors, "tanakh-quiz/index.html: hero carousel must contain five UI screens")
     if "var interval = 7000" not in source:
         fail(errors, "tanakh-quiz/index.html: hero carousel must use the slower seven-second interval")
+    for autoplay_blocker in (
+        "!motion.matches",
+        "interactionPaused",
+        "carousel.addEventListener('focusin'",
+        "IntersectionObserver",
+        "var inView",
+    ):
+        if autoplay_blocker in source:
+            fail(errors, f"tanakh-quiz/index.html: carousel autoplay can still be permanently blocked: {autoplay_blocker}")
     for obsolete_control in (
         "carousel-controls",
         "carousel-button",
