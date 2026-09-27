@@ -206,6 +206,7 @@ def main() -> int:
         "Core gameplay works offline",
         "Add session-only names and inside jokes",
         "Echo Match is a playful comparison of timing, sound shape, and pauses; it does not recognize words or meaning.",
+        "adults 18+",
     )
     for statement in landing_contract:
         if statement not in landing:
@@ -231,10 +232,12 @@ def main() -> int:
         "hello@krostudios.com",
         "Google Mobile Ads (AdMob)",
         "User Messaging Platform (UMP)",
-        "marks all ad requests for teen treatment",
+        "intended for adults",
         "PG-or-lower content label",
-        "intended for teens and adults aged 13 and older",
-        "not directed to children under 13",
+        "Whether an ad is personalized depends on your region",
+        "intended for adults aged 18 and older",
+        "not directed to anyone under 18",
+        "does not ask players to enter their age or independently verify",
         "does not sell",
         "It does not transcribe or recognize speech.",
         "Optional custom phrases are also held only for the active local party.",
@@ -245,6 +248,7 @@ def main() -> int:
 
     support = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-support.html", "")))
     support_contract = (
+        "Echo Dare is intended for adults aged 18 and older.",
         "Open app settings",
         "Return to the game and tap Try this turn again.",
     )
