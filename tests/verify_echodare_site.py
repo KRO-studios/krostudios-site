@@ -227,7 +227,7 @@ def main() -> int:
 
     privacy = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-privacy.html", "")))
     privacy_contract = (
-        "Last updated: September 21, 2026",
+        "Last updated: September 27, 2026",
         "hello@krostudios.com",
         "Google Mobile Ads (AdMob)",
         "User Messaging Platform (UMP)",
