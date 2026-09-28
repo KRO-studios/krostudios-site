@@ -23,7 +23,8 @@ python3 tests/verify_tanakh_privacy.py
 The Russian marketing page for the Android release is `sovietkino/index.html`.
 Its screenshots and icon in `sovietkino/assets/` are copies of approved Google
 Play artwork from the app repository. Its download buttons point to the
-production Play package `com.krostudios.sovietkino`. Update the screenshots,
+production Play package `com.krostudios.sovietkino` and add a shared UTM
+source/campaign for Play Console referral reporting. Update the screenshots,
 platform links, and claims when the released game changes.
 
 The Russian/English privacy and account-deletion disclosures are maintained in:
