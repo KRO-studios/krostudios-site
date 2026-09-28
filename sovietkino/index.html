@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141615">
+  <meta name="description" content="Советское кино: Угадай слово — русская игра в слова и киновикторина по фильмам СССР. Угадывайте героев, актёров и цитаты по подсказкам. Бесплатно в Google Play.">
+  <link rel="canonical" href="https://krostudios.com/sovietkino/">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Kro Studios">
+  <meta property="og:title" content="Советское кино: Угадай слово — игра в слова и киновикторина">
+  <meta property="og:description" content="Помните любимые фильмы? Угадайте слово по подсказке. Герои, актёры, цитаты и ежедневные задания — бесплатно на Android.">
+  <meta property="og:url" content="https://krostudios.com/sovietkino/">
+  <meta property="og:image" content="https://krostudios.com/sovietkino/assets/feature-graphic.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="500">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Советское кино: Угадай слово — русская игра в слова и киновикторина</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Советское кино: Угадай слово",
+    "description": "Русская игра в слова и киновикторина по фильмам СССР с подсказками, ежедневными заданиями и рейтингом.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Android",
+    "inLanguage": "ru",
+    "url": "https://krostudios.com/sovietkino/",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino",
+    "image": "https://krostudios.com/sovietkino/assets/feature-graphic.png",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "publisher": {"@type": "Organization", "name": "Kro Studios", "url": "https://krostudios.com/"}
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #141615;
+      --ink-light: #202321;
+      --paper: #f4e3c6;
+      --paper-muted: #cbbca3;
+      --gold: #e5ac31;
+      --red: #b82820;
+      --teal: #0e3430;
+      --line: rgba(244, 227, 198, .25);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--paper);
+      background: var(--ink);
+      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 75% 9%, rgba(229, 172, 49, .12), transparent 28%),
+        linear-gradient(90deg, transparent 48%, rgba(244, 227, 198, .028) 49%, transparent 50%);
+      background-size: auto, 46px 46px;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .skip {
+      position: absolute; top: -100px; left: 12px; z-index: 10;
+      padding: 10px 15px; background: var(--paper); color: var(--ink);
+    }
+    .skip:focus { top: 12px; }
+    .shell { width: min(1180px, calc(100% - 44px)); margin-inline: auto; }
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(14, 52, 48, .76);
+    }
+    .topbar .shell {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; min-height: 76px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 850; text-decoration: none; letter-spacing: .07em; text-transform: uppercase; }
+    .brand img { width: 44px; height: 44px; border-radius: 10px; }
+    .topnav { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; font-size: 14px; font-weight: 700; }
+    .topnav a { text-decoration: none; }
+    .topnav a:hover { color: var(--gold); }
+    .topnav .nav-cta { padding: 9px 15px; border: 1px solid var(--gold); color: var(--gold); }
+    .nav-cta .small-label { display: none; }
+    .eyebrow, .section-kicker {
+      margin: 0; color: var(--gold); font: 800 13px/1.4 Arial, sans-serif;
+      letter-spacing: .19em; text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: Impact, "Arial Narrow", "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: .015em; }
+    h1 { max-width: 1000px; margin: 18px 0 22px; font-size: clamp(50px, 7.8vw, 112px); line-height: .96; overflow-wrap: anywhere; }
+    h1 em { color: var(--gold); font-style: normal; }
+    .mobile-break { display: none; }
+    h2 { margin: 14px 0 20px; font-size: clamp(37px, 5vw, 66px); line-height: 1.02; }
+    h3 { margin: 0 0 12px; font-size: 28px; line-height: 1.1; }
+    .hero { padding: clamp(52px, 8vw, 112px) 0 46px; }
+    .hero-intro { display: flex; align-items: end; justify-content: space-between; gap: 36px; }
+    .hero-copy { max-width: 670px; margin: 0 0 28px; color: var(--paper-muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.52; }
+    .hero-action { flex: 0 0 290px; padding-bottom: 34px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+      min-height: 58px; padding: 13px 25px;
+      color: #1b160f; background: var(--gold); border: 2px solid var(--gold);
+      font-weight: 850; font-size: 16px; line-height: 1.25;
+      text-align: center; text-decoration: none;
+      box-shadow: 7px 7px 0 var(--red);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .button:hover { transform: translate(3px, 3px); box-shadow: 4px 4px 0 var(--red); background: #f5bd4d; }
+    .button span { font-size: 22px; line-height: 1; }
+    .hero-action .button { width: 100%; }
+    .fineprint { margin: 18px 0 0; color: var(--paper-muted); font-size: 13px; }
+    .banner {
+      position: relative; margin: 12px 0 0; padding: 10px;
+      background: var(--teal); border: 1px solid rgba(229, 172, 49, .65);
+      box-shadow: 12px 12px 0 #0a2220;
+    }
+    .banner::before, .banner::after {
+      content: ""; position: absolute; left: 18px; right: 18px; height: 1px;
+      background: rgba(229, 172, 49, .55);
+    }
+    .banner::before { top: 5px; } .banner::after { bottom: 5px; }
+    .banner img { display: block; width: 100%; height: auto; }
+    .reel {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      margin: 56px 0 0; background: var(--line); border-block: 1px solid var(--line);
+    }
+    .reel div { padding: 25px 28px; background: var(--ink); }
+    .reel strong { display: block; color: var(--gold); font: 900 30px/1 Impact, "Arial Narrow", Arial, sans-serif; }
+    .reel span { display: block; margin-top: 6px; color: var(--paper-muted); font-size: 15px; }
+    .section { padding: clamp(68px, 9vw, 125px) 0 0; }
+    .section-lead { max-width: 720px; margin: 0 0 36px; color: var(--paper-muted); font-size: 18px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature {
+      min-height: 230px; padding: 27px;
+      background: linear-gradient(150deg, #252520, #1b1d1b);
+      border: 1px solid var(--line); border-top: 5px solid var(--gold);
+    }
+    .feature:nth-child(2) { border-top-color: var(--red); }
+    .feature:nth-child(3) { border-top-color: #5a9680; }
+    .feature .number { display: block; margin-bottom: 19px; color: var(--gold); font-size: 13px; font-weight: 900; letter-spacing: .17em; }
+    .feature p { margin: 0; color: var(--paper-muted); }
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin: 36px 0 0; }
+    .gallery:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
+    .gallery-hint { display: none; }
+    .gallery figure { min-width: 0; margin: 0; }
+    .gallery img { display: block; width: 100%; height: auto; border: 1px solid rgba(229, 172, 49, .5); }
+    .gallery figcaption { padding: 14px 0; color: var(--paper-muted); font-size: 15px; }
+    .gallery b { color: var(--paper); }
+    .final {
+      margin: clamp(80px, 10vw, 140px) 0 0; padding: clamp(38px, 6vw, 80px);
+      background: linear-gradient(120deg, #0e3430, #112321 65%, #1b1d1b);
+      border: 1px solid rgba(229, 172, 49, .5);
+    }
+    .final h2 { max-width: 760px; }
+    .final p:not(.section-kicker) { max-width: 630px; color: var(--paper-muted); }
+    .final .button { margin-top: 13px; }
+    footer { padding: 55px 0 36px; color: var(--paper-muted); font-size: 14px; }
+    footer .shell { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 26px; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+    footer a:hover { color: var(--gold); }
+    @media (max-width: 850px) {
+      .hero-intro { display: block; }
+      .hero-action { max-width: 360px; padding-bottom: 15px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature { min-height: 0; }
+      .gallery { gap: 12px; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(calc(100% - 30px), 1180px); }
+      .topbar .shell { min-height: 70px; }
+      .brand { font-size: 14px; } .brand img { width: 40px; height: 40px; }
+      .topnav a:not(.nav-cta) { display: none; }
+      .topnav .nav-cta { padding: 7px 10px; font-size: 12px; }
+      .nav-cta .wide-label { display: none; }
+      .nav-cta .small-label { display: inline; }
+      .mobile-break { display: initial; }
+      .hero { padding-top: 54px; }
+      h1 { font-size: clamp(39px, 11vw, 64px); line-height: 1.08; }
+      .hero-copy { font-size: 18px; }
+      .hero-action .button { min-width: 0; padding-inline: 14px; font-size: 14px; }
+      .banner { padding: 4px; box-shadow: 5px 5px 0 #0a2220; }
+      .reel { grid-template-columns: 1fr; margin-top: 38px; }
+      .reel div { display: flex; align-items: baseline; gap: 16px; padding: 16px 18px; }
+      .reel span { margin: 0; }
+      .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 13px; padding-bottom: 15px; }
+      .gallery-hint { display: block; margin: 0; color: var(--gold); font-size: 14px; font-weight: 800; }
+      .gallery figure { flex: 0 0 min(80vw, 320px); scroll-snap-align: start; }
+      .final { padding: 32px 23px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">К содержанию</a>
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="/" aria-label="Kro Studios — главная"><img src="assets/icon.png" width="44" height="44" alt="">Kro Studios</a>
+      <nav class="topnav" aria-label="Навигация по странице">
+        <a href="#how-it-works">Об игре</a>
+        <a href="#screenshots">Скриншоты</a>
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino"><span class="wide-label">Играть в Google Play ↗</span><span class="small-label">Играть ↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="content">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <p class="eyebrow">Киновикторина × игра в слова</p>
+      <h1 id="hero-title">Кино — это<br class="mobile-break"> память.<br><em>Угадайте слово.</em></h1>
+      <div class="hero-intro">
+        <p class="hero-copy">«Советское кино: Угадай слово» — русская игра в слова для любителей викторин и загадок. Вспоминайте героев, актёров и цитаты по подсказкам; цветные буквы помогут найти ответ.</p>
+        <div class="hero-action">
+          <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino">Скачать бесплатно в Google Play <span aria-hidden="true">↗</span></a>
+          <p class="fineprint">Для Android · Игра на русском языке</p>
+        </div>
+      </div>
+      <figure class="banner">
+        <img src="assets/feature-graphic.png" alt="Советское кино: Угадай слово — вступительный экран и доска почёта в двух телефонах" width="1024" height="500" fetchpriority="high">
+      </figure>
+      <div class="reel" aria-label="Как проходит игра">
+        <div><strong>01</strong><span>Прочитайте подсказку</span></div>
+        <div><strong>02</strong><span>Введите слово</span></div>
+        <div><strong>03</strong><span>Найдите ответ по цветным буквам</span></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="how-it-works" aria-labelledby="features-title">
+      <p class="section-kicker">Знакомый фильм. Новый вопрос.</p>
+      <h2 id="features-title">Играйте ради слова.<br>Оставайтесь ради кино.</h2>
+      <p class="section-lead">Любите загадки на русском, викторины или старое кино? Здесь не нужно знать каждую сцену наизусть: можно начать с подсказки и дойти до ответа шаг за шагом.</p>
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="number">01 / ВСПОМИНАЙТЕ</span>
+          <h3>Фильмы, герои, цитаты</h3>
+          <p>Узнавайте знакомые истории по деталям и проверяйте, что осталось в памяти.</p>
+        </article>
+        <article class="feature">
+          <span class="number">02 / УГАДЫВАЙТЕ</span>
+          <h3>Один ответ — одно слово</h3>
+          <p>Вводите буквы: цветные клетки покажут, что уже на своём месте, а что стоит переставить.</p>
+        </article>
+        <article class="feature">
+          <span class="number">03 / ВОЗВРАЩАЙТЕСЬ</span>
+          <h3>Вызов на каждый день</h3>
+          <p>Решайте ежедневное задание, выбирайте категории и сравнивайте результат в рейтинге.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell" id="screenshots" aria-labelledby="screens-title">
+      <p class="section-kicker">Посмотрите игру</p>
+      <h2 id="screens-title">Один кадр. Одна подсказка.<br>Одно слово.</h2>
+      <p class="section-lead">Скриншоты показывают вступление, словесную загадку и доску почёта.</p>
+      <p class="gallery-hint">Листайте скриншоты →</p>
+      <div class="gallery" tabindex="0" role="region" aria-label="Три скриншота игры: вступление, загадка, доска почёта">
+        <figure>
+          <img src="assets/home.png" alt="Экран приветствия с кинематографической иллюстрацией и кнопкой «Начать игру»" width="1080" height="1920" loading="lazy" decoding="async">
+          <figcaption><b>Начните игру.</b> Даже если вы не киновед.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/gameplay.png" alt="Игровой вопрос, цветные клетки ответа и русская клавиатура" width="1080" height="1920" loading="lazy" decoding="async">
+          <figcaption><b>Угадайте слово.</b> Буквы подскажут следующий ход.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/leaderboard.png" alt="Экран еженедельной доски почёта с местами игроков" width="1080" height="1920" loading="lazy" decoding="async">
+          <figcaption><b>Сравните результат.</b> Взгляните на доску почёта.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="final shell" aria-labelledby="final-title">
+      <p class="section-kicker">Ваш сеанс начинается</p>
+      <h2 id="final-title">Вспомните фильм.<br>Найдите слово.</h2>
+      <p>Русская игра в слова для тех, кто любит загадки, викторины и кино, к которому хочется возвращаться.</p>
+      <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino">Играть бесплатно в Google Play <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer>
+    <div class="shell">
+      <span>© 2026 Kro Studios</span>
+      <nav aria-label="Полезные ссылки">
+        <a href="/sovietkino-privacy.html">Конфиденциальность</a>
+        <a href="/sovietkino-delete-account.html">Удаление аккаунта</a>
+        <a href="mailto:hello@krostudios.com">Поддержка</a>
+        <a href="/">Все игры Kro Studios</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
