@@ -101,23 +101,23 @@
     h2 { margin: 14px 0 20px; font-size: clamp(37px, 5vw, 66px); line-height: 1.02; }
     h3 { margin: 0 0 12px; font-size: 28px; line-height: 1.1; }
     .hero { padding: clamp(52px, 8vw, 112px) 0 46px; }
-    .hero-intro { display: flex; align-items: end; justify-content: space-between; gap: 36px; }
-    .hero-copy { max-width: 670px; margin: 0 0 28px; color: var(--paper-muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.52; }
-    .hero-action { flex: 0 0 290px; padding-bottom: 34px; }
-    .button {
-      display: inline-flex; align-items: center; justify-content: center; gap: 14px;
-      min-height: 58px; padding: 13px 25px;
-      color: #1b160f; background: var(--gold); border: 2px solid var(--gold);
-      font-weight: 850; font-size: 16px; line-height: 1.25;
-      text-align: center; text-decoration: none;
-      box-shadow: 7px 7px 0 var(--red);
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    .hero-intro { display: flex; align-items: flex-start; justify-content: space-between; gap: 36px; }
+    .hero-copy { flex: 1 1 auto; min-width: 0; max-width: 670px; margin: 0 0 28px; color: var(--paper-muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.52; }
+    .hero-action { flex: 0 1 640px; padding-bottom: 34px; }
+    .store-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .store-lead { margin: 0 0 12px; color: var(--gold); font-size: 15px; font-weight: 850; }
+    .store-option {
+      display: flex; flex-direction: column; align-items: flex-start;
+      min-width: 0; padding: 16px 18px 20px; text-decoration: none;
+      background: #202321; border: 1px solid rgba(229, 172, 49, .48);
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
     }
-    .button:hover { transform: translate(3px, 3px); box-shadow: 4px 4px 0 var(--red); background: #f5bd4d; }
-    .button span { font-size: 22px; line-height: 1; }
-    .hero-action .button { width: 100%; }
-    .store-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-    .fineprint { margin: 18px 0 0; color: var(--paper-muted); font-size: 13px; }
+    .store-option:hover { background: #292c27; border-color: var(--gold); transform: translateY(-2px); }
+    .store-device { display: block; color: var(--paper); font-size: 17px; font-weight: 850; line-height: 1.3; }
+    .store-help { display: block; margin: 4px 0 16px; color: var(--paper-muted); font-size: 13px; line-height: 1.45; }
+    .store-badge { display: block; width: 168px; max-width: 100%; height: auto; margin-top: auto; }
+    .store-option--google .store-badge { width: 186px; }
+    .store-guide { margin: 16px 0 0; color: var(--paper-muted); font-size: 13px; line-height: 1.5; }
     .banner {
       position: relative; margin: 12px 0 0; padding: 10px;
       background: var(--teal); border: 1px solid rgba(229, 172, 49, .65);
@@ -180,14 +180,18 @@
     }
     .final h2 { max-width: 760px; }
     .final p:not(.section-kicker) { max-width: 630px; color: var(--paper-muted); }
-    .final .store-actions { margin-top: 26px; }
+    .final .store-lead { margin-top: 26px; }
+    .final .store-actions { max-width: 690px; }
     footer { padding: 55px 0 36px; color: var(--paper-muted); font-size: 14px; }
     footer .shell { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 26px; }
     footer nav { display: flex; flex-wrap: wrap; gap: 10px 20px; }
     footer a:hover { color: var(--gold); }
-    @media (max-width: 850px) {
+    .trademark-note { flex-basis: 100%; margin: 14px 0 0; color: var(--paper-muted); font-size: 11px; line-height: 1.5; }
+    @media (max-width: 1100px) {
       .hero-intro { display: block; }
-      .hero-action { max-width: 360px; padding-bottom: 15px; }
+      .hero-action { max-width: 690px; padding-bottom: 15px; }
+    }
+    @media (max-width: 850px) {
       .feature-grid { grid-template-columns: 1fr; }
       .feature { min-height: 0; }
       .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 13px; padding-bottom: 15px; }
@@ -206,7 +210,9 @@
       .hero { padding-top: 54px; }
       h1 { font-size: clamp(39px, 11vw, 64px); line-height: 1.08; }
       .hero-copy { font-size: 18px; }
-      .hero-action .button { min-width: 0; padding-inline: 14px; font-size: 14px; }
+      .store-actions { grid-template-columns: 1fr; }
+      .hero-action { max-width: 360px; }
+      .store-option { padding: 15px 16px 18px; }
       .banner { padding: 4px; box-shadow: 5px 5px 0 #0a2220; }
       .reel { grid-template-columns: 1fr; margin-top: 38px; }
       .reel div { display: flex; align-items: baseline; gap: 16px; padding: 16px 18px; }
@@ -219,7 +225,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .button { transition: none; }
+      .store-option { transition: none; }
     }
   </style>
 </head>
@@ -243,11 +249,20 @@
       <div class="hero-intro">
         <p class="hero-copy">«Советское кино: Угадай слово» — русская игра в слова для любителей викторин и загадок. Вспоминайте героев, актёров и цитаты по подсказкам; цветные буквы помогут найти ответ.</p>
         <div class="hero-action" id="download">
-          <div class="store-actions">
-            <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Скачать бесплатно в Google Play <span aria-hidden="true">↗</span></a>
-            <a class="button" href="https://apps.apple.com/app/id6812753192">Скачать бесплатно в App Store <span aria-hidden="true">↗</span></a>
+          <p class="store-lead">Скачать бесплатно — выберите устройство:</p>
+          <div class="store-actions" role="group" aria-label="Где скачать игру">
+            <a class="store-option" href="https://apps.apple.com/app/id6812753192">
+              <span class="store-device">У вас iPhone или iPad?</span>
+              <span class="store-help">Выбирайте магазин Apple.</span>
+              <img class="store-badge" src="assets/app-store-badge-ru.svg" width="168" height="56" alt="Загрузите игру в App Store">
+            </a>
+            <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">
+              <span class="store-device">У вас телефон или планшет Android™?</span>
+              <span class="store-help">Например, Samsung, Xiaomi или Pixel.</span>
+              <img class="store-badge" src="assets/google-play-badge-ru.png" width="186" height="72" alt="Скачать игру из Google Play">
+            </a>
           </div>
-          <p class="fineprint">Для Android, iPhone и iPad · Игра на русском языке</p>
+          <p class="store-guide">Не уверены? Найдите на своём телефоне магазин App Store или Google Play и выберите такой же значок здесь.</p>
         </div>
       </div>
       <figure class="banner">
@@ -369,10 +384,20 @@
       <p class="section-kicker">Ваш сеанс начинается</p>
       <h2 id="final-title">Вспомните фильм.<br>Найдите слово.</h2>
       <p>Русская игра в слова для тех, кто любит загадки, викторины и кино, к которому хочется возвращаться.</p>
-      <div class="store-actions">
-        <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Играть бесплатно в Google Play <span aria-hidden="true">↗</span></a>
-        <a class="button" href="https://apps.apple.com/app/id6812753192">Играть бесплатно в App Store <span aria-hidden="true">↗</span></a>
+      <p class="store-lead">Скачать бесплатно:</p>
+      <div class="store-actions" role="group" aria-label="Где скачать игру">
+        <a class="store-option" href="https://apps.apple.com/app/id6812753192">
+          <span class="store-device">Для iPhone и iPad</span>
+          <span class="store-help">Откройте App Store на устройстве Apple.</span>
+          <img class="store-badge" src="assets/app-store-badge-ru.svg" width="168" height="56" alt="Загрузите игру в App Store" loading="lazy">
+        </a>
+        <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">
+          <span class="store-device">Для телефонов и планшетов Android</span>
+          <span class="store-help">Samsung, Xiaomi, Pixel и другие.</span>
+          <img class="store-badge" src="assets/google-play-badge-ru.png" width="186" height="72" alt="Скачать игру из Google Play" loading="lazy">
+        </a>
       </div>
+      <p class="store-guide">Не знаете модель телефона? Выберите магазин, значок которого видите на своём устройстве.</p>
     </section>
   </main>
   <footer>
@@ -384,6 +409,7 @@
         <a href="mailto:hello@krostudios.com">Поддержка</a>
         <a href="/">Все игры Kro Studios</a>
       </nav>
+      <p class="trademark-note">Apple, the Apple logo, App Store, iPhone and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. Android is a trademark of Google LLC. Google Play and the Google Play logo are trademarks of Google LLC.</p>
     </div>
   </footer>
 </body>

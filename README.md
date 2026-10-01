@@ -36,6 +36,16 @@ answers are the enabled records `g-c-01`, `g-a-01`, `r-f-01`, and `d-p-01` in
 `lib/data/soviet_questions.dart`; keep the web examples in sync if those
 records change.
 
+The Russian store badges on the Soviet Kino page are unmodified official
+artwork, kept locally in `sovietkino/assets/`:
+
+- Apple App Store badge: [Apple Marketing Tools](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ru-ru?size=250x83)
+- Google Play badge: [Google Play badge library](https://play.google.com/intl/en_us/badges/static/images/badges/ru_badge_web_generic.png)
+
+Keep the platform labels outside the badge images. Apple appears first when
+the two badges are shown together; retain the trademark credits in the page
+footer when updating the badges or platform wording.
+
 The Russian/English privacy and account-deletion disclosures are maintained in:
 
 - `sovietkino-privacy.html`
@@ -53,6 +63,7 @@ Run the static contract check before publishing:
 
 ```sh
 python3 tests/verify_sovietkino_legal.py
+python3 tests/verify_sovietkino_marketing.py
 ```
 
 ## Echo Dare pages
