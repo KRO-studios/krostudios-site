@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#141615">
-  <meta name="description" content="Советское кино: Угадай слово — русская игра в слова и киновикторина по фильмам СССР. Угадывайте героев, актёров и цитаты по подсказкам. Бесплатно в Google Play.">
+  <meta name="description" content="Советское кино: Угадай слово — русская игра в слова и киновикторина по фильмам СССР. Угадывайте героев, актёров и цитаты по подсказкам. Бесплатно в Google Play и App Store.">
   <link rel="canonical" href="https://krostudios.com/sovietkino/">
   <link rel="icon" type="image/png" href="assets/icon.png">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="Kro Studios">
   <meta property="og:title" content="Советское кино: Угадай слово — игра в слова и киновикторина">
-  <meta property="og:description" content="Помните любимые фильмы? Угадайте слово по подсказке. Герои, актёры, цитаты и ежедневные задания — бесплатно на Android.">
+  <meta property="og:description" content="Помните любимые фильмы? Угадайте слово по подсказке. Герои, актёры, цитаты и ежедневные задания — бесплатно на Android, iPhone и iPad.">
   <meta property="og:url" content="https://krostudios.com/sovietkino/">
   <meta property="og:image" content="https://krostudios.com/sovietkino/assets/feature-graphic.png">
   <meta property="og:image:width" content="1024">
@@ -25,10 +25,13 @@
     "name": "Советское кино: Угадай слово",
     "description": "Русская игра в слова и киновикторина по фильмам СССР с подсказками, ежедневными заданиями и рейтингом.",
     "applicationCategory": "GameApplication",
-    "operatingSystem": "Android",
+    "operatingSystem": "Android, iOS",
     "inLanguage": "ru",
     "url": "https://krostudios.com/sovietkino/",
-    "downloadUrl": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino",
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino",
+      "https://apps.apple.com/app/id6812753192"
+    ],
     "image": "https://krostudios.com/sovietkino/assets/feature-graphic.png",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
     "publisher": {"@type": "Organization", "name": "Kro Studios", "url": "https://krostudios.com/"}
@@ -113,6 +116,7 @@
     .button:hover { transform: translate(3px, 3px); box-shadow: 4px 4px 0 var(--red); background: #f5bd4d; }
     .button span { font-size: 22px; line-height: 1; }
     .hero-action .button { width: 100%; }
+    .store-actions { display: flex; flex-wrap: wrap; gap: 14px; }
     .fineprint { margin: 18px 0 0; color: var(--paper-muted); font-size: 13px; }
     .banner {
       position: relative; margin: 12px 0 0; padding: 10px;
@@ -158,7 +162,7 @@
     }
     .final h2 { max-width: 760px; }
     .final p:not(.section-kicker) { max-width: 630px; color: var(--paper-muted); }
-    .final .button { margin-top: 13px; }
+    .final .store-actions { margin-top: 26px; }
     footer { padding: 55px 0 36px; color: var(--paper-muted); font-size: 14px; }
     footer .shell { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 26px; }
     footer nav { display: flex; flex-wrap: wrap; gap: 10px 20px; }
@@ -206,7 +210,7 @@
       <nav class="topnav" aria-label="Навигация по странице">
         <a href="#how-it-works">Об игре</a>
         <a href="#screenshots">Скриншоты</a>
-        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing"><span class="wide-label">Играть в Google Play ↗</span><span class="small-label">Играть ↗</span></a>
+        <a class="nav-cta" href="#download"><span class="wide-label">Скачать игру ↓</span><span class="small-label">Скачать ↓</span></a>
       </nav>
     </div>
   </header>
@@ -216,9 +220,12 @@
       <h1 id="hero-title">Кино — это<br class="mobile-break"> память.<br><em>Угадайте слово.</em></h1>
       <div class="hero-intro">
         <p class="hero-copy">«Советское кино: Угадай слово» — русская игра в слова для любителей викторин и загадок. Вспоминайте героев, актёров и цитаты по подсказкам; цветные буквы помогут найти ответ.</p>
-        <div class="hero-action">
-          <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Скачать бесплатно в Google Play <span aria-hidden="true">↗</span></a>
-          <p class="fineprint">Для Android · Игра на русском языке</p>
+        <div class="hero-action" id="download">
+          <div class="store-actions">
+            <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Скачать бесплатно в Google Play <span aria-hidden="true">↗</span></a>
+            <a class="button" href="https://apps.apple.com/app/id6812753192">Скачать бесплатно в App Store <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="fineprint">Для Android, iPhone и iPad · Игра на русском языке</p>
         </div>
       </div>
       <figure class="banner">
@@ -279,7 +286,10 @@
       <p class="section-kicker">Ваш сеанс начинается</p>
       <h2 id="final-title">Вспомните фильм.<br>Найдите слово.</h2>
       <p>Русская игра в слова для тех, кто любит загадки, викторины и кино, к которому хочется возвращаться.</p>
-      <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Играть бесплатно в Google Play <span aria-hidden="true">↗</span></a>
+      <div class="store-actions">
+        <a class="button" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">Играть бесплатно в Google Play <span aria-hidden="true">↗</span></a>
+        <a class="button" href="https://apps.apple.com/app/id6812753192">Играть бесплатно в App Store <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
   </main>
   <footer>
