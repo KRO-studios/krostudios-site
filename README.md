@@ -28,6 +28,14 @@ production Play package `com.krostudios.sovietkino` and App Store product
 Console referral reporting. Update the screenshots, platform links, and claims
 when the released game changes.
 
+The five poster screenshots come from
+`store/google_play/phone_creatives/screenshots/` in the app repository. Four
+sample-question illustrations are unmodified copies of its audited
+`assets/images/home/cinema_quote_scenes/` panoramas. The question clues and
+answers are the enabled records `g-c-01`, `g-a-01`, `r-f-01`, and `d-p-01` in
+`lib/data/soviet_questions.dart`; keep the web examples in sync if those
+records change.
+
 The Russian/English privacy and account-deletion disclosures are maintained in:
 
 - `sovietkino-privacy.html`

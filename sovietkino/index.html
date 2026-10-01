@@ -148,7 +148,25 @@
     .feature:nth-child(3) { border-top-color: #5a9680; }
     .feature .number { display: block; margin-bottom: 19px; color: var(--gold); font-size: 13px; font-weight: 900; letter-spacing: .17em; }
     .feature p { margin: 0; color: var(--paper-muted); }
-    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin: 36px 0 0; }
+    .sample-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .sample-card { min-width: 0; overflow: hidden; background: var(--ink-light); border: 1px solid var(--line); border-top: 4px solid var(--gold); }
+    .sample-card:nth-child(even) { border-top-color: #5a9680; }
+    .sample-card img { display: block; width: 100%; height: auto; aspect-ratio: 2.7; object-fit: cover; }
+    .sample-content { padding: 24px 26px 22px; }
+    .sample-category { color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: .16em; }
+    .sample-question { min-height: 3.2em; margin: 11px 0 0; font-size: clamp(18px, 2vw, 23px); font-weight: 700; line-height: 1.4; }
+    .sample-card details { margin-top: 20px; border-top: 1px solid var(--line); }
+    .sample-card summary { display: flex; align-items: center; justify-content: space-between; min-height: 50px; color: var(--gold); cursor: pointer; font-weight: 800; list-style: none; }
+    .sample-card summary::-webkit-details-marker { display: none; }
+    .sample-card summary::after { content: "+"; font-size: 26px; line-height: 1; }
+    .sample-card details[open] summary::after { content: "−"; }
+    .sample-card summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .sample-answer { padding: 0 0 6px; }
+    .sample-answer strong { display: block; color: var(--paper); font: 800 30px/1.2 Impact, "Arial Narrow", Arial, sans-serif; letter-spacing: .03em; }
+    .sample-answer p, .sample-note { color: var(--paper-muted); font-size: 14px; }
+    .sample-answer p { margin: 8px 0 0; }
+    .sample-note { margin: 19px 0 0; }
+    .gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin: 36px 0 0; }
     .gallery:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
     .gallery-hint { display: none; }
     .gallery figure { min-width: 0; margin: 0; }
@@ -172,7 +190,9 @@
       .hero-action { max-width: 360px; padding-bottom: 15px; }
       .feature-grid { grid-template-columns: 1fr; }
       .feature { min-height: 0; }
-      .gallery { gap: 12px; }
+      .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 13px; padding-bottom: 15px; }
+      .gallery-hint { display: block; margin: 0; color: var(--gold); font-size: 14px; font-weight: 800; }
+      .gallery figure { flex: 0 0 min(36vw, 250px); scroll-snap-align: start; }
     }
     @media (max-width: 600px) {
       .shell { width: min(calc(100% - 30px), 1180px); }
@@ -191,8 +211,9 @@
       .reel { grid-template-columns: 1fr; margin-top: 38px; }
       .reel div { display: flex; align-items: baseline; gap: 16px; padding: 16px 18px; }
       .reel span { margin: 0; }
-      .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 13px; padding-bottom: 15px; }
-      .gallery-hint { display: block; margin: 0; color: var(--gold); font-size: 14px; font-weight: 800; }
+      .sample-grid { grid-template-columns: 1fr; }
+      .sample-content { padding: 19px 20px 17px; }
+      .sample-question { min-height: 0; }
       .gallery figure { flex: 0 0 min(80vw, 320px); scroll-snap-align: start; }
       .final { padding: 32px 23px; }
     }
@@ -209,6 +230,7 @@
       <a class="brand" href="/" aria-label="Kro Studios — главная"><img src="assets/icon.png" width="44" height="44" alt="">Kro Studios</a>
       <nav class="topnav" aria-label="Навигация по странице">
         <a href="#how-it-works">Об игре</a>
+        <a href="#questions">Вопросы</a>
         <a href="#screenshots">Скриншоты</a>
         <a class="nav-cta" href="#download"><span class="wide-label">Скачать игру ↓</span><span class="small-label">Скачать ↓</span></a>
       </nav>
@@ -261,12 +283,65 @@
       </div>
     </section>
 
+    <section class="section shell" id="questions" aria-labelledby="questions-title">
+      <p class="section-kicker">Проверьте себя</p>
+      <h2 id="questions-title">Четыре вопроса.<br>Вспомните четыре фильма.</h2>
+      <p class="section-lead">Это вопросы из игры. Откройте ответ, когда будете готовы. В приложении вы вводите слово сами, а цветные буквы помогают найти верный вариант.</p>
+      <div class="sample-grid">
+        <article class="sample-card">
+          <img src="assets/sample-shurik.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
+          <div class="sample-content">
+            <span class="sample-category">01 / ПЕРСОНАЖ</span>
+            <p class="sample-question">Находчивый студент в очках: перевоспитывает хулигана, сдаёт экзамен и срывает ограбление склада.</p>
+            <details>
+              <summary>Показать ответ</summary>
+              <div class="sample-answer"><strong>ШУРИК</strong><p>«Операция «Ы» и другие приключения Шурика» · 1965</p></div>
+            </details>
+          </div>
+        </article>
+        <article class="sample-card">
+          <img src="assets/sample-nikulin.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
+          <div class="sample-content">
+            <span class="sample-category">02 / АКТЁР</span>
+            <p class="sample-question">Сыграл скромного экономиста с гипсом, а раньше — самого долговязого участника знаменитой троицы.</p>
+            <details>
+              <summary>Показать ответ</summary>
+              <div class="sample-answer"><strong>НИКУЛИН</strong><p>«Бриллиантовая рука» · 1969</p></div>
+            </details>
+          </div>
+        </article>
+        <article class="sample-card">
+          <img src="assets/sample-sudby.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
+          <div class="sample-content">
+            <span class="sample-category">03 / ФИЛЬМ</span>
+            <p class="sample-question">Ирония ___, или С лёгким паром!</p>
+            <details>
+              <summary>Показать ответ</summary>
+              <div class="sample-answer"><strong>СУДЬБЫ</strong><p>«Ирония судьбы, или С лёгким паром!» · 1976</p></div>
+            </details>
+          </div>
+        </article>
+        <article class="sample-card">
+          <img src="assets/sample-plyuk.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
+          <div class="sample-content">
+            <span class="sample-category">04 / МЕСТО</span>
+            <p class="sample-question">Пустынная планета в галактике Кин-дза-дза, где спички дороже всего на свете.</p>
+            <details>
+              <summary>Показать ответ</summary>
+              <div class="sample-answer"><strong>ПЛЮК</strong><p>«Кин-дза-дза!» · 1986</p></div>
+            </details>
+          </div>
+        </article>
+      </div>
+      <p class="sample-note">Иллюстрации созданы для игры; это не кадры из фильмов.</p>
+    </section>
+
     <section class="section shell" id="screenshots" aria-labelledby="screens-title">
       <p class="section-kicker">Посмотрите игру</p>
       <h2 id="screens-title">Один кадр. Одна подсказка.<br>Одно слово.</h2>
-      <p class="section-lead">Скриншоты показывают вступление, словесную загадку и доску почёта.</p>
+      <p class="section-lead">Посмотрите, как выглядят загадка, верный ответ, ежедневные задания и доска почёта.</p>
       <p class="gallery-hint">Листайте скриншоты →</p>
-      <div class="gallery" tabindex="0" role="region" aria-label="Три скриншота игры: вступление, загадка, доска почёта">
+      <div class="gallery" tabindex="0" role="region" aria-label="Пять скриншотов игры: вступление, загадка, верный ответ, темы, доска почёта">
         <figure>
           <img src="assets/home.png" alt="Экран приветствия с кинематографической иллюстрацией и кнопкой «Начать игру»" width="1080" height="1920" loading="lazy" decoding="async">
           <figcaption><b>Начните игру.</b> Даже если вы не киновед.</figcaption>
@@ -274,6 +349,14 @@
         <figure>
           <img src="assets/gameplay.png" alt="Игровой вопрос, цветные клетки ответа и русская клавиатура" width="1080" height="1920" loading="lazy" decoding="async">
           <figcaption><b>Угадайте слово.</b> Буквы подскажут следующий ход.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/cinema-fact.png" alt="Верный ответ, очки, серия и кинофакт на экране игры" width="1080" height="1920" loading="lazy" decoding="async">
+          <figcaption><b>Узнайте кинофакт.</b> За ответом — история.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/daily-topics.png" alt="Коллаж фрагментов главного экрана: слово дня, режиссёры и категории игры" width="1080" height="1920" loading="lazy" decoding="async">
+          <figcaption><b>Выберите тему.</b> Или начните со слова дня.</figcaption>
         </figure>
         <figure>
           <img src="assets/leaderboard.png" alt="Экран еженедельной доски почёта с местами игроков" width="1080" height="1920" loading="lazy" decoding="async">
