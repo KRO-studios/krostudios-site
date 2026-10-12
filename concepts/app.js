@@ -2,18 +2,16 @@
   'use strict';
   const root = document.getElementById('kro-hyper-site');
   if (!root) return;
-  const order = ['kino', 'echo', 'tanakh'];
-  const apps = {
-    kino: {title:'SovietKino',category:'Russian cinema & word puzzles',short:'Classic cinema. One word at a time.',description:'Remember the film. Find the word. Explore characters, actors and quotes through clues, letter feedback and a daily challenge.',meta:'Russian · Android & iOS',url:'https://krostudios.com/sovietkino/',shots:['assets/kinoHome.jpg','assets/kinoFeedback.jpg']},
-    echo: {title:'Echo Dare',category:'Reverse-voice party game',short:'One phone. Impossible sounds. Instant laughter.',description:'Record a phrase, imitate the backwards sound, then flip it and hear the chaos. Play solo or pass one phone around 2–12 friends.',meta:'Coming soon · Solo & party · Adults 18+',url:'https://krostudios.com/echodare.html',shots:['assets/echoHome.jpg','assets/echoListen.jpg']},
-    tanakh: {title:'Tanakh Quiz',category:'Hebrew words & discovery',short:'Stories rediscovered, letter by letter.',description:'Complete verses, identify people and places, and uncover who said it. A familiar world, rediscovered one letter at a time.',meta:'Hebrew · Android & iOS',url:'https://krostudios.com/tanakh-quiz/',shots:['assets/tanakhHome.jpg','assets/tanakhRank.jpg']}
-  };
+  const catalog = window.KROCatalog;
+  if (!catalog) return;
+  const {order,apps,featuredOrder:archiveOrder} = catalog;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const inline = root.dataset.inline === 'true';
   const focused = root.dataset.focus === 'signal';
   function normalize(raw) {
     const value = raw && typeof raw === 'object' ? {...raw,...raw.modelContent,...raw.privateContent} : {};
-    return {concept:focused?'signal':['engine','signal','archive'].includes(value.concept)?value.concept:'engine',app:order.includes(value.app)?value.app:'kino',shot:value.shot===1?1:0,paused:typeof value.paused==='boolean'?value.paused:reduced.matches};
+    const app = order.includes(value.app) ? value.app : 'kino';
+    return {concept:focused?'signal':['engine','signal','archive'].includes(value.concept)?value.concept:'engine',app,shot:Number.isInteger(value.shot)&&value.shot>=0&&value.shot<apps[app].shots.length?value.shot:0,paused:typeof value.paused==='boolean'?value.paused:reduced.matches};
   }
   let saved = null;
   if (inline) saved = window.openai && window.openai.widgetState;
@@ -24,11 +22,13 @@
   const shotElements=root.querySelectorAll('[data-hero-shot]');
   function renderApp(animate=false) {
     const app=apps[state.app];
+    if(state.shot>=app.shots.length)state.shot=0;
     root.dataset.app=state.app;
     root.querySelectorAll('[data-selected]').forEach(element=>{
       const field=element.dataset.selected;
+      if(field!=='link'&&field!=='index'&&!Object.prototype.hasOwnProperty.call(app,field))return;
       if(field==='link')element.href=app.url;
-      else if(field==='index')element.textContent='0'+(order.indexOf(state.app)+1)+' / 03';
+      else if(field==='index')element.textContent=String(archiveOrder.indexOf(state.app)+1).padStart(2,'0')+' / '+String(archiveOrder.length).padStart(2,'0');
       else element.textContent=app[field]||'';
     });
     shotElements.forEach(image=>{
@@ -36,24 +36,49 @@
       if(animate&&!state.paused&&!reduced.matches){image.classList.remove('screen-changing');void image.offsetWidth;image.classList.add('screen-changing');}
     });
     const fallback=root.querySelector('.phone-render-fallback');
-    if(fallback)fallback.src='assets/phone-'+state.app+'-'+state.shot+'.webp';
+    if(fallback)fallback.src=app.fallbacks[state.shot];
     root.querySelectorAll('[data-world]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.world===state.app)));
-    const selectedIndex=order.indexOf(state.app);
+    const selectedIndex=Math.max(0,archiveOrder.indexOf(state.app));
     root.querySelectorAll('[data-exhibit]').forEach(exhibit=>{
-      const delta=(order.indexOf(exhibit.dataset.exhibit)-selectedIndex+3)%3;
+      const delta=(archiveOrder.indexOf(exhibit.dataset.exhibit)-selectedIndex+archiveOrder.length)%archiveOrder.length;
       exhibit.dataset.position=delta===0?'center':delta===1?'right':'left';
       exhibit.setAttribute('aria-pressed',String(delta===0));
       const image=exhibit.querySelector('img');
       image.src=apps[exhibit.dataset.exhibit].shots[delta===0?state.shot:0];
       image.alt=apps[exhibit.dataset.exhibit].title+' actual app screen '+(delta===0?state.shot+1:1);
     });
-    root.querySelectorAll('[data-screen-counter]').forEach(element=>{element.textContent='App screen '+(state.shot+1)+' / 2';});
-    if(window.KROSignal)window.KROSignal.setApp(state.app);
+    root.querySelectorAll('[data-screen-counter]').forEach(element=>{element.textContent='App screen '+(state.shot+1)+' / '+app.shots.length;});
+    renderWorldSelector(app);
+    if(window.KROSignal)window.KROSignal.setApp(app.form);
     const rotor=root.querySelector('.signal-device-rotator');
     if(rotor)rotor.setAttribute('aria-label','Rotate '+app.title+' on the orange iPhone 17 Pro Max preview. Drag, or use arrow keys to tilt.');
     if(phoneScene){phoneScene.setScreen(app.shots[state.shot],state.app);phoneScene.align();}
   }
+  function renderWorldSelector(app) {
+    const selector=root.querySelector('.world-selector');
+    if(!selector)return;
+    selector.style.setProperty('--world-accent',app.color);
+    selector.dataset.activeWorld=state.app;
+    const icon=selector.querySelector('[data-world-preview-icon]');
+    if(icon)icon.src=app.icon;
+    const title=selector.querySelector('[data-world-preview-title]');
+    if(title){title.textContent=app.title;title.lang=state.app==='feed'?'ru':'en';}
+    const launch=selector.querySelector('.world-launch');
+    if(launch){launch.href=app.url;launch.setAttribute('aria-label','Open '+(app.englishTitle||app.title)+(state.app==='echo'?' coming-soon website':' app page'));}
+    const selected=selector.querySelector('[data-world="'+state.app+'"]');
+    const connection=selector.querySelector('[data-world-connection]');
+    if(selected&&connection){
+      const x=parseFloat(selected.style.getPropertyValue('--node-x'))*4;
+      const y=parseFloat(selected.style.getPropertyValue('--node-y'))*4;
+      connection.setAttribute('d','M200 200L'+x+' '+y);connection.setAttribute('stroke',app.color);
+    }
+    const announcement=selector.querySelector('[data-world-announcement]');
+    if(announcement)announcement.textContent=(app.englishTitle||app.title)+' selected. '+app.category+'. '+app.status+'. The phone preview has changed.';
+    const label=selector.querySelector('.world-launch-label');
+    if(label)label.textContent=state.app==='echo'?'COMING SOON ↗':'OPEN WORLD ↗';
+  }
   function renderConcept() {
+    if(state.concept==='archive'&&!archiveOrder.includes(state.app)){state.app=archiveOrder[0];state.shot=0;renderApp();}
     root.dataset.concept=state.concept;
     const switcher=root.querySelector('.concept-switch');
     if(switcher)switcher.hidden=focused&&state.concept==='signal';
@@ -87,15 +112,32 @@
   function chooseApp(key){if(!order.includes(key))return;state.app=key;state.shot=0;renderApp(true);persist();}
   root.querySelectorAll('[data-world]').forEach(button=>button.addEventListener('click',()=>chooseApp(button.dataset.world)));
   root.querySelectorAll('[data-exhibit]').forEach(button=>button.addEventListener('click',()=>chooseApp(button.dataset.exhibit)));
-  root.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>chooseApp(order[(order.indexOf(state.app)+Number(button.dataset.step)+3)%3])));
+  root.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>chooseApp(archiveOrder[(archiveOrder.indexOf(state.app)+Number(button.dataset.step)+archiveOrder.length)%archiveOrder.length])));
   root.querySelectorAll('[data-design]').forEach(button=>button.addEventListener('click',()=>{state.concept=button.dataset.design;renderConcept();renderMotion();persist();}));
-  root.querySelectorAll('.screenshot-control').forEach(button=>button.addEventListener('click',()=>{state.shot=1-state.shot;renderApp(true);persist();}));
+  root.querySelectorAll('.screenshot-control').forEach(button=>button.addEventListener('click',()=>{state.shot=(state.shot+1)%apps[state.app].shots.length;renderApp(true);persist();}));
   root.querySelectorAll('.motion-control').forEach(button=>button.addEventListener('click',()=>{state.paused=!state.paused;renderMotion();persist();}));
   root.querySelector('.signal-device-rotator')?.addEventListener('keydown',event=>{
     if(event.key.toLowerCase()!=='p'||event.repeat||event.altKey||event.ctrlKey||event.metaKey||reduced.matches)return;
     event.preventDefault();state.paused=!state.paused;renderMotion();persist();
   });
-  root.querySelector('.archive-hero').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key)||!event.target.closest('button'))return;event.preventDefault();chooseApp(order[(order.indexOf(state.app)+(event.key==='ArrowRight'?1:2))%3]);});
+  root.querySelector('.archive-hero').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key)||!event.target.closest('button'))return;event.preventDefault();chooseApp(archiveOrder[(archiveOrder.indexOf(state.app)+(event.key==='ArrowRight'?1:archiveOrder.length-1))%archiveOrder.length]);});
+  const nodes=root.querySelector('.world-nodes');
+  nodes?.addEventListener('keydown',event=>{
+    const buttons=Array.from(nodes.querySelectorAll('.world-node'));
+    const current=buttons.indexOf(event.target.closest('.world-node'));
+    if(current<0||!['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home','End'].includes(event.key))return;
+    event.preventDefault();
+    const next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(current+(['ArrowLeft','ArrowUp'].includes(event.key)?-1:1)+buttons.length)%buttons.length;
+    buttons[next].focus();
+  });
+  const map=root.querySelector('.world-map');
+  map?.addEventListener('pointermove',event=>{
+    if(state.paused||reduced.matches||event.pointerType==='touch')return;
+    const rect=map.getBoundingClientRect();
+    map.style.setProperty('--spot-x',((event.clientX-rect.left)/rect.width*100).toFixed(1)+'%');
+    map.style.setProperty('--spot-y',((event.clientY-rect.top)/rect.height*100).toFixed(1)+'%');
+  },{passive:true});
+  map?.addEventListener('pointerleave',()=>{map.style.removeProperty('--spot-x');map.style.removeProperty('--spot-y');});
   const art=root.querySelector('.engine-art');
   art.addEventListener('pointermove',event=>{if(state.paused||reduced.matches)return;const rect=art.getBoundingClientRect();art.style.setProperty('--px',(event.clientX-rect.left)/rect.width*2-1);art.style.setProperty('--py',(event.clientY-rect.top)/rect.height*2-1);});
   art.addEventListener('pointerleave',()=>{art.style.setProperty('--px',0);art.style.setProperty('--py',0);});

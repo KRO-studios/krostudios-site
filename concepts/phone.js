@@ -3,7 +3,7 @@
   'use strict';
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const mounted=new WeakMap();
-  const rendererURL=new URL('phone3d.js?v=signal-frame-5',document.currentScript?.src||location.href).href;
+  const rendererURL=new URL('phone3d.js?v=signal-constellation-11',document.currentScript?.src||location.href).href;
   function mount(device,options={}) {
     if(!device)return null;
     if(mounted.has(device))return mounted.get(device);

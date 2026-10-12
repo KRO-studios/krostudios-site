@@ -2,6 +2,20 @@
 
 This repository is the static site served at `https://krostudios.com/`.
 
+## Signal Field preview
+
+The `/concepts/` preview's eight-app registry is `concepts/catalog.js`. Keep
+its selector nodes, real screenshots and same-model fallback images in sync.
+The app list includes the seven games on the official KRO Studios Google Play
+publisher page plus Echo Dare, which remains coming soon. Do not add invented
+screens, availability claims, ratings or download counts.
+
+Run the catalog contract before publishing preview changes:
+
+```sh
+node tests/verify_concepts_catalog.js
+```
+
 ## Tanakh Quiz pages
 
 The Tanakh Quiz landing page, Hebrew Bible practice pages, and bilingual privacy page are maintained in:

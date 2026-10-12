@@ -260,7 +260,7 @@ function mount(rotor) {
       try{
         const texture=screenTexture(image,appKey,Math.min(8,renderer.capabilities.getMaxAnisotropy()));
         const previous=phone.screenMaterial.map;phone.screenMaterial.map=texture;phone.screenMaterial.color.set('#ffffff');
-        phone.screenMaterial.needsUpdate=true;screenReady=true;render();if(previous)previous.dispose();
+        phone.screenMaterial.needsUpdate=true;screenReady=true;canvas.dataset.screenSrc=resolved;render();if(previous)previous.dispose();
       }catch{currentSrc='';}
     };
     image.onerror=()=>{if(version===request)currentSrc='';};image.src=resolved;

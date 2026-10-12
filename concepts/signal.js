@@ -12,7 +12,16 @@
     pink: [235, 149, 183],
     dusk: [143, 80, 104]
   };
-  const compactFormHeight = { echo: 3, kino: 2.5, tanakh: 2.3 };
+  const profiles = {
+    kino:{form:'kino',height:2.5,phase:0,x:1,y:1,width:1,gold:colors.gold,pink:colors.pink},
+    echo:{form:'echo',height:3,phase:0,x:1,y:1,width:1,gold:colors.gold,pink:colors.pink},
+    tanakh:{form:'tanakh',height:2.3,phase:0,x:1,y:1,width:1,gold:colors.pearl,pink:colors.pink},
+    'half-life':{form:'kino',height:2.4,phase:.35,x:.92,y:1.16,width:1.05,gold:[230,195,121],pink:[232,170,168]},
+    dune:{form:'tanakh',height:2.4,phase:-.35,x:1.1,y:.88,width:1.05,gold:[223,157,92],pink:[239,168,169]},
+    rap:{form:'echo',height:2.7,phase:.75,x:1.08,y:1.08,width:.82,gold:[216,177,140],pink:[217,150,207]},
+    beer:{form:'kino',height:2.8,phase:-.62,x:1,y:.82,width:1.17,gold:[235,195,104],pink:[235,164,150]},
+    feed:{form:'echo',height:2.6,phase:-.45,x:.95,y:1.1,width:1.04,gold:[246,191,123],pink:[240,160,193]}
+  };
   const mounted = new WeakMap();
   const scenes = new Set();
   let activeKey = 'kino';
@@ -25,20 +34,21 @@
     };
   }
 
-  // All three forms share a sampled surface, so changing a world physically
+  // Every app shares a sampled surface, so changing a world physically
   // reshapes the same piece of foil rather than swapping decorative images.
   function surface(key, t, u, time) {
-    const a = t * TAU;
+    const profile = profiles[key] || profiles.kino;
+    const a = t * TAU + profile.phase;
     const breath = Math.sin(time * 0.55) * 0.068;
     let x, y, z, twist, width;
-    if (key === 'echo') {
+    if (profile.form === 'echo') {
       // A folded figure-eight: the visible centre is a small, deep sound well.
       x = Math.sin(a) * 1.24;
       y = Math.sin(a * 2) * 0.43 + Math.cos(a) * 0.12;
       z = Math.cos(a) * 0.7 + Math.sin(a * 3) * 0.11;
       twist = a * 1.5 + 0.6;
       width = 0.29 + Math.sin(a * 2 + 0.6) * 0.07;
-    } else if (key === 'tanakh') {
+    } else if (profile.form === 'tanakh') {
       // An open, ascending page fan. Two crests meet in a luminous fold.
       x = Math.sin(a) * 1.16;
       y = -Math.abs(Math.sin(a)) * 0.55 + Math.cos(a * 2) * 0.14;
@@ -53,6 +63,7 @@
       twist = a * 1.2 + 0.42;
       width = 0.32 + Math.sin(a + 0.7) * 0.065;
     }
+    x *= profile.x; y *= profile.y; width *= profile.width;
     // Travelling bends make the foil feel suspended in a slow current. The
     // loop keeps its silhouette; the motion is in its folds and reflected light.
     const flow = Math.sin(a * 3 - time * 0.82);
@@ -114,7 +125,7 @@
     // The DOM phone, both foil layers and their ambient light share one origin.
     // The compact layouts centre the larger device beneath the horizontal index.
     function origin() {
-      return { x: width * (width <= 800 ? 0.5 : 0.59), y: height * 0.56 };
+      return { x: width * (width <= 1100 ? 0.5 : 0.59), y: height * 0.56 };
     }
 
     function project(p) {
@@ -141,7 +152,7 @@
       // The page fan already reaches higher than the figure-eight, so its
       // enlargement is quieter. Interpolate this along with the world morph.
       const morphEase = morph * morph * (3 - 2 * morph);
-      const tallSweep = mix(compactFormHeight[fromKey], compactFormHeight[toKey], morphEase);
+      const tallSweep = mix(profiles[fromKey].height, profiles[toKey].height, morphEase);
       const spreadY = compact ? tallSweep * Math.min(1, 375 / width) : 1;
       return {
         x: center.x + (x * cr - y * sr) * scale * perspective * spreadX,
@@ -186,6 +197,9 @@
     }
 
     function sculpture(at) {
+      const morphEase = morph * morph * (3 - 2 * morph);
+      const appGold = lerp3(profiles[fromKey].gold, profiles[toKey].gold, morphEase);
+      const appPink = lerp3(profiles[fromKey].pink, profiles[toKey].pink, morphEase);
       // Only the live model supplies an accurate display projection. Keep the
       // foil behind a fallback image instead of cutting an estimated rectangle
       // out of its surroundings using the hidden CSS display's bounds.
@@ -218,7 +232,7 @@
         const edge = Math.pow(Math.abs(u * 2 - 1), 3);
         const light = clamp(0.26 + (depth + 0.6) * 0.2 + foil * 0.63 + edge * 0.1 + glint, 0.22, 1.12);
         const pinkness = clamp(0.5 + Math.sin(a + 0.4) * 0.66 + Math.cos(u * 4) * 0.1, 0, 1);
-        const metal = lerp3(colors.gold, colors.pink, pinkness);
+        const metal = lerp3(appGold, appPink, pinkness);
         const tint = metal.map((c, index) => mix(c * light, colors.pearl[index], foil * 0.17));
         const path = new Path2D();
         path.moveTo(points[0].x, points[0].y);
@@ -469,7 +483,7 @@
   window.KROSignal = {
     mount,
     setApp(key) {
-      activeKey = ['kino', 'tanakh', 'echo'].includes(key) ? key : 'kino';
+      activeKey = Object.prototype.hasOwnProperty.call(profiles,key) ? key : 'kino';
       for (const scene of scenes) scene.setApp(activeKey);
     },
     setPaused(value) {
