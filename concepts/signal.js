@@ -186,6 +186,10 @@
     }
 
     function sculpture(at) {
+      // Only the live model supplies an accurate display projection. Keep the
+      // foil behind a fallback image instead of cutting an estimated rectangle
+      // out of its surroundings using the hidden CSS display's bounds.
+      const renderForeground = frontCtx && parent.querySelector('.signal-device-rotator')?.dataset.renderer === 'webgl';
       // A denser longitudinal mesh keeps the enlarged curves fluid rather
       // than exposing the old polygon facets. Mobile retains a lighter mesh.
       const steps = width < 600 ? 108 : 144;
@@ -205,7 +209,7 @@
       }
       quads.sort((a, b) => a.depth - b.depth);
       ctx.lineJoin = 'round';
-      if (frontCtx) frontCtx.lineJoin = 'round';
+      if (renderForeground) frontCtx.lineJoin = 'round';
       for (const { i, j, points, depth } of quads) {
         const a = (i + 0.5) / steps * TAU;
         const u = (j + 0.5) / bands;
@@ -229,7 +233,7 @@
         ctx.moveTo(points[0].x, points[0].y);
         ctx.lineTo(points[1].x, points[1].y);
         ctx.stroke();
-        if (frontCtx && depth > 0.3) {
+        if (renderForeground && depth > 0.3) {
           const frontAlpha = clamp((depth - 0.3) / 0.17, 0, 1) * 0.78;
           frontCtx.fillStyle = rgb(tint, frontAlpha);
           frontCtx.fill(path);
@@ -268,7 +272,7 @@
         ctx.beginPath();
         ctx.arc(q.x, q.y, mote.r * q.scale, 0, TAU);
         ctx.fill();
-        if (frontCtx && q.z > 0.34) {
+        if (renderForeground && q.z > 0.34) {
           frontCtx.fillStyle = rgb(mote.u > 0.3 ? colors.pink : colors.pearl, sparkle * 0.82);
           frontCtx.beginPath();
           frontCtx.arc(q.x, q.y, mote.r * q.scale, 0, TAU);
@@ -292,39 +296,27 @@
     function clearScreenOpening() {
       if (!frontCtx) return;
       const device = parent.querySelector('.signal-device-rotator');
-      if (!device) return;
-      const screen = device.querySelector('.signal-device-screen, .device-screen img, img');
-      const deviceRect = device.getBoundingClientRect();
-      const screenRect = screen?.getBoundingClientRect();
       const canvasRect = canvas.getBoundingClientRect();
-      const projected = device.dataset.renderer === 'webgl' ? device.kroPhone3D?.getScreenPolygon() : null;
+      const projected = device?.dataset.renderer === 'webgl' ? device.kroPhone3D?.getScreenPolygon() : null;
       const hasProjection = Array.isArray(projected) && projected.length >= 4 && projected.every(p => Number.isFinite(p.x) && Number.isFinite(p.y));
-      const hasScreen = screenRect && screenRect.width > 0 && screenRect.height > 0;
-      const rect = hasScreen ? screenRect : deviceRect;
-      if (!rect.width || !rect.height) return;
-      const protectedWidth = rect.width * (hasScreen ? 0.96 : 0.6);
-      const protectedHeight = rect.height * (hasScreen ? 0.96 : 0.78);
-      const x = rect.left - canvasRect.left + (rect.width - protectedWidth) / 2;
-      const y = rect.top - canvasRect.top + (rect.height - protectedHeight) / 2;
-      // The front surface grazes the bezel, with a feathered aperture over the
-      // real app screen. There is no opaque strip through app text or controls.
+      if (!hasProjection) {
+        frontCtx.clearRect(0, 0, width, height);
+        return;
+      }
+      // Keep the aperture on the display itself. A blurred erase spills onto
+      // the ribbon outside the phone, exposing its darker base layer as a halo.
       frontCtx.save();
       frontCtx.globalCompositeOperation = 'destination-out';
       frontCtx.fillStyle = 'rgba(0,0,0,1)';
       frontCtx.shadowColor = 'rgba(0,0,0,1)';
-      frontCtx.shadowBlur = Math.min(26, rect.width * 0.085) * dpr;
+      frontCtx.shadowBlur = 0;
       frontCtx.beginPath();
-      if (hasProjection) {
-        // The real 3D display is a projected quadrilateral, not the hidden
-        // fallback image's rectangle. Foil follows its actual rotated edges.
-        projected.forEach((point, index) => {
-          const px = point.x - canvasRect.left, py = point.y - canvasRect.top;
-          if (index === 0) frontCtx.moveTo(px, py); else frontCtx.lineTo(px, py);
-        });
-        frontCtx.closePath();
-      } else {
-        frontCtx.roundRect(x, y, protectedWidth, protectedHeight, Math.min(22, rect.width * 0.075));
-      }
+      // Foil follows the real, rotated display—not an invisible DOM rectangle.
+      projected.forEach((point, index) => {
+        const px = point.x - canvasRect.left, py = point.y - canvasRect.top;
+        if (index === 0) frontCtx.moveTo(px, py); else frontCtx.lineTo(px, py);
+      });
+      frontCtx.closePath();
       frontCtx.fill();
       // Labels and reset controls remain readable even when the near foil
       // sweeps through their position beneath the floating device.

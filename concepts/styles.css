@@ -208,7 +208,7 @@ html{scroll-behavior:smooth;background:#070709}body{margin:0}
 #kro-hyper-site .signal-device-rotator[data-renderer=webgl]>span{opacity:0;pointer-events:none}
 #kro-hyper-site .signal-device[data-dragging=true] .signal-device-rotator[data-renderer=webgl]{box-shadow:none}
 /* The fallback is a render of the same solid model, never a hollow CSS shell. */
-#kro-hyper-site .signal-device-rotator{padding:0;border:0;background:transparent;box-shadow:none;transform-style:flat}
+#kro-hyper-site .signal-device .signal-device-rotator{padding:0;border:0;background:transparent;box-shadow:none;transform-style:flat}
 #kro-hyper-site .signal-device-rotator::before,#kro-hyper-site .signal-device-rotator::after{display:none}
 #kro-hyper-site .signal-device-rotator>.device-glass{position:absolute;inset:0;opacity:0}
 #kro-hyper-site .signal-device-rotator .phone-render-fallback{position:absolute;left:-16%;top:-8%;width:132%;height:116%;max-width:none;border-radius:0;object-fit:contain;pointer-events:none}
