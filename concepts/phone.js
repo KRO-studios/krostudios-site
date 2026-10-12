@@ -24,12 +24,12 @@
     }
     function apply(idle=true) {
       const living=idle&&!paused&&!reduced.matches&&!dragging;
-      const float=living?Math.sin(clock*.82)*7+Math.sin(clock*.39)*2:0;
-      const breathingYaw=living?Math.sin(clock*.48)*4:0;
-      const breathingPitch=living?Math.sin(clock*.66+.8)*2.5:0;
-      const roll=living?Math.sin(clock*.44)*1.3:0;
+      const float=living?Math.sin(clock*.82)*10+Math.sin(clock*.39)*3:0;
+      const breathingYaw=living?Math.sin(clock*.48)*5:0;
+      const breathingPitch=living?Math.sin(clock*.66+.8)*3:0;
+      const roll=living?Math.sin(clock*.44)*1.6:0;
       floater.style.transform='translateY('+float.toFixed(2)+'px)';
-      rotor.style.transform='perspective(1000px) rotateX('+(pitch+breathingPitch).toFixed(2)+'deg) rotateY('+(yaw+breathingYaw).toFixed(2)+'deg) rotateZ('+roll.toFixed(2)+'deg)';
+      rotor.style.transform='perspective(1500px) rotateX('+(pitch+breathingPitch).toFixed(2)+'deg) rotateY('+(yaw+breathingYaw).toFixed(2)+'deg) rotateZ('+roll.toFixed(2)+'deg)';
       rotor.style.setProperty('--phone-light-x',(50+(yaw+breathingYaw)*.7).toFixed(1)+'%');
       rotor.dataset.yaw=yaw.toFixed(2);rotor.dataset.pitch=pitch.toFixed(2);
       device.dataset.dragging=String(dragging);

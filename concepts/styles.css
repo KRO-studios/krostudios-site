@@ -167,22 +167,40 @@ html{scroll-behavior:smooth;background:#070709}body{margin:0}
 @media(min-width:621px) and (max-width:800px){#kro-hyper-site .signal-device{top:32%}}
 @media(max-width:620px){#kro-hyper-site .site-header{min-height:106px;align-items:flex-start}#kro-hyper-site .wordmark{margin-top:6px}#kro-hyper-site .site-nav{padding-bottom:36px}#kro-hyper-site .motion-control{bottom:0;min-height:44px;font-size:11px}}
 
-/* Signal Field: the device belongs to the foil sculpture's shared 3D origin. */
-#kro-hyper-site .signal-stage{min-height:920px}
+/* Signal Field: a full-scale Cosmic Orange phone suspended inside the foil. */
+#kro-hyper-site .signal-stage{min-height:1320px}
 #kro-hyper-site .signal-foreground{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
 #kro-hyper-site .signal-title,#kro-hyper-site .signal-index,#kro-hyper-site .signal-bottom{z-index:6}
-#kro-hyper-site .signal-device{left:59%;right:auto;top:64%;width:184px;max-width:none;transform:translate(-50%,-50%);z-index:4}
+#kro-hyper-site .signal-device{left:59%;right:auto;top:56%;width:384px;max-width:none;transform:translate(-50%,-50%);z-index:4;--phone-radius:54px;--phone-depth:43px}
 #kro-hyper-site .signal-device-float{width:100%;will-change:transform}
-#kro-hyper-site .signal-device-rotator{position:relative;display:block;width:100%;padding:6px;border:1px solid #9d8b82;border-radius:24px;touch-action:none;user-select:none;transform-style:preserve-3d;will-change:transform;--phone-light-x:50%;background:linear-gradient(130deg,#b3a399,#28202b 27%,#786068 69%,#c2a58a);box-shadow:-13px 25px 48px #0009,0 0 24px #e5b08025,inset 0 0 0 2px #0c090d}
-#kro-hyper-site .signal-device-rotator img{border-radius:17px;pointer-events:none;user-select:none;transform:translateZ(2px)}
-#kro-hyper-site .signal-device-rotator::before{content:"";position:absolute;inset:-1px;border-radius:25px;background:linear-gradient(100deg,#0b090b,#8f7d77 24%,#252029 65%,#cfb091);transform:translateZ(-8px) translateX(2px);z-index:-1;box-shadow:2px 2px 0 #655251,5px 4px 0 #161016}
-#kro-hyper-site .signal-device-rotator::after{content:"";position:absolute;inset:6px;border-radius:17px;pointer-events:none;transform:translateZ(3px);background:linear-gradient(118deg,transparent 25%,#ffecd514 44%,#ffe9db05 58%,transparent 76%);background-position:var(--phone-light-x) center;box-shadow:inset 1px 0 #ffffff0a}
+#kro-hyper-site .signal-device-rotator{position:relative;display:block;width:100%;aspect-ratio:78/163.4;padding:5px;border:1px solid #ffb575;border-radius:var(--phone-radius);touch-action:none;user-select:none;transform-style:preserve-3d;will-change:transform;--phone-light-x:50%;background:linear-gradient(103deg,#713312 0%,#ce6224 2%,#ffbd7c 4%,#ef8b42 7%,#b44a18 48%,#ee8944 91%,#ffd3a3 97%,#be541c 100%);box-shadow:-26px 42px 75px #000a,0 0 70px #d7692220,inset 0 1px 2px #ffebd5,inset 0 -2px 3px #7d3009;cursor:grab}
+#kro-hyper-site .signal-device-rotator .device-glass{position:relative;display:block;width:100%;height:100%;padding:6px;border-radius:calc(var(--phone-radius) - 5px);background:linear-gradient(115deg,#3c3834,#080809 15%,#161413 72%,#4b3b30);box-shadow:inset 0 0 0 1px #ffffff24,0 0 0 1px #743513;transform:translateZ(2px);pointer-events:none}
+#kro-hyper-site .signal-device-rotator .device-display{position:relative;display:block;width:100%;height:100%;border-radius:calc(var(--phone-radius) - 11px);overflow:hidden;background:#0d1220}
+#kro-hyper-site[data-app=echo] .device-display{background:#111026}
+#kro-hyper-site[data-app=tanakh] .device-display{background:#091b15}
+#kro-hyper-site .signal-device-rotator img{width:100%;height:100%;border-radius:0;object-fit:contain;pointer-events:none;user-select:none}
+#kro-hyper-site .signal-device-rotator::before{content:"";position:absolute;inset:-1px;border-radius:var(--phone-radius);background:linear-gradient(100deg,#643014,#ab4514 9%,#f59a51 23%,#c36429 72%,#ffb975);transform:translateZ(calc(var(--phone-depth)*-1));z-index:-1;box-shadow:2px 1px 0 #b35b29,5px 2px 0 #d87937,8px 3px 0 #8e3c12,inset 0 0 0 1px #ffba7866}
+#kro-hyper-site .signal-device-rotator::after{content:"";position:absolute;inset:6px;border-radius:calc(var(--phone-radius) - 6px);pointer-events:none;transform:translateZ(4px);background:radial-gradient(ellipse at var(--phone-light-x) -10%,#fff3df19,transparent 49%),linear-gradient(115deg,#fff0de09,transparent 28%,transparent 75%,#f9ad6609);box-shadow:inset 1px 0 #ffffff16,inset -1px 0 #ffcf9c12}
+#kro-hyper-site .device-rail{position:absolute;top:calc(var(--phone-radius) - 2px);bottom:calc(var(--phone-radius) - 2px);width:var(--phone-depth);background:linear-gradient(90deg,#80300d,#f59d54 42%,#ce682e 69%,#6c2d10);pointer-events:none;backface-visibility:visible}
+#kro-hyper-site .device-rail-left{left:0;transform-origin:left center;transform:rotateY(90deg)}
+#kro-hyper-site .device-rail-right{right:0;transform-origin:right center;transform:rotateY(-90deg)}
+#kro-hyper-site .device-side-button{position:absolute;width:5px;border-radius:3px;background:linear-gradient(90deg,#7b2e0e,#ffd09a 45%,#dd7631 72%,#84320d);box-shadow:0 0 0 1px #703210;transform:translateZ(-3px);pointer-events:none}
+#kro-hyper-site .device-action-button{left:-4px;top:17%;height:3.3%}
+#kro-hyper-site .device-volume-up{left:-4px;top:25%;height:5.7%}
+#kro-hyper-site .device-volume-down{left:-4px;top:33%;height:5.7%}
+#kro-hyper-site .device-power-button{right:-4px;top:26%;height:9%}
+#kro-hyper-site .device-camera-button{right:-4px;top:62%;height:6.8%;background:linear-gradient(90deg,#a6491c,#db803e 50%,#a5481d);box-shadow:inset 0 0 0 1px #eb9e5e,0 0 0 1px #703210}
+#kro-hyper-site .device-antenna{position:absolute;left:-1px;right:-1px;height:2px;background:linear-gradient(90deg,#f4c7a9 0 5px,transparent 5px calc(100% - 5px),#e0a17b calc(100% - 5px));pointer-events:none;opacity:.9}
+#kro-hyper-site .device-antenna-one{top:10%}#kro-hyper-site .device-antenna-two{bottom:10%}
+#kro-hyper-site .device-speaker{position:absolute;top:4px;left:44%;width:12%;height:2px;border-radius:3px;background:#2b160e;box-shadow:0 1px #ffc38d55;transform:translateZ(3px);pointer-events:none}
+#kro-hyper-site .device-island{position:absolute;top:2%;left:50%;width:28%;height:3.6%;min-height:18px;transform:translateX(-50%);border-radius:99px;background:#030405;box-shadow:inset 0 0 0 1px #ffffff0a,0 1px 2px #0008;pointer-events:none}
+#kro-hyper-site .device-island>span{position:absolute;top:50%;right:10%;width:13px;height:13px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle at 40% 35%,#234260,#060c18 45%,#030305 68%);box-shadow:inset 0 0 0 2px #111217}
 #kro-hyper-site .signal-device>.signal-device-category{position:absolute;top:calc(100% + 15px);left:-35px;right:-35px;margin:0;color:var(--pink);font-size:11px;text-align:center;text-transform:uppercase;line-height:1.55}
 #kro-hyper-site .signal-device-category{text-shadow:0 2px 8px #000}
-#kro-hyper-site .signal-device-tools{position:absolute;top:calc(100% + 57px);left:-19px;right:-19px;display:flex;align-items:center;justify-content:center;gap:9px;z-index:7;pointer-events:auto}
+#kro-hyper-site .signal-device-tools{position:absolute;top:calc(100% + 57px);left:50%;right:auto;width:max-content;max-width:100%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:9px;z-index:7;pointer-events:auto}
 #kro-hyper-site .signal-device-tools>span{color:#c5b5be;font-size:11px;max-width:162px;text-align:center;line-height:1.45}
 #kro-hyper-site .phone-reset{flex:0 0 44px;width:44px;height:44px;border:1px solid #71545c;border-radius:50%;color:var(--cream);background:#151015db;font-size:21px}
 #kro-hyper-site .signal-device[data-dragging=true] .signal-device-tools>span{color:var(--pink)}
-#kro-hyper-site .signal-device[data-dragging=true] .signal-device-rotator{box-shadow:-13px 25px 48px #0009,0 0 38px #e6a5b03b,inset 0 0 0 2px #0c090d}
-@media(min-width:621px) and (max-width:800px){#kro-hyper-site .signal-stage{min-height:910px}#kro-hyper-site .signal-title h1{font-size:70px}#kro-hyper-site .signal-device{width:170px}#kro-hyper-site .signal-device-tools{left:-4px;right:-4px}#kro-hyper-site .signal-device-tools>span{max-width:121px}}
-@media(max-width:620px){#kro-hyper-site .signal-stage{min-height:1090px}#kro-hyper-site .signal-foreground{top:140px;height:680px}#kro-hyper-site .signal-device{left:55%;top:595px;width:164px;transform:translate(-50%,-50%)}#kro-hyper-site .signal-device-tools{left:-18px;right:-18px}#kro-hyper-site .signal-device-category{font-size:11px}}
+#kro-hyper-site .signal-device[data-dragging=true] .signal-device-rotator{cursor:grabbing;box-shadow:-26px 42px 75px #000a,0 0 80px #e5893e35,inset 0 1px 2px #ffebd5,inset 0 -2px 3px #7d3009}
+@media(max-width:800px){#kro-hyper-site .signal-index{top:280px;left:5%;right:5%;width:auto;max-width:none;display:flex;flex-wrap:wrap;gap:7px}#kro-hyper-site .signal-index>.section-kicker{width:100%}#kro-hyper-site .signal-index button{width:auto;flex:1 0 auto;gap:7px;font-size:14px;padding:13px 8px;min-height:44px}#kro-hyper-site .signal-index button small{font-size:11px}#kro-hyper-site .signal-index button b{font-size:14px}#kro-hyper-site .signal-note{display:none}#kro-hyper-site .signal-device{left:50%;width:340px;--phone-radius:48px;--phone-depth:38px}#kro-hyper-site .signal-title h1{font-size:70px}}
+@media(max-width:620px){#kro-hyper-site .signal-stage{min-height:1430px}#kro-hyper-site .signal-canvas,#kro-hyper-site .signal-foreground{top:250px;height:1020px}#kro-hyper-site .signal-index{top:260px;left:22px;right:22px}#kro-hyper-site .signal-index button{font-size:12px}#kro-hyper-site .signal-title h1{font-size:clamp(57px,13vw,78px)}#kro-hyper-site .signal-device{left:50%;top:821px;width:min(328px,calc(100% - 40px));--phone-radius:46px;--phone-depth:clamp(31px,10.8vw,37px);transform:translate(-50%,-50%)}#kro-hyper-site .signal-device-category{font-size:11px}#kro-hyper-site .device-island>span{width:10px;height:10px}}

@@ -12,6 +12,7 @@
     pink: [235, 149, 183],
     dusk: [143, 80, 104]
   };
+  const compactFormHeight = { echo: 3, kino: 2.5, tanakh: 2.3 };
   const mounted = new WeakMap();
   const scenes = new Set();
   let activeKey = 'kino';
@@ -28,7 +29,7 @@
   // reshapes the same piece of foil rather than swapping decorative images.
   function surface(key, t, u, time) {
     const a = t * TAU;
-    const breath = Math.sin(time * 0.46) * 0.052;
+    const breath = Math.sin(time * 0.55) * 0.068;
     let x, y, z, twist, width;
     if (key === 'echo') {
       // A folded figure-eight: the visible centre is a small, deep sound well.
@@ -54,14 +55,14 @@
     }
     // Travelling bends make the foil feel suspended in a slow current. The
     // loop keeps its silhouette; the motion is in its folds and reflected light.
-    const flow = Math.sin(a * 3 - time * 0.57);
-    const ripple = Math.sin(a * 5 + time * 0.72 + u * 2.4);
-    twist += Math.sin(a * 2 - time * 0.39) * 0.16;
-    width *= 1 + Math.sin(a * 3 + time * 0.52) * 0.055;
-    x += flow * 0.038 + Math.sin(time * 0.31) * Math.cos(a) * 0.023;
-    y += flow * 0.055;
-    z += Math.cos(a * 2 + time * 0.43) * 0.078;
-    const ruffle = ripple * 0.031;
+    const flow = Math.sin(a * 3 - time * 0.82);
+    const ripple = Math.sin(a * 5 + time * 0.9 + u * 2.4);
+    twist += Math.sin(a * 2 - time * 0.53) * 0.235;
+    width *= 1 + Math.sin(a * 3 + time * 0.68) * 0.085;
+    x += flow * 0.065 + Math.sin(time * 0.38) * Math.cos(a) * 0.033;
+    y += flow * 0.095;
+    z += Math.cos(a * 2 + time * 0.59) * 0.125;
+    const ruffle = ripple * 0.036;
     const breadth = u * width;
     x += Math.cos(twist) * breadth + ruffle * u;
     y += Math.sin(twist) * breadth + breath * Math.sin(a);
@@ -90,7 +91,7 @@
       x: random(), y: random(), r: 0.25 + random() * 0.85,
       phase: random() * TAU, strength: 0.15 + random() * 0.5
     }));
-    const motes = Array.from({ length: 155 }, () => ({
+    const motes = Array.from({ length: 190 }, () => ({
       t: random(), u: random() * 2 - 1, offset: random(),
       r: 0.25 + random() * 1.15, phase: random() * TAU
     }));
@@ -110,10 +111,17 @@
       return lerp3(surface(fromKey, t, u, at), end, eased);
     }
 
+    // The DOM phone, both foil layers and their ambient light share one origin.
+    // The compact layouts centre the larger device beneath the horizontal index.
+    function origin() {
+      return { x: width * (width <= 800 ? 0.5 : 0.59), y: height * 0.56 };
+    }
+
     function project(p) {
       const ambient = clock;
-      const yaw = -0.17 + easedPointer.x * 0.34 + Math.sin(ambient * 0.23) * 0.058;
-      const roll = -0.145 + easedPointer.y * 0.065 + Math.sin(ambient * 0.19) * 0.018;
+      const compact = width <= 620;
+      const yaw = -0.17 + easedPointer.x * 0.34 + Math.sin(ambient * 0.29) * 0.085;
+      const roll = -0.145 + (compact ? 0.7 : 0) + easedPointer.y * 0.065 + Math.sin(ambient * 0.24) * 0.025;
       const pitch = easedPointer.y * 0.12;
       const cy = Math.cos(yaw), sy = Math.sin(yaw);
       const cr = Math.cos(roll), sr = Math.sin(roll);
@@ -121,11 +129,23 @@
       const yawZ = -p[0] * sy + p[2] * cy;
       const y = p[1] * Math.cos(pitch) - yawZ * Math.sin(pitch);
       const z = p[1] * Math.sin(pitch) + yawZ * Math.cos(pitch);
-      const scale = Math.min(width / 3.24, height / 2.37);
+      const scale = Math.min(width / 3.24, height / 2.37) * 1.18;
       const perspective = 3.55 / (3.55 - z * 0.45);
+      const center = origin();
+      // On a narrow screen the full-sized handset owns almost the entire
+      // width. Stretch the foil into a tall sweep so its gold/pink lobes still
+      // emerge above and below the device instead of disappearing behind it.
+      const spreadX = compact ? 1.1 : 1;
+      // The handset stops growing at 328px; cap the tall sweep on wider mobile
+      // layouts as well so it does not spill upwards through the world index.
+      // The page fan already reaches higher than the figure-eight, so its
+      // enlargement is quieter. Interpolate this along with the world morph.
+      const morphEase = morph * morph * (3 - 2 * morph);
+      const tallSweep = mix(compactFormHeight[fromKey], compactFormHeight[toKey], morphEase);
+      const spreadY = compact ? tallSweep * Math.min(1, 375 / width) : 1;
       return {
-        x: width * (width < 560 ? 0.55 : 0.59) + (x * cr - y * sr) * scale * perspective,
-        y: height * (width < 560 ? 0.67 : 0.64) + (x * sr + y * cr) * scale * perspective,
+        x: center.x + (x * cr - y * sr) * scale * perspective * spreadX,
+        y: center.y + (x * sr + y * cr) * scale * perspective * spreadY,
         z,
         scale: perspective
       };
@@ -134,7 +154,8 @@
     function background(at) {
       ctx.fillStyle = '#08090d';
       ctx.fillRect(0, 0, width, height);
-      const glowX = width * 0.6, glowY = height * 0.65;
+      const center = origin();
+      const glowX = center.x, glowY = center.y;
       const radius = Math.max(width * 0.56, height * 0.6);
       const glow = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, radius);
       glow.addColorStop(0, 'rgba(89,58,36,0.14)');
@@ -165,8 +186,10 @@
     }
 
     function sculpture(at) {
-      const steps = width < 600 ? 78 : 108;
-      const bands = width < 600 ? 18 : 24;
+      // A denser longitudinal mesh keeps the enlarged curves fluid rather
+      // than exposing the old polygon facets. Mobile retains a lighter mesh.
+      const steps = width < 600 ? 108 : 144;
+      const bands = width < 600 ? 20 : 28;
       const rows = [];
       for (let i = 0; i <= steps; i++) {
         const row = [];
@@ -184,10 +207,10 @@
       ctx.lineJoin = 'round';
       if (frontCtx) frontCtx.lineJoin = 'round';
       for (const { i, j, points, depth } of quads) {
-        const a = i / steps * TAU;
-        const u = j / bands;
-        const foil = Math.pow(Math.max(0, Math.cos(a * 1.3 + u * 2.8 - 0.7 - at * 0.24)), 7);
-        const glint = Math.pow(Math.max(0, Math.sin(a * 3.1 - at * 0.67 + u * 0.8)), 12) * 0.12;
+        const a = (i + 0.5) / steps * TAU;
+        const u = (j + 0.5) / bands;
+        const foil = Math.pow(Math.max(0, Math.cos(a * 1.3 + u * 2.8 - 0.7 - at * 0.34)), 5);
+        const glint = Math.pow(Math.max(0, Math.sin(a * 3.1 - at * 0.91 + u * 0.8)), 9) * 0.15;
         const edge = Math.pow(Math.abs(u * 2 - 1), 3);
         const light = clamp(0.26 + (depth + 0.6) * 0.2 + foil * 0.63 + edge * 0.1 + glint, 0.22, 1.12);
         const pinkness = clamp(0.5 + Math.sin(a + 0.4) * 0.66 + Math.cos(u * 4) * 0.1, 0, 1);
@@ -200,8 +223,8 @@
         ctx.fillStyle = rgb(tint, 0.82);
         ctx.fill(path);
         // Fine longitudinal channels turn the surface into hundreds of foil threads.
-        ctx.strokeStyle = rgb(tint.map(c => Math.min(255, c * 1.36)), (j % 3 === 0 ? 0.72 : 0.26));
-        ctx.lineWidth = j % 3 === 0 ? 0.55 : 0.3;
+        ctx.strokeStyle = rgb(tint.map(c => Math.min(255, c * 1.3)), (j % 4 === 0 ? 0.54 : 0.18));
+        ctx.lineWidth = j % 4 === 0 ? 0.5 : 0.25;
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         ctx.lineTo(points[1].x, points[1].y);
@@ -210,8 +233,8 @@
           const frontAlpha = clamp((depth - 0.3) / 0.17, 0, 1) * 0.78;
           frontCtx.fillStyle = rgb(tint, frontAlpha);
           frontCtx.fill(path);
-          frontCtx.strokeStyle = rgb(tint.map(c => Math.min(255, c * 1.36)), frontAlpha * (j % 3 === 0 ? 0.65 : 0.2));
-          frontCtx.lineWidth = j % 3 === 0 ? 0.55 : 0.3;
+          frontCtx.strokeStyle = rgb(tint.map(c => Math.min(255, c * 1.3)), frontAlpha * (j % 4 === 0 ? 0.49 : 0.15));
+          frontCtx.lineWidth = j % 4 === 0 ? 0.5 : 0.25;
           frontCtx.beginPath();
           frontCtx.moveTo(points[0].x, points[0].y);
           frontCtx.lineTo(points[1].x, points[1].y);
@@ -222,14 +245,25 @@
       ctx.save();
       ctx.globalCompositeOperation = 'screen';
       for (const mote of motes) {
-        const drift = at * 0.014 + mote.offset;
+        const drift = at * 0.022 + mote.offset;
         const t = (mote.t + drift) % 1;
         const p = sampled(t, mote.u, at);
-        const lift = 0.038 + Math.sin(at * 0.51 + mote.phase) * 0.055;
-        p[1] += Math.sin(at * 0.32 + mote.phase) * 0.021;
+        const lift = 0.038 + Math.sin(at * 0.63 + mote.phase) * 0.065;
+        p[1] += Math.sin(at * 0.41 + mote.phase) * 0.031;
         p[2] += lift;
         const q = project(p);
-        const sparkle = 0.22 + Math.pow(Math.max(0, Math.sin(at * 0.76 + mote.phase)), 5) * 0.7;
+        const sparkle = 0.22 + Math.pow(Math.max(0, Math.sin(at * 0.92 + mote.phase)), 5) * 0.7;
+        // Short, quiet light trails reveal the direction of the current without
+        // turning the metallic sculpture into a fast particle effect.
+        if (mote.offset > 0.72) {
+          const tail = project(sampled((t + 0.995) % 1, mote.u, at));
+          ctx.strokeStyle = rgb(mote.u > 0.3 ? colors.pink : colors.pearl, sparkle * 0.26);
+          ctx.lineWidth = 0.65;
+          ctx.beginPath();
+          ctx.moveTo(tail.x, tail.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
         ctx.fillStyle = rgb(mote.u > 0.3 ? colors.pink : colors.pearl, sparkle);
         ctx.beginPath();
         ctx.arc(q.x, q.y, mote.r * q.scale, 0, TAU);
@@ -266,8 +300,8 @@
       const hasScreen = screenRect && screenRect.width > 0 && screenRect.height > 0;
       const rect = hasScreen ? screenRect : deviceRect;
       if (!rect.width || !rect.height) return;
-      const protectedWidth = rect.width * (hasScreen ? 0.82 : 0.6);
-      const protectedHeight = rect.height * (hasScreen ? 0.89 : 0.78);
+      const protectedWidth = rect.width * (hasScreen ? 0.96 : 0.6);
+      const protectedHeight = rect.height * (hasScreen ? 0.96 : 0.78);
       const x = rect.left - canvasRect.left + (rect.width - protectedWidth) / 2;
       const y = rect.top - canvasRect.top + (rect.height - protectedHeight) / 2;
       // The front surface grazes the bezel, with a feathered aperture over the
@@ -408,9 +442,10 @@
         getAnchor() {
           const rect = canvas.getBoundingClientRect();
           const stage = parent.getBoundingClientRect();
+          const center = origin();
           return {
-            x: rect.left - stage.left + width * (width < 560 ? 0.55 : 0.59),
-            y: rect.top - stage.top + height * (width < 560 ? 0.67 : 0.64)
+            x: rect.left - stage.left + center.x,
+            y: rect.top - stage.top + center.y
           };
         },
         setRotation: value => scene.setRotation(value),

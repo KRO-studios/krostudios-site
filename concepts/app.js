@@ -47,7 +47,7 @@
     root.querySelectorAll('[data-screen-counter]').forEach(element=>{element.textContent='App screen '+(state.shot+1)+' / 2';});
     if(window.KROSignal)window.KROSignal.setApp(state.app);
     const rotor=root.querySelector('.signal-device-rotator');
-    if(rotor)rotor.setAttribute('aria-label','Rotate '+app.title+' phone preview. Drag, or use arrow keys to tilt.');
+    if(rotor)rotor.setAttribute('aria-label','Rotate '+app.title+' on the orange iPhone 17 Pro Max preview. Drag, or use arrow keys to tilt.');
     if(phoneScene)phoneScene.align();
   }
   function renderConcept() {
