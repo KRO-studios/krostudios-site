@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070709">
+  <meta name="description" content="Three new worlds of play from KRO Studios. Explore SovietKino, Echo Dare and Tanakh Quiz in an interactive studio collection.">
+  <meta name="robots" content="noindex,follow">
+  <title>KRO Studios — Small apps. Limitless worlds.</title>
+  <link rel="icon" href="../logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="signal.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="kro-hyper-site" data-concept="engine" data-app="kino">
+    <a class="skip-link" href="#studio-main">Skip to content</a>
+    <div class="concept-switch" aria-label="Website design directions">
+      <span class="mono switch-label">KRO / DESIGN LAB</span>
+      <div role="group" aria-label="Choose a design"><button class="cursor-interaction" type="button" data-design="engine" aria-pressed="true">Obsidian Engine</button><button class="cursor-interaction" type="button" data-design="signal" aria-pressed="false">Signal Field</button><button class="cursor-interaction" type="button" data-design="archive" aria-pressed="false">Future Archive</button></div>
+    </div>
+    <div class="product-surface">
+      <header class="site-header">
+        <a class="wordmark cursor-interaction" href="https://krostudios.com" aria-label="KRO Studios home">KRO<span class="brand-star">✦</span><small>STUDIOS</small></a>
+        <nav class="site-nav" aria-label="Primary navigation"><a class="cursor-interaction" href="#collection">Our worlds</a><a class="cursor-interaction" href="#about">The studio</a><a class="contact-link cursor-interaction" href="mailto:hello@krostudios.com">Let’s talk <span>↗</span></a></nav>
+        <button class="motion-control cursor-interaction" type="button" aria-pressed="false"><span class="motion-dot" aria-hidden="true"></span><span data-motion-label>Pause motion</span></button>
+      </header>
+      <main id="studio-main">
+        <section class="concept-view engine-view" data-view="engine" aria-label="Obsidian Engine design">
+          <div class="engine-hero">
+            <div class="engine-grid" aria-hidden="true"></div>
+            <div class="engine-copy">
+              <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Independent studio. Infinite curiosity.</p>
+              <h1>Small apps.<br><span class="metal-text">Limitless</span><br>worlds.</h1>
+              <p class="hero-intro">We turn the things we love into the<br class="desktop-break"> things you can’t put down.</p>
+              <a class="primary-action cursor-interaction" href="#collection">Enter our worlds <span>↗</span></a>
+              <div class="engine-signature mono"><span>MADE BY KRO</span><span class="signature-line"></span><span>BUILT TO PLAY</span></div>
+            </div>
+            <div class="engine-art" aria-label="Featured app inside an obsidian and gold aperture">
+              <div class="aperture-orbit orbit-one" aria-hidden="true"></div><div class="aperture-orbit orbit-two" aria-hidden="true"></div>
+              <img class="engine-sculpture" src="assets/obsidian-engine.jpg" alt="Original black ceramic and gold sculptural aperture with pink reflected light" fetchpriority="high">
+              <div class="engine-phone phone"><img data-hero-shot="engine" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen"></div>
+              <span class="art-coordinate mono">STUDIO / WORLD EXPLORER</span><span class="art-caption mono" data-selected="title">SovietKino</span>
+              <span class="lens-cross cross-one" aria-hidden="true">+</span><span class="lens-cross cross-two" aria-hidden="true">+</span>
+            </div>
+          </div>
+          <div class="world-rail" role="group" aria-label="Choose a world in Obsidian Engine">
+            <button class="world-button cursor-interaction" type="button" data-world="kino" aria-pressed="true"><span class="world-order mono">01 /</span><img src="assets/kinoIcon.jpg" alt=""><span>SovietKino<small>Cinema, one word at a time</small></span><span class="world-arrow">↗</span></button>
+            <button class="world-button cursor-interaction" type="button" data-world="echo" aria-pressed="false"><span class="world-order mono">02 /</span><img src="assets/echoIcon.jpg" alt=""><span>Echo Dare<small>Say it. Flip it. Lose it.</small></span><span class="world-arrow">↗</span></button>
+            <button class="world-button cursor-interaction" type="button" data-world="tanakh" aria-pressed="false"><span class="world-order mono">03 /</span><img src="assets/tanakhIcon.jpg" alt=""><span>Tanakh Quiz<small>Stories, letter by letter</small></span><span class="world-arrow">↗</span></button>
+          </div>
+        </section>
+
+        <section class="concept-view signal-view" data-view="signal" aria-label="Signal Field design" hidden>
+          <div class="signal-stage">
+            <canvas class="signal-canvas" aria-hidden="true"></canvas>
+            <div class="signal-title"><p class="eyebrow">An independent studio for unexpected play</p><h1>Follow your<br><span class="metal-text">curiosity.</span></h1></div>
+            <div class="signal-index" role="group" aria-label="Choose a world in Signal Field">
+              <p class="mono section-kicker">THE WORLD INDEX</p>
+              <button class="cursor-interaction" data-world="kino" type="button" aria-pressed="true"><small class="mono">01</small><span>SovietKino</span><b>↗</b></button>
+              <button class="cursor-interaction" data-world="echo" type="button" aria-pressed="false"><small class="mono">02</small><span>Echo Dare</span><b>↗</b></button>
+              <button class="cursor-interaction" data-world="tanakh" type="button" aria-pressed="false"><small class="mono">03</small><span>Tanakh Quiz</span><b>↗</b></button>
+              <p class="signal-note mono">Three worlds.<br>One playful frequency.</p>
+            </div>
+            <div class="signal-device"><div class="phone"><img data-hero-shot="signal" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen"></div><span class="mono" data-selected="category">Russian cinema & word puzzles</span></div>
+            <div class="signal-bottom"><p data-selected="short">Classic cinema. One word at a time.</p><a class="outline-action cursor-interaction" data-selected="link" href="https://krostudios.com/sovietkino/">Explore the app <span>↗</span></a></div>
+          </div>
+        </section>
+
+        <section class="concept-view archive-view" data-view="archive" aria-label="Future Archive design" hidden>
+          <div class="archive-hero">
+            <div class="archive-heading"><p class="eyebrow">A collection of small obsessions</p><h1>Pick a <span class="metal-text">universe.</span></h1><p>Different worlds. Each unmistakably KRO.</p></div>
+            <div class="archive-room" aria-label="Browse three app exhibits">
+              <div class="archive-horizon" aria-hidden="true"></div><div class="archive-floor" aria-hidden="true"></div><div class="archive-light" aria-hidden="true"></div>
+              <button class="exhibit cursor-interaction" type="button" data-exhibit="kino" aria-label="Preview SovietKino"><span class="exhibit-meta mono">CINEMA / RUSSIAN</span><span class="phone"><img src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen"></span><span class="exhibit-title">SovietKino</span><span class="exhibit-base" aria-hidden="true"></span></button>
+              <button class="exhibit cursor-interaction" type="button" data-exhibit="echo" aria-label="Preview Echo Dare"><span class="exhibit-meta mono">VOICE / COMING SOON</span><span class="phone"><img src="assets/echoHome.jpg" alt="Echo Dare actual home screen"></span><span class="exhibit-title">Echo Dare</span><span class="exhibit-base" aria-hidden="true"></span></button>
+              <button class="exhibit cursor-interaction" type="button" data-exhibit="tanakh" aria-label="Preview Tanakh Quiz"><span class="exhibit-meta mono">WORDS / HEBREW</span><span class="phone"><img src="assets/tanakhHome.jpg" alt="Tanakh Quiz actual game screen"></span><span class="exhibit-title">Tanakh Quiz</span><span class="exhibit-base" aria-hidden="true"></span></button>
+            </div>
+            <div class="archive-controls"><button class="arrow-action cursor-interaction" type="button" data-step="-1" aria-label="Previous app exhibit">←</button><div aria-live="polite"><span class="mono" data-selected="index">01 / 03</span><h2 data-selected="title">SovietKino</h2></div><button class="arrow-action cursor-interaction" type="button" data-step="1" aria-label="Next app exhibit">→</button></div>
+            <p class="archive-description" data-selected="short">Classic cinema. One word at a time.</p><a class="primary-action cursor-interaction" data-selected="link" href="https://krostudios.com/sovietkino/">Enter this universe <span>↗</span></a>
+          </div>
+        </section>
+
+        <section class="app-inspector" aria-label="Selected app details">
+          <div class="inspector-label mono"><span class="status-dot" aria-hidden="true"></span><span data-selected="category">Russian cinema & word puzzles</span></div>
+          <p data-selected="description" aria-live="polite">Remember the film. Find the word. Explore characters, actors and quotes through clues, letter feedback and a daily challenge.</p>
+          <div class="inspector-tools"><span class="mono" data-selected="meta">Russian · Android & iOS</span><button class="screenshot-control cursor-interaction" type="button"><span data-screen-counter>App screen 1 / 2</span><span>Next screen →</span></button></div>
+        </section>
+
+        <section class="collection-section" id="collection" aria-label="KRO Studios app collection">
+          <div class="section-heading"><div><p class="section-kicker mono">CURATED BY KRO STUDIOS</p><h2>Find your next<br><span>rabbit hole.</span></h2></div><p>A world of cinema.<br>A room full of laughter.<br>A story in every word.</p></div>
+          <div class="collection-grid">
+            <article class="collection-card kino-card"><a href="https://krostudios.com/sovietkino/" class="card-link cursor-interaction"><div class="card-art"><img class="card-backdrop" src="assets/kinoScene.jpg" alt=""><span class="card-tag mono">CINEMA / RUSSIAN</span><img class="card-device" src="assets/kinoHome.jpg" alt="SovietKino app screen"></div><div class="card-body"><p class="mono card-kind">SOVIET CINEMA WORD GAME</p><h3>SovietKino <span>↗</span></h3><p>Classic films. Familiar faces. Find the word and bring the memory back.</p></div></a></article>
+            <article class="collection-card echo-card"><a href="https://krostudios.com/echodare.html" class="card-link cursor-interaction"><div class="card-art"><img class="card-backdrop" src="assets/echoArt.jpg" alt=""><span class="card-tag mono">VOICE / COMING SOON</span><img class="card-device" src="assets/echoHome.jpg" alt="Echo Dare app screen"></div><div class="card-body"><p class="mono card-kind">REVERSE-VOICE PARTY GAME</p><h3>Echo Dare <span>↗</span></h3><p>Say it forwards. Copy it backwards. Play solo or pass the chaos around.</p></div></a></article>
+            <article class="collection-card tanakh-card"><a href="https://krostudios.com/tanakh-quiz/" class="card-link cursor-interaction"><div class="card-art"><img class="card-backdrop" src="assets/tanakhScene.jpg" alt=""><span class="card-tag mono">WORDS / HEBREW</span><img class="card-device" src="assets/tanakhHome.jpg" alt="Tanakh Quiz Hebrew word puzzle screen"></div><div class="card-body"><p class="mono card-kind">HEBREW WORD CHALLENGES</p><h3>Tanakh Quiz <span>↗</span></h3><p>Verses, people, places and quotes. Discover the answer, letter by letter.</p></div></a></article>
+          </div>
+        </section>
+        <section class="studio-section" id="about"><p class="section-kicker mono">THE STUDIO</p><h2>Built around<br>little <span class="metal-text">obsessions.</span></h2><div class="studio-bottom"><p>We’re an independent studio making games and apps from the things that fascinate us. Thoughtful details. A playful point of view. Worlds you can carry in your pocket.</p><a class="outline-action cursor-interaction" href="mailto:hello@krostudios.com">Start a conversation <span>↗</span></a></div><div class="legacy-line"><span class="mono">FROM THE ARCHIVE</span><p>Half Life Monsters · Dune 2 Tanks · Rap Quiz · Beer Quiz</p></div></section>
+      </main>
+      <footer class="site-footer"><a class="wordmark cursor-interaction" href="https://krostudios.com">KRO<span class="brand-star">✦</span><small>STUDIOS</small></a><span class="mono">INDEPENDENT MINDS. PLAYFUL WORLDS.</span><nav aria-label="Footer"><a class="cursor-interaction" href="https://krostudios.com/privacy.html">Privacy</a><a class="cursor-interaction" href="mailto:hello@krostudios.com">Hello ↗</a></nav></footer>
+    </div>
+  </div>
+</body>
+</html>
