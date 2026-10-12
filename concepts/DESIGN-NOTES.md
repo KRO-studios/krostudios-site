@@ -16,6 +16,8 @@ Prompt: Premium photoreal CGI mechanical aperture for KRO Studios: interleaved b
 
 Signal Field artwork is a responsive procedural metallic foil sculpture, not a screenshot or stock photograph. The three app choices morph its silhouette. Future Archive uses a CSS spatial exhibition with authentic screenshots.
 
+Signal Field now integrates the phone at the sculpture's shared origin. Rear and foreground ribbon layers wrap its edges while protecting the app screen. The phone floats gently and supports mouse/touch dragging, arrow-key tilt, Home/Escape reset, and a visible reset control. Pause and reduced-motion preferences stop ambient motion and inertia; direct manual rotation remains available. Animations stop when the scene is hidden or offscreen.
+
 ## Local preview
 
 From the repository root: `python3 -m http.server 4173 --bind 127.0.0.1`, then open `http://127.0.0.1:4173/concepts/`.

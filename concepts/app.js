@@ -19,7 +19,7 @@
   else {try {saved=JSON.parse(localStorage.getItem('kro-concepts')||'null');} catch (_) {}}
   let state=normalize(saved);
   if(!inline){const query=new URLSearchParams(location.search);if(['engine','signal','archive'].includes(query.get('design')))state.concept=query.get('design');if(order.includes(query.get('app')))state.app=query.get('app');}
-  let signalMounted=false;
+  let signalMounted=false,signalScene=null,phoneScene=null;
   const shotElements=root.querySelectorAll('[data-hero-shot]');
   function renderApp(animate=false) {
     const app=apps[state.app];
@@ -46,19 +46,28 @@
     });
     root.querySelectorAll('[data-screen-counter]').forEach(element=>{element.textContent='App screen '+(state.shot+1)+' / 2';});
     if(window.KROSignal)window.KROSignal.setApp(state.app);
+    const rotor=root.querySelector('.signal-device-rotator');
+    if(rotor)rotor.setAttribute('aria-label','Rotate '+app.title+' phone preview. Drag, or use arrow keys to tilt.');
+    if(phoneScene)phoneScene.align();
   }
   function renderConcept() {
     root.dataset.concept=state.concept;
     root.querySelectorAll('[data-view]').forEach(view=>{view.hidden=view.dataset.view!==state.concept;});
     root.querySelectorAll('[data-design]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.design===state.concept)));
-    if(state.concept==='signal'&&window.KROSignal&&!signalMounted){window.KROSignal.mount(root.querySelector('.signal-canvas'));signalMounted=true;}
+    if(state.concept==='signal'&&window.KROSignal&&!signalMounted){
+      signalScene=window.KROSignal.mount(root.querySelector('.signal-canvas'));signalMounted=true;
+      if(window.KROPhone)phoneScene=window.KROPhone.mount(root.querySelector('.signal-device'),{getAnchor:()=>signalScene&&signalScene.getAnchor?signalScene.getAnchor():null,onRotate:value=>{if(window.KROSignal.setRotation)window.KROSignal.setRotation(value);},onLayoutChange:()=>{if(signalScene)signalScene.render();}});
+    }
+    if(phoneScene)phoneScene.setActive(state.concept==='signal');
     if(window.KROSignal)window.KROSignal.setPaused(state.paused||state.concept!=='signal');
+    if(phoneScene)phoneScene.setPaused(state.paused);
   }
   function renderMotion() {
     root.dataset.paused=String(state.paused);
     if(state.paused||reduced.matches)root.querySelectorAll('.screen-changing').forEach(image=>image.classList.remove('screen-changing'));
     root.querySelectorAll('.motion-control').forEach(button=>{button.disabled=reduced.matches;button.setAttribute('aria-pressed',String(state.paused||reduced.matches));button.querySelector('[data-motion-label]').textContent=reduced.matches?'Reduced motion':state.paused?'Enable motion':'Pause motion';});
     if(window.KROSignal)window.KROSignal.setPaused(state.paused||state.concept!=='signal');
+    if(phoneScene)phoneScene.setPaused(state.paused);
   }
   function persist() {
     if(inline){if(window.openai&&typeof window.openai.setWidgetState==='function')window.openai.setWidgetState({modelContent:{concept:state.concept,app:state.app},privateContent:{shot:state.shot,paused:state.paused}}).catch(()=>{});}
@@ -75,7 +84,7 @@
   const art=root.querySelector('.engine-art');
   art.addEventListener('pointermove',event=>{if(state.paused||reduced.matches)return;const rect=art.getBoundingClientRect();art.style.setProperty('--px',(event.clientX-rect.left)/rect.width*2-1);art.style.setProperty('--py',(event.clientY-rect.top)/rect.height*2-1);});
   art.addEventListener('pointerleave',()=>{art.style.setProperty('--px',0);art.style.setProperty('--py',0);});
-  reduced.addEventListener('change',()=>{if(reduced.matches){state.paused=true;renderMotion();}});
+  reduced.addEventListener('change',()=>{if(reduced.matches)state.paused=true;renderMotion();});
   window.addEventListener('openai:set_globals',event=>{if(!inline)return;const globals=event.detail&&(event.detail.globals||event.detail);if(globals&&Object.prototype.hasOwnProperty.call(globals,'widgetState')){state=normalize(globals.widgetState);renderApp();renderConcept();renderMotion();}});
   renderApp();renderConcept();renderMotion();
   if(inline&&globalThis.Tweak){const design={gold:'#e0bd76',pink:'#ef9fc0'};const apply=()=>{root.style.setProperty('--gold',design.gold);root.style.setProperty('--pink',design.pink);};const tweak=new Tweak({container:root,onChange:apply});tweak.addColorPicker(design,'gold',{label:'Champagne gold',reference:'--gold'});tweak.addColorPicker(design,'pink',{label:'Studio pink',reference:'--pink'});}

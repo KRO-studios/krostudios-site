@@ -8,9 +8,10 @@
   <meta name="robots" content="noindex,follow">
   <title>KRO Studios — Small apps. Limitless worlds.</title>
   <link rel="icon" href="../logo.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="signal.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=signal-live-2">
+  <script src="signal.js?v=signal-live-2" defer></script>
+  <script src="phone.js?v=signal-live-2" defer></script>
+  <script src="app.js?v=signal-live-2" defer></script>
 </head>
 <body>
   <div id="kro-hyper-site" data-concept="engine" data-app="kino">
@@ -54,6 +55,7 @@
         <section class="concept-view signal-view" data-view="signal" aria-label="Signal Field design" hidden>
           <div class="signal-stage">
             <canvas class="signal-canvas" aria-hidden="true"></canvas>
+            <canvas class="signal-foreground" aria-hidden="true"></canvas>
             <div class="signal-title"><p class="eyebrow">An independent studio for unexpected play</p><h1>Follow your<br><span class="metal-text">curiosity.</span></h1></div>
             <div class="signal-index" role="group" aria-label="Choose a world in Signal Field">
               <p class="mono section-kicker">THE WORLD INDEX</p>
@@ -62,7 +64,11 @@
               <button class="cursor-interaction" data-world="tanakh" type="button" aria-pressed="false"><small class="mono">03</small><span>Tanakh Quiz</span><b>↗</b></button>
               <p class="signal-note mono">Three worlds.<br>One playful frequency.</p>
             </div>
-            <div class="signal-device"><div class="phone"><img data-hero-shot="signal" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen"></div><span class="mono" data-selected="category">Russian cinema & word puzzles</span></div>
+            <div class="signal-device">
+              <div class="signal-device-float"><button class="phone signal-device-rotator cursor-interaction" type="button" aria-label="Rotate the phone preview" aria-describedby="signal-rotation-hint"><img class="signal-device-screen" data-hero-shot="signal" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen" draggable="false"></button></div>
+              <span class="mono signal-device-category" data-selected="category">Russian cinema & word puzzles</span>
+              <div class="signal-device-tools"><span class="mono" id="signal-rotation-hint">Drag to rotate · arrow keys</span><button class="phone-reset cursor-interaction" type="button" aria-label="Reset phone rotation">↺</button></div>
+            </div>
             <div class="signal-bottom"><p data-selected="short">Classic cinema. One word at a time.</p><a class="outline-action cursor-interaction" data-selected="link" href="https://krostudios.com/sovietkino/">Explore the app <span>↗</span></a></div>
           </div>
         </section>
