@@ -70,7 +70,13 @@
   function renderMotion() {
     root.dataset.paused=String(state.paused);
     if(state.paused||reduced.matches)root.querySelectorAll('.screen-changing').forEach(image=>image.classList.remove('screen-changing'));
-    root.querySelectorAll('.motion-control').forEach(button=>{button.disabled=reduced.matches;button.setAttribute('aria-pressed',String(state.paused||reduced.matches));button.querySelector('[data-motion-label]').textContent=reduced.matches?'Reduced motion':state.paused?'Enable motion':'Pause motion';});
+    root.querySelectorAll('.motion-control').forEach(button=>{
+      const stopped=state.paused||reduced.matches;
+      const label=reduced.matches?'Reduced motion enabled in system settings':state.paused?'Enable motion':'Pause motion';
+      button.disabled=reduced.matches;button.setAttribute('aria-pressed',String(stopped));button.setAttribute('aria-label',label);button.title=label;
+      const text=button.querySelector('[data-motion-label]');if(text)text.textContent=label;
+      button.querySelectorAll('[data-motion-icon]').forEach(icon=>icon.toggleAttribute('hidden',icon.dataset.motionIcon===(stopped?'pause':'play')));
+    });
     if(window.KROSignal)window.KROSignal.setPaused(state.paused||state.concept!=='signal');
     if(phoneScene)phoneScene.setPaused(state.paused);
   }
