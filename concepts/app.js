@@ -91,6 +91,10 @@
   root.querySelectorAll('[data-design]').forEach(button=>button.addEventListener('click',()=>{state.concept=button.dataset.design;renderConcept();renderMotion();persist();}));
   root.querySelectorAll('.screenshot-control').forEach(button=>button.addEventListener('click',()=>{state.shot=1-state.shot;renderApp(true);persist();}));
   root.querySelectorAll('.motion-control').forEach(button=>button.addEventListener('click',()=>{state.paused=!state.paused;renderMotion();persist();}));
+  root.querySelector('.signal-device-rotator')?.addEventListener('keydown',event=>{
+    if(event.key.toLowerCase()!=='p'||event.repeat||event.altKey||event.ctrlKey||event.metaKey||reduced.matches)return;
+    event.preventDefault();state.paused=!state.paused;renderMotion();persist();
+  });
   root.querySelector('.archive-hero').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key)||!event.target.closest('button'))return;event.preventDefault();chooseApp(order[(order.indexOf(state.app)+(event.key==='ArrowRight'?1:2))%3]);});
   const art=root.querySelector('.engine-art');
   art.addEventListener('pointermove',event=>{if(state.paused||reduced.matches)return;const rect=art.getBoundingClientRect();art.style.setProperty('--px',(event.clientX-rect.left)/rect.width*2-1);art.style.setProperty('--py',(event.clientY-rect.top)/rect.height*2-1);});

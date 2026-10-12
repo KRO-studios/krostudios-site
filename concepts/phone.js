@@ -98,7 +98,7 @@
     function rendererState(value,reason='') {
       device.dataset.rendererState=value;device.dataset.rendererReason=reason;
       if(status)status.textContent=value==='webgl'?'Live 3D':value==='loading'?'Preparing 3D preview…':'Preview image · 3D unavailable';
-      if(hint)hint.textContent=value==='fallback'?'Drag to tilt image · arrow keys':'Drag to rotate · arrow keys';
+      if(hint)hint.textContent=(value==='fallback'?'Drag to tilt image':'Drag to rotate')+' · arrow keys · P pauses motion · Home resets';
       if(retry)retry.hidden=value!=='fallback';
     }
     const rendererChanged=()=>{

@@ -318,15 +318,6 @@
       });
       frontCtx.closePath();
       frontCtx.fill();
-      // Protect only the circular icon controls. Clearing the whole old text
-      // row would leave a rectangular dark patch across the surrounding foil.
-      for (const button of parent.querySelectorAll('.signal-device-tools button:not([hidden])')) {
-        const bounds = button.getBoundingClientRect();
-        if (!bounds.width || !bounds.height) continue;
-        frontCtx.beginPath();
-        frontCtx.arc(bounds.left - canvasRect.left + bounds.width / 2, bounds.top - canvasRect.top + bounds.height / 2, Math.max(bounds.width, bounds.height) / 2, 0, TAU);
-        frontCtx.fill();
-      }
       frontCtx.restore();
     }
 
