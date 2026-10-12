@@ -14,6 +14,7 @@ html{scroll-behavior:smooth;background:#070709}body{margin:0}
 #kro-hyper-site button:focus-visible,#kro-hyper-site a:focus-visible{outline:2px solid var(--pink);outline-offset:5px}
 #kro-hyper-site .skip-link{position:absolute;top:8px;left:8px;z-index:20;background:var(--cream);color:var(--ink);padding:12px 18px;transform:translateY(-160%)}
 #kro-hyper-site .skip-link:focus{transform:none}
+#kro-hyper-site .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
 #kro-hyper-site .concept-switch{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:11px clamp(20px,4vw,64px);background:#18161b;border-bottom:1px solid #343037}
 #kro-hyper-site .switch-label{color:#b8abb4;white-space:nowrap}
 #kro-hyper-site .concept-switch>div{display:flex;flex-wrap:wrap;gap:6px}
@@ -197,7 +198,7 @@ html{scroll-behavior:smooth;background:#070709}body{margin:0}
 #kro-hyper-site .device-island>span{position:absolute;top:50%;right:10%;width:13px;height:13px;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle at 40% 35%,#234260,#060c18 45%,#030305 68%);box-shadow:inset 0 0 0 2px #111217}
 #kro-hyper-site .signal-device>.signal-device-category{position:absolute;top:calc(100% + 15px);left:-35px;right:-35px;margin:0;color:var(--pink);font-size:11px;text-align:center;text-transform:uppercase;line-height:1.55}
 #kro-hyper-site .signal-device-category{text-shadow:0 2px 8px #000}
-#kro-hyper-site .signal-device-tools{position:absolute;top:calc(100% + 57px);left:50%;right:auto;width:max-content;max-width:100%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:9px;z-index:7;pointer-events:auto}
+#kro-hyper-site .signal-device-tools{position:absolute;top:calc(100% + 22px);left:50%;right:auto;width:max-content;max-width:100%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:9px;z-index:7;pointer-events:auto}
 #kro-hyper-site .signal-device-tools>span{color:#c5b5be;font-size:11px;max-width:162px;text-align:center;line-height:1.45}
 #kro-hyper-site .phone-reset{flex:0 0 44px;width:44px;height:44px;border:1px solid #71545c;border-radius:50%;color:var(--cream);background:#151015db;font-size:21px}
 #kro-hyper-site .signal-device[data-dragging=true] .signal-device-tools>span{color:var(--pink)}
@@ -225,3 +226,4 @@ html{scroll-behavior:smooth;background:#070709}body{margin:0}
 #kro-hyper-site .signal-device-tools .motion-control{position:static;inset:auto;justify-content:center;flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0;gap:0;border:1px solid #3b383d;border-radius:50%;background:#141315;color:var(--pink)}
 #kro-hyper-site .motion-icon{display:block;pointer-events:none}
 #kro-hyper-site .motion-control:disabled{opacity:.45}
+#kro-hyper-site .signal-device-tools .phone-retry{display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0;border:1px solid #71545c;border-radius:50%;background:#151015db;color:var(--pink)}

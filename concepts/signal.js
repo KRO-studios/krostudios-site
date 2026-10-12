@@ -318,13 +318,14 @@
       });
       frontCtx.closePath();
       frontCtx.fill();
-      // Labels and reset controls remain readable even when the near foil
-      // sweeps through their position beneath the floating device.
-      frontCtx.shadowBlur = 8 * dpr;
-      for (const label of parent.querySelectorAll('.signal-device-category, .signal-device-tools, .signal-renderer-status')) {
-        const bounds = label.getBoundingClientRect();
+      // Protect only the circular icon controls. Clearing the whole old text
+      // row would leave a rectangular dark patch across the surrounding foil.
+      for (const button of parent.querySelectorAll('.signal-device-tools button:not([hidden])')) {
+        const bounds = button.getBoundingClientRect();
         if (!bounds.width || !bounds.height) continue;
-        frontCtx.fillRect(bounds.left - canvasRect.left - 5, bounds.top - canvasRect.top - 4, bounds.width + 10, bounds.height + 8);
+        frontCtx.beginPath();
+        frontCtx.arc(bounds.left - canvasRect.left + bounds.width / 2, bounds.top - canvasRect.top + bounds.height / 2, Math.max(bounds.width, bounds.height) / 2, 0, TAU);
+        frontCtx.fill();
       }
       frontCtx.restore();
     }
