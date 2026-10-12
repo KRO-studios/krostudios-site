@@ -329,7 +329,7 @@
       // Labels and reset controls remain readable even when the near foil
       // sweeps through their position beneath the floating device.
       frontCtx.shadowBlur = 8 * dpr;
-      for (const label of parent.querySelectorAll('.signal-device-category, .signal-device-tools')) {
+      for (const label of parent.querySelectorAll('.signal-device-category, .signal-device-tools, .signal-renderer-status')) {
         const bounds = label.getBoundingClientRect();
         if (!bounds.width || !bounds.height) continue;
         frontCtx.fillRect(bounds.left - canvasRect.left - 5, bounds.top - canvasRect.top - 4, bounds.width + 10, bounds.height + 8);

@@ -10,9 +10,10 @@
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const inline = root.dataset.inline === 'true';
+  const focused = root.dataset.focus === 'signal';
   function normalize(raw) {
     const value = raw && typeof raw === 'object' ? {...raw,...raw.modelContent,...raw.privateContent} : {};
-    return {concept:['engine','signal','archive'].includes(value.concept)?value.concept:'engine',app:order.includes(value.app)?value.app:'kino',shot:value.shot===1?1:0,paused:typeof value.paused==='boolean'?value.paused:reduced.matches};
+    return {concept:focused?'signal':['engine','signal','archive'].includes(value.concept)?value.concept:'engine',app:order.includes(value.app)?value.app:'kino',shot:value.shot===1?1:0,paused:typeof value.paused==='boolean'?value.paused:reduced.matches};
   }
   let saved = null;
   if (inline) saved = window.openai && window.openai.widgetState;
@@ -34,6 +35,8 @@
       image.src=app.shots[state.shot];image.alt=app.title+' actual app screen '+(state.shot+1);
       if(animate&&!state.paused&&!reduced.matches){image.classList.remove('screen-changing');void image.offsetWidth;image.classList.add('screen-changing');}
     });
+    const fallback=root.querySelector('.phone-render-fallback');
+    if(fallback)fallback.src='assets/phone-'+state.app+'-'+state.shot+'.webp';
     root.querySelectorAll('[data-world]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.world===state.app)));
     const selectedIndex=order.indexOf(state.app);
     root.querySelectorAll('[data-exhibit]').forEach(exhibit=>{
@@ -52,6 +55,8 @@
   }
   function renderConcept() {
     root.dataset.concept=state.concept;
+    const switcher=root.querySelector('.concept-switch');
+    if(switcher)switcher.hidden=focused&&state.concept==='signal';
     root.querySelectorAll('[data-view]').forEach(view=>{view.hidden=view.dataset.view!==state.concept;});
     root.querySelectorAll('[data-design]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.design===state.concept)));
     if(state.concept==='signal'&&window.KROSignal&&!signalMounted){

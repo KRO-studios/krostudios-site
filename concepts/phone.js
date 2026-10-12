@@ -3,7 +3,7 @@
   'use strict';
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const mounted=new WeakMap();
-  const rendererURL=new URL('phone3d.js?v=signal-3d-4',document.currentScript?.src||location.href).href;
+  const rendererURL=new URL('phone3d.js?v=signal-frame-5',document.currentScript?.src||location.href).href;
   function mount(device,options={}) {
     if(!device)return null;
     if(mounted.has(device))return mounted.get(device);
@@ -12,7 +12,8 @@
     const stage=device.closest('.signal-stage');
     if(!rotor||!floater||!stage)return null;
     const screen=rotor.querySelector('.signal-device-screen');
-    let renderer=null;
+    const status=device.querySelector('[data-renderer-status]'),hint=device.querySelector('#signal-rotation-hint'),retry=device.querySelector('.phone-retry');
+    let renderer=null,loading=false,loadTimer=0,rendererAttempt=0;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
     let yaw=-14,pitch=2,targetYaw=-14,targetPitch=2,velocityYaw=0,velocityPitch=0;
     let dragging=false,pointerId=null,startX=0,startY=0,startYaw=0,startPitch=0;
@@ -35,7 +36,7 @@
       floater.style.transform='translateY('+float.toFixed(2)+'px)';
       if(rotor.dataset.renderer==='webgl')rotor.style.transform='none';
       if(renderer){renderer.setPose({yaw:yaw+breathingYaw,pitch:pitch+breathingPitch,roll});}
-      rotor.style.transform=rotor.dataset.renderer==='webgl'?'none':'perspective(1500px) rotateX('+(pitch+breathingPitch).toFixed(2)+'deg) rotateY('+(yaw+breathingYaw).toFixed(2)+'deg) rotateZ('+roll.toFixed(2)+'deg)';
+      rotor.style.transform=rotor.dataset.renderer==='webgl'?'none':'perspective(1500px) rotateX('+clamp(pitch+breathingPitch,-8,8).toFixed(2)+'deg) rotateY('+clamp(yaw+breathingYaw,-12,12).toFixed(2)+'deg) rotateZ('+roll.toFixed(2)+'deg)';
       rotor.style.setProperty('--phone-light-x',(50+(yaw+breathingYaw)*.7).toFixed(1)+'%');
       rotor.dataset.yaw=yaw.toFixed(2);rotor.dataset.pitch=pitch.toFixed(2);
       device.dataset.dragging=String(dragging);
@@ -94,7 +95,17 @@
     rotor.addEventListener('pointerdown',begin);rotor.addEventListener('pointermove',move);
     rotor.addEventListener('pointerup',finish);rotor.addEventListener('pointercancel',finish);rotor.addEventListener('lostpointercapture',finish);rotor.addEventListener('keydown',keys);
     const resetButton=device.querySelector('.phone-reset');if(resetButton)resetButton.addEventListener('click',reset);
-    const rendererChanged=()=>sync();
+    function rendererState(value,reason='') {
+      device.dataset.rendererState=value;device.dataset.rendererReason=reason;
+      if(status)status.textContent=value==='webgl'?'Live 3D':value==='loading'?'Preparing 3D preview…':'Preview image · 3D unavailable';
+      if(hint)hint.textContent=value==='fallback'?'Drag to tilt image · arrow keys':'Drag to rotate · arrow keys';
+      if(retry)retry.hidden=value!=='fallback';
+    }
+    const rendererChanged=()=>{
+      const ready=rotor.dataset.renderer==='webgl';
+      if(ready)clearTimeout(loadTimer);
+      rendererState(ready?'webgl':'fallback',ready?'':'context_lost');sync();
+    };
     rotor.addEventListener('krophone3dready',rendererChanged);rotor.addEventListener('krophone3dfallback',rendererChanged);
     const resized=()=>{align();};
     const observer=new ResizeObserver(resized);observer.observe(stage);observer.observe(rotor);
@@ -108,19 +119,32 @@
       reset,
       setScreen(src,key){if(renderer)renderer.setScreen(src,key);},
       getRotation(){return{yaw,pitch,dragging};},
-      destroy(){destroyed=true;finish();cancelAnimationFrame(frame);observer.disconnect();intersection.disconnect();rotor.removeEventListener('pointerdown',begin);rotor.removeEventListener('pointermove',move);rotor.removeEventListener('pointerup',finish);rotor.removeEventListener('pointercancel',finish);rotor.removeEventListener('lostpointercapture',finish);rotor.removeEventListener('keydown',keys);rotor.removeEventListener('krophone3dready',rendererChanged);rotor.removeEventListener('krophone3dfallback',rendererChanged);if(resetButton)resetButton.removeEventListener('click',reset);document.removeEventListener('visibilitychange',visibility);reduced.removeEventListener('change',preference);if(renderer)renderer.destroy();delete rotor.kroPhone3D;mounted.delete(device);}
+      destroy(){destroyed=true;finish();cancelAnimationFrame(frame);clearTimeout(loadTimer);observer.disconnect();intersection.disconnect();rotor.removeEventListener('pointerdown',begin);rotor.removeEventListener('pointermove',move);rotor.removeEventListener('pointerup',finish);rotor.removeEventListener('pointercancel',finish);rotor.removeEventListener('lostpointercapture',finish);rotor.removeEventListener('keydown',keys);rotor.removeEventListener('krophone3dready',rendererChanged);rotor.removeEventListener('krophone3dfallback',rendererChanged);if(resetButton)resetButton.removeEventListener('click',reset);if(retry)retry.removeEventListener('click',loadRenderer);document.removeEventListener('visibilitychange',visibility);reduced.removeEventListener('change',preference);if(renderer)renderer.destroy();delete rotor.kroPhone3D;mounted.delete(device);}
     };
     mounted.set(device,api);sync();
     // Progressive enhancement keeps the preview usable when WebGL or modules
     // are unavailable; only the selected Signal Field needs the 3D dependency.
-    import(rendererURL).then(()=>{
-      if(destroyed||!window.KROPhone3D)return;
-      renderer=window.KROPhone3D.mount(rotor);
-      if(!renderer)return;
-      rotor.kroPhone3D=renderer;
-      renderer.setScreen(screen.src,device.closest('[data-app]')?.dataset.app||'kino');
-      sync();
-    }).catch(()=>{});
+    async function loadRenderer() {
+      if(destroyed||loading)return;
+      loading=true;clearTimeout(loadTimer);rendererState('loading');
+      if(renderer){renderer.destroy();renderer=null;delete rotor.kroPhone3D;}
+      try {
+        const attemptURL=new URL(rendererURL);
+        if(rendererAttempt>0)attemptURL.searchParams.set('retry',String(rendererAttempt));
+        rendererAttempt++;
+        await import(attemptURL.href);
+        if(destroyed)return;
+        if(!window.KROPhone3D){rendererState('fallback','module_unavailable');return;}
+        renderer=window.KROPhone3D.mount(rotor);
+        if(!renderer){rendererState('fallback','webgl_unavailable');return;}
+        rotor.kroPhone3D=renderer;
+        renderer.setScreen(screen.src,device.closest('[data-app]')?.dataset.app||'kino');sync();
+        loadTimer=setTimeout(()=>{if(!destroyed&&rotor.dataset.renderer!=='webgl')rendererState('fallback','render_not_ready');},10000);
+      } catch (_) {if(!destroyed)rendererState('fallback','module_load_failed');}
+      finally {loading=false;}
+    }
+    if(retry)retry.addEventListener('click',loadRenderer);
+    loadRenderer();
     return api;
   }
   window.KROPhone={mount};

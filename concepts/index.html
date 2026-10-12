@@ -8,15 +8,15 @@
   <meta name="robots" content="noindex,follow">
   <title>KRO Studios — Small apps. Limitless worlds.</title>
   <link rel="icon" href="../logo.png">
-  <link rel="stylesheet" href="styles.css?v=signal-3d-4">
-  <script src="signal.js?v=signal-3d-4" defer></script>
-  <script src="phone.js?v=signal-3d-4" defer></script>
-  <script src="app.js?v=signal-3d-4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=signal-frame-5">
+  <script src="signal.js?v=signal-frame-5" defer></script>
+  <script src="phone.js?v=signal-frame-5" defer></script>
+  <script src="app.js?v=signal-frame-5" defer></script>
 </head>
 <body>
-  <div id="kro-hyper-site" data-concept="engine" data-app="kino">
+  <div id="kro-hyper-site" data-concept="signal" data-app="kino" data-focus="signal">
     <a class="skip-link" href="#studio-main">Skip to content</a>
-    <div class="concept-switch" aria-label="Website design directions">
+    <div class="concept-switch" aria-label="Website design directions" hidden>
       <span class="mono switch-label">KRO / DESIGN LAB</span>
       <div role="group" aria-label="Choose a design"><button class="cursor-interaction" type="button" data-design="engine" aria-pressed="true">Obsidian Engine</button><button class="cursor-interaction" type="button" data-design="signal" aria-pressed="false">Signal Field</button><button class="cursor-interaction" type="button" data-design="archive" aria-pressed="false">Future Archive</button></div>
     </div>
@@ -27,7 +27,7 @@
         <button class="motion-control cursor-interaction" type="button" aria-pressed="false"><span class="motion-dot" aria-hidden="true"></span><span data-motion-label>Pause motion</span></button>
       </header>
       <main id="studio-main">
-        <section class="concept-view engine-view" data-view="engine" aria-label="Obsidian Engine design">
+        <section class="concept-view engine-view" data-view="engine" aria-label="Obsidian Engine design" hidden>
           <div class="engine-hero">
             <div class="engine-grid" aria-hidden="true"></div>
             <div class="engine-copy">
@@ -52,7 +52,7 @@
           </div>
         </section>
 
-        <section class="concept-view signal-view" data-view="signal" aria-label="Signal Field design" hidden>
+        <section class="concept-view signal-view" data-view="signal" aria-label="Signal Field design">
           <div class="signal-stage">
             <canvas class="signal-canvas" aria-hidden="true"></canvas>
             <canvas class="signal-foreground" aria-hidden="true"></canvas>
@@ -67,15 +67,13 @@
             <div class="signal-device">
               <div class="signal-device-float">
                 <button class="phone signal-device-rotator cursor-interaction" type="button" aria-label="Rotate the orange iPhone 17 Pro Max preview" aria-describedby="signal-rotation-hint">
-                  <span class="device-rail device-rail-left" aria-hidden="true"></span><span class="device-rail device-rail-right" aria-hidden="true"></span>
-                  <span class="device-side-button device-action-button" aria-hidden="true"></span><span class="device-side-button device-volume-up" aria-hidden="true"></span><span class="device-side-button device-volume-down" aria-hidden="true"></span>
-                  <span class="device-side-button device-power-button" aria-hidden="true"></span><span class="device-side-button device-camera-button" aria-hidden="true"></span>
-                  <span class="device-antenna device-antenna-one" aria-hidden="true"></span><span class="device-antenna device-antenna-two" aria-hidden="true"></span><span class="device-speaker" aria-hidden="true"></span>
-                  <span class="device-glass"><span class="device-display"><img class="signal-device-screen" data-hero-shot="signal" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen" draggable="false"><span class="device-island" aria-hidden="true"><span></span></span></span></span>
+                  <img class="phone-render-fallback" src="assets/phone-kino-0.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false">
+                  <span class="device-glass"><span class="device-display"><img class="signal-device-screen" data-hero-shot="signal" src="assets/kinoHome.jpg" alt="SovietKino actual welcome screen" draggable="false"></span></span>
                 </button>
               </div>
               <span class="mono signal-device-category" data-selected="category">Russian cinema & word puzzles</span>
               <div class="signal-device-tools"><span class="mono" id="signal-rotation-hint">Drag to rotate · arrow keys</span><button class="phone-reset cursor-interaction" type="button" aria-label="Reset phone rotation">↺</button></div>
+              <div class="signal-renderer-status mono"><span role="status" data-renderer-status>Preparing 3D preview…</span><button class="phone-retry cursor-interaction" type="button" hidden>Retry 3D</button></div>
             </div>
             <div class="signal-bottom"><p data-selected="short">Classic cinema. One word at a time.</p><a class="outline-action cursor-interaction" data-selected="link" href="https://krostudios.com/sovietkino/">Explore the app <span>↗</span></a></div>
           </div>

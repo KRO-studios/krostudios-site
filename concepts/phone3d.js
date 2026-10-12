@@ -39,9 +39,9 @@ function metalGrain() {
   let seed=874319;
   for(let y=0;y<height;y++){
     seed=(seed*1664525+1013904223)>>>0;
-    const band=232+(seed%12);
+    const band=236+(seed%5);
     for(let x=0;x<width;x++){
-      const offset=(y*width+x)*4,value=band+((x*17+y*11)%3);
+      const offset=(y*width+x)*4,value=band+((x*17+y*11)%2);
       pixels[offset]=pixels[offset+1]=pixels[offset+2]=value;pixels[offset+3]=255;
     }
   }
@@ -61,11 +61,11 @@ function makeStudio(renderer) {
     const card=new THREE.Mesh(new THREE.PlaneGeometry(width,height),material);
     card.position.set(x,y,z);card.lookAt(0,0,0);studio.add(card);
   };
-  lightCard('#fff4e7',4.2,130,340,-170,115,240);
-  lightCard('#ffffff',2.2,42,320,190,30,130);
-  lightCard('#fff6ec',1.5,82,340,-285,20,-85);
-  lightCard('#fff9ef',3,280,80,20,245,70);
-  lightCard('#eab6ce',1.4,110,260,160,-40,-210);
+  lightCard('#fff4e7',2.2,230,360,-170,115,240);
+  lightCard('#fff8f1',1.1,120,340,190,30,130);
+  lightCard('#fff6ec',1.2,130,350,-285,20,-85);
+  lightCard('#fff9ef',1.8,340,140,20,245,70);
+  lightCard('#fff5eb',.9,170,300,160,-40,-210);
   lightCard('#d7a875',.85,270,60,-35,-220,130);
   const pmrem=new THREE.PMREMGenerator(renderer);
   const environment=pmrem.fromScene(studio,.035,.1,1200);
@@ -77,10 +77,11 @@ function makeStudio(renderer) {
 function makePhone(environment) {
   const group=new THREE.Group();group.name='Cosmic Orange physical phone';
   const grain=metalGrain();
-  const orange=new THREE.MeshPhysicalMaterial({color:'#cd6229',metalness:.86,roughness:.29,
-    roughnessMap:grain,clearcoat:.18,clearcoatRoughness:.25,envMapIntensity:1.45});
-  const edge=new THREE.MeshPhysicalMaterial({color:'#e58c49',metalness:.93,roughness:.19,envMapIntensity:1.65});
-  const dark=new THREE.MeshPhysicalMaterial({color:'#080a0e',metalness:.06,roughness:.13,clearcoat:1,clearcoatRoughness:.075,envMapIntensity:1.1});
+  const orange=new THREE.MeshPhysicalMaterial({color:'#d36d32',metalness:.78,roughness:.38,
+    roughnessMap:grain,clearcoat:.12,clearcoatRoughness:.32,envMapIntensity:.95});
+  const edge=new THREE.MeshPhysicalMaterial({color:'#cc622a',metalness:.76,roughness:.36,envMapIntensity:.88});
+  const dark=new THREE.MeshPhysicalMaterial({color:'#030407',metalness:0,roughness:.16,
+    clearcoat:.65,clearcoatRoughness:.12,specularIntensity:.45,envMapIntensity:.35});
   const polymer=new THREE.MeshStandardMaterial({color:'#ac582d',roughness:.65,metalness:0});
   const black=new THREE.MeshStandardMaterial({color:'#030406',roughness:.4,metalness:.1,envMapIntensity:.25});
   const add=(geometry,material,x=0,y=0,z=0)=>{
@@ -88,7 +89,7 @@ function makePhone(environment) {
   };
 
   add(solid(WIDTH,HEIGHT,13.4,DEPTH,.67),orange);
-  // A fine bright chamfer and the black ceramic/glass perimeter are separate physical layers.
+  // A thin anodized-orange lip surrounds near-black glass; the front is not a chrome frame.
   add(solid(76.65,162.05,12.78,.40,.12),edge,0,0,4.10);
   add(solid(75.9,161.25,12.35,.34,.12),dark,0,0,4.29);
   const screenMaterial=new THREE.MeshBasicMaterial({color:'#121027',toneMapped:false});
@@ -153,7 +154,7 @@ function makePhone(environment) {
   const back=add(face(72.65,126.0,10.1),rearMaterial,0,-14.5,-4.39);back.rotation.y=Math.PI;
   const plateau=add(solid(75.4,38.2,10.9,2.8,.65),orange,0,59.8,-5.1);
   const rearLensMaterial=new THREE.MeshPhysicalMaterial({color:'#091019',metalness:.25,roughness:.055,clearcoat:1,envMapIntensity:1.6});
-  for(const [x,y] of [[-23.3,68],[-7.6,68],[-23.3,51.9]]){
+  for(const [x,y] of [[-23.3,68],[-23.3,51.9],[-7.6,59.95]]){
     const rim=add(new THREE.CylinderGeometry(6.2,6.2,1.75,48),edge,x,y,-7.15);rim.rotation.x=Math.PI/2;
     const optic=add(new THREE.CircleGeometry(5.3,48),rearLensMaterial,x,y,-8.06);optic.rotation.y=Math.PI;
   }
@@ -193,14 +194,14 @@ function mount(rotor) {
   Object.assign(canvas.style,{position:'absolute',width:'132%',height:'116%',left:'-16%',top:'-8%',pointerEvents:'none',visibility:'hidden'});
   rotor.appendChild(canvas);
   renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
   const scene=new THREE.Scene();
   try{environment=makeStudio(renderer);}catch{renderer.dispose();canvas.remove();return null;}
   scene.environment=environment.texture;
   const phone=makePhone(environment.texture);scene.add(phone.group);
-  scene.add(new THREE.HemisphereLight('#fff6ec','#826350',.8));
+  scene.add(new THREE.HemisphereLight('#fff3e7','#6d4834',.65));
   const lighting=(color,intensity,x,y,z)=>{const light=new THREE.DirectionalLight(color,intensity);light.position.set(x,y,z);scene.add(light);};
-  lighting('#fff2e2',2.5,-130,190,250);lighting('#f5eaf4',.8,190,30,140);lighting('#ffe1b0',1.05,-40,-180,70);
+  lighting('#fff2e2',2,-130,190,250);lighting('#fff7ee',.8,190,30,140);lighting('#ffe1b0',.9,-40,-180,70);
   const camera=new THREE.PerspectiveCamera(22,1,.5,1600);camera.position.set(0,0,500);camera.lookAt(0,0,0);
   let width=0,height=0;
   const fitCompactPose=()=>{
