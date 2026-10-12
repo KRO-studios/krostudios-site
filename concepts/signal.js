@@ -297,6 +297,8 @@
       const deviceRect = device.getBoundingClientRect();
       const screenRect = screen?.getBoundingClientRect();
       const canvasRect = canvas.getBoundingClientRect();
+      const projected = device.dataset.renderer === 'webgl' ? device.kroPhone3D?.getScreenPolygon() : null;
+      const hasProjection = Array.isArray(projected) && projected.length >= 4 && projected.every(p => Number.isFinite(p.x) && Number.isFinite(p.y));
       const hasScreen = screenRect && screenRect.width > 0 && screenRect.height > 0;
       const rect = hasScreen ? screenRect : deviceRect;
       if (!rect.width || !rect.height) return;
@@ -312,7 +314,17 @@
       frontCtx.shadowColor = 'rgba(0,0,0,1)';
       frontCtx.shadowBlur = Math.min(26, rect.width * 0.085) * dpr;
       frontCtx.beginPath();
-      frontCtx.roundRect(x, y, protectedWidth, protectedHeight, Math.min(22, rect.width * 0.075));
+      if (hasProjection) {
+        // The real 3D display is a projected quadrilateral, not the hidden
+        // fallback image's rectangle. Foil follows its actual rotated edges.
+        projected.forEach((point, index) => {
+          const px = point.x - canvasRect.left, py = point.y - canvasRect.top;
+          if (index === 0) frontCtx.moveTo(px, py); else frontCtx.lineTo(px, py);
+        });
+        frontCtx.closePath();
+      } else {
+        frontCtx.roundRect(x, y, protectedWidth, protectedHeight, Math.min(22, rect.width * 0.075));
+      }
       frontCtx.fill();
       // Labels and reset controls remain readable even when the near foil
       // sweeps through their position beneath the floating device.
