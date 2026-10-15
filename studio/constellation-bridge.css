@@ -1,0 +1,388 @@
+/* A living constellation: every world occupies its own orbit around the phone. */
+body[data-design="bridge"] {
+  background: #08090d;
+  --bridge-gold: #e0bd76;
+  --bridge-rose: #ef9fc0;
+}
+
+body[data-design="bridge"] .prototype {
+  --bridge-scene-height: max(700px, 100svh);
+  position: relative;
+  isolation: isolate;
+  min-height: var(--bridge-scene-height);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 55%, #1b12151a, transparent 65%);
+}
+
+body[data-design="bridge"] .signal-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body[data-design="bridge"] .bridge-halo {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--bridge-scene-height) * .48);
+  width: min(880px, 72vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #e0bd7612, #ef9fc006 52%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-design="bridge"] .bridge-halo::before,
+body[data-design="bridge"] .bridge-halo::after {
+  content: "";
+  position: absolute;
+  top: 51%;
+  width: 68%;
+  height: 42%;
+  border-radius: 50%;
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+body[data-design="bridge"] .bridge-halo::before {
+  left: -35%;
+  background: radial-gradient(ellipse, #e0bd7618, #e0bd7604 48%, transparent 72%);
+  transform: rotate(-28deg);
+}
+
+body[data-design="bridge"] .bridge-halo::after {
+  right: -35%;
+  top: 61%;
+  background: radial-gradient(ellipse, #ef9fc019, #ef9fc004 48%, transparent 72%);
+  transform: rotate(25deg);
+}
+
+body[data-design="bridge"] .atlas-label,
+body[data-design="bridge"] .signal-count {
+  position: absolute;
+  top: 16px;
+  margin: 0;
+  z-index: 2;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .25em;
+}
+
+body[data-design="bridge"] .atlas-label {
+  left: 2.5%;
+  color: var(--bridge-gold);
+}
+
+body[data-design="bridge"] .signal-count {
+  right: 2.5%;
+  color: #eadbcb;
+}
+
+body[data-design="bridge"] .hero-copy {
+  position: absolute;
+  top: calc(var(--bridge-scene-height) * .076);
+  left: 2.5%;
+  width: 35%;
+  z-index: 2;
+}
+
+body[data-design="bridge"] .hero-copy h1 {
+  margin: 0;
+  font-size: clamp(54px, 6.1vw, 104px);
+  line-height: .99;
+  font-weight: 400;
+  letter-spacing: -.065em;
+  color: #f3edde;
+  white-space: nowrap;
+}
+
+body[data-design="bridge"] .hero-copy h1 span {
+  display: block;
+  padding-bottom: .12em;
+  background: linear-gradient(100deg, #f0d790 4%, #e9ba82 32%, #eda5c1 67%, #f3d6ce);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+body[data-design="bridge"] .phone-host {
+  position: absolute;
+  left: 51%;
+  top: calc(var(--bridge-scene-height) * .042);
+  width: min(400px, calc(var(--bridge-scene-height) * .425));
+  aspect-ratio: 78 / 163.4;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+body[data-design="bridge"] .phone-host .signal-device {
+  width: 100%;
+  height: 100%;
+}
+
+body[data-design="bridge"] .world-index {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--bridge-scene-height);
+  z-index: 3;
+  pointer-events: none;
+}
+
+body[data-design="bridge"] .app-node {
+  --orbit-delay: -3s;
+  --satellite-color: #e0bd76;
+  --orbit-highlight: #e0bd7699;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 152px;
+  min-height: 116px;
+  padding: 8px 5px;
+  border: 0;
+  border-radius: 30px;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  color: #f3edde;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body[data-design="bridge"] .app-node .app-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  padding: 8px;
+  margin: 0;
+  border: 1px solid #d7ad6652;
+  border-radius: 50%;
+  background:
+    linear-gradient(145deg, #efe6d718 0%, #efe6d701 38%, #08090d6b 65%, #e0bd7612 100%),
+    radial-gradient(circle at 35% 25%, #29232bec, #08090def 74%);
+  box-shadow: 0 0 28px #e0bd7610, 0 10px 24px #0005, inset 0 1px 0 #fff2, inset 0 -1px 0 #e0bd7620;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .3s ease;
+}
+
+body[data-design="bridge"] .app-node .app-icon::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid #d7ad662b;
+  border-radius: 50%;
+  background: conic-gradient(from 20deg, transparent 0deg 26deg, var(--orbit-highlight) 28deg 54deg, transparent 56deg 197deg, #ef9fc047 199deg 224deg, transparent 226deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  pointer-events: none;
+  transition: border-color .25s ease;
+  animation: bridge-orbit-sweep 27s linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+body[data-design="bridge"] .app-node .app-icon::after {
+  content: "";
+  position: absolute;
+  inset: -11px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 3px, var(--satellite-color) 0 1.6px, #e0bd7628 2px 4px, transparent 6px),
+    radial-gradient(circle at 18% 85%, #ef9fc0a1 0 1px, transparent 2px);
+  pointer-events: none;
+  animation: bridge-orbit-sweep 39s linear reverse infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+body[data-design="bridge"] .app-node:nth-child(2n) { --orbit-delay: -11s; }
+body[data-design="bridge"] .app-node:nth-child(3n) { --orbit-delay: -21s; }
+body[data-design="bridge"] .app-node:nth-child(4n) { --orbit-delay: -31s; }
+
+@keyframes bridge-orbit-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+body[data-design="bridge"] .app-node .app-icon img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 14px #0007;
+}
+
+body[data-design="bridge"] .app-node .app-number {
+  position: absolute;
+  top: 19px;
+  left: calc(50% - 49px);
+  min-width: 20px;
+  padding: 3px 4px;
+  border-radius: 10px;
+  background: #08090d;
+  color: #e0bd76a6;
+  font-size: 8px;
+  letter-spacing: .06em;
+  z-index: 1;
+  /* Leave the artwork free of HUD badges. */
+  display: none;
+}
+
+body[data-design="bridge"] .app-node .app-title {
+  max-width: 148px;
+  padding: 0 7px;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: center;
+  text-shadow: 0 2px 6px #000, 0 0 12px #000;
+}
+
+body[data-design="bridge"] .app-node .app-status {
+  margin-top: -6px;
+  padding-inline: 6px;
+  border-radius: 99px;
+  background: #08090dd9;
+  color: var(--bridge-gold);
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px #000;
+}
+body[data-design="bridge"] .app-node .app-status:empty { display: none; }
+
+body[data-design="bridge"] .app-node:hover .app-icon,
+body[data-design="bridge"] .app-node:focus-visible .app-icon {
+  transform: translateY(-4px) scale(1.05);
+  border-color: #e0bd76b5;
+  box-shadow: 0 0 30px #e0bd761c, inset 0 0 18px #e0bd7610;
+}
+
+body[data-design="bridge"] .app-node:focus-visible {
+  outline: 2px solid #e0bd76;
+  outline-offset: 5px;
+}
+
+body[data-design="bridge"] .app-node[aria-pressed="true"] .app-icon,
+body[data-design="bridge"] .app-node.is-selected .app-icon {
+  --satellite-color: #ef9fc0;
+  --orbit-highlight: #ef9fc0d1;
+  border-color: #ef9fc0cc;
+  box-shadow: 0 0 0 4px #ef9fc00a, 0 0 54px #ef9fc040, 0 0 17px #ef9fc030, inset 0 1px 0 #f8dce54f, inset 0 0 18px #ef9fc016;
+}
+
+body[data-design="bridge"] .app-node[aria-pressed="true"] .app-icon::before,
+body[data-design="bridge"] .app-node.is-selected .app-icon::before {
+  border-color: #ef9fc04f;
+}
+
+body[data-design="bridge"] .app-node[aria-pressed="true"] .app-icon::after,
+body[data-design="bridge"] .app-node.is-selected .app-icon::after {
+  filter: drop-shadow(0 0 4px #ef9fc0b8);
+}
+
+body[data-design="bridge"] .app-node[data-world="kino"] { left: 21%; top: calc(var(--bridge-scene-height) * .37); }
+body[data-design="bridge"] .app-node[data-world="echo"] { left: 14%; top: calc(var(--bridge-scene-height) * .54); }
+body[data-design="bridge"] .app-node[data-world="feed"] { left: 11.5%; top: calc(var(--bridge-scene-height) * .70); }
+body[data-design="bridge"] .app-node[data-world="beer"] { left: 21%; top: calc(var(--bridge-scene-height) * .84); }
+body[data-design="bridge"] .app-node[data-world="tanakh"] { left: 81%; top: calc(var(--bridge-scene-height) * .27); }
+body[data-design="bridge"] .app-node[data-world="half-life"] { left: 91%; top: calc(var(--bridge-scene-height) * .445); }
+body[data-design="bridge"] .app-node[data-world="dune"] { left: 88%; top: calc(var(--bridge-scene-height) * .69); }
+body[data-design="bridge"] .app-node[data-world="rap"] { left: 80%; top: calc(var(--bridge-scene-height) * .84); }
+
+@media (min-width: 1001px) and (max-width: 1150px) {
+  body[data-design="bridge"] .hero-copy h1 { font-size: 5.5vw; }
+  body[data-design="bridge"] .phone-host { width: min(330px, calc(var(--bridge-scene-height) * .41)); }
+  body[data-design="bridge"] .app-node { width: 142px; }
+  body[data-design="bridge"] .app-node[data-world="echo"] { left: 12%; }
+  body[data-design="bridge"] .app-node[data-world="half-life"] { left: 90%; }
+}
+
+@media (max-width: 1000px) {
+  body[data-design="bridge"] .prototype {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    padding: 44px 28px 42px;
+  }
+  body[data-design="bridge"] .atlas-label,
+  body[data-design="bridge"] .signal-count { top: 30px; font-size: 10px; }
+  body[data-design="bridge"] .atlas-label { left: 28px; }
+  body[data-design="bridge"] .signal-count { right: 28px; }
+  body[data-design="bridge"] .hero-copy {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin: 38px 0 35px;
+    text-align: center;
+  }
+  body[data-design="bridge"] .hero-copy h1 { font-size: clamp(55px, 9.1vw, 88px); }
+  body[data-design="bridge"] .phone-host {
+    position: relative;
+    inset: auto;
+    width: 280px;
+    flex: none;
+    transform: none;
+    margin: 0 0 26px;
+  }
+  body[data-design="bridge"] .bridge-halo { top: 490px; width: 100%; }
+  body[data-design="bridge"] .world-index {
+    position: relative;
+    inset: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(720px, 100%);
+    gap: 17px 8px;
+    padding: 24px 0 18px;
+    pointer-events: auto;
+  }
+  body[data-design="bridge"] .app-node,
+  body[data-design="bridge"] .app-node[data-world] {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 146px;
+    transform: none;
+    padding: 12px 3px;
+    gap: 11px;
+  }
+  body[data-design="bridge"] .app-node .app-icon { width: 74px; height: 74px; flex-basis: 74px; padding: 7px; }
+  body[data-design="bridge"] .app-node .app-icon::after { inset: -10px; }
+  body[data-design="bridge"] .app-node .app-icon img { width: 56px; height: 56px; border-radius: 14px; }
+  body[data-design="bridge"] .app-node .app-title { font-size: 14px; max-width: 150px; }
+  body[data-design="bridge"] .app-node .app-number { left: calc(50% - 43px); top: 15px; }
+}
+
+@media (max-width: 570px) {
+  body[data-design="bridge"] .prototype { padding: 35px 20px 34px; }
+  body[data-design="bridge"] .atlas-label { left: 20px; letter-spacing: .17em; }
+  body[data-design="bridge"] .signal-count { right: 20px; letter-spacing: .15em; }
+  body[data-design="bridge"] .hero-copy { margin: 43px 0 29px; }
+  body[data-design="bridge"] .hero-copy h1 { font-size: clamp(45px, 12vw, 65px); }
+  body[data-design="bridge"] .phone-host { width: min(280px, calc(100vw - 64px)); margin-bottom: 24px; }
+  body[data-design="bridge"] .world-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 12px; padding-top: 20px; }
+  body[data-design="bridge"] .app-node { min-height: 142px; }
+  body[data-design="bridge"] .app-node .app-title { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-design="bridge"] .app-node .app-icon,
+  body[data-design="bridge"] .app-node .app-icon::before { transition: none; }
+  body[data-design="bridge"] .app-node .app-icon::before,
+  body[data-design="bridge"] .app-node .app-icon::after { animation: none; }
+}
+
+body[data-design="bridge"][data-motion="paused"] .app-node .app-icon::before,
+body[data-design="bridge"][data-motion="paused"] .app-node .app-icon::after {
+  animation-play-state: paused;
+}

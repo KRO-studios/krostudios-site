@@ -2,6 +2,45 @@
 
 This repository is the static site served at `https://krostudios.com/`.
 
+## Selected homepage — Orbit Links
+
+The local homepage now implements the approved Orbit Links design: all eight
+app orbits have separate preview controls and direct destination links, around
+the live gold/rose signal field and rotatable orange phone. The three owned
+app websites are labelled Website; the remaining five apps link to their
+actual Google Play listings. Echo Dare stays marked coming soon.
+
+`index.html` uses an isolated local bundle in `studio/`. It does not alter
+`concepts/` or any app-specific marketing, support or legal page. The old
+navigation, bottom selected-app controls and design-switch footer stay removed.
+The real `logo.png`, KRO Studios name and contact link are now in a compact
+top bar, alongside functional ENG / HEB / RUS language buttons. There is no
+bottom footer. The contact action remains a native `mailto:hello@krostudios.com`
+link, not a contact form or automatic email sender.
+
+`studio/home-i18n.js` translates interface text, accessible instructions and
+metadata while keeping product names, screenshots and destination URLs intact.
+Hebrew uses right-to-left text, mirrored app orbits and matching keyboard
+navigation; the phone and screenshot artwork are never mirrored. Switching
+language preserves the selected app, screenshot, phone pose and motion state.
+A valid `?lang=en`, `?lang=he` or `?lang=ru` overrides the saved local preference;
+otherwise the saved preference or English is used. Storage failures are safe.
+Language controls need JavaScript and remain disabled in the English no-JS
+fallback, where all app links and the contact link are still usable.
+The homepage remains navigable with JavaScript disabled, using eight actual
+HTML links and the matching phone render. Fonts and Three.js are served locally.
+
+Run `node tests/verify_studio_homepage.js` and the existing app-page contracts
+before publishing. Browser coverage is in the working project’s
+`prototypes/world-atlas/tests/verify-homepage.mjs` and
+`prototypes/world-atlas/tests/verify-homepage-languages.mjs`. The main local
+homepage preview is `http://127.0.0.1:8771/`; the older standalone layout at
+`prototypes/world-atlas/constellation-bridge.html` has no production top bar.
+`prototypes/world-atlas/tests/sync-homepage-bundle.mjs` mechanically syncs the
+approved shared runtime and assets into `studio/`; `home-catalog.js`,
+`home-i18n.js` and `homepage.css` are homepage-specific. No publishing is
+performed by that script.
+
 ## Signal Field preview
 
 The `/concepts/` preview's eight-app registry is `concepts/catalog.js`. Keep

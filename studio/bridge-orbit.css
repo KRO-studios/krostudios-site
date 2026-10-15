@@ -1,0 +1,44 @@
+/* Destinations travel with each orbit; the phone remains the only central object. */
+body[data-site-access="orbit"] .orbit-site-link {
+  position: absolute;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 105px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 99px;
+  transform: translateX(-50%);
+  border: 1px solid #e0bd7636;
+  background: linear-gradient(150deg,#1d1914c9,#08090de8 65%);
+  box-shadow: inset 0 1px 0 #fff1;
+  color: #cfc2ad;
+  font: 10px/1.4 Plex,monospace;
+  letter-spacing: .035em;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+body[data-site-access="orbit"] .orbit-site-link [aria-hidden] { color:#e0bd76; font-size:13px; }
+@media(min-width:1001px){
+  body[data-site-access="orbit"] .app-node[data-world="feed"] {top:calc(var(--bridge-scene-height) * .77);}
+}
+body[data-site-access="orbit"] .orbit-site-link.is-active {
+  border-color: #ef9fc08c;
+  background: linear-gradient(135deg,#492333d9,#171116e8);
+  color: #ffe4ee;
+  box-shadow: 0 0 28px #ef9fc00e,inset 0 1px 0 #ffd1e322;
+}
+body[data-site-access="orbit"] .orbit-site-link.is-active [aria-hidden] {color:#ef9fc0;}
+body[data-site-access="orbit"] .orbit-site-link:hover {color:#fff5e8;border-color:#e0bd76;}
+@media(max-width:1000px){
+  body[data-site-access="orbit"] .world-index {gap:14px 12px;}
+  body[data-site-access="orbit"] .app-node[data-world] {min-height:190px;padding-bottom:55px;}
+  body[data-site-access="orbit"] .orbit-site-link {min-width:110px;}
+}
+@media(max-width:570px){
+  body[data-site-access="orbit"] .world-index {gap:15px 12px;}
+  body[data-site-access="orbit"] .app-node[data-world] {min-height:191px;}
+}
