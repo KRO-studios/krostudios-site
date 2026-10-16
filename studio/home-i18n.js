@@ -22,12 +22,12 @@
       noScriptIndex: 'Open a KRO Studios app website or store page',
       preview: name => 'Preview ' + name,
       destination: (name, website) => 'Open ' + name + (website ? ' website' : ' on Google Play') + ' in a new tab',
-      phone: (name, shot, total) => `${name}, screenshot ${shot} of ${total}, on an orange 3D phone. Drag or use arrow keys to rotate. Home resets; P pauses motion.`,
-      phoneHelp: 'Select an app to change the screen. Drag the phone horizontally to rotate it; vertical movement scrolls on touch screens. Arrow keys rotate. Home resets. P pauses or resumes motion.',
+      phone: (name, shot, total) => `${name}, screenshot ${shot} of ${total}, on an orange 3D phone. Click the screen or press Enter for the next screenshot. Drag or use arrow keys to rotate. Home resets; P pauses motion.`,
+      phoneHelp: 'Click or tap the screen to see the next screenshot. Select an app to change the gallery. Drag the phone horizontally to rotate it; vertical movement scrolls on touch screens. Arrow keys rotate. Enter or Space shows the next screenshot. Home resets. P pauses or resumes motion.',
       phoneImage: name => name + "'s actual app screen on an orange phone",
-      phoneHint: 'DRAG TO ROTATE · ARROW KEYS',
-      tiltHint: 'Drag to tilt image · arrow keys · P pauses motion · Home resets',
-      rotateHint: 'Drag to rotate · arrow keys · P pauses motion · Home resets',
+      phoneHint: 'TAP SCREEN TO EXPLORE · DRAG TO ROTATE',
+      tiltHint: 'Tap screen for next screenshot · drag to tilt · arrow keys · Home resets',
+      rotateHint: 'Tap screen for next screenshot · drag to rotate · arrow keys · Home resets',
       retry: 'Retry 3D',
       renderer: {webgl: 'Live 3D', loading: 'Preparing 3D preview…', fallback: 'Preview image · 3D unavailable'},
       selection: (name, status, shot, total) => `${name}. ${status}. Screenshot ${shot} of ${total}.`,
@@ -49,12 +49,12 @@
       noScriptIndex: 'פתיחת אתר של יישום או דף בחנות של KRO Studios',
       preview: name => 'תצוגה מקדימה של ' + name,
       destination: (name, website) => website ? `פתיחת האתר של ${name} בכרטיסייה חדשה` : `פתיחת ${name} ב־Google Play בכרטיסייה חדשה`,
-      phone: (name, shot, total) => `${name}, צילום מסך ${shot} מתוך ${total}, בטלפון תלת־ממדי כתום. גררו או השתמשו במקשי החצים כדי לסובב. Home מאפס; P משהה את התנועה.`,
-      phoneHelp: 'בחרו יישום כדי להחליף את המסך. גררו את הטלפון לרוחב כדי לסובב; גרירה אנכית מאפשרת גלילה במסכי מגע. מקשי החצים מסובבים. Home מאפס. P משהה או מחדש את התנועה.',
+      phone: (name, shot, total) => `${name}, צילום מסך ${shot} מתוך ${total}, בטלפון תלת־ממדי כתום. הקישו על המסך או לחצו Enter לצילום הבא. גררו או השתמשו במקשי החצים כדי לסובב. Home מאפס; P משהה את התנועה.`,
+      phoneHelp: 'הקישו על המסך כדי לראות את צילום המסך הבא. בחרו יישום כדי להחליף גלריה. גררו את הטלפון לרוחב כדי לסובב; גרירה אנכית מאפשרת גלילה במסכי מגע. מקשי החצים מסובבים. Enter או רווח מציגים את הצילום הבא. Home מאפס. P משהה או מחדש את התנועה.',
       phoneImage: name => 'מסך אמיתי של ' + name + ' בטלפון כתום',
-      phoneHint: 'גררו כדי לסובב · מקשי החצים',
-      tiltHint: 'גררו כדי להטות את התמונה · מקשי החצים · P משהה תנועה · Home מאפס',
-      rotateHint: 'גררו כדי לסובב · מקשי החצים · P משהה תנועה · Home מאפס',
+      phoneHint: 'הקישו לצילום הבא · גררו כדי לסובב',
+      tiltHint: 'הקישו לצילום הבא · גררו להטיה · מקשי החצים · Home מאפס',
+      rotateHint: 'הקישו לצילום הבא · גררו לסיבוב · מקשי החצים · Home מאפס',
       retry: 'ניסיון נוסף לתלת־ממד',
       renderer: {webgl: 'תצוגת תלת־ממד חיה', loading: 'מכינים תצוגת תלת־ממד…', fallback: 'תמונה מקדימה · תלת־ממד לא זמין'},
       selection: (name, status, shot, total) => `${name}. ${status}. צילום מסך ${shot} מתוך ${total}.`,
@@ -77,12 +77,12 @@
       noScriptIndex: 'Открыть сайт приложения KRO Studios или страницу в магазине',
       preview: name => 'Предпросмотр ' + name,
       destination: (name, website) => website ? `Открыть сайт ${name} в новой вкладке` : `Открыть ${name} в Google Play в новой вкладке`,
-      phone: (name, shot, total) => `${name}, снимок экрана ${shot} из ${total}, на оранжевом 3D-телефоне. Перетаскивайте или используйте стрелки для поворота. Home сбрасывает поворот; P приостанавливает анимацию.`,
-      phoneHelp: 'Выберите приложение, чтобы сменить экран. Перетаскивайте телефон по горизонтали для поворота; вертикальное движение на сенсорном экране прокручивает страницу. Клавиши со стрелками поворачивают телефон. Home сбрасывает поворот. P приостанавливает и возобновляет анимацию.',
+      phone: (name, shot, total) => `${name}, снимок экрана ${shot} из ${total}, на оранжевом 3D-телефоне. Нажмите на экран или Enter для следующего снимка. Перетаскивайте или используйте стрелки для поворота. Home сбрасывает поворот; P приостанавливает анимацию.`,
+      phoneHelp: 'Нажмите на экран для следующего снимка. Выберите приложение, чтобы сменить галерею. Перетаскивайте телефон по горизонтали для поворота; вертикальное движение на сенсорном экране прокручивает страницу. Клавиши со стрелками поворачивают телефон. Enter или пробел показывают следующий снимок. Home сбрасывает поворот. P приостанавливает и возобновляет анимацию.',
       phoneImage: name => 'Настоящий экран ' + name + ' на оранжевом телефоне',
-      phoneHint: 'ПЕРЕТАСКИВАЙТЕ ДЛЯ ПОВОРОТА · КЛАВИШИ СО СТРЕЛКАМИ',
-      tiltHint: 'Перетаскивайте для наклона изображения · стрелки · P приостанавливает анимацию · Home сбрасывает поворот',
-      rotateHint: 'Перетаскивайте для поворота · стрелки · P приостанавливает анимацию · Home сбрасывает поворот',
+      phoneHint: 'НАЖМИТЕ ДЛЯ СЛЕДУЮЩЕГО СНИМКА · ПЕРЕТАСКИВАЙТЕ ДЛЯ ПОВОРОТА',
+      tiltHint: 'Нажмите для следующего снимка · перетаскивайте для наклона · стрелки · Home сбрасывает поворот',
+      rotateHint: 'Нажмите для следующего снимка · перетаскивайте для поворота · стрелки · Home сбрасывает поворот',
       retry: 'Повторить 3D-просмотр',
       renderer: {webgl: 'Интерактивный 3D-просмотр', loading: 'Подготовка 3D-просмотра…', fallback: 'Изображение · 3D недоступно'},
       selection: (name, status, shot, total) => `${name}. ${status}. Снимок экрана ${shot} из ${total}.`,
@@ -109,24 +109,28 @@
 
   const setText = (element, value) => { if (element && element.textContent !== value) element.textContent = value; };
   const setAttribute = (element, name, value) => { if (element && element.getAttribute(name) !== value) element.setAttribute(name, value); };
+  const normalizeShot = (value, key) => {
+    const index = Number(value);
+    return Number.isSafeInteger(index) && index >= 0 && index < catalog.apps[key].shots.length ? index : 0;
+  };
   function currentSelection(detail) {
     if (detail && catalog.order.includes(detail.key)) {
-      lastSelection = {key: detail.key, shot: detail.shot === 1 ? 1 : 0, app: catalog.apps[detail.key]};
+      lastSelection = {key: detail.key, shot: normalizeShot(detail.shot, detail.key), app: catalog.apps[detail.key]};
       return lastSelection;
     }
     const state = window.KROPrototype?.getState?.();
-    if (state && catalog.order.includes(state.key)) return {key: state.key, shot: state.shot === 1 ? 1 : 0, app: catalog.apps[state.key]};
+    if (state && catalog.order.includes(state.key)) return {key: state.key, shot: normalizeShot(state.shot, state.key), app: catalog.apps[state.key]};
     if (lastSelection) return lastSelection;
     const query = new URLSearchParams(location.search);
     const key = catalog.order.includes(query.get('app')) ? query.get('app') : (catalog.order.includes(stage.dataset.app) ? stage.dataset.app : 'echo');
-    return {key, shot: query.get('shot') === '1' ? 1 : 0, app: catalog.apps[key]};
+    return {key, shot: normalizeShot(query.get('shot'), key), app: catalog.apps[key]};
   }
   const appLanguage = key => key === 'feed' ? 'ru' : 'en';
   const translatedStatus = (key, app) => key === 'echo' ? copy[language].statusComingSoon : app.status;
   function selectionAnnouncement(key, shot, app) {
     const actual = catalog.apps[key] || app;
     if (!actual) return '';
-    return copy[language].selection(actual.title, translatedStatus(key, actual), shot === 1 ? 2 : 1, actual.shots?.length || 2);
+    return copy[language].selection(actual.title, translatedStatus(key, actual), normalizeShot(shot, key) + 1, actual.shots.length);
   }
   function motionAnnouncement(paused) { return paused ? copy[language].paused : copy[language].running; }
   function rendererStatus() {

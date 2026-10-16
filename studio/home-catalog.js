@@ -6,10 +6,13 @@
   const apps={};
   for(const key of source.order){
     const app=source.apps[key];
+    const gallery=(window.KROStoreGallery?.apps?.[key]?.images||[]).filter(image=>!app.shots.includes(image.path)&&!app.shots.includes(image.representedBy));
+    const shots=[...app.shots,...gallery.map(image=>image.path)];
+    const fallbacks=[...app.fallbacks,...gallery.map((_,index)=>`assets/gallery-phones/${key}-${index+app.shots.length}.webp`)];
     apps[key]=Object.freeze({...app,
       icon:prefix+app.icon,
-      shots:Object.freeze(app.shots.map(path=>prefix+path)),
-      fallbacks:Object.freeze(app.fallbacks.map(path=>prefix+path))
+      shots:Object.freeze(shots.map(path=>prefix+path)),
+      fallbacks:Object.freeze(fallbacks.map(path=>prefix+path))
     });
   }
   window.KROCatalog=Object.freeze({...source,apps:Object.freeze(apps)});

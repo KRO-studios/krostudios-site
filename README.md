@@ -30,6 +30,46 @@ fallback, where all app links and the contact link are still usable.
 The homepage remains navigable with JavaScript disabled, using eight actual
 HTML links and the matching phone render. Fonts and Three.js are served locally.
 
+The desktop handset is centered vertically within the app-icon constellation.
+A quick click/tap on its actual display advances the selected app's gallery;
+holding or dragging rotates without changing screenshots. Enter/Space advances,
+the arrow keys rotate, and Home resets the pose. The phone rim and Dynamic
+Island are not screenshot-advance targets. Mobile vertical scrolling is retained.
+
+The homepage has 61 distinct screens. `studio/store-gallery.json` records the
+55 official Google Play/iPhone listing screenshots collected on 2026-10-15,
+with listing URLs, original/delivery hashes and dimensions. Its browser subset
+is `studio/store-gallery.js`. Existing real in-app captures remain first;
+store posters already represented by an existing image are not repeated.
+Echo Dare remains coming soon with its two approved captures, not an invented
+store gallery. Large store images use uncropped WebP delivery copies; gallery
+images are requested as selected rather than all at startup. Every screenshot
+has a matching same-model orange-phone render for browsers without WebGL.
+
+Every screenshot is shown in full using centered contain fitting: no cropping
+or stretching. The display keeps a matching background where the screenshot's
+aspect ratio differs. The original16 phone renders and45 matching frames in
+`studio/assets/gallery-phones/` provide the same uncropped fallback appearance.
+The screenshot-change energy wave and handset glow remain enabled.
+
+Screenshot taps and Enter/Space also send a1.18-second gold/rose energy wave
+through the larger, brighter ribbons, with a short glow around the handset.
+The signal uses a fixed32-spark pool; repeated taps restart the effect rather
+than stacking animations. Dragging and holding do not emit the signal.
+Paused/reduced-motion modes receive static field feedback with no phone glow.
+
+The hero heading and its container are transparent. The gold/rose gradient
+remains clipped to the text, while the live field, particles and tap signal
+continue behind the heading without a black rectangle or headline-shaped
+cutout in either the WebGL or Canvas2D renderer.
+
+Additional gallery QA and fallback generation live in the working project's
+`prototypes/world-atlas/tests/verify-phone-gallery.mjs`,
+`prototypes/world-atlas/tests/verify-cover-effects.mjs` and
+`prototypes/world-atlas/tests/render-homepage-gallery.mjs`. The generator renders
+the additional45 `studio/assets/gallery-phones/` frames from the real local3D
+model; it never changes the original prototype renders or publishes the site.
+
 Run `node tests/verify_studio_homepage.js` and the existing app-page contracts
 before publishing. Browser coverage is in the working project’s
 `prototypes/world-atlas/tests/verify-homepage.mjs` and

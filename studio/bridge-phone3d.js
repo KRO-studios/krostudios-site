@@ -214,7 +214,7 @@ function makePhone(environment) {
   const flash=add(new THREE.CircleGeometry(2.3,32),new THREE.MeshPhysicalMaterial({color:'#ebe3c4',roughness:.4,metalness:.05}),15.8,66.5,-6.55);flash.rotation.y=Math.PI;
   const lidar=add(new THREE.CircleGeometry(2.1,32),black,15.8,53.4,-6.55);lidar.rotation.y=Math.PI;
   group.traverse(object=>{if(object.material&&object.material.isMeshStandardMaterial)object.material.envMap=environment;});
-  return {group,screen,screenMaterial,grain};
+  return {group,screen,cover,screenMaterial,grain};
 }
 
 function screenTexture(image,appKey,anisotropy) {
@@ -223,11 +223,19 @@ function screenTexture(image,appKey,anisotropy) {
   if(!context)throw new Error('Screen texture canvas is unavailable');
   const backgrounds={echo:'#131028',kino:'#101010',tanakh:'#10131b'};
   context.fillStyle=backgrounds[appKey]||'#101018';context.fillRect(0,0,canvas.width,canvas.height);
+  // Show the entire genuine screenshot, with no cropping or stretching.
+  // The surrounding display keeps the app's original background tone.
   const scale=Math.min(canvas.width/image.naturalWidth,canvas.height/image.naturalHeight);
   const width=image.naturalWidth*scale,height=image.naturalHeight*scale;
   context.drawImage(image,(canvas.width-width)/2,(canvas.height-height)/2,width,height);
   const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
   texture.anisotropy=anisotropy;texture.minFilter=THREE.LinearMipmapLinearFilter;
+  texture.userData.screenFit={
+    mode:'contain',sourceWidth:image.naturalWidth,sourceHeight:image.naturalHeight,
+    textureWidth:canvas.width,textureHeight:canvas.height,
+    crop:{x:0,y:0,width:image.naturalWidth,height:image.naturalHeight},
+    drawRect:{x:(canvas.width-width)/2,y:(canvas.height-height)/2,width,height}
+  };
   return texture;
 }
 
@@ -316,6 +324,11 @@ function mount(rotor) {
       try{
         const texture=screenTexture(image,appKey,Math.min(8,renderer.capabilities.getMaxAnisotropy()));
         const previous=phone.screenMaterial.map;phone.screenMaterial.map=texture;phone.screenMaterial.color.set('#ffffff');
+        const fit=texture.userData.screenFit;
+        canvas.dataset.screenFit=fit.mode;canvas.dataset.screenCrop=JSON.stringify(fit.crop);
+        canvas.dataset.screenSourceSize=JSON.stringify({width:fit.sourceWidth,height:fit.sourceHeight});
+        canvas.dataset.screenTextureSize=JSON.stringify({width:fit.textureWidth,height:fit.textureHeight});
+        canvas.dataset.screenDrawRect=JSON.stringify(fit.drawRect);
         phone.screenMaterial.needsUpdate=true;screenReady=true;canvas.dataset.screenSrc=resolved;render();if(previous)previous.dispose();
       }catch{currentSrc='';}
     };
@@ -329,6 +342,18 @@ function mount(rotor) {
       phone.group.localToWorld(point);point.project(camera);
       return {x:rect.left+(point.x+1)*rect.width/2,y:rect.top+(1-point.y)*rect.height/2};
     });
+  };
+  const screenRay=new THREE.Raycaster(),screenPointer=new THREE.Vector2();
+  const containsScreenPoint=(clientX,clientY)=>{
+    if(!ready||destroyed||lost||!Number.isFinite(clientX)||!Number.isFinite(clientY))return false;
+    const rect=canvas.getBoundingClientRect();
+    if(!rect.width||!rect.height||clientX<rect.left||clientX>rect.right||clientY<rect.top||clientY>rect.bottom)return false;
+    screenPointer.set((clientX-rect.left)/rect.width*2-1,1-(clientY-rect.top)/rect.height*2);
+    camera.updateMatrixWorld(true);phone.group.updateMatrixWorld(true);screenRay.setFromCamera(screenPointer,camera);
+    // Test the nearest physical surface: the curved rim, side controls and
+    // Dynamic Island must not count as a tap on the actual rounded display.
+    const hit=screenRay.intersectObject(phone.group,true)[0];
+    return Boolean(hit&&(hit.object===phone.screen||hit.object===phone.cover));
   };
   const observer=new ResizeObserver(resize);observer.observe(rotor);
   const contextLost=event=>{
@@ -349,7 +374,7 @@ function mount(rotor) {
     }catch{lost=true;}
   };
   canvas.addEventListener('webglcontextlost',contextLost);canvas.addEventListener('webglcontextrestored',contextRestored);
-  const api={setPose,setScreen,resize,getScreenPolygon,destroy(){
+  const api={setPose,setScreen,resize,getScreenPolygon,containsScreenPoint,destroy(){
     if(destroyed)return;destroyed=true;request++;observer.disconnect();
     canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('webglcontextrestored',contextRestored);
     const geometries=new Set(),materials=new Set(),textures=new Set([phone.grain]);

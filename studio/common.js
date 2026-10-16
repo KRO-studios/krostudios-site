@@ -5,13 +5,16 @@
   if(!catalog||!stage)return;
   const {order,apps}=catalog,query=new URLSearchParams(location.search);
   let key=order.includes(query.get('app'))?query.get('app'):'echo';
-  let shot=query.get('shot')==='1'?1:0;
+  const normalizeShot=(value,appKey)=>{const index=Number(value);return Number.isSafeInteger(index)&&index>=0&&index<apps[appKey].shots.length?index:0;};
+  let shot=normalizeShot(query.get('shot'),key);
   const nodeRoot=document.querySelector('.world-index'),phoneHost=document.querySelector('.phone-host');
   const selected=document.querySelector('.selected-world'),announcement=document.querySelector('.selection-announcement');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let paused=false;
+  let screenshotFeedback=null;
+  const cancelScreenshotFeedback=()=>{screenshotFeedback?.cancel();screenshotFeedback=null;};
   nodeRoot.innerHTML=order.map((id,index)=>`<button type="button" class="app-node" data-world="${id}" aria-pressed="false" aria-label="Preview ${apps[id].title}"><span class="app-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span class="app-icon"><img src="${apps[id].icon}" alt="" width="76" height="76" draggable="false"></span><span class="app-title">${apps[id].title}</span><span class="app-status">${id==='echo'?'COMING SOON':''}</span></button>`).join('');
-  phoneHost.innerHTML=`<div class="signal-device"><div class="signal-device-float"><div class="signal-device-rotator" tabindex="0" role="img" aria-label="Orange 3D phone displaying an app screenshot. Drag or use arrow keys to rotate; Home resets; P pauses animation." aria-describedby="phone-accessible-hint"><img class="phone-render-fallback" src="${apps[key].fallbacks[shot]}" alt="" draggable="false"><span class="device-glass"><img class="signal-device-screen" src="${apps[key].shots[shot]}" alt="" draggable="false"></span></div></div><span class="sr-only" data-renderer-status></span><span class="phone-hint" aria-hidden="true">DRAG TO ROTATE · ARROW KEYS</span><span class="sr-only" id="phone-accessible-hint">Select an app to change the screen. Drag the phone horizontally to rotate it; vertical movement scrolls on touch screens. Arrow keys rotate. Home resets. P pauses motion.</span></div>`;
+  phoneHost.innerHTML=`<div class="signal-device"><div class="signal-device-float"><div class="signal-device-rotator" tabindex="0" role="img" aria-label="Orange 3D phone displaying an app screenshot. Click the screen or press Enter to see the next screenshot. Drag or use arrow keys to rotate; Home resets; P pauses animation." aria-describedby="phone-accessible-hint"><img class="phone-render-fallback" src="${apps[key].fallbacks[shot]}" alt="" draggable="false"><span class="device-glass"><img class="signal-device-screen" src="${apps[key].shots[shot]}" alt="" draggable="false"></span></div></div><span class="sr-only" data-renderer-status></span><span class="phone-hint" aria-hidden="true">TAP SCREEN TO EXPLORE · DRAG TO ROTATE</span><span class="sr-only" id="phone-accessible-hint">Click or tap the screen to see the next screenshot. Select an app to change the gallery. Drag the phone horizontally to rotate it; vertical movement scrolls on touch screens. Arrow keys rotate. Enter or Space shows the next screenshot. Home resets. P pauses motion.</span></div>`;
   if(selected)selected.innerHTML='<div class="selected-identity"><strong class="selected-title"></strong><span class="selected-status"></span></div><a class="explore-link" target="_blank" rel="noopener noreferrer">Explore app ↗</a><button class="screen-next" type="button">Screen 1 / 2 →</button>';
   const designs=[['prism','prism-runway.html','Prism Runway'],['lab','signal-lab.html','Signal Lab'],['bridge','constellation-bridge.html','Constellation Bridge']];
   const footer=document.querySelector('.preview-navigation');
@@ -27,27 +30,40 @@
   const field=window.KROBridgeField?.mount(document.querySelector('.signal-field'),stage,phoneHost,nodeRoot,reduced)||mountField(document.querySelector('.signal-field'),stage,phoneHost,nodeRoot,reduced);
   const device=phoneHost.querySelector('.signal-device');
   stage.dataset.app=key;
-  const phone=window.KROPhone?.mount(device,{onRotate:rotation=>field?.setRotation(rotation)});
+  const phone=window.KROPhone?.mount(device,{onRotate:rotation=>field?.setRotation(rotation),onScreenTap:()=>nextScreenshot()});
   function select(next,nextShot=0,announce=true,writeURL=true){
     if(!order.includes(next))return;
-    key=next;shot=nextShot===1?1:0;stage.dataset.app=key;
+    key=next;shot=normalizeShot(nextShot,key);stage.dataset.app=key;
     for(const node of nodeRoot.querySelectorAll('.app-node'))node.setAttribute('aria-pressed',String(node.dataset.world===key));
     const app=apps[key];
     device.querySelector('.signal-device-screen').src=app.shots[shot];
     device.querySelector('.phone-render-fallback').src=app.fallbacks[shot];
-    device.querySelector('.signal-device-rotator').setAttribute('aria-label',`${app.title}, screenshot ${shot+1} of 2, on an orange 3D phone. Drag or use arrow keys to rotate. Home resets; P pauses motion.`);
+    device.querySelector('.signal-device-rotator').setAttribute('aria-label',`${app.title}, screenshot ${shot+1} of ${app.shots.length}, on an orange 3D phone. Click the screen or press Enter for the next screenshot. Drag or use arrow keys to rotate. Home resets; P pauses motion.`);
     if(selected){
       selected.querySelector('.selected-title').textContent=app.title;
       selected.querySelector('.selected-status').textContent=app.status;
       selected.querySelector('.explore-link').href=app.url;
       selected.querySelector('.explore-link').setAttribute('aria-label','Explore '+app.title+(key==='echo'?' coming-soon page':''));
-      selected.querySelector('.screen-next').textContent=`Screen ${shot+1} / 2 →`;
-      selected.querySelector('.screen-next').setAttribute('aria-label',`Show screenshot ${shot===0?2:1} of ${app.title}`);
+      selected.querySelector('.screen-next').textContent=`Screen ${shot+1} / ${app.shots.length} →`;
+      selected.querySelector('.screen-next').setAttribute('aria-label',`Show screenshot ${(shot+1)%app.shots.length+1} of ${app.title}`);
     }
     phone?.setScreen(app.shots[shot],key);field?.setWorld(order.indexOf(key));updateNavigation();
     stage.dispatchEvent(new CustomEvent('kro:appchange',{bubbles:true,detail:{key,shot,app}}));
-    if(announce&&announcement)announcement.textContent=window.KROHomeI18n?.selectionAnnouncement(key,shot,app)||`${app.title}. ${app.status}. Screenshot ${shot+1} of 2.`;
+    if(announce&&announcement)announcement.textContent=window.KROHomeI18n?.selectionAnnouncement(key,shot,app)||`${app.title}. ${app.status}. Screenshot ${shot+1} of ${app.shots.length}.`;
     if(writeURL&&location.protocol!=='file:'){try{history.replaceState(null,'',location.pathname+params()+location.hash);}catch(_){}}
+  }
+  function nextScreenshot(){
+    select(key,(shot+1)%apps[key].shots.length);
+    field?.pulse?.({key,source:'screen'});
+    cancelScreenshotFeedback();
+    if(!paused&&!reduced.matches&&!document.hidden){
+      const rotor=device.querySelector('.signal-device-rotator');
+      screenshotFeedback=rotor.animate?.([
+        {filter:'drop-shadow(0 0 0px rgba(244,204,127,0)) drop-shadow(0 0 0px rgba(239,159,192,0))'},
+        {filter:'drop-shadow(0 0 12px rgba(244,204,127,.48)) drop-shadow(0 0 27px rgba(239,159,192,.26))',offset:.22},
+        {filter:'drop-shadow(0 0 0px rgba(244,204,127,0)) drop-shadow(0 0 0px rgba(239,159,192,0))'}
+      ],{duration:680,easing:'cubic-bezier(.16,1,.3,1)'});
+    }
   }
   nodeRoot.addEventListener('click',event=>{const button=event.target.closest('.app-node[data-world]');if(button)select(button.dataset.world);});
   nodeRoot.addEventListener('keydown',event=>{
@@ -58,13 +74,15 @@
     else if(event.key==='Home')next=0;else if(event.key==='End')next=order.length-1;else return;
     event.preventDefault();nodeRoot.querySelector(`[data-world="${order[next]}"]`).focus();
   });
-  selected?.querySelector('.screen-next').addEventListener('click',()=>select(key,1-shot));
-  document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='p'&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)){paused=!paused;document.body.dataset.motion=paused?'paused':'running';phone?.setPaused(paused);field?.setPaused(paused);if(announcement)announcement.textContent=window.KROHomeI18n?.motionAnnouncement(paused)||(paused?'Motion paused. Press P to resume.':'Motion resumed.');}});
-  window.addEventListener('popstate',()=>{const q=new URLSearchParams(location.search);select(order.includes(q.get('app'))?q.get('app'):'echo',q.get('shot')==='1'?1:0,true,false);});
+  selected?.querySelector('.screen-next').addEventListener('click',nextScreenshot);
+  document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='p'&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)){paused=!paused;document.body.dataset.motion=paused?'paused':'running';if(paused)cancelScreenshotFeedback();phone?.setPaused(paused);field?.setPaused(paused);if(announcement)announcement.textContent=window.KROHomeI18n?.motionAnnouncement(paused)||(paused?'Motion paused. Press P to resume.':'Motion resumed.');}});
+  window.addEventListener('popstate',()=>{const q=new URLSearchParams(location.search);select(order.includes(q.get('app'))?q.get('app'):'echo',q.get('shot'),true,false);});
   select(key,shot,false,false);
   // The small fallback is fully interactive if WebGL is disabled or the folder is opened directly.
   // Its rotation is intentionally constrained because it is a single render, not a second fake shell.
-  window.KROPrototype={select,getState:()=>({key,shot,paused,renderer:device.dataset.rendererState}),phone,field};
+  window.KROPrototype={select,nextScreenshot,getState:()=>({key,shot,paused,renderer:device.dataset.rendererState}),phone,field};
+  reduced.addEventListener('change',()=>{if(reduced.matches)cancelScreenshotFeedback();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelScreenshotFeedback();});
 
   function mountField(canvas,container,host,nodes,motionPreference){
     if(!canvas)return null;

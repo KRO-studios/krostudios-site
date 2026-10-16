@@ -20,7 +20,7 @@ const expectedURLs = {
   feed: 'https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha'
 };
 const expectedScripts = [
-  'studio/catalog.js', 'studio/bridge-catalog.js', 'studio/home-catalog.js',
+  'studio/catalog.js', 'studio/bridge-catalog.js', 'studio/store-gallery.js', 'studio/home-catalog.js',
   'studio/home-i18n.js', 'studio/bridge-phone.js', 'studio/bridge-field.js',
   'studio/common.js', 'studio/site-access.js'
 ];
@@ -158,6 +158,19 @@ evaluate('catalog.js');
 evaluate('bridge-catalog.js');
 const bridgeCatalog = sandbox.window.KROCatalog;
 const before = JSON.parse(JSON.stringify(bridgeCatalog));
+evaluate('store-gallery.js');
+const storeGallery = sandbox.window.KROStoreGallery;
+assert(storeGallery && storeGallery.apps, 'Store gallery must publish its authentic source manifest');
+for (const [key, gallery] of Object.entries(storeGallery.apps)) {
+  assert(expectedOrder.includes(key), 'Store gallery must not invent a product: ' + key);
+  assert(Array.isArray(gallery.images), 'Store gallery must supply an image list: ' + key);
+  const paths = gallery.images.map(image => image.path);
+  assert.equal(new Set(paths).size, paths.length, 'Store gallery paths must be deduplicated: ' + key);
+  for (const file of paths) {
+    assert(typeof file === 'string' && file.startsWith('assets/'), 'Store screenshot must be a local owned asset: ' + file);
+    localFile('studio/' + file);
+  }
+}
 evaluate('home-catalog.js');
 const catalog = sandbox.window.KROCatalog;
 assert.notEqual(catalog, bridgeCatalog, 'Homepage asset prefixing must clone, not mutate, the Bridge registry');
@@ -179,9 +192,27 @@ for (const key of catalog.order) {
     }
   }
   assert.equal(app.icon, 'studio/' + original.icon, 'Homepage app icon must be correctly prefixed: ' + key);
-  assert.deepEqual(Array.from(app.shots), original.shots.map(file => 'studio/' + file), 'Homepage screenshots must be correctly prefixed: ' + key);
-  assert.deepEqual(Array.from(app.fallbacks), original.fallbacks.map(file => 'studio/' + file), 'Homepage phone fallbacks must be correctly prefixed: ' + key);
-  assert.equal(app.shots.length, 2, 'Verified apps retain two genuine screenshots: ' + key);
+  assert.deepEqual(Array.from(app.shots).slice(0, original.shots.length), original.shots.map(file => 'studio/' + file),
+    'Homepage retains the original genuine screenshots first: ' + key);
+  assert.deepEqual(Array.from(app.fallbacks).slice(0, original.fallbacks.length), original.fallbacks.map(file => 'studio/' + file),
+    'Homepage restores the original matching uncropped phone renders first: ' + key);
+  assert(app.shots.length >= original.shots.length, 'Variable app gallery must never drop the original screenshots: ' + key);
+  const expectedShots = original.shots.slice();
+  for (const image of storeGallery.apps[key]?.images || []) {
+    if (image.representedBy) {
+      assert(original.shots.includes(image.representedBy), 'Deduplicated store poster must identify an actual retained screenshot: ' + key);
+    }
+    if (!expectedShots.includes(image.path) && !original.shots.includes(image.representedBy)) expectedShots.push(image.path);
+  }
+  assert.deepEqual(Array.from(app.shots), expectedShots.map(file => 'studio/' + file),
+    'Homepage includes every authentic store image exactly once, retaining declared existing equivalents: ' + key);
+  const sourcedPaths = new Set((storeGallery.apps[key]?.images || []).map(image => 'studio/' + image.path));
+  for (let index = original.shots.length; index < app.shots.length; index++) {
+    assert(sourcedPaths.has(app.shots[index]), 'Added screenshot must have authentic store provenance: ' + key + ':' + index);
+    assert.equal(app.fallbacks[index], `studio/assets/gallery-phones/${key}-${index}.webp`,
+      'Every added screenshot must use its own complete uncropped same-model phone render: ' + key + ':' + index);
+  }
+  assert.equal(new Set(app.shots).size, app.shots.length, 'App gallery must not repeat screenshot paths: ' + key);
   assert.equal(app.fallbacks.length, app.shots.length, 'Screenshot / phone fallback count mismatch: ' + key);
   for (const file of [app.icon, ...app.shots, ...app.fallbacks]) {
     assert(file.startsWith('studio/assets/'), 'Artwork must be inside the isolated homepage bundle: ' + file);
@@ -194,6 +225,7 @@ for (const key of catalog.order) {
     }
   }
 }
+assert(catalog.order.some(key => catalog.apps[key].shots.length > 2), 'Production catalog must actually include the newly collected store screenshots');
 assert.equal(catalog.apps.echo.status, 'Coming soon · 18+', 'Echo Dare must not be advertised as released');
 assert.equal(catalog.apps.kino.status, 'Android + iOS', 'SovietKino platform status must remain truthful');
 assert.equal(catalog.apps.tanakh.status, 'Android + iOS', 'Tanakh Quiz platform status must remain truthful');
@@ -219,7 +251,7 @@ for (const href of ['/sovietkino/', 'echodare.html', '/tanakh-quiz/']) {
 
 const phoneFallback = tags('img').find(tag => (attribute(tag, 'class') || '').split(/\s+/).includes('phone-render-fallback'));
 assert(phoneFallback, 'Homepage must render a phone fallback before JavaScript initializes');
-assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-echo-0.webp', 'Initial phone must use the genuine Echo Dare handset render');
+assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-echo-0.webp', 'Initial phone must use the complete uncropped genuine Echo Dare handset render');
 localFile(attribute(phoneFallback, 'src'));
 for (const file of ['studio/vendor/three.module.min.js', 'studio/vendor/three.core.min.js',
   'studio/assets/space-grotesk-400.ttf', 'studio/assets/space-grotesk-500.ttf', 'studio/assets/ibm-plex-mono-400.ttf']) localFile(file);

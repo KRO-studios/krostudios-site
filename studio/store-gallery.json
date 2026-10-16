@@ -1,0 +1,1253 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-15",
+  "assetPathBase": "studio/",
+  "scope": "Public phone screenshot galleries in Google Play's main English listing (native artwork), plus the verified developer's iPhone App Store galleries from Israel. Tablet repetitions, icons and feature graphics excluded. Distinct platform artwork retained; no exact-byte duplicates.",
+  "summary": {
+    "storeImages": 55,
+    "approvedLocalCaptures": 2,
+    "totalImages": 57,
+    "googlePlayPhoneImages": 42,
+    "appStoreIPhoneImages": 13,
+    "deliveredStoreBytes": 20424217
+  },
+  "appleDeveloperRoster": "https://apps.apple.com/il/developer/rostislav-krochak/id6797598423",
+  "appleMetadataEndpoint": "https://itunes.apple.com/lookup?id=6812753192,6797598421&country=il",
+  "notes": [
+    "Source URLs, original dimensions and SHA-256 hashes below allow re-verification of mechanically compressed delivery images.",
+    "Only images larger than1,000,000bytes were converted to WebP quality92 with no cropping and maximum1320x2868 bounds; smaller store images remain byte-for-byte originals.",
+    "App Store and Google Play screenshots for SovietKino and Tanakh Quiz use different platform phone frames/compositions, so they are distinct gallery images rather than duplicates."
+  ],
+  "apps": {
+    "kino": {
+      "title": "SovietKino",
+      "images": [
+        {
+          "path": "assets/store-gallery/kino-google-play-01.webp",
+          "url": "https://play-lh.googleusercontent.com/q5AprT2XPoQwVpBheek-CnpnVLB_bPYgaOtlxnWJo8ZYcrYkW9Wgv3TAimjvjfZJo4iMaQ2P298LJMqbwqITdQ=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2297226,
+          "sourceSha256": "d952deac0e0aed1df36d84572182fbcc70858ab9715528fd6b93aa1a8fd9e347",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 400342,
+          "sha256": "b72db99c2329c488dc03a950f25896630290bb116d0f2222a8b191f674828fc3",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/kino-google-play-02.webp",
+          "url": "https://play-lh.googleusercontent.com/0SflntMwrshs4chqogq4T1vh2n5hfMSXT0kGjaKP4pH1Xjcd2d5P6Uvnkvd-g3dxFxL3QYyMB-9zCVmZrc88wsM=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1412627,
+          "sourceSha256": "082a89aeeb54fca744bcbb471c57b612e31c9358d9c35b4a97e14a52732325c1",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 213734,
+          "sha256": "1b7659a9754bb44d6dd4ffc88ee5d5e354472110349cc34764905a4b4b4304bc",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/kino-google-play-03.webp",
+          "url": "https://play-lh.googleusercontent.com/7R1SmxY6TtZXqngU3YD_Gb2YlqrN1FWeOuuLFUYw9K6NoratCm0l-4PLfUlO0ZmJ6Vq3TV96vkRrWQMUVhEgGQ=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1450293,
+          "sourceSha256": "ba6c04bf64dd46862f57fd0d544984c70b363961bc026ed34a2eec3729e4ef19",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 208190,
+          "sha256": "898fc3f58fa3eac520730b5cc14ad51ac429c3743b87ef3162377597d1e4cbb9",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/kino-google-play-04.webp",
+          "url": "https://play-lh.googleusercontent.com/MY6TZkl-K7WD2C3GYgpBEoUL3pIVqErv9fJL9J6RjpZSZnpFcyQFDUfmJD3UJd7Jpbqc_rKzghmVmyGtlXSj=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1319358,
+          "sourceSha256": "47b015dae14e1a25531fb6679ff9b8c48f0a08928bc726355cd1d925a3ebbd11",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 205406,
+          "sha256": "e232008a72e6567d0ceb07b29727bf0d977ca02a32c885a1eec552dc37b0dc06",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/kino-app-store-01.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/94/1a/61/941a61b3-9e51-9acf-7412-762f950b7ad7/01_memory_and_words.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6812753192",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 601293,
+          "sourceSha256": "4b1dc6cf0c941d90cc31d2fdba4026fdb4265a6fa4652e1749b49515223c3d5a",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 601293,
+          "sha256": "4b1dc6cf0c941d90cc31d2fdba4026fdb4265a6fa4652e1749b49515223c3d5a",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/kino-app-store-02.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ee/71/d2/ee71d287-c8dd-c21b-c1f8-00aa0157076c/04_daily_and_topics.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6812753192",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 478899,
+          "sourceSha256": "c16cea55ffd361b55fd4693c1982da3b1739aca9796c5f006846642d63025b0f",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 478899,
+          "sha256": "c16cea55ffd361b55fd4693c1982da3b1739aca9796c5f006846642d63025b0f",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/kino-app-store-03.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/50/5e/88/505e88cd-e26c-dadf-1b40-bbd1c290068b/02_guess_the_word.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6812753192",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 448797,
+          "sourceSha256": "04be1a90ea69ce572219c2aa10dceada763e80f65cf1833a4adb1602f5a78516",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 448797,
+          "sha256": "04be1a90ea69ce572219c2aa10dceada763e80f65cf1833a4adb1602f5a78516",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/kino-app-store-04.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/77/3f/00/773f0055-e825-3f19-c9ee-47201a40e23c/05_weekly_board.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6812753192",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 447694,
+          "sourceSha256": "e83a70fd26b7b93c7e623b15f554a7db1ac198864dd5e036b081c816288449dc",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 447694,
+          "sha256": "e83a70fd26b7b93c7e623b15f554a7db1ac198864dd5e036b081c816288449dc",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 4,
+        "appStoreIPhone": 4
+      }
+    },
+    "echo": {
+      "title": "Echo Dare",
+      "status": "Coming soon · 18+",
+      "images": [
+        {
+          "path": "assets/bridge-echoHome.jpg",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 321861,
+          "sha256": "f21c8e80d8aae5ee10237fe87410ed844192199d48bac4b7016782eb11fd5bba",
+          "format": "jpeg",
+          "url": null,
+          "store": "approved-local-capture",
+          "sourceListing": "https://krostudios.com/echodare.html",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 321861,
+          "sourceSha256": "f21c8e80d8aae5ee10237fe87410ed844192199d48bac4b7016782eb11fd5bba",
+          "device": "Phone",
+          "processing": "Existing genuine approved high-resolution app capture, unmodified"
+        },
+        {
+          "path": "assets/bridge-echoListen.jpg",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 177617,
+          "sha256": "b9aec546bf0112e428e7cf18b9aa4bc7fe3d124c61b331a5f4342294a20b2f2e",
+          "format": "jpeg",
+          "url": null,
+          "store": "approved-local-capture",
+          "sourceListing": "https://krostudios.com/echodare.html",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 177617,
+          "sourceSha256": "b9aec546bf0112e428e7cf18b9aa4bc7fe3d124c61b331a5f4342294a20b2f2e",
+          "device": "Phone",
+          "processing": "Existing genuine approved high-resolution app capture, unmodified"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 0,
+        "appStoreIPhone": 0,
+        "approvedLocalCaptures": 2
+      },
+      "note": "No public Echo Dare listing was found in Google Play/App Store searches. The official Echo Dare promotional page labels both platforms coming soon. These two genuine previously approved app captures are preserved; no store listing or screenshot has been invented."
+    },
+    "tanakh": {
+      "title": "Tanakh Quiz",
+      "images": [
+        {
+          "path": "assets/store-gallery/tanakh-google-play-01.webp",
+          "url": "https://play-lh.googleusercontent.com/-OfwiIx56nLa2FwlxGbKQ6yGL9CPnirrRE3SyuA78stFoE0ap-c9q5Q2mLp0iQFEvZbB4YvK61sqq8N8TNzy=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1908119,
+          "sourceSha256": "640de3410e604b9ba62d73a2145311d077c89ea9428218e047143844a8fef87a",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 185946,
+          "sha256": "989907919e623dc2d602414fe5daa6da203d64e27f2360c941bbb48fc4510afc",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-02.webp",
+          "url": "https://play-lh.googleusercontent.com/H8N5gwxqkC7nWE0xE8LIy1PrpF6ce7Ho58wbH7yp6hwBhYn5Ouqeuw3uzA7nz_xHVir4xrCBUDdwXfkPoo5e=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1875812,
+          "sourceSha256": "d0d570d48ba05ec93ecd9ffcfe0a52c628100f488dbb77c02f89e057bcee0fd3",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 181160,
+          "sha256": "0e4067b4771fdd28520ecc54c3fb57fd7b2b473b0881c078b78419de49be69a6",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-03.webp",
+          "url": "https://play-lh.googleusercontent.com/Q1SfvWkFnf8a9IuptqRSTDv_iDRQGwEeCWoQqESIa-wy-r6bxccP3Xb04_43lX2Xj9YZ339zvFIelNfDBmN0Eg=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1738597,
+          "sourceSha256": "2ea529e5b46563c88854da1989fd487870d25c59569cd75203b37a5e4b7bd11d",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 151492,
+          "sha256": "b0a9b645e0b679d0e2fc5b01e8d276c75af4f539df15f235a251a8a59c31b767",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-04.webp",
+          "url": "https://play-lh.googleusercontent.com/faOD3IVegNJdb2HMvqoXWTLEBMjxocLosC9iEWkn1ZcFreo8zbDPoHRVdK-qZUhDWrP5KwF8MZokSmuEZcRu1A=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1957343,
+          "sourceSha256": "a14be5fea67b84e82415fa1be61589568fb3b5e48d12d8e2559a989c9bfffde6",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 198838,
+          "sha256": "5498d09b59c24ad30e4e56a08d50fecc916b0f160ad9680be5f6bba73af69873",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-05.webp",
+          "url": "https://play-lh.googleusercontent.com/FilJ4HfFgCXWOnERFXzas-w2SvxAx8c5Ye2ckE1w_dTCxlV9HdMB-Lyb0Z1rzN6nuJS-sBTm0foUKb-OnHXi=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1654741,
+          "sourceSha256": "d5f7dd627a177dd73445d146d5e6e43005a0b2e3ccd7e0a301871713c0f0c7c5",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 171716,
+          "sha256": "6965449821a03b3de78285611912500688559a928c28f8155bda1139c6a6a6e4",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-06.webp",
+          "url": "https://play-lh.googleusercontent.com/ual6nzocJbs26DC_bUlYWwVJNQQvNwVf1zy_zWS6Bl4C8bo_5w0r_rP-Ut_cjKz-UN-VLzSx9M3TwJrlNY7NbA=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 6,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1757036,
+          "sourceSha256": "d84321e3b8cb855d80aeb92089270b40ea8a52102f3a2543119c39673ca6da26",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 175722,
+          "sha256": "4156a0865b6e6e6ece4f9ad911d24eb8272cb40c3da81d760e50dc21d6759529",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-07.webp",
+          "url": "https://play-lh.googleusercontent.com/brcgBcIkXYzdqev9HsOfgVMfWNBRinG8oHW05AA7U5JKylaTfJ08uFjcCppn1U187nWGQ0NZUs4L1_OogKMq-A=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 7,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2075916,
+          "sourceSha256": "77f8571351af9f1e6d529893facdd3c599fcf282304baa1d6389ad216e18ebd1",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 190362,
+          "sha256": "9b5b5b707f2353cb48d821ac42198182b78cfabdfed2e581dd042101fb417b0f",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-google-play-08.webp",
+          "url": "https://play-lh.googleusercontent.com/9xOUKvQ2BI-QWNtDkjFgQ7GCui3bXerg_NRmXPKODJOF2xVZGVmbDT-Lge7wYJM3BkQVWZ3QDQUy0Nm696L4=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.tanakh_quiz&hl=en",
+          "sourceIndex": 8,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1911624,
+          "sourceSha256": "d45c75471ac65d6af811cb278b64e81c8be8ee1f6807fafa93e8af0c91740727",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 202494,
+          "sha256": "55d93274b8c1317d9e1908ec8656bc121a1e44738782ca157225cf286c6a4da8",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-01.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f3/c9/7d/f3c97d10-b863-c6ba-49bf-cc1a61e8e3ed/04_daily_challenge.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 398923,
+          "sourceSha256": "6d4c784ae876c35702d62d7a349c11ca8098ec57988014091c049a294a65b367",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 398923,
+          "sha256": "6d4c784ae876c35702d62d7a349c11ca8098ec57988014091c049a294a65b367",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-02.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a7/52/ed/a752ed8b-a693-87a3-82db-64b8b4783a8f/05_leaderboard.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 412845,
+          "sourceSha256": "f49fcedeb64fecc87d37090f02e4eb21a544ff6a4121cb37c5f7f74c0a4a3aef",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 412845,
+          "sha256": "f49fcedeb64fecc87d37090f02e4eb21a544ff6a4121cb37c5f7f74c0a4a3aef",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-03.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/b1/95/d2/b195d204-fece-c9bc-ae6d-6e24283012d4/07_difficulty_levels.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 385812,
+          "sourceSha256": "1bad562cc8bbc84868598811d88d2a069b40a7a7f3eda675191dbfe4cac7d180",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 385812,
+          "sha256": "1bad562cc8bbc84868598811d88d2a069b40a7a7f3eda675191dbfe4cac7d180",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-04.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d1/91/04/d191041f-5b2f-bf67-7e1e-015521e100ed/01_word_game.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 387629,
+          "sourceSha256": "62bea6eedd9e5820fc2fa493b8da8ff7dbc58543d411c6fc1a1eed841a0969c1",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 387629,
+          "sha256": "62bea6eedd9e5820fc2fa493b8da8ff7dbc58543d411c6fc1a1eed841a0969c1",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-05.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fe/a8/9f/fea89ffc-61ff-5efb-3dfe-12cb6f88b1da/03_for_everyone.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 384038,
+          "sourceSha256": "d31757d2742e67d79de47410277fd8ea18fecbe6aba462178949606c7f421824",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 384038,
+          "sha256": "d31757d2742e67d79de47410277fd8ea18fecbe6aba462178949606c7f421824",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-06.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/90/c7/f0/90c7f077-5f22-4ac8-4142-768b4b925886/06_hundreds_of_challenges.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 6,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 376136,
+          "sourceSha256": "34bd95abecba6d49a937c72600d8940cd87b3d955360fd079eaebd69ee0244fc",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 376136,
+          "sha256": "34bd95abecba6d49a937c72600d8940cd87b3d955360fd079eaebd69ee0244fc",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-07.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a6/2a/5f/a62a5f56-cf0a-29d6-fc6a-db2d9602a391/09_dark_mode.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 7,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 350910,
+          "sourceSha256": "0c3436c38aa02af15510fda20edefe221f84f77f9d19665004ca2773eb3d5c90",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 350910,
+          "sha256": "0c3436c38aa02af15510fda20edefe221f84f77f9d19665004ca2773eb3d5c90",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-08.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/32/09/30/32093062-3a2e-174c-5600-a3d1f091fae4/02_color_feedback.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 8,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 379976,
+          "sourceSha256": "cac960f9fd384bdf9c8470583a0611f974f9118dae8f7a612122d2f0d7af0f29",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 379976,
+          "sha256": "cac960f9fd384bdf9c8470583a0611f974f9118dae8f7a612122d2f0d7af0f29",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        },
+        {
+          "path": "assets/store-gallery/tanakh-app-store-09.jpg",
+          "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8e/15/c6/8e15c608-5a80-17d6-a4ed-1f6ede654156/08_correct_answer.png/1080x2340bb.jpg",
+          "store": "app-store",
+          "sourceListing": "https://apps.apple.com/il/app/id6797598421",
+          "sourceIndex": 9,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 2337
+          },
+          "sourceBytes": 453787,
+          "sourceSha256": "9c403bf849b287a0d511c796b4a77b88044ddb404c96861478162008f0e89dcf",
+          "width": 1080,
+          "height": 2337,
+          "bytes": 453787,
+          "sha256": "9c403bf849b287a0d511c796b4a77b88044ddb404c96861478162008f0e89dcf",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "iPhone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 8,
+        "appStoreIPhone": 9
+      }
+    },
+    "half-life": {
+      "title": "Half Life Monsters",
+      "images": [
+        {
+          "path": "assets/store-gallery/half-life-google-play-01.webp",
+          "representedBy": "assets/half-life-1.webp",
+          "url": "https://play-lh.googleusercontent.com/HlxUn7vdNsJ56p5S9TIjuFbaDaQ6YwXzXOgSEeQP2-SecoJciv9dQuffxFxnaORr1aBwtQdlefCvc1T50N6NYA=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2129410,
+          "sourceSha256": "3632b1378813fb0866a444dd8fe22b35b8e658f94014a4b61bb87ae817a5213e",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 238636,
+          "sha256": "25dc8bed8ae2e83a383e9579be44ba463f8efd22d3fd993e324b7d4cf6ddf50f",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/half-life-google-play-02.webp",
+          "representedBy": "assets/half-life-2.webp",
+          "url": "https://play-lh.googleusercontent.com/bgvgOIgAKGeSAxsDB7RMlZaEpa_Ov-Q5XUr-Hc2wLi1xI5DMNxuYJ2z4K3W3pvFZJ65q0Glx1PjiPBiAp_1q=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 941,
+            "height": 1672
+          },
+          "sourceBytes": 1757858,
+          "sourceSha256": "f26d6f29f107f8a5881b9b8cd65fccbd6213ca5f35102a8db4cdd72c103d16bc",
+          "width": 941,
+          "height": 1672,
+          "bytes": 224462,
+          "sha256": "cfc776bd966161386559e6371f58bc5a4e010a903aecc813c552965386c37a8f",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/half-life-google-play-03.webp",
+          "url": "https://play-lh.googleusercontent.com/eGcWXMWmNb3qm63D3GLS3WcT1dXLhEpZx_1YIA4waqzy071lBcQhRnbrB6GY3T9ws-9FwsH9DPSirQnlpaGf-g=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1680844,
+          "sourceSha256": "97c448501cf9d3fd738bfe8e460eeede544f12ed86397c1605875b527a5edf93",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 228560,
+          "sha256": "875ca79269a4bb0fba92023cff402afad9bd16a18cbacbe8505b6c83adf8c4c9",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/half-life-google-play-04.webp",
+          "url": "https://play-lh.googleusercontent.com/PixFEo9-tbtxaaFpjZtAcQWcqhLf3PHNfw-tyc7CzA4zLlsp3jJEl3JKDKheKIPkRXfQNWOycNUfGDc9nE7Rvw=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1954472,
+          "sourceSha256": "6b89b9dc65588c7998ce7924d78d5e15c1e91c6f232b59bc27df951eadf3e7ce",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 239332,
+          "sha256": "772a67f6d007c6bdde5eb1cbda3998b6e71d276b5e82283e407ea87b826293c4",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/half-life-google-play-05.jpg",
+          "url": "https://play-lh.googleusercontent.com/92ItkF0l6N0hii_K9v273uQfmFU_IaQzlB3-ehWrzm8hM6A6BYZ6lqX9zNwtrb-ipB48F6KBIZrfbm6jVhNOeUk=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 876369,
+          "sourceSha256": "a917ec35f2e3e491c91ba0398bd6282155e1f3517ec3b8281eecb4d6e0204fc1",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 876369,
+          "sha256": "a917ec35f2e3e491c91ba0398bd6282155e1f3517ec3b8281eecb4d6e0204fc1",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/half-life-google-play-06.webp",
+          "url": "https://play-lh.googleusercontent.com/NeEqGeZ4nTwZD7OoYirqjnolvbXUHtcpyl5OKG1xr3bFaRG9WZxctu5gwvJK_hrKIkovNnSbPQ-7f4Fvd6tSWA=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia&hl=en",
+          "sourceIndex": 6,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1395908,
+          "sourceSha256": "4c50e95933a8d3f2a18652c4e18c9e0eef78288457cb9c6da66be91ab745ed08",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 187612,
+          "sha256": "4dce83406836de4adf175c3013fea4756d4b803b865677b30c02a37e63bd1bad",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 6,
+        "appStoreIPhone": 0
+      },
+      "appStoreNote": "No iPhone listing for this app appears in the verified developer roster."
+    },
+    "dune": {
+      "title": "Dune 2 Tanks",
+      "images": [
+        {
+          "path": "assets/store-gallery/dune-google-play-01.webp",
+          "representedBy": "assets/dune-1.webp",
+          "url": "https://play-lh.googleusercontent.com/78OLXUKz-BEKkaGHlaRTXI-xVPn97dL8YeWjudAi0H-UnAoqSeHgRRmJp9qpNs-xhhIBPfrgd2LQ9bxCkDfvFYs=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1963785,
+          "sourceSha256": "69fd28385d4f5197e0486398aa3afce3b9debc522a8c86146a90dbf7359a27e6",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 195870,
+          "sha256": "afc1dbe8417af2b0711a367c8200a25ed9bd12f7188e0d37e7e2d984285eda1b",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/dune-google-play-02.webp",
+          "representedBy": "assets/dune-2.webp",
+          "url": "https://play-lh.googleusercontent.com/IHG8Aj3poUI5b_IdEjYBvHwk309D8kYsgh3OUsoagzikDP9Ud146h_vpHOopMWvHO2_wr4O6MkrRq7cdBFnQzg=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2108269,
+          "sourceSha256": "375326d4e78d211f25a883ddb8876af2d37b8a79a71daf213ba565df7311717d",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 212584,
+          "sha256": "5610d22d8422b15fc682767342dbaef3be57b0f025ccf8df1d67fc9e1a2606fb",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/dune-google-play-03.webp",
+          "url": "https://play-lh.googleusercontent.com/i6KAWq_ZNT8OPWmxIEbmeXBjRAl8f7lD_9LGXFRCAU0vVDahaJHX37grDh0PRt6k2nOCWZ2FQhQIg9X5GyzN=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2743381,
+          "sourceSha256": "24656451b5efb0d60cd9efaa7c88f497ea712a744b328a577df6799c6447025b",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 393676,
+          "sha256": "d69fa02289df8ae01454d403f2cbe96b5b96113b1d84312add0c49246d396c0f",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/dune-google-play-04.webp",
+          "url": "https://play-lh.googleusercontent.com/z4Zb7PEXynXPfNRsj_qE4qgh9FkgPJWWjOblUv9F0Im-jHZjQMRy4zjcQX5f9djW4NWBOftf1DL1HPCzblWP6A=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2166725,
+          "sourceSha256": "6b137cdaf2382739409ceeaef1bea2b5b8617089b1d6a208dfc284da4cadcf3d",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 287372,
+          "sha256": "1cdf25065ba0608d5f12ca73c2b6eab93480ee70a9b24b8d4d054eea5f3644d1",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/dune-google-play-05.webp",
+          "url": "https://play-lh.googleusercontent.com/a50IMCEE98HkseDZguvNvPrmYph2-Kv9wxI4OrmvgqrjFReqdrJpsBvbDJPtdkPIdn5xrh2wchNWqTLNEnYerA=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2018218,
+          "sourceSha256": "89b579eef695d90bea3a2080c55038e8b239beb93010323c02b9ec8a846467a9",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 236972,
+          "sha256": "6dd84a02464dd83eb5b4c332d148384f688ea950fc4387bb385864609928245b",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 5,
+        "appStoreIPhone": 0
+      },
+      "appStoreNote": "No iPhone listing for this app appears in the verified developer roster."
+    },
+    "rap": {
+      "title": "Rap Quiz",
+      "images": [
+        {
+          "path": "assets/store-gallery/rap-google-play-01.webp",
+          "representedBy": "assets/rap-1.webp",
+          "url": "https://play-lh.googleusercontent.com/dMyfrWgKBjRhPKivB3LbSERvfjV43vfqN9dNg5qVZe_o0S8Wmt653ej-S1eiHmQIQ_0VTQWp6bY4bVAnZTCfZg=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1565607,
+          "sourceSha256": "ace5896d61de929323f0669b026d86667db825270bf64945e2e55cc353f3ca0e",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 207428,
+          "sha256": "d548de6eee7cb9a430d4d41f25afe1cdaceff7bb73e5144139d5c27914733b0d",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/rap-google-play-02.webp",
+          "representedBy": "assets/rap-2.webp",
+          "url": "https://play-lh.googleusercontent.com/BflDiJKs7JFGoJOEKIVAi76z_KWYst-9_WtXgHPJahQ8e6vfG6NbRsABJz3gBQoKgCxqi09gkkyWeksjr3V-Og=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 2260200,
+          "sourceSha256": "efa4d2ca900887e091bb00cb52260ee17215d211555c1bb9767dcf22be6a8961",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 255110,
+          "sha256": "8d7a0ab0ebe324987f229c974082a84bd90cd18220e537aa11ab0d611ace54bb",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/rap-google-play-03.webp",
+          "url": "https://play-lh.googleusercontent.com/YMVrT7Is8CS2IQBkfKGuRhLTDQA3YyXCcuRkodjIdoXPZ31Ida29gUV8SRp6IDYJGixvDGZpW__lx4EvCgdV=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1403583,
+          "sourceSha256": "7beb953b97c0dea48f8022f705a3895167c02c32fe52e669f54849b23441b45f",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 200172,
+          "sha256": "e83b655fefea792e427c0c69b59f980b340a3eb6a33a2f035dc5791eef1b86ea",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/rap-google-play-04.webp",
+          "url": "https://play-lh.googleusercontent.com/F9woRgJSihsSMzFLA7bQ43esz2PL8dE3vRT4jIDqk87mh2nl0iPqznW4JivYPDGx4gbeJ3lKLLqf0XNJmj2_TO0=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1437041,
+          "sourceSha256": "3de3e097e9d861fdc5e8d9aaee312b1ff86962ace7b7ac08808142b7f9a2d0ec",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 226490,
+          "sha256": "2df5cd806575eb771112c289d48ccacaa9e544cdee0016100f00dd0aa555b8a0",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/rap-google-play-05.webp",
+          "url": "https://play-lh.googleusercontent.com/7WTfX8dZODbrlprqjS_Xs1rXVaRkyE2Rkp4WUsqSj4rIY1ArJG_3mUJ2Pghian9-JbSVQD7eEBXiCishNjS0=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1080,
+            "height": 1920
+          },
+          "sourceBytes": 1921701,
+          "sourceSha256": "c862eec931607acfe94985b3814bd379510377b61dce1b0148bb8bb04a0b4717",
+          "width": 1080,
+          "height": 1920,
+          "bytes": 248718,
+          "sha256": "b537feea127f90dfff64b20e7d975beabfd491d85f9fb52af54afb591a11e882",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 5,
+        "appStoreIPhone": 0
+      },
+      "appStoreNote": "No iPhone listing for this app appears in the verified developer roster."
+    },
+    "beer": {
+      "title": "Guess The Beer",
+      "images": [
+        {
+          "path": "assets/store-gallery/beer-google-play-01.png",
+          "representedBy": "assets/beer-1.webp",
+          "url": "https://play-lh.googleusercontent.com/EbvEBkkTOEd6F8kT9uJ_nDonhX5961GotrCdorpKhGcBkA6HDQuiVqVO80fXu3ZpO6Wu9ndJ1S_HOoQBoiVS-A=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 704282,
+          "sourceSha256": "bb5a558fc46426f7f2495fe70bef171c6742af19556f671a41b5d1e946262923",
+          "width": 580,
+          "height": 960,
+          "bytes": 704282,
+          "sha256": "bb5a558fc46426f7f2495fe70bef171c6742af19556f671a41b5d1e946262923",
+          "format": "png",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/beer-google-play-02.jpg",
+          "representedBy": "assets/beer-2.webp",
+          "url": "https://play-lh.googleusercontent.com/Pk-0ErwZd_T0-6Pfc7n2GfZ0QZDAMvq16zdPpJdATPHabXfUyzFO5NYHhr43J_jhg9ysANBlISX9FkHaCt6N=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 537394,
+          "sourceSha256": "340714509307c07698bc790d3054165b97ca77a031726fcb586a73a2991b7f6e",
+          "width": 580,
+          "height": 960,
+          "bytes": 537394,
+          "sha256": "340714509307c07698bc790d3054165b97ca77a031726fcb586a73a2991b7f6e",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/beer-google-play-03.jpg",
+          "url": "https://play-lh.googleusercontent.com/EElkUq1SdctoWBlAf6BK0QdTloLl8mVBbdMN4MPzU54jCJfn_2pUVOxJeW933DkpXk-aBzvr8XO_oj4v6C8hbQ=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 704470,
+          "sourceSha256": "c46948490ef7df43a1c0f48145546881dff3e1f91ce728652246dc35f0ef8898",
+          "width": 580,
+          "height": 960,
+          "bytes": 704470,
+          "sha256": "c46948490ef7df43a1c0f48145546881dff3e1f91ce728652246dc35f0ef8898",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/beer-google-play-04.jpg",
+          "url": "https://play-lh.googleusercontent.com/hjd2Ei9b5Z0D5--cMLBqY7CAqtTgsbC5Li-DfR68GXxefeJaE6g_bIKxxVbBsLFHk1lOTnsNR-xp8kyZixDaY-o=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 583757,
+          "sourceSha256": "77975edd96678fb91959648425937e697fec8da126548b3f13011f66d7ad66f0",
+          "width": 580,
+          "height": 960,
+          "bytes": 583757,
+          "sha256": "77975edd96678fb91959648425937e697fec8da126548b3f13011f66d7ad66f0",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/beer-google-play-05.jpg",
+          "url": "https://play-lh.googleusercontent.com/dfFv9WT3XfaKbYe-0VXATuq_IbNdh3gPp485kUJ0BVZQ8MHug3j8IP926RPayJiACBqobe4UCm9LR7RUDsQicw=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 598170,
+          "sourceSha256": "58bce63589fb41208e1edd41c02fcdae12e881d52e72a7073e588ad670ef26c6",
+          "width": 580,
+          "height": 960,
+          "bytes": 598170,
+          "sha256": "58bce63589fb41208e1edd41c02fcdae12e881d52e72a7073e588ad670ef26c6",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/beer-google-play-06.jpg",
+          "url": "https://play-lh.googleusercontent.com/FHKzAVhFcZ92BOLhY2DYb-5B3QekCi5WWiNEks15_wIkf1LcahATaUqQUnrimen_2OkSLO7XEbQXXppAK7jLwiE=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer&hl=en",
+          "sourceIndex": 6,
+          "sourceDimensions": {
+            "width": 580,
+            "height": 960
+          },
+          "sourceBytes": 633023,
+          "sourceSha256": "36e45c07fad105d8540d0f5fe90e9d0f01aa26769da67fcf6aeaf882d39ec5c3",
+          "width": 580,
+          "height": 960,
+          "bytes": 633023,
+          "sha256": "36e45c07fad105d8540d0f5fe90e9d0f01aa26769da67fcf6aeaf882d39ec5c3",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 6,
+        "appStoreIPhone": 0
+      },
+      "appStoreNote": "No iPhone listing for this app appears in the verified developer roster."
+    },
+    "feed": {
+      "title": "Накорми Кирюшу",
+      "images": [
+        {
+          "path": "assets/store-gallery/feed-google-play-01.webp",
+          "representedBy": "assets/feed-1.webp",
+          "url": "https://play-lh.googleusercontent.com/WYwji64p6QkF6ELX4ec4a_rIxc3oIQX-KiGUDKiSwgMmzDwDlyugMzS-SboNr8LykAyhd1CqL0E1gqNGUSLGeg=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 1,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 2340883,
+          "sourceSha256": "9c821900f66236088698ff7f0b5e67db8d5f147e32233cc42541dbaa5c3aa71c",
+          "width": 1320,
+          "height": 2787,
+          "bytes": 563716,
+          "sha256": "b10cecc3d44937bb6acb92233a92a0de128b87601081b094a32fe60d6c55285c",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-02.jpg",
+          "representedBy": "assets/feed-2.webp",
+          "url": "https://play-lh.googleusercontent.com/qD5aSVa3iYuRBjYQq5cUvs_zruvW87Uw1xeEzE9m02H-Yr9GCy85wJTdF_0DHQqffbAhjevAyzVhVs13LApZ=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 2,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 684184,
+          "sourceSha256": "9a74c550d618adabcf8f302e0a193795c1e94ebaac3220defb7b196f9d1cf882",
+          "width": 1440,
+          "height": 3040,
+          "bytes": 684184,
+          "sha256": "9a74c550d618adabcf8f302e0a193795c1e94ebaac3220defb7b196f9d1cf882",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-03.jpg",
+          "url": "https://play-lh.googleusercontent.com/6D8zJYTvUs9D6PZefw01alHWTfEDlhHUVCTLCaG1POgRs2jlhjTyhMzozgeYIiugRSQ5n_CE_gmp32jg56wa=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 3,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 893470,
+          "sourceSha256": "7f457b4730071a2c267b5956d1a34c8d29466c3949e9d1e80f4b418bb9a9d82f",
+          "width": 1440,
+          "height": 3040,
+          "bytes": 893470,
+          "sha256": "7f457b4730071a2c267b5956d1a34c8d29466c3949e9d1e80f4b418bb9a9d82f",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-04.jpg",
+          "url": "https://play-lh.googleusercontent.com/dZnkbPy2DOBZ_nDUGIl5fsk1n2t9sYEmCtxtCHtfdNGt0gR0M0RkbShWJ88VJdhCW8g5BO7at4-hRHOE-Y9l=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 4,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 992773,
+          "sourceSha256": "f7a99e33cbebe069d2250b0fd4c29dc49b061aa85b950fc80562b1daf2cd4165",
+          "width": 1440,
+          "height": 3040,
+          "bytes": 992773,
+          "sha256": "f7a99e33cbebe069d2250b0fd4c29dc49b061aa85b950fc80562b1daf2cd4165",
+          "format": "jpeg",
+          "processing": "Original store-delivered image, unmodified",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-05.webp",
+          "url": "https://play-lh.googleusercontent.com/8uGknt-R7ekS3CW-Sd34JIdlwo9m4h-Ycq2tqea3OhRvB0ODTOhmBd3FbwQxsYw6h1uEkJKWCayqA13bGyNrMw=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 5,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 1030618,
+          "sourceSha256": "ee2a41a67dc6cd8ed4e6edf09ed900f7be52cda6b8e4986ca539dd11fca6e43b",
+          "width": 1320,
+          "height": 2787,
+          "bytes": 239326,
+          "sha256": "461d01bc00fae459ccb26bd14341c7a0d539231387c4edf6c8c6a9e78c63cace",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-06.webp",
+          "url": "https://play-lh.googleusercontent.com/3JFCsgLyEeP1mV9AwsCyxTJ5iGWiLoTKSmV46MDgON5EkTUp0-MXZ9d_3ixf7CpwFbwbU1Ejh7tCEyx_3CV2dA=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 6,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 1222236,
+          "sourceSha256": "9166458f9f2efa24dd5ad6f5b987ee93e92e87bbdd4cdd881ba725f4d7d7cd90",
+          "width": 1320,
+          "height": 2787,
+          "bytes": 285676,
+          "sha256": "030bac055afd1d89e7fdc465ca79981be7898cce999989dbf2da0f58e2d4a3cc",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-07.webp",
+          "url": "https://play-lh.googleusercontent.com/22y-SedY1pSL5zE_DSF3bOSgXtgmKU6-vs1PjOoxPGBl10EBFgxwRInxgTPbYLQB72bORh6h0JF-pIRzVz8X=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 7,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 1130645,
+          "sourceSha256": "6513a8d745e66b745d9ec296fb6a3caa47ef2f1e439437e8761a636ba03f449d",
+          "width": 1320,
+          "height": 2787,
+          "bytes": 263184,
+          "sha256": "0b3b964c35de59126d4d9ff471f0c938b96dc89bfa9a0482601ad648633c9252",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        },
+        {
+          "path": "assets/store-gallery/feed-google-play-08.webp",
+          "url": "https://play-lh.googleusercontent.com/3vzRrJ6Kz5PSmq07MH_YKhliqn2s8GCwNNWR8pbN9p-vRWttehs4eQzmalLimQq_Y4RfwVxzv5xESiA54YY2=s0",
+          "store": "google-play",
+          "sourceListing": "https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha&hl=en",
+          "sourceIndex": 8,
+          "sourceDimensions": {
+            "width": 1440,
+            "height": 3040
+          },
+          "sourceBytes": 1210337,
+          "sourceSha256": "23f00db67d5b3cff78c676bd07af0331384e4cc18294e644dffeb52b6ac40fdd",
+          "width": 1320,
+          "height": 2787,
+          "bytes": 289288,
+          "sha256": "f3a0e5b980a080e3daf053738b0659e66f74da528624023f783186fa084d277e",
+          "format": "webp",
+          "processing": "Mechanical WebP compression at quality92, max1320x2868; no cropping or semantic edits",
+          "device": "Android phone"
+        }
+      ],
+      "sourceCounts": {
+        "googlePlayPhone": 8,
+        "appStoreIPhone": 0
+      },
+      "appStoreNote": "No iPhone listing for this app appears in the verified developer roster."
+    }
+  }
+}
