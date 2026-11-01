@@ -146,6 +146,15 @@ source/delivery hash, dimensions and size, with artwork approval references.
 The original public PNG/JPG paths remain available. No private native captures,
 QA images, soundtrack or new video is exported with this page update.
 
+The desktop download area also offers a locally hosted QR code, visible above
+1000px. Scanning `assets/download-qr.svg` opens
+`https://krostudios.com/sovietkino/#download`, where phone visitors choose the
+correct official store. The code uses plain black modules on opaque white,
+Q error correction and an encoded four-module quiet zone; do not add a logo
+or crop that margin. Reproduce it offline on macOS from the site root with
+`swift tools/generate_sovietkino_qr.swift`. No QR redirect service or runtime
+dependency is used. Tablets and phones continue to use the store buttons.
+
 The Russian store badges on the Soviet Kino page are unmodified official
 artwork, kept locally in `sovietkino/assets/`:
 
