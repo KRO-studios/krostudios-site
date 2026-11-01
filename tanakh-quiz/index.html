@@ -69,6 +69,8 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* Scanning should land at the stores immediately, not animate down the page. */
+html:has(#download:target){scroll-behavior:auto}
 body{
   margin:0;
   background:var(--navy);
@@ -166,12 +168,38 @@ h1{
   transition:transform .16s ease,filter .16s ease;
 }
 .store-badge:hover{transform:translateY(-3px);filter:brightness(1.08)}
-.store-badge:focus-visible,.text-link:focus-visible,.site-nav a:focus-visible,.brand:focus-visible,.answer:focus-visible{
+.store-badge:focus-visible,.desktop-qr-link:focus-visible,.text-link:focus-visible,.site-nav a:focus-visible,.brand:focus-visible,.answer:focus-visible{
   outline:3px solid var(--coral);
   outline-offset:4px;
 }
 .store-badge img{width:auto;height:52px}
 .fineprint{margin-top:13px!important;font-size:.9rem!important;color:var(--muted)!important}
+.desktop-qr{display:none}
+@media(min-width:1001px){
+  .desktop-qr{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    width:100%;
+    max-width:480px;
+    margin-top:18px;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:rgba(6,27,44,.54);
+  }
+  .desktop-qr-link{
+    display:block;
+    flex:0 0 164px;
+    direction:ltr;
+    line-height:0;
+    background:#fff;
+  }
+  .desktop-qr img{width:164px;height:164px;max-width:none}
+  .desktop-qr-title{margin:0 0 8px;font-size:1.05rem;font-weight:800;line-height:1.35}
+  .desktop-qr-copy{margin:0;color:var(--muted);font-size:.82rem;line-height:1.6}
+  .desktop-qr-address{margin:10px 0 0;color:var(--teal);font-size:.72rem;unicode-bidi:isolate;overflow-wrap:anywhere}
+}
 .sr-only{
   position:absolute!important;
   width:1px!important;
@@ -499,6 +527,16 @@ h1{
           </a>
         </div>
         <p class="fineprint">חינם · בעברית · ל-iPhone ולאנדרואיד</p>
+        <aside class="desktop-qr" aria-labelledby="desktop-qr-title">
+          <a class="desktop-qr-link" href="https://krostudios.com/tanakh-quiz/#download" aria-label="פתיחת עמוד ההורדה של חידון התנ״ך עם בחירה בין App Store ל-Google Play">
+            <img src="/tanakh-quiz/assets/download-qr.svg" width="164" height="164" alt="קוד QR לפתיחת הורדת חידון התנ״ך בטלפון" decoding="async">
+          </a>
+          <div>
+            <p class="desktop-qr-title" id="desktop-qr-title">סרקו כדי להמשיך בטלפון</p>
+            <p class="desktop-qr-copy">פתחו את מצלמת הטלפון וסרקו את הקוד. בעמוד שייפתח בחרו App Store או Google Play.</p>
+            <p class="desktop-qr-address" dir="ltr">krostudios.com/tanakh-quiz</p>
+          </div>
+        </aside>
       </div>
 
       <div class="phone-stage">

@@ -104,12 +104,38 @@ The Tanakh Quiz landing page, Hebrew Bible practice pages, and bilingual privacy
 - `psukim-mefursamim.html`
 - `privacy.html`
 
-Run both Tanakh contracts before publishing:
+Run the Tanakh contracts before publishing:
 
 ```sh
 python3 tests/verify_tanakh_marketing.py
 python3 tests/verify_tanakh_privacy.py
+python3 tests/verify_tanakh_qr.py
 ```
+
+The main store buttons also have a compact Hebrew desktop-to-phone QR card,
+shown only above 1000px. Its locally hosted
+`tanakh-quiz/assets/download-qr.svg` opens
+`https://krostudios.com/tanakh-quiz/#download`, where phone visitors immediately
+get both official store choices. The page remains RTL; the QR and printed
+address are LTR and the QR is never mirrored. The code has plain black modules,
+an opaque white background, Q error correction and a four-module quiet zone.
+Do not crop the margin or add a logo. Regenerate it offline on macOS with
+`swift tools/generate_tanakh_qr.swift`; no external QR service or runtime
+dependency is used. Phones and tablets keep their existing direct-store flow
+without a QR card.
+
+Browser layout and phone-anchor checks (including no-JavaScript navigation):
+
+```sh
+SITE_URL=http://127.0.0.1:8778/tanakh-quiz/ node tests/verify_tanakh_qr_browser.cjs
+```
+
+Set `PLAYWRIGHT_MODULE` to the installed Playwright module if needed and
+`REPORT_DIR` to a private evidence folder. Before publishing, decode the QR
+from the generated browser screenshots with an independent QR decoder and
+confirm the exact `https://krostudios.com/tanakh-quiz/#download` payload.
+The download hash intentionally skips smooth scrolling so scanned phone
+visits show both stores immediately, even without JavaScript.
 
 ## Soviet Kino pages
 
