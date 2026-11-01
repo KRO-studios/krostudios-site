@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "enabled_question_count": 215,
+  "film_count": 64,
+  "films": [
+    {
+      "title": "12 стульев",
+      "years": [
+        1971
+      ],
+      "question_count": 5
+    },
+    {
+      "title": "Афоня",
+      "years": [
+        1975
+      ],
+      "question_count": 4
+    },
+    {
+      "title": "Баллада о солдате",
+      "years": [
+        1959
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Белое солнце пустыни",
+      "years": [
+        1970
+      ],
+      "question_count": 12
+    },
+    {
+      "title": "Берегись автомобиля",
+      "years": [
+        1966
+      ],
+      "question_count": 2
+    },
+    {
+      "title": "Большая перемена",
+      "years": [
+        1972
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Бриллиантовая рука",
+      "years": [
+        1969
+      ],
+      "question_count": 18
+    },
+    {
+      "title": "Вокзал для двоих",
+      "years": [
+        1982
+      ],
+      "question_count": 2
+    },
+    {
+      "title": "Гусарская баллада",
+      "years": [
+        1962
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Дайте жалобную книгу",
+      "years": [
+        1965
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Девушка без адреса",
+      "years": [
+        1957
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Деловые люди",
+      "years": [
+        1962
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Джентльмены удачи",
+      "years": [
+        1971
+      ],
+      "question_count": 7
+    },
+    {
+      "title": "Добро пожаловать, или Посторонним вход воспрещён",
+      "years": [
+        1964
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Дорогая Елена Сергеевна",
+      "years": [
+        1988
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Жестокий романс",
+      "years": [
+        1984
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "За спичками",
+      "years": [
+        1980
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Забытая мелодия для флейты",
+      "years": [
+        1987
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Зеркало",
+      "years": [
+        1974
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Иван Васильевич меняет профессию",
+      "years": [
+        1973
+      ],
+      "question_count": 15
+    },
+    {
+      "title": "Иваново детство",
+      "years": [
+        1962
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Инкогнито из Петербурга",
+      "years": [
+        1977
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Ирония судьбы, или С лёгким паром!",
+      "years": [
+        1976
+      ],
+      "question_count": 9
+    },
+    {
+      "title": "Кавказская пленница, или Новые приключения Шурика",
+      "years": [
+        1967
+      ],
+      "question_count": 12
+    },
+    {
+      "title": "Карнавальная ночь",
+      "years": [
+        1956
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Кин-дза-дза!",
+      "years": [
+        1986
+      ],
+      "question_count": 15
+    },
+    {
+      "title": "Курьер",
+      "years": [
+        1986
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Летят журавли",
+      "years": [
+        1957
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Любовь и голуби",
+      "years": [
+        1985
+      ],
+      "question_count": 12
+    },
+    {
+      "title": "Место встречи изменить нельзя",
+      "years": [
+        1979
+      ],
+      "question_count": 11
+    },
+    {
+      "title": "Мимино",
+      "years": [
+        1977
+      ],
+      "question_count": 4
+    },
+    {
+      "title": "Москва слезам не верит",
+      "years": [
+        1980
+      ],
+      "question_count": 9
+    },
+    {
+      "title": "Мы из джаза",
+      "years": [
+        1983
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Не горюй!",
+      "years": [
+        1969
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Не может быть!",
+      "years": [
+        1975
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Несколько дней из жизни И. И. Обломова",
+      "years": [
+        1979
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "О бедном гусаре замолвите слово",
+      "years": [
+        1980
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Обыкновенное чудо",
+      "years": [
+        1978
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Опасно для жизни!",
+      "years": [
+        1985
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Операция «Ы» и другие приключения Шурика",
+      "years": [
+        1965
+      ],
+      "question_count": 12
+    },
+    {
+      "title": "Осенний марафон",
+      "years": [
+        1979
+      ],
+      "question_count": 2
+    },
+    {
+      "title": "Паспорт",
+      "years": [
+        1990
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Пёс Барбос и необычный кросс",
+      "years": [
+        1961
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Полосатый рейс",
+      "years": [
+        1961
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Путь к причалу",
+      "years": [
+        1962
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Розыгрыш",
+      "years": [
+        1976
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Самая обаятельная и привлекательная",
+      "years": [
+        1985
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Самогонщики",
+      "years": [
+        1961
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Свой среди чужих, чужой среди своих",
+      "years": [
+        1974
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Серёжа",
+      "years": [
+        1960
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Слёзы капали",
+      "years": [
+        1982
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Служебный роман",
+      "years": [
+        1977
+      ],
+      "question_count": 12
+    },
+    {
+      "title": "Собачье сердце",
+      "years": [
+        1988
+      ],
+      "question_count": 7
+    },
+    {
+      "title": "Совсем пропащий",
+      "years": [
+        1973
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Солярис",
+      "years": [
+        1972
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Спортлото-82",
+      "years": [
+        1982
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Сталкер",
+      "years": [
+        1979
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Старики-разбойники",
+      "years": [
+        1971
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Тридцать три",
+      "years": [
+        1965
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Формула любви",
+      "years": [
+        1984
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Частный детектив, или операция «Кооперация»",
+      "years": [
+        1989
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Человек с бульвара Капуцинов",
+      "years": [
+        1987
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Экипаж",
+      "years": [
+        1979
+      ],
+      "question_count": 1
+    },
+    {
+      "title": "Я шагаю по Москве",
+      "years": [
+        1963
+      ],
+      "question_count": 1
+    }
+  ]
+}

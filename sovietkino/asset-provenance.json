@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-11-01",
+  "purpose": "Optimized website variants of previously owner-approved app art and existing public game screenshots. All app films are represented by the complete text catalog; six different films feature in the hero mosaic, with additional illustrations available for sample questions.",
+  "content_boundary": "Original people-free cinema illustrations; not actual film frames or posters. Source content is preserved. No new imagery, no actor photography, no internet film stills, no generated edits.",
+  "source_approval_record": "App CLAUDE.md ratified complete artwork coverage; assets/images/home/cinema_quote_scenes/ARTWORK_AUDIT.md locks the seven panorama hashes. Existing site sample pictures and screenshots are retained as sources.",
+  "catalog": {
+    "authoritative_source": "app:lib/data/soviet_questions.dart allQuestions where enabled=true",
+    "source_sha256": "78162d29e0839b9e054c8fd9fd6fa8919527595076b5f8768aa06d4e8a459256",
+    "extraction": "Evaluated by Dart SDK, preserving exact film title and authored year values; sorted by Russian title with Ё folded to Е for ordering.",
+    "enabled_question_count": 215,
+    "film_count": 64,
+    "delivered_file": "catalog.json"
+  },
+  "total_optimized_bytes": 1960986,
+  "asset_count": 32,
+  "assets": [
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/home.png",
+      "source_sha256": "d952deac0e0aed1df36d84572182fbcc70858ab9715528fd6b93aa1a8fd9e347",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/home-360.webp",
+      "dimensions": [
+        360,
+        640
+      ],
+      "bytes": 42670,
+      "sha256": "c22975fe6192a116525e9e8fe7c07075cd4cf11611285539aacb4c8cfa02117b",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/home.png",
+      "source_sha256": "d952deac0e0aed1df36d84572182fbcc70858ab9715528fd6b93aa1a8fd9e347",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/home-720.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 136544,
+      "sha256": "5b38ef323f0af3acb71e7ea1e3600805420d3a39f2eef891882aec5172c36c94",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/gameplay.png",
+      "source_sha256": "47b015dae14e1a25531fb6679ff9b8c48f0a08928bc726355cd1d925a3ebbd11",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/gameplay-360.webp",
+      "dimensions": [
+        360,
+        640
+      ],
+      "bytes": 36704,
+      "sha256": "37bc516e8c91c794f92c6faafb45819ac9a8dd75097e5a96cc41930de45a56e7",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/gameplay.png",
+      "source_sha256": "47b015dae14e1a25531fb6679ff9b8c48f0a08928bc726355cd1d925a3ebbd11",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/gameplay-720.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 87956,
+      "sha256": "7e02e527c657cd4d920066614e77b427f547a7616c7ae41f1f03b88db57e6991",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/cinema-fact.png",
+      "source_sha256": "0889b67118e8e962bdddcffdbe0f8c61063bf033569ecd5d6d0c9229be70fcf8",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/cinema-fact-360.webp",
+      "dimensions": [
+        360,
+        640
+      ],
+      "bytes": 21058,
+      "sha256": "dd6538c73f75e3289f0c11371c8dc8c436bc125fe8fae7d7f062ddcb2052d375",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/cinema-fact.png",
+      "source_sha256": "0889b67118e8e962bdddcffdbe0f8c61063bf033569ecd5d6d0c9229be70fcf8",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/cinema-fact-720.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 62344,
+      "sha256": "c116998a79c6e3ca2aba531ff8c1fcb46c87b7aa95c6a870e2ec981eb2d2984e",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/daily-topics.png",
+      "source_sha256": "082a89aeeb54fca744bcbb471c57b612e31c9358d9c35b4a97e14a52732325c1",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/daily-topics-360.webp",
+      "dimensions": [
+        360,
+        640
+      ],
+      "bytes": 34030,
+      "sha256": "24cc6fdcb3da13a1a71e70dbdff8ee955774f717538e71fcfac9882cb87c6ce5",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/daily-topics.png",
+      "source_sha256": "082a89aeeb54fca744bcbb471c57b612e31c9358d9c35b4a97e14a52732325c1",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/daily-topics-720.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 86956,
+      "sha256": "6e09946c94f01981427fb15aed36e4e727f6cdeacd584ceb6dee77637f52aae2",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/leaderboard.png",
+      "source_sha256": "ba6c04bf64dd46862f57fd0d544984c70b363961bc026ed34a2eec3729e4ef19",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/leaderboard-360.webp",
+      "dimensions": [
+        360,
+        640
+      ],
+      "bytes": 28288,
+      "sha256": "f21d456bafcb7ac815000022e3d9a993395b23ad38a38507e8992cf995c5bb05",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "real_app_screenshot",
+      "source_path": "site:assets/leaderboard.png",
+      "source_sha256": "ba6c04bf64dd46862f57fd0d544984c70b363961bc026ed34a2eec3729e4ef19",
+      "source_dimensions": [
+        1080,
+        1920
+      ],
+      "delivered_file": "assets/web/leaderboard-720.webp",
+      "dimensions": [
+        720,
+        1280
+      ],
+      "bytes": 80094,
+      "sha256": "c02939f9a1b3707f3cbee2392c89e4210297e62f83a21a71b4032245aa6c966a",
+      "film_id": null,
+      "film_ids": [],
+      "film_title": null,
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 85
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-shurik.jpg",
+      "source_sha256": "40c049dd590b69ed585d8e2bbd977507d724b5fc9df7fbf73e2f72076e683f6f",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-shurik-480.webp",
+      "dimensions": [
+        480,
+        178
+      ],
+      "bytes": 14432,
+      "sha256": "f043fbe9d85b326c7c7d2e8c3a5506bb25ff3e1f8269f506956a1d014a84cd12",
+      "film_id": "operation_y",
+      "film_ids": [
+        "operation_y"
+      ],
+      "film_title": "Операция «Ы» и другие приключения Шурика",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-shurik.jpg",
+      "source_sha256": "40c049dd590b69ed585d8e2bbd977507d724b5fc9df7fbf73e2f72076e683f6f",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-shurik-960.webp",
+      "dimensions": [
+        960,
+        356
+      ],
+      "bytes": 56070,
+      "sha256": "bf3a96c2c843cde9c5a04887c88ee3ae44b7620826a919de3707844ad470d16b",
+      "film_id": "operation_y",
+      "film_ids": [
+        "operation_y"
+      ],
+      "film_title": "Операция «Ы» и другие приключения Шурика",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-nikulin.jpg",
+      "source_sha256": "63cbbaf50750fbf6313985b71b968af4310f45b9dc3b44b1dce86d78ae338cce",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-nikulin-480.webp",
+      "dimensions": [
+        480,
+        178
+      ],
+      "bytes": 26616,
+      "sha256": "2a27d4fe70daca931c2b968be5470c00d556ffb822bb20e53a33ed048aee596e",
+      "film_id": "diamond_arm",
+      "film_ids": [
+        "diamond_arm"
+      ],
+      "film_title": "Бриллиантовая рука",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-nikulin.jpg",
+      "source_sha256": "63cbbaf50750fbf6313985b71b968af4310f45b9dc3b44b1dce86d78ae338cce",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-nikulin-960.webp",
+      "dimensions": [
+        960,
+        356
+      ],
+      "bytes": 98140,
+      "sha256": "6d5834d515d82ca964b8b5d31d6ff0d214785eeab54f5146402a57df88ea301c",
+      "film_id": "diamond_arm",
+      "film_ids": [
+        "diamond_arm"
+      ],
+      "film_title": "Бриллиантовая рука",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-sudby.jpg",
+      "source_sha256": "daaedc9bf30728538d015dbc0da8a46652448d9157c0997a278ca33daeebe0fb",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-sudby-480.webp",
+      "dimensions": [
+        480,
+        178
+      ],
+      "bytes": 23526,
+      "sha256": "309c9d093f5757194ce00dfea86376e41330aa3f521b0c1bbccf16af698e22fc",
+      "film_id": "irony_of_fate",
+      "film_ids": [
+        "irony_of_fate"
+      ],
+      "film_title": "Ирония судьбы, или С лёгким паром!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-sudby.jpg",
+      "source_sha256": "daaedc9bf30728538d015dbc0da8a46652448d9157c0997a278ca33daeebe0fb",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-sudby-960.webp",
+      "dimensions": [
+        960,
+        356
+      ],
+      "bytes": 84666,
+      "sha256": "cee868e5d9eede3466dcad7638b7ee82402df03bb7c769dce7e73ad3a58dc734",
+      "film_id": "irony_of_fate",
+      "film_ids": [
+        "irony_of_fate"
+      ],
+      "film_title": "Ирония судьбы, или С лёгким паром!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-plyuk.jpg",
+      "source_sha256": "3dee3ecd0c6fe59d6a4225e79a67e3e0e3be0f7a282ff7459d18f6d166a3d746",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-plyuk-480.webp",
+      "dimensions": [
+        480,
+        178
+      ],
+      "bytes": 16560,
+      "sha256": "92b4a51ec9d4362d5b5e1f3c9263ae7ec604c0079a771327fe962fe16e04d845",
+      "film_id": "kin_dza_dza",
+      "film_ids": [
+        "kin_dza_dza"
+      ],
+      "film_title": "Кин-дза-дза!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "site:assets/sample-plyuk.jpg",
+      "source_sha256": "3dee3ecd0c6fe59d6a4225e79a67e3e0e3be0f7a282ff7459d18f6d166a3d746",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/sample-plyuk-960.webp",
+      "dimensions": [
+        960,
+        356
+      ],
+      "bytes": 58284,
+      "sha256": "4d05a950d4434b46e54dbf5e93b77b83908ff8761f9aa5f3bff501502633a063",
+      "film_id": "kin_dza_dza",
+      "film_ids": [
+        "kin_dza_dza"
+      ],
+      "film_title": "Кин-дза-дза!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/diamond_arm.jpg",
+      "source_sha256": "63cbbaf50750fbf6313985b71b968af4310f45b9dc3b44b1dce86d78ae338cce",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-diamond-arm-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 40878,
+      "sha256": "08554de729e396c4b0332c2c39511041aaa493a6a9cfcdf94d2c003044cc7a22",
+      "film_id": "diamond_arm",
+      "film_ids": [
+        "diamond_arm"
+      ],
+      "film_title": "Бриллиантовая рука",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/diamond_arm.jpg",
+      "source_sha256": "63cbbaf50750fbf6313985b71b968af4310f45b9dc3b44b1dce86d78ae338cce",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-diamond-arm-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 145004,
+      "sha256": "a6f251ffa5caa6781cdd31ec3c734d410ccf5d777b82a50af4e0d136cac3491c",
+      "film_id": "diamond_arm",
+      "film_ids": [
+        "diamond_arm"
+      ],
+      "film_title": "Бриллиантовая рука",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/irony_of_fate.jpg",
+      "source_sha256": "daaedc9bf30728538d015dbc0da8a46652448d9157c0997a278ca33daeebe0fb",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-irony-of-fate-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 35910,
+      "sha256": "febd82168530e90c17e8140aa62581bc974f5756b9fb59dd23ac60de4573fac7",
+      "film_id": "irony_of_fate",
+      "film_ids": [
+        "irony_of_fate"
+      ],
+      "film_title": "Ирония судьбы, или С лёгким паром!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/irony_of_fate.jpg",
+      "source_sha256": "daaedc9bf30728538d015dbc0da8a46652448d9157c0997a278ca33daeebe0fb",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-irony-of-fate-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 119386,
+      "sha256": "086e4b80150623fa25fc0eb21d4ead68173c77540d3fc71f6b3464355da5128d",
+      "film_id": "irony_of_fate",
+      "film_ids": [
+        "irony_of_fate"
+      ],
+      "film_title": "Ирония судьбы, или С лёгким паром!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/office_romance_baritone.jpg",
+      "source_sha256": "2cb04eda6f06fed6815a005524d033828115dc4f92d554d650a50d8dfa420cbd",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-office-romance-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 23038,
+      "sha256": "c04d090a6efb3d2aaf7ecbca5bec963e35215580b5843c55839e1c4c8c582b52",
+      "film_id": "office_romance",
+      "film_ids": [
+        "office_romance"
+      ],
+      "film_title": "Служебный роман",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/office_romance_baritone.jpg",
+      "source_sha256": "2cb04eda6f06fed6815a005524d033828115dc4f92d554d650a50d8dfa420cbd",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-office-romance-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 68124,
+      "sha256": "6deee4c31cf38ab8fb48b2f7c2ec93a4c043f0fc5695e2a0398d9d005a674ec5",
+      "film_id": "office_romance",
+      "film_ids": [
+        "office_romance"
+      ],
+      "film_title": "Служебный роман",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/gentlemen_of_fortune_romance.jpg",
+      "source_sha256": "6019189454b8888e9eb023ba292db0a2fcad675f480c7d0215b781687d4a6bc0",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-gentlemen-of-fortune-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 29712,
+      "sha256": "ff8aacffac9c3475b82f42e2a125148c7ba746386579f13c7f810b2415bd8cad",
+      "film_id": "gentlemen_of_fortune",
+      "film_ids": [
+        "gentlemen_of_fortune"
+      ],
+      "film_title": "Джентльмены удачи",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/gentlemen_of_fortune_romance.jpg",
+      "source_sha256": "6019189454b8888e9eb023ba292db0a2fcad675f480c7d0215b781687d4a6bc0",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-gentlemen-of-fortune-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 103032,
+      "sha256": "5a45d6198f082e07fb01c948a2680d6a4defb01b07954a51803fddc1f5a4dbfb",
+      "film_id": "gentlemen_of_fortune",
+      "film_ids": [
+        "gentlemen_of_fortune"
+      ],
+      "film_title": "Джентльмены удачи",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/kin_dza_dza.jpg",
+      "source_sha256": "3dee3ecd0c6fe59d6a4225e79a67e3e0e3be0f7a282ff7459d18f6d166a3d746",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-kin-dza-dza-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 24146,
+      "sha256": "4fe11ce312525fb1f7ed83a89d4402f0ec69acde8dce263dca1536d8c6c847d8",
+      "film_id": "kin_dza_dza",
+      "film_ids": [
+        "kin_dza_dza"
+      ],
+      "film_title": "Кин-дза-дза!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/kin_dza_dza.jpg",
+      "source_sha256": "3dee3ecd0c6fe59d6a4225e79a67e3e0e3be0f7a282ff7459d18f6d166a3d746",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-kin-dza-dza-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 88208,
+      "sha256": "3d8e0db49efbc6ca760d3058f52882e82e701951ddbf8605fdd8f8a4e06d462c",
+      "film_id": "kin_dza_dza",
+      "film_ids": [
+        "kin_dza_dza"
+      ],
+      "film_title": "Кин-дза-дза!",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/caucasian_captive_notebook.jpg",
+      "source_sha256": "a90b7061ce6e0d0d7d226533eacf5b8e1308fd4bc5529b91d0726a9654060e5c",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-caucasian-captive-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 33884,
+      "sha256": "b7a796d7541a2b98a39c29755f5d19675a823bfe33748d6fcba10e8cfe9e3fe3",
+      "film_id": "caucasian_captive",
+      "film_ids": [
+        "caucasian_captive"
+      ],
+      "film_title": "Кавказская пленница, или Новые приключения Шурика",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/caucasian_captive_notebook.jpg",
+      "source_sha256": "a90b7061ce6e0d0d7d226533eacf5b8e1308fd4bc5529b91d0726a9654060e5c",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-caucasian-captive-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 114582,
+      "sha256": "911acb2d1359dca10ead9ec5bba2e9541f9abd88285731a79239e7fa96fcd554",
+      "film_id": "caucasian_captive",
+      "film_ids": [
+        "caucasian_captive"
+      ],
+      "film_title": "Кавказская пленница, или Новые приключения Шурика",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/moscow_does_not_believe_in_tears.jpg",
+      "source_sha256": "2caeb415dd39775d11285342fbb8e5fd094f59d795ca26d73fac1f4f988c4ca1",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-moscow-600.webp",
+      "dimensions": [
+        600,
+        222
+      ],
+      "bytes": 31552,
+      "sha256": "5d0aced1d07fd81031140975c34cb9a2cf5b5af2b2c934724d815ff81ecfb155",
+      "film_id": "moscow_does_not_believe_in_tears",
+      "film_ids": [
+        "moscow_does_not_believe_in_tears"
+      ],
+      "film_title": "Москва слезам не верит",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    },
+    {
+      "kind": "original_app_environment",
+      "source_path": "app:assets/images/home/cinema_quote_scenes/moscow_does_not_believe_in_tears.jpg",
+      "source_sha256": "2caeb415dd39775d11285342fbb8e5fd094f59d795ca26d73fac1f4f988c4ca1",
+      "source_dimensions": [
+        1620,
+        600
+      ],
+      "delivered_file": "assets/web/hero-moscow-1200.webp",
+      "dimensions": [
+        1200,
+        444
+      ],
+      "bytes": 108592,
+      "sha256": "ea2feb17f69e8f8479a080689a9b34c409e7f8d6488703b2dbcaa1e800c47742",
+      "film_id": "moscow_does_not_believe_in_tears",
+      "film_ids": [
+        "moscow_does_not_believe_in_tears"
+      ],
+      "film_title": "Москва слезам не верит",
+      "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
+      "quality": 80
+    }
+  ]
+}

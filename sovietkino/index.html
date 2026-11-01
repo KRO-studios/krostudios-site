@@ -3,414 +3,172 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#141615">
-  <meta name="description" content="Советское кино: Угадай слово — русская игра в слова и киновикторина по фильмам СССР. Угадывайте героев, актёров и цитаты по подсказкам. Бесплатно в Google Play и App Store.">
+  <meta name="theme-color" content="#131715">
+  <meta name="description" content="Советское кино: Угадай слово — бесплатная киновикторина по 64 советским фильмам. Угадывайте героев, актёров и цитаты по подсказкам. Для Android, iPhone и iPad.">
   <link rel="canonical" href="https://krostudios.com/sovietkino/">
   <link rel="icon" type="image/png" href="assets/icon.png">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="Kro Studios">
-  <meta property="og:title" content="Советское кино: Угадай слово — игра в слова и киновикторина">
-  <meta property="og:description" content="Помните любимые фильмы? Угадайте слово по подсказке. Герои, актёры, цитаты и ежедневные задания — бесплатно на Android, iPhone и iPad.">
+  <meta property="og:title" content="Советское кино: Угадай слово — киновикторина по любимым фильмам">
+  <meta property="og:description" content="64 фильма, 215 вопросов и одно слово в ответе. Попробуйте вопрос на сайте — продолжите бесплатно на Android, iPhone и iPad.">
   <meta property="og:url" content="https://krostudios.com/sovietkino/">
   <meta property="og:image" content="https://krostudios.com/sovietkino/assets/feature-graphic.png">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="500">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Советское кино: Угадай слово — русская игра в слова и киновикторина</title>
+  <title>Советское кино: Угадай слово — киновикторина по 64 фильмам</title>
+  <link rel="stylesheet" href="landing.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MobileApplication",
-    "name": "Советское кино: Угадай слово",
-    "description": "Русская игра в слова и киновикторина по фильмам СССР с подсказками, ежедневными заданиями и рейтингом.",
-    "applicationCategory": "GameApplication",
-    "operatingSystem": "Android, iOS",
-    "inLanguage": "ru",
-    "url": "https://krostudios.com/sovietkino/",
-    "downloadUrl": [
-      "https://play.google.com/store/apps/details?id=com.krostudios.sovietkino",
-      "https://apps.apple.com/app/id6812753192"
-    ],
-    "image": "https://krostudios.com/sovietkino/assets/feature-graphic.png",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-    "publisher": {"@type": "Organization", "name": "Kro Studios", "url": "https://krostudios.com/"}
-  }
+  {"@context":"https://schema.org","@type":"MobileApplication","name":"Советское кино: Угадай слово","description":"Бесплатная русская игра в слова и киновикторина по 64 советским фильмам: герои, актёры, цитаты, кинофакты и слово дня.","applicationCategory":"GameApplication","operatingSystem":"Android, iOS","inLanguage":"ru","url":"https://krostudios.com/sovietkino/","downloadUrl":["https://play.google.com/store/apps/details?id=com.krostudios.sovietkino","https://apps.apple.com/app/id6812753192"],"image":"https://krostudios.com/sovietkino/assets/feature-graphic.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Kro Studios","url":"https://krostudios.com/"}}
   </script>
-  <style>
-    :root {
-      --ink: #141615;
-      --ink-light: #202321;
-      --paper: #f4e3c6;
-      --paper-muted: #cbbca3;
-      --gold: #e5ac31;
-      --red: #b82820;
-      --teal: #0e3430;
-      --line: rgba(244, 227, 198, .25);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--paper);
-      background: var(--ink);
-      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      z-index: -1;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 75% 9%, rgba(229, 172, 49, .12), transparent 28%),
-        linear-gradient(90deg, transparent 48%, rgba(244, 227, 198, .028) 49%, transparent 50%);
-      background-size: auto, 46px 46px;
-    }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-    .skip {
-      position: absolute; top: -100px; left: 12px; z-index: 10;
-      padding: 10px 15px; background: var(--paper); color: var(--ink);
-    }
-    .skip:focus { top: 12px; }
-    .shell { width: min(1180px, calc(100% - 44px)); margin-inline: auto; }
-    .topbar {
-      border-bottom: 1px solid var(--line);
-      background: rgba(14, 52, 48, .76);
-    }
-    .topbar .shell {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 20px; min-height: 76px;
-    }
-    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 850; text-decoration: none; letter-spacing: .07em; text-transform: uppercase; }
-    .brand img { width: 44px; height: 44px; border-radius: 10px; }
-    .topnav { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; font-size: 14px; font-weight: 700; }
-    .topnav a { text-decoration: none; }
-    .topnav a:hover { color: var(--gold); }
-    .topnav .nav-cta { padding: 9px 15px; border: 1px solid var(--gold); color: var(--gold); }
-    .nav-cta .small-label { display: none; }
-    .eyebrow, .section-kicker {
-      margin: 0; color: var(--gold); font: 800 13px/1.4 Arial, sans-serif;
-      letter-spacing: .19em; text-transform: uppercase;
-    }
-    h1, h2, h3 { font-family: Impact, "Arial Narrow", "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: .015em; }
-    h1 { max-width: 1000px; margin: 18px 0 22px; font-size: clamp(50px, 7.8vw, 112px); line-height: .96; overflow-wrap: anywhere; }
-    h1 em { color: var(--gold); font-style: normal; }
-    .mobile-break { display: none; }
-    h2 { margin: 14px 0 20px; font-size: clamp(37px, 5vw, 66px); line-height: 1.02; }
-    h3 { margin: 0 0 12px; font-size: 28px; line-height: 1.1; }
-    .hero { padding: clamp(52px, 8vw, 112px) 0 46px; }
-    .hero-intro { display: flex; align-items: flex-start; justify-content: space-between; gap: 36px; }
-    .hero-copy { flex: 1 1 auto; min-width: 0; max-width: 670px; margin: 0 0 28px; color: var(--paper-muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.52; }
-    .hero-action { flex: 0 1 640px; padding-bottom: 34px; }
-    .store-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .store-lead { margin: 0 0 12px; color: var(--gold); font-size: 15px; font-weight: 850; }
-    .store-option {
-      display: flex; flex-direction: column; align-items: flex-start;
-      min-width: 0; padding: 16px 18px 20px; text-decoration: none;
-      background: #202321; border: 1px solid rgba(229, 172, 49, .48);
-      transition: background .15s ease, border-color .15s ease, transform .15s ease;
-    }
-    .store-option:hover { background: #292c27; border-color: var(--gold); transform: translateY(-2px); }
-    .store-device { display: block; color: var(--paper); font-size: 17px; font-weight: 850; line-height: 1.3; }
-    .store-help { display: block; margin: 4px 0 16px; color: var(--paper-muted); font-size: 13px; line-height: 1.45; }
-    .store-badge { display: block; width: 168px; max-width: 100%; height: auto; margin-top: auto; }
-    .store-option--google .store-badge { width: 186px; }
-    .store-guide { margin: 16px 0 0; color: var(--paper-muted); font-size: 13px; line-height: 1.5; }
-    .banner {
-      position: relative; margin: 12px 0 0; padding: 10px;
-      background: var(--teal); border: 1px solid rgba(229, 172, 49, .65);
-      box-shadow: 12px 12px 0 #0a2220;
-    }
-    .banner::before, .banner::after {
-      content: ""; position: absolute; left: 18px; right: 18px; height: 1px;
-      background: rgba(229, 172, 49, .55);
-    }
-    .banner::before { top: 5px; } .banner::after { bottom: 5px; }
-    .banner img { display: block; width: 100%; height: auto; }
-    .reel {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      margin: 56px 0 0; background: var(--line); border-block: 1px solid var(--line);
-    }
-    .reel div { padding: 25px 28px; background: var(--ink); }
-    .reel strong { display: block; color: var(--gold); font: 900 30px/1 Impact, "Arial Narrow", Arial, sans-serif; }
-    .reel span { display: block; margin-top: 6px; color: var(--paper-muted); font-size: 15px; }
-    .section { padding: clamp(68px, 9vw, 125px) 0 0; }
-    .section-lead { max-width: 720px; margin: 0 0 36px; color: var(--paper-muted); font-size: 18px; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .feature {
-      min-height: 230px; padding: 27px;
-      background: linear-gradient(150deg, #252520, #1b1d1b);
-      border: 1px solid var(--line); border-top: 5px solid var(--gold);
-    }
-    .feature:nth-child(2) { border-top-color: var(--red); }
-    .feature:nth-child(3) { border-top-color: #5a9680; }
-    .feature .number { display: block; margin-bottom: 19px; color: var(--gold); font-size: 13px; font-weight: 900; letter-spacing: .17em; }
-    .feature p { margin: 0; color: var(--paper-muted); }
-    .sample-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-    .sample-card { min-width: 0; overflow: hidden; background: var(--ink-light); border: 1px solid var(--line); border-top: 4px solid var(--gold); }
-    .sample-card:nth-child(even) { border-top-color: #5a9680; }
-    .sample-card img { display: block; width: 100%; height: auto; aspect-ratio: 2.7; object-fit: cover; }
-    .sample-content { padding: 24px 26px 22px; }
-    .sample-category { color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: .16em; }
-    .sample-question { min-height: 3.2em; margin: 11px 0 0; font-size: clamp(18px, 2vw, 23px); font-weight: 700; line-height: 1.4; }
-    .sample-card details { margin-top: 20px; border-top: 1px solid var(--line); }
-    .sample-card summary { display: flex; align-items: center; justify-content: space-between; min-height: 50px; color: var(--gold); cursor: pointer; font-weight: 800; list-style: none; }
-    .sample-card summary::-webkit-details-marker { display: none; }
-    .sample-card summary::after { content: "+"; font-size: 26px; line-height: 1; }
-    .sample-card details[open] summary::after { content: "−"; }
-    .sample-card summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-    .sample-answer { padding: 0 0 6px; }
-    .sample-answer strong { display: block; color: var(--paper); font: 800 30px/1.2 Impact, "Arial Narrow", Arial, sans-serif; letter-spacing: .03em; }
-    .sample-answer p, .sample-note { color: var(--paper-muted); font-size: 14px; }
-    .sample-answer p { margin: 8px 0 0; }
-    .sample-note { margin: 19px 0 0; }
-    .gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin: 36px 0 0; }
-    .gallery:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
-    .gallery-hint { display: none; }
-    .gallery figure { min-width: 0; margin: 0; }
-    .gallery img { display: block; width: 100%; height: auto; border: 1px solid rgba(229, 172, 49, .5); }
-    .gallery figcaption { padding: 14px 0; color: var(--paper-muted); font-size: 15px; }
-    .gallery b { color: var(--paper); }
-    .final {
-      margin: clamp(80px, 10vw, 140px) 0 0; padding: clamp(38px, 6vw, 80px);
-      background: linear-gradient(120deg, #0e3430, #112321 65%, #1b1d1b);
-      border: 1px solid rgba(229, 172, 49, .5);
-    }
-    .final h2 { max-width: 760px; }
-    .final p:not(.section-kicker) { max-width: 630px; color: var(--paper-muted); }
-    .final .store-lead { margin-top: 26px; }
-    .final .store-actions { max-width: 690px; }
-    footer { padding: 55px 0 36px; color: var(--paper-muted); font-size: 14px; }
-    footer .shell { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 26px; }
-    footer nav { display: flex; flex-wrap: wrap; gap: 10px 20px; }
-    footer a:hover { color: var(--gold); }
-    .trademark-note { flex-basis: 100%; margin: 14px 0 0; color: var(--paper-muted); font-size: 11px; line-height: 1.5; }
-    @media (max-width: 1100px) {
-      .hero-intro { display: block; }
-      .hero-action { max-width: 690px; padding-bottom: 15px; }
-    }
-    @media (max-width: 850px) {
-      .feature-grid { grid-template-columns: 1fr; }
-      .feature { min-height: 0; }
-      .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 13px; padding-bottom: 15px; }
-      .gallery-hint { display: block; margin: 0; color: var(--gold); font-size: 14px; font-weight: 800; }
-      .gallery figure { flex: 0 0 min(36vw, 250px); scroll-snap-align: start; }
-    }
-    @media (max-width: 600px) {
-      .shell { width: min(calc(100% - 30px), 1180px); }
-      .topbar .shell { min-height: 70px; }
-      .brand { font-size: 14px; } .brand img { width: 40px; height: 40px; }
-      .topnav a:not(.nav-cta) { display: none; }
-      .topnav .nav-cta { padding: 7px 10px; font-size: 12px; }
-      .nav-cta .wide-label { display: none; }
-      .nav-cta .small-label { display: inline; }
-      .mobile-break { display: initial; }
-      .hero { padding-top: 54px; }
-      h1 { font-size: clamp(39px, 11vw, 64px); line-height: 1.08; }
-      .hero-copy { font-size: 18px; }
-      .store-actions { grid-template-columns: 1fr; }
-      .hero-action { max-width: 360px; }
-      .store-option { padding: 15px 16px 18px; }
-      .banner { padding: 4px; box-shadow: 5px 5px 0 #0a2220; }
-      .reel { grid-template-columns: 1fr; margin-top: 38px; }
-      .reel div { display: flex; align-items: baseline; gap: 16px; padding: 16px 18px; }
-      .reel span { margin: 0; }
-      .sample-grid { grid-template-columns: 1fr; }
-      .sample-content { padding: 19px 20px 17px; }
-      .sample-question { min-height: 0; }
-      .gallery figure { flex: 0 0 min(80vw, 320px); scroll-snap-align: start; }
-      .final { padding: 32px 23px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .store-option { transition: none; }
-    }
-  </style>
+  <script defer src="landing.js"></script>
 </head>
 <body>
-  <a class="skip" href="#content">К содержанию</a>
+  <a class="skip" href="#main">Перейти к содержанию</a>
   <header class="topbar">
-    <div class="shell">
-      <a class="brand" href="/" aria-label="Kro Studios — главная"><img src="assets/icon.png" width="44" height="44" alt="">Kro Studios</a>
-      <nav class="topnav" aria-label="Навигация по странице">
-        <a href="#how-it-works">Об игре</a>
-        <a href="#questions">Вопросы</a>
-        <a href="#screenshots">Скриншоты</a>
-        <a class="nav-cta" href="#download"><span class="wide-label">Скачать игру ↓</span><span class="small-label">Скачать ↓</span></a>
-      </nav>
+    <div class="shell header-inner">
+      <a class="brand" href="/" aria-label="Все игры KRO Studios"><img src="assets/icon.png" width="43" height="43" alt=""><span><strong>Советское кино</strong><small>KRO STUDIOS · УГАДАЙ СЛОВО</small></span></a>
+      <nav class="topnav" aria-label="Разделы страницы"><a href="#try">Попробовать</a><a href="#films">Фильмы</a><a href="#screenshots">Игра</a><a class="nav-cta" href="#download">Скачать бесплатно ↓</a></nav>
     </div>
   </header>
-  <main id="content">
-    <section class="hero shell" aria-labelledby="hero-title">
-      <p class="eyebrow">Киновикторина × игра в слова</p>
-      <h1 id="hero-title">Кино — это<br class="mobile-break"> память.<br><em>Угадайте слово.</em></h1>
-      <div class="hero-intro">
-        <p class="hero-copy">«Советское кино: Угадай слово» — русская игра в слова для любителей викторин и загадок. Вспоминайте героев, актёров и цитаты по подсказкам; цветные буквы помогут найти ответ.</p>
-        <div class="hero-action" id="download">
-          <p class="store-lead">Скачать бесплатно — выберите устройство:</p>
-          <div class="store-actions" role="group" aria-label="Где скачать игру">
-            <a class="store-option" href="https://apps.apple.com/app/id6812753192">
-              <span class="store-device">У вас iPhone или iPad?</span>
-              <span class="store-help">Выбирайте магазин Apple.</span>
-              <img class="store-badge" src="assets/app-store-badge-ru.svg" width="168" height="56" alt="Загрузите игру в App Store">
-            </a>
-            <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">
-              <span class="store-device">У вас телефон или планшет Android™?</span>
-              <span class="store-help">Например, Samsung, Xiaomi или Pixel.</span>
-              <img class="store-badge" src="assets/google-play-badge-ru.png" width="186" height="72" alt="Скачать игру из Google Play">
-            </a>
+  <main id="main">
+    <section class="shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">ВИКТОРИНА ПО СОВЕТСКИМ ФИЛЬМАМ</p>
+        <h1 id="hero-title">Советское кино:<span>Угадай слово</span></h1>
+        <p class="hero-lead">Помните больше, чем думаете. <strong>Проверим?</strong> Вспоминайте героев, актёров и цитаты из любимых советских фильмов. Один вопрос — одно слово в ответе.</p>
+        <p class="hero-stats"><span><b>64</b> фильма</span><span><b>215</b> вопросов</span><span><b>RU</b> игра на русском</span></p>
+        <div id="download"><p class="store-lead">Скачать бесплатно — выберите свой магазин:</p><div class="store-actions" role="group" aria-label="Выберите магазин для своего устройства">
+      <a class="store-option" href="https://apps.apple.com/app/id6812753192"><span class="store-device">iPhone и iPad</span><img class="store-badge" src="assets/app-store-badge-ru.svg" width="152" height="51" alt="Загрузите игру в App Store"></a>
+      <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing"><span class="store-device">Телефоны и планшеты Android</span><img class="store-badge" src="assets/google-play-badge-ru.png" width="167" height="65" alt="Скачать игру из Google Play"></a>
+    </div></div>
+        <a class="try-link" href="#try">Сначала попробуйте вопрос <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art">
+        <div class="mosaic"><figure><img src="assets/web/hero-diamond-arm-600.webp" srcset="assets/web/hero-diamond-arm-600.webp 600w, assets/web/hero-diamond-arm-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Бриллиантовая рука»" decoding="async"><figcaption>Бриллиантовая рука</figcaption></figure>
+<figure><img src="assets/web/hero-irony-of-fate-600.webp" srcset="assets/web/hero-irony-of-fate-600.webp 600w, assets/web/hero-irony-of-fate-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Ирония судьбы»" decoding="async"><figcaption>Ирония судьбы</figcaption></figure>
+<figure><img src="assets/web/hero-office-romance-600.webp" srcset="assets/web/hero-office-romance-600.webp 600w, assets/web/hero-office-romance-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Служебный роман»" decoding="async"><figcaption>Служебный роман</figcaption></figure>
+<figure><img src="assets/web/hero-moscow-600.webp" srcset="assets/web/hero-moscow-600.webp 600w, assets/web/hero-moscow-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Москва слезам не верит»" decoding="async"><figcaption>Москва слезам не верит</figcaption></figure>
+<figure><img src="assets/web/hero-kin-dza-dza-600.webp" srcset="assets/web/hero-kin-dza-dza-600.webp 600w, assets/web/hero-kin-dza-dza-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Кин-дза-дза!»" decoding="async"><figcaption>Кин-дза-дза!</figcaption></figure>
+<figure><img src="assets/web/hero-gentlemen-of-fortune-600.webp" srcset="assets/web/hero-gentlemen-of-fortune-600.webp 600w, assets/web/hero-gentlemen-of-fortune-1200.webp 1200w" sizes="(max-width:700px) 30vw, 250px" width="600" height="222" alt="Иллюстрация из игры по фильму «Джентльмены удачи»" decoding="async"><figcaption>Джентльмены удачи</figcaption></figure></div>
+        <div class="hero-proof"><a href="#screenshots" aria-label="Посмотреть настоящие экраны игры"><img src="assets/web/gameplay-360.webp" width="360" height="640" alt="Пример игрового экрана с подсказкой и цветными буквами"></a><p><strong>Знакомое кино. Новый повод вспомнить.</strong><br>Собирайте ответ по буквам — и открывайте кинофакт после каждой разгадки.</p></div>
+      </div>
+    </section>
+    <div class="shell breadth" aria-label="Что есть в игре"><p><strong>Ваши любимые фильмы</strong>От комедий Гайдая до историй Рязанова, Данелии, Меньшова и другой классики.</p><p><strong>Подсказки по буквам</strong>Зелёная — на месте. Жёлтая — в другом месте. Попробуйте ещё ход.</p><p><strong>Есть повод вернуться</strong>Слово дня, коллекции, кинофакты и доска почёта.</p></div>
+
+    <section class="shell section" id="try" aria-labelledby="try-title">
+      <div class="demo-heading"><div><p class="eyebrow">Проверьте себя прямо здесь</p><h2 id="try-title">Вспомните кино<br>по одной подсказке.</h2><p class="section-lead">Шесть вопросов из разных фильмов. Введите ответ — цветные буквы подскажут, что уже удалось вспомнить.</p></div><p class="demo-note">Это небольшой пример. Полная коллекция фильмов, ежедневные задания и ваш прогресс — в приложении.</p></div>
+      <div class="quiz-interactive js-only">
+        <div class="quiz-stage">
+          <div class="quiz-art-pane"><img id="quiz-art" src="assets/web/sample-shurik-480.webp" srcset="assets/web/sample-shurik-480.webp 1x, assets/web/sample-shurik-960.webp 2x" width="480" height="178" alt="" loading="lazy" decoding="async"><div class="demo-invitation"><p class="eyebrow">С первого слова — в знакомый фильм</p><h3>Вы это точно видели.</h3><p>Иногда достаточно одной детали, чтобы вспомнить целую историю.</p><div class="legend" aria-label="Значения цветов букв"><span><i aria-hidden="true"></i>На месте</span><span><i aria-hidden="true"></i>В другом месте</span><span><i aria-hidden="true"></i>Нет в ответе</span></div></div></div>
+          <div class="quiz-main"><div class="quiz-topline"><p id="quiz-category">ПЕРСОНАЖ</p><p id="quiz-progress">Вопрос 1 из 6</p></div><h3 id="quiz-clue">Находчивый студент в очках: перевоспитывает хулигана, сдаёт экзамен и срывает ограбление склада.</h3><p id="quiz-length">Ответ — 5 букв.</p><div id="quiz-letters" aria-hidden="true"></div>
+            <form id="quiz-form"><label for="quiz-answer">Ваш ответ — одно слово</label><div class="answer-row"><input id="quiz-answer" name="answer" type="text" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" aria-describedby="quiz-length quiz-status" disabled><button id="quiz-submit" class="button" type="submit" disabled>Проверить</button></div></form>
+            <p id="quiz-status" class="quiz-status" role="status" aria-live="polite"></p>
+            <div id="quiz-payoff" class="quiz-payoff" hidden><strong id="quiz-film"></strong><p id="quiz-fact"></p><a href="#download">Продолжить в игре — скачать бесплатно →</a></div>
+            <div class="quiz-controls"><button class="text-button" id="quiz-reveal" type="button" disabled>Показать ответ</button><button class="button button-secondary" id="quiz-next" type="button" disabled>Другой фильм →</button></div>
           </div>
-          <p class="store-guide">Не уверены? Найдите на своём телефоне магазин App Store или Google Play и выберите такой же значок здесь.</p>
         </div>
       </div>
-      <figure class="banner">
-        <img src="assets/feature-graphic.png" alt="Советское кино: Угадай слово — вступительный экран и доска почёта в двух телефонах" width="1024" height="500" fetchpriority="high">
-      </figure>
-      <div class="reel" aria-label="Как проходит игра">
-        <div><strong>01</strong><span>Прочитайте подсказку</span></div>
-        <div><strong>02</strong><span>Введите слово</span></div>
-        <div><strong>03</strong><span>Найдите ответ по цветным буквам</span></div>
-      </div>
+      <noscript><p class="section-lead">Для ввода ответа включите JavaScript. А пока попробуйте вспомнить слово и откройте ответ ниже. Ссылки на скачивание и полный список фильмов работают без JavaScript.</p><div class="sample-fallback"><article><p>Находчивый студент в очках: перевоспитывает хулигана, сдаёт экзамен и срывает ограбление склада.</p><details><summary>Показать ответ</summary><p><strong>ШУРИК</strong> · Операция «Ы» и другие приключения Шурика, 1965</p></details></article>
+<article><p>Сыграл скромного экономиста с гипсом, а раньше — самого долговязого участника знаменитой троицы.</p><details><summary>Показать ответ</summary><p><strong>НИКУЛИН</strong> · Бриллиантовая рука, 1969</p></details></article>
+<article><p>Ирония ___, или С лёгким паром!</p><details><summary>Показать ответ</summary><p><strong>СУДЬБЫ</strong> · Ирония судьбы, или С лёгким паром!, 1976</p></details></article>
+<article><p>Пустынная планета в галактике Кин-дза-дза, где спички дороже всего на свете.</p><details><summary>Показать ответ</summary><p><strong>ПЛЮК</strong> · Кин-дза-дза!, 1986</p></details></article>
+<article><p>Кличка вора-рецидивиста, на которого как две капли воды похож добрый заведующий детским садом.</p><details><summary>Показать ответ</summary><p><strong>ДОЦЕНТ</strong> · Джентльмены удачи, 1971</p></details></article>
+<article><p>Приехала в Москву из провинции, одна вырастила дочь, стала директором комбината — и встретила свою любовь в электричке в сорок лет.</p><details><summary>Показать ответ</summary><p><strong>КАТЕРИНА</strong> · Москва слезам не верит, 1980</p></details></article></div></noscript>
+      <script type="application/json" id="quiz-data">[{"id": "g-c-01", "clue": "Находчивый студент в очках: перевоспитывает хулигана, сдаёт экзамен и срывает ограбление склада.", "answer": "ШУРИК", "acceptedAnswers": [], "film": "Операция «Ы» и другие приключения Шурика", "year": 1965, "funFact": "В ранних вариантах сценария героя звали Владик.", "category": "ПЕРСОНАЖ", "art": "assets/web/sample-shurik-480.webp", "art2x": "assets/web/sample-shurik-960.webp"}, {"id": "g-a-01", "clue": "Сыграл скромного экономиста с гипсом, а раньше — самого долговязого участника знаменитой троицы.", "answer": "НИКУЛИН", "acceptedAnswers": [], "film": "Бриллиантовая рука", "year": 1969, "funFact": "Образ скромного экономиста создавался специально под исполнителя главной роли.", "category": "АКТЁР", "art": "assets/web/sample-nikulin-480.webp", "art2x": "assets/web/sample-nikulin-960.webp"}, {"id": "r-f-01", "clue": "Ирония ___, или С лёгким паром!", "answer": "СУДЬБЫ", "acceptedAnswers": [], "film": "Ирония судьбы, или С лёгким паром!", "year": 1976, "funFact": "В 2016 году в городе Циолковский появилась настоящая 3-я улица Строителей — в память о Рязанове.", "category": "ФИЛЬМ", "art": "assets/web/sample-sudby-480.webp", "art2x": "assets/web/sample-sudby-960.webp"}, {"id": "d-p-01", "clue": "Пустынная планета в галактике Кин-дза-дза, где спички дороже всего на свете.", "answer": "ПЛЮК", "acceptedAnswers": [], "film": "Кин-дза-дза!", "year": 1986, "funFact": "Самая большая ценность здесь — обыкновенные спички.", "category": "МЕСТО", "art": "assets/web/sample-plyuk-480.webp", "art2x": "assets/web/sample-plyuk-960.webp"}, {"id": "c-c-05", "clue": "Кличка вора-рецидивиста, на которого как две капли воды похож добрый заведующий детским садом.", "answer": "ДОЦЕНТ", "acceptedAnswers": [], "film": "Джентльмены удачи", "year": 1971, "funFact": "Настоящее имя двойника — Евгений Трошкин; обе роли играет один актёр.", "category": "ПЕРСОНАЖ", "art": "assets/web/hero-gentlemen-of-fortune-600.webp", "art2x": "assets/web/hero-gentlemen-of-fortune-1200.webp"}, {"id": "m-c-01", "clue": "Приехала в Москву из провинции, одна вырастила дочь, стала директором комбината — и встретила свою любовь в электричке в сорок лет.", "answer": "КАТЕРИНА", "acceptedAnswers": [], "film": "Москва слезам не верит", "year": 1980, "funFact": "Меньшов сначала отказался от сценария — счёл его слишком простым.", "category": "ПЕРСОНАЖ", "art": "assets/web/hero-moscow-600.webp", "art2x": "assets/web/hero-moscow-1200.webp"}]</script>
     </section>
 
-    <section class="section shell" id="how-it-works" aria-labelledby="features-title">
-      <p class="section-kicker">Знакомый фильм. Новый вопрос.</p>
-      <h2 id="features-title">Играйте ради слова.<br>Оставайтесь ради кино.</h2>
-      <p class="section-lead">Любите загадки на русском, викторины или старое кино? Здесь не нужно знать каждую сцену наизусть: можно начать с подсказки и дойти до ответа шаг за шагом.</p>
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="number">01 / ВСПОМИНАЙТЕ</span>
-          <h3>Фильмы, герои, цитаты</h3>
-          <p>Узнавайте знакомые истории по деталям и проверяйте, что осталось в памяти.</p>
-        </article>
-        <article class="feature">
-          <span class="number">02 / УГАДЫВАЙТЕ</span>
-          <h3>Один ответ — одно слово</h3>
-          <p>Вводите буквы: цветные клетки покажут, что уже на своём месте, а что стоит переставить.</p>
-        </article>
-        <article class="feature">
-          <span class="number">03 / ВОЗВРАЩАЙТЕСЬ</span>
-          <h3>Вызов на каждый день</h3>
-          <p>Решайте ежедневное задание, выбирайте категории и сравнивайте результат в рейтинге.</p>
-        </article>
-      </div>
+    <section class="shell section film-section" id="films" aria-labelledby="films-title">
+      <div class="film-intro"><p class="eyebrow">Большая коллекция знакомых историй</p><h2 id="films-title">64 фильма.<br>Знакомые истории.</h2><p class="section-lead">В игре — 64 фильма. Угадайте слово по подсказке, вспомните цитаты из советских фильмов, любимых героев и актёров. Найдите свою историю в полной коллекции.</p><p class="catalog-footnote">Вопросы о фильмах и героях. Иллюстрации созданы для игры — это не кадры из кино.</p></div>
+      <div><div class="film-featured js-only" aria-label="Несколько фильмов из коллекции"><button type="button" class="film-shortcut" data-film="Бриллиантовая рука">Бриллиантовая рука</button><button type="button" class="film-shortcut" data-film="Ирония судьбы">Ирония судьбы</button><button type="button" class="film-shortcut" data-film="Москва слезам не верит">Москва слезам не верит</button><button type="button" class="film-shortcut" data-film="Служебный роман">Служебный роман</button><button type="button" class="film-shortcut" data-film="Кин-дза-дза">Кин-дза-дза!</button><button type="button" class="film-shortcut" data-film="Иван Васильевич">Иван Васильевич</button><button type="button" class="film-shortcut" data-film="Джентльмены удачи">Джентльмены удачи</button><button type="button" class="film-shortcut" data-film="Любовь и голуби">Любовь и голуби</button></div>
+      <details class="film-library" id="film-catalog"><summary>Посмотреть все 64 фильма</summary><div class="catalog-content"><div class="catalog-search js-only"><label for="film-search">Найдите фильм по названию или году</label><input id="film-search" type="search" autocomplete="off" placeholder="Например, «Мимино» или 1973"><p id="film-count" role="status" aria-live="polite">Все 64 фильма</p></div><ul class="film-catalog-list" id="film-list"><li class="film-entry" data-search="12 стульев 1971"><span class="film-title">12 стульев</span><span class="film-meta">1971</span></li>
+<li class="film-entry" data-search="Афоня 1975"><span class="film-title">Афоня</span><span class="film-meta">1975</span></li>
+<li class="film-entry" data-search="Баллада о солдате 1959"><span class="film-title">Баллада о солдате</span><span class="film-meta">1959</span></li>
+<li class="film-entry" data-search="Белое солнце пустыни 1970"><span class="film-title">Белое солнце пустыни</span><span class="film-meta">1970</span></li>
+<li class="film-entry" data-search="Берегись автомобиля 1966"><span class="film-title">Берегись автомобиля</span><span class="film-meta">1966</span></li>
+<li class="film-entry" data-search="Большая перемена 1972"><span class="film-title">Большая перемена</span><span class="film-meta">1972</span></li>
+<li class="film-entry" data-search="Бриллиантовая рука 1969"><span class="film-title">Бриллиантовая рука</span><span class="film-meta">1969</span></li>
+<li class="film-entry" data-search="Вокзал для двоих 1982"><span class="film-title">Вокзал для двоих</span><span class="film-meta">1982</span></li>
+<li class="film-entry" data-search="Гусарская баллада 1962"><span class="film-title">Гусарская баллада</span><span class="film-meta">1962</span></li>
+<li class="film-entry" data-search="Дайте жалобную книгу 1965"><span class="film-title">Дайте жалобную книгу</span><span class="film-meta">1965</span></li>
+<li class="film-entry" data-search="Девушка без адреса 1957"><span class="film-title">Девушка без адреса</span><span class="film-meta">1957</span></li>
+<li class="film-entry" data-search="Деловые люди 1962"><span class="film-title">Деловые люди</span><span class="film-meta">1962</span></li>
+<li class="film-entry" data-search="Джентльмены удачи 1971"><span class="film-title">Джентльмены удачи</span><span class="film-meta">1971</span></li>
+<li class="film-entry" data-search="Добро пожаловать, или Посторонним вход воспрещён 1964"><span class="film-title">Добро пожаловать, или Посторонним вход воспрещён</span><span class="film-meta">1964</span></li>
+<li class="film-entry" data-search="Дорогая Елена Сергеевна 1988"><span class="film-title">Дорогая Елена Сергеевна</span><span class="film-meta">1988</span></li>
+<li class="film-entry" data-search="Жестокий романс 1984"><span class="film-title">Жестокий романс</span><span class="film-meta">1984</span></li>
+<li class="film-entry" data-search="За спичками 1980"><span class="film-title">За спичками</span><span class="film-meta">1980</span></li>
+<li class="film-entry" data-search="Забытая мелодия для флейты 1987"><span class="film-title">Забытая мелодия для флейты</span><span class="film-meta">1987</span></li>
+<li class="film-entry" data-search="Зеркало 1974"><span class="film-title">Зеркало</span><span class="film-meta">1974</span></li>
+<li class="film-entry" data-search="Иван Васильевич меняет профессию 1973"><span class="film-title">Иван Васильевич меняет профессию</span><span class="film-meta">1973</span></li>
+<li class="film-entry" data-search="Иваново детство 1962"><span class="film-title">Иваново детство</span><span class="film-meta">1962</span></li>
+<li class="film-entry" data-search="Инкогнито из Петербурга 1977"><span class="film-title">Инкогнито из Петербурга</span><span class="film-meta">1977</span></li>
+<li class="film-entry" data-search="Ирония судьбы, или С лёгким паром! 1976"><span class="film-title">Ирония судьбы, или С лёгким паром!</span><span class="film-meta">1976</span></li>
+<li class="film-entry" data-search="Кавказская пленница, или Новые приключения Шурика 1967"><span class="film-title">Кавказская пленница, или Новые приключения Шурика</span><span class="film-meta">1967</span></li>
+<li class="film-entry" data-search="Карнавальная ночь 1956"><span class="film-title">Карнавальная ночь</span><span class="film-meta">1956</span></li>
+<li class="film-entry" data-search="Кин-дза-дза! 1986"><span class="film-title">Кин-дза-дза!</span><span class="film-meta">1986</span></li>
+<li class="film-entry" data-search="Курьер 1986"><span class="film-title">Курьер</span><span class="film-meta">1986</span></li>
+<li class="film-entry" data-search="Летят журавли 1957"><span class="film-title">Летят журавли</span><span class="film-meta">1957</span></li>
+<li class="film-entry" data-search="Любовь и голуби 1985"><span class="film-title">Любовь и голуби</span><span class="film-meta">1985</span></li>
+<li class="film-entry" data-search="Место встречи изменить нельзя 1979"><span class="film-title">Место встречи изменить нельзя</span><span class="film-meta">1979</span></li>
+<li class="film-entry" data-search="Мимино 1977"><span class="film-title">Мимино</span><span class="film-meta">1977</span></li>
+<li class="film-entry" data-search="Москва слезам не верит 1980"><span class="film-title">Москва слезам не верит</span><span class="film-meta">1980</span></li>
+<li class="film-entry" data-search="Мы из джаза 1983"><span class="film-title">Мы из джаза</span><span class="film-meta">1983</span></li>
+<li class="film-entry" data-search="Не горюй! 1969"><span class="film-title">Не горюй!</span><span class="film-meta">1969</span></li>
+<li class="film-entry" data-search="Не может быть! 1975"><span class="film-title">Не может быть!</span><span class="film-meta">1975</span></li>
+<li class="film-entry" data-search="Несколько дней из жизни И. И. Обломова 1979"><span class="film-title">Несколько дней из жизни И. И. Обломова</span><span class="film-meta">1979</span></li>
+<li class="film-entry" data-search="О бедном гусаре замолвите слово 1980"><span class="film-title">О бедном гусаре замолвите слово</span><span class="film-meta">1980</span></li>
+<li class="film-entry" data-search="Обыкновенное чудо 1978"><span class="film-title">Обыкновенное чудо</span><span class="film-meta">1978</span></li>
+<li class="film-entry" data-search="Опасно для жизни! 1985"><span class="film-title">Опасно для жизни!</span><span class="film-meta">1985</span></li>
+<li class="film-entry" data-search="Операция «Ы» и другие приключения Шурика 1965"><span class="film-title">Операция «Ы» и другие приключения Шурика</span><span class="film-meta">1965</span></li>
+<li class="film-entry" data-search="Осенний марафон 1979"><span class="film-title">Осенний марафон</span><span class="film-meta">1979</span></li>
+<li class="film-entry" data-search="Паспорт 1990"><span class="film-title">Паспорт</span><span class="film-meta">1990</span></li>
+<li class="film-entry" data-search="Пёс Барбос и необычный кросс 1961"><span class="film-title">Пёс Барбос и необычный кросс</span><span class="film-meta">1961</span></li>
+<li class="film-entry" data-search="Полосатый рейс 1961"><span class="film-title">Полосатый рейс</span><span class="film-meta">1961</span></li>
+<li class="film-entry" data-search="Путь к причалу 1962"><span class="film-title">Путь к причалу</span><span class="film-meta">1962</span></li>
+<li class="film-entry" data-search="Розыгрыш 1976"><span class="film-title">Розыгрыш</span><span class="film-meta">1976</span></li>
+<li class="film-entry" data-search="Самая обаятельная и привлекательная 1985"><span class="film-title">Самая обаятельная и привлекательная</span><span class="film-meta">1985</span></li>
+<li class="film-entry" data-search="Самогонщики 1961"><span class="film-title">Самогонщики</span><span class="film-meta">1961</span></li>
+<li class="film-entry" data-search="Свой среди чужих, чужой среди своих 1974"><span class="film-title">Свой среди чужих, чужой среди своих</span><span class="film-meta">1974</span></li>
+<li class="film-entry" data-search="Серёжа 1960"><span class="film-title">Серёжа</span><span class="film-meta">1960</span></li>
+<li class="film-entry" data-search="Слёзы капали 1982"><span class="film-title">Слёзы капали</span><span class="film-meta">1982</span></li>
+<li class="film-entry" data-search="Служебный роман 1977"><span class="film-title">Служебный роман</span><span class="film-meta">1977</span></li>
+<li class="film-entry" data-search="Собачье сердце 1988"><span class="film-title">Собачье сердце</span><span class="film-meta">1988</span></li>
+<li class="film-entry" data-search="Совсем пропащий 1973"><span class="film-title">Совсем пропащий</span><span class="film-meta">1973</span></li>
+<li class="film-entry" data-search="Солярис 1972"><span class="film-title">Солярис</span><span class="film-meta">1972</span></li>
+<li class="film-entry" data-search="Спортлото-82 1982"><span class="film-title">Спортлото-82</span><span class="film-meta">1982</span></li>
+<li class="film-entry" data-search="Сталкер 1979"><span class="film-title">Сталкер</span><span class="film-meta">1979</span></li>
+<li class="film-entry" data-search="Старики-разбойники 1971"><span class="film-title">Старики-разбойники</span><span class="film-meta">1971</span></li>
+<li class="film-entry" data-search="Тридцать три 1965"><span class="film-title">Тридцать три</span><span class="film-meta">1965</span></li>
+<li class="film-entry" data-search="Формула любви 1984"><span class="film-title">Формула любви</span><span class="film-meta">1984</span></li>
+<li class="film-entry" data-search="Частный детектив, или операция «Кооперация» 1989"><span class="film-title">Частный детектив, или операция «Кооперация»</span><span class="film-meta">1989</span></li>
+<li class="film-entry" data-search="Человек с бульвара Капуцинов 1987"><span class="film-title">Человек с бульвара Капуцинов</span><span class="film-meta">1987</span></li>
+<li class="film-entry" data-search="Экипаж 1979"><span class="film-title">Экипаж</span><span class="film-meta">1979</span></li>
+<li class="film-entry" data-search="Я шагаю по Москве 1963"><span class="film-title">Я шагаю по Москве</span><span class="film-meta">1963</span></li></ul><p id="film-empty" hidden>Такого названия в коллекции пока нет. Попробуйте другое слово.</p></div></details></div>
     </section>
 
-    <section class="section shell" id="questions" aria-labelledby="questions-title">
-      <p class="section-kicker">Проверьте себя</p>
-      <h2 id="questions-title">Четыре вопроса.<br>Вспомните четыре фильма.</h2>
-      <p class="section-lead">Это вопросы из игры. Откройте ответ, когда будете готовы. В приложении вы вводите слово сами, а цветные буквы помогают найти верный вариант.</p>
-      <div class="sample-grid">
-        <article class="sample-card">
-          <img src="assets/sample-shurik.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
-          <div class="sample-content">
-            <span class="sample-category">01 / ПЕРСОНАЖ</span>
-            <p class="sample-question">Находчивый студент в очках: перевоспитывает хулигана, сдаёт экзамен и срывает ограбление склада.</p>
-            <details>
-              <summary>Показать ответ</summary>
-              <div class="sample-answer"><strong>ШУРИК</strong><p>«Операция «Ы» и другие приключения Шурика» · 1965</p></div>
-            </details>
-          </div>
-        </article>
-        <article class="sample-card">
-          <img src="assets/sample-nikulin.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
-          <div class="sample-content">
-            <span class="sample-category">02 / АКТЁР</span>
-            <p class="sample-question">Сыграл скромного экономиста с гипсом, а раньше — самого долговязого участника знаменитой троицы.</p>
-            <details>
-              <summary>Показать ответ</summary>
-              <div class="sample-answer"><strong>НИКУЛИН</strong><p>«Бриллиантовая рука» · 1969</p></div>
-            </details>
-          </div>
-        </article>
-        <article class="sample-card">
-          <img src="assets/sample-sudby.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
-          <div class="sample-content">
-            <span class="sample-category">03 / ФИЛЬМ</span>
-            <p class="sample-question">Ирония ___, или С лёгким паром!</p>
-            <details>
-              <summary>Показать ответ</summary>
-              <div class="sample-answer"><strong>СУДЬБЫ</strong><p>«Ирония судьбы, или С лёгким паром!» · 1976</p></div>
-            </details>
-          </div>
-        </article>
-        <article class="sample-card">
-          <img src="assets/sample-plyuk.jpg" alt="" width="1620" height="600" loading="lazy" decoding="async">
-          <div class="sample-content">
-            <span class="sample-category">04 / МЕСТО</span>
-            <p class="sample-question">Пустынная планета в галактике Кин-дза-дза, где спички дороже всего на свете.</p>
-            <details>
-              <summary>Показать ответ</summary>
-              <div class="sample-answer"><strong>ПЛЮК</strong><p>«Кин-дза-дза!» · 1986</p></div>
-            </details>
-          </div>
-        </article>
-      </div>
-      <p class="sample-note">Иллюстрации созданы для игры; это не кадры из фильмов.</p>
-    </section>
+    <section class="shell section" id="screenshots" aria-labelledby="screens-title"><div class="screens-heading"><p class="eyebrow">Настоящие экраны игры</p><h2 id="screens-title">Вспомнили слово?<br>За ним — новая история.</h2><p class="section-lead">Русская игра в слова и киновикторина для тех, кто любит советское кино. Сыграйте короткий раунд, выберите режиссёра или начните со слова дня.</p></div><p class="gallery-hint">Нажмите на экран, чтобы увеличить. На телефоне листайте галерею →</p><div class="gallery" tabindex="0" role="region" aria-label="Пять экранов игры"><figure><a href="assets/web/home-720.webp" target="_blank" rel="noopener" aria-label="Увеличить: Экран приветствия и кнопка «Начать игру»"><img src="assets/web/home-360.webp" srcset="assets/web/home-360.webp 360w, assets/web/home-720.webp 720w" sizes="(max-width:700px) 62vw, 220px" width="360" height="640" alt="Экран приветствия и кнопка «Начать игру»" loading="lazy" decoding="async"></a><figcaption><b>Начните с любимого кино.</b> Даже если вы не киновед.</figcaption></figure>
+<figure><a href="assets/web/gameplay-720.webp" target="_blank" rel="noopener" aria-label="Увеличить: Подсказка, цветные буквы и русская клавиатура"><img src="assets/web/gameplay-360.webp" srcset="assets/web/gameplay-360.webp 360w, assets/web/gameplay-720.webp 720w" sizes="(max-width:700px) 62vw, 220px" width="360" height="640" alt="Подсказка, цветные буквы и русская клавиатура" loading="lazy" decoding="async"></a><figcaption><b>Найдите верное слово.</b> Буквы подскажут следующий ход.</figcaption></figure>
+<figure><a href="assets/web/cinema-fact-720.webp" target="_blank" rel="noopener" aria-label="Увеличить: Верный ответ и кинофакт на экране игры"><img src="assets/web/cinema-fact-360.webp" srcset="assets/web/cinema-fact-360.webp 360w, assets/web/cinema-fact-720.webp 720w" sizes="(max-width:700px) 62vw, 220px" width="360" height="640" alt="Верный ответ и кинофакт на экране игры" loading="lazy" decoding="async"></a><figcaption><b>Узнайте кинофакт.</b> У каждого ответа — своя история.</figcaption></figure>
+<figure><a href="assets/web/daily-topics-720.webp" target="_blank" rel="noopener" aria-label="Увеличить: Главный экран со словом дня и коллекциями"><img src="assets/web/daily-topics-360.webp" srcset="assets/web/daily-topics-360.webp 360w, assets/web/daily-topics-720.webp 720w" sizes="(max-width:700px) 62vw, 220px" width="360" height="640" alt="Главный экран со словом дня и коллекциями" loading="lazy" decoding="async"></a><figcaption><b>Выберите свой сеанс.</b> Слово дня, режиссёры и категории.</figcaption></figure>
+<figure><a href="assets/web/leaderboard-720.webp" target="_blank" rel="noopener" aria-label="Увеличить: Еженедельная доска почёта с местами игроков"><img src="assets/web/leaderboard-360.webp" srcset="assets/web/leaderboard-360.webp 360w, assets/web/leaderboard-720.webp 720w" sizes="(max-width:700px) 62vw, 220px" width="360" height="640" alt="Еженедельная доска почёта с местами игроков" loading="lazy" decoding="async"></a><figcaption><b>Сравните результат.</b> Проверьте доску почёта.</figcaption></figure></div><div class="how"><article><span class="step">1</span><p><b>Прочитайте подсказку</b>Вспомните фильм, персонажа, актёра, цитату или место.</p></article><article><span class="step">2</span><p><b>Введите одно слово</b>Цветные буквы помогут уточнить следующий ответ.</p></article><article><span class="step">3</span><p><b>Откройте кинофакт</b>И проверьте, какую историю вы вспомните следующей.</p></article></div></section>
 
-    <section class="section shell" id="screenshots" aria-labelledby="screens-title">
-      <p class="section-kicker">Посмотрите игру</p>
-      <h2 id="screens-title">Один кадр. Одна подсказка.<br>Одно слово.</h2>
-      <p class="section-lead">Посмотрите, как выглядят загадка, верный ответ, ежедневные задания и доска почёта.</p>
-      <p class="gallery-hint">Листайте скриншоты →</p>
-      <div class="gallery" tabindex="0" role="region" aria-label="Пять скриншотов игры: вступление, загадка, верный ответ, темы, доска почёта">
-        <figure>
-          <img src="assets/home.png" alt="Экран приветствия с кинематографической иллюстрацией и кнопкой «Начать игру»" width="1080" height="1920" loading="lazy" decoding="async">
-          <figcaption><b>Начните игру.</b> Даже если вы не киновед.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/gameplay.png" alt="Игровой вопрос, цветные клетки ответа и русская клавиатура" width="1080" height="1920" loading="lazy" decoding="async">
-          <figcaption><b>Угадайте слово.</b> Буквы подскажут следующий ход.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/cinema-fact.png" alt="Верный ответ, очки, серия и кинофакт на экране игры" width="1080" height="1920" loading="lazy" decoding="async">
-          <figcaption><b>Узнайте кинофакт.</b> За ответом — история.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/daily-topics.png" alt="Коллаж фрагментов главного экрана: слово дня, режиссёры и категории игры" width="1080" height="1920" loading="lazy" decoding="async">
-          <figcaption><b>Выберите тему.</b> Или начните со слова дня.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/leaderboard.png" alt="Экран еженедельной доски почёта с местами игроков" width="1080" height="1920" loading="lazy" decoding="async">
-          <figcaption><b>Сравните результат.</b> Взгляните на доску почёта.</figcaption>
-        </figure>
-      </div>
-    </section>
+    <section class="shell section faq-layout" id="faq" aria-labelledby="faq-title"><div><p class="eyebrow">Перед первым сеансом</p><h2 id="faq-title">Остались<br>вопросы?</h2><p class="section-lead">Самое важное об игре и скачивании.</p></div><div class="faq-list">
+      <details><summary>Что это за игра?</summary><p>«Советское кино: Угадай слово» — бесплатная киновикторина по советским фильмам и игра в слова на русском. По подсказке нужно назвать один ответ: героя, актёра, фильм или место, либо продолжить цитату.</p></details>
+      <details><summary>Какие фильмы есть в приложении?</summary><p>В коллекции 64 фильма: комедии Гайдая, фильмы Рязанова, Данелии, Меньшова и другая классика. <a href="#films">Посмотрите полный список фильмов</a> — он есть на этой странице.</p></details>
+      <details><summary>Нужно хорошо знать все фильмы?</summary><p>Начните с того, что помните. Подсказка помогает найти ответ, а цветные буквы показывают верные позиции и буквы, которые стоит переставить. В приложении есть тренировка.</p></details>
+      <details><summary>Где скачать и как найти игру?</summary><p>На iPhone и iPad откройте App Store, на Android — Google Play. Введите «Советское кино: Угадай слово» и найдите наш значок с кинохлопушкой «КИ?О». Или воспользуйтесь <a href="#download">официальными кнопками магазинов</a>.</p></details>
+      <details><summary>Игра бесплатная?</summary><p>Скачать приложение можно бесплатно. В игре есть реклама, в том числе добровольные рекламные предложения с наградой.</p></details>
+      <details><summary>Чем вопросы на сайте отличаются от приложения?</summary><p>На сайте шесть примеров из игры. В приложении доступны полная коллекция вопросов, слово дня, подборки по режиссёрам и категориям, кинофакты, прогресс и доска почёта.</p></details>
+    </div></section>
 
-    <section class="final shell" aria-labelledby="final-title">
-      <p class="section-kicker">Ваш сеанс начинается</p>
-      <h2 id="final-title">Вспомните фильм.<br>Найдите слово.</h2>
-      <p>Русская игра в слова для тех, кто любит загадки, викторины и кино, к которому хочется возвращаться.</p>
-      <p class="store-lead">Скачать бесплатно:</p>
-      <div class="store-actions" role="group" aria-label="Где скачать игру">
-        <a class="store-option" href="https://apps.apple.com/app/id6812753192">
-          <span class="store-device">Для iPhone и iPad</span>
-          <span class="store-help">Откройте App Store на устройстве Apple.</span>
-          <img class="store-badge" src="assets/app-store-badge-ru.svg" width="168" height="56" alt="Загрузите игру в App Store" loading="lazy">
-        </a>
-        <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing">
-          <span class="store-device">Для телефонов и планшетов Android</span>
-          <span class="store-help">Samsung, Xiaomi, Pixel и другие.</span>
-          <img class="store-badge" src="assets/google-play-badge-ru.png" width="186" height="72" alt="Скачать игру из Google Play" loading="lazy">
-        </a>
-      </div>
-      <p class="store-guide">Не знаете модель телефона? Выберите магазин, значок которого видите на своём устройстве.</p>
-    </section>
+    <section class="shell final" aria-labelledby="final-title"><div class="final-layout"><div><div class="download-identity"><img src="assets/icon.png" width="75" height="75" alt="Значок игры: кинохлопушка КИ?О" loading="lazy"><p>Советское кино:<br>Угадай слово<small>KRO STUDIOS · ИГРА НА РУССКОМ</small></p></div><h2 id="final-title">Продолжим<br>в игре?</h2><p class="final-copy">Любимые фильмы уже ждут. Скачайте игру и проверьте, сколько осталось в памяти.</p></div><div><p class="store-lead">Бесплатно для iPhone, iPad и Android:</p><div class="store-actions" role="group" aria-label="Выберите магазин для своего устройства">
+      <a class="store-option" href="https://apps.apple.com/app/id6812753192"><span class="store-device">iPhone и iPad</span><img class="store-badge" src="assets/app-store-badge-ru.svg" width="152" height="51" alt="Загрузите игру в App Store"></a>
+      <a class="store-option store-option--google" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing"><span class="store-device">Телефоны и планшеты Android</span><img class="store-badge" src="assets/google-play-badge-ru.png" width="167" height="65" alt="Скачать игру из Google Play"></a>
+    </div><p class="search-guide">Не получается открыть магазин? Введите в поиске App Store или Google Play: <strong>«Советское кино: Угадай слово»</strong>. Наш значок — кинохлопушка «КИ?О». Для Samsung, Xiaomi и Pixel выбирайте Google Play.</p></div></div></section>
   </main>
-  <footer>
-    <div class="shell">
-      <span>© 2026 Kro Studios</span>
-      <nav aria-label="Полезные ссылки">
-        <a href="/sovietkino-privacy.html">Конфиденциальность</a>
-        <a href="/sovietkino-delete-account.html">Удаление аккаунта</a>
-        <a href="mailto:hello@krostudios.com">Поддержка</a>
-        <a href="/">Все игры Kro Studios</a>
-      </nav>
-      <p class="trademark-note">Apple, the Apple logo, App Store, iPhone and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. Android is a trademark of Google LLC. Google Play and the Google Play logo are trademarks of Google LLC.</p>
-    </div>
-  </footer>
+  <footer><div class="shell footer-inner"><span>© 2026 Kro Studios</span><nav aria-label="Полезные ссылки"><a href="/sovietkino-privacy.html">Конфиденциальность</a><a href="/sovietkino-delete-account.html">Удаление аккаунта</a><a href="mailto:hello@krostudios.com">Поддержка</a><a href="/">Все игры Kro Studios</a></nav><p class="trademark-note">Apple, the Apple logo, App Store, iPhone and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. Android is a trademark of Google LLC. Google Play and the Google Play logo are trademarks of Google LLC.</p></div></footer>
+  <nav class="mobile-download" aria-label="Скачать игру бесплатно"><span>СКАЧАТЬ БЕСПЛАТНО</span><a href="https://apps.apple.com/app/id6812753192" aria-label="Скачать для iPhone или iPad в App Store"><img src="assets/app-store-badge-ru.svg" width="105" height="35" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing" aria-label="Скачать для Android в Google Play"><img src="assets/google-play-badge-ru.png" width="122" height="47" alt="Google Play"></a></nav>
 </body>
 </html>

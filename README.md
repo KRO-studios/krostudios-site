@@ -121,13 +121,30 @@ production Play package `com.krostudios.sovietkino` and App Store product
 Console referral reporting. Update the screenshots, platform links, and claims
 when the released game changes.
 
-The five poster screenshots come from
-`store/google_play/phone_creatives/screenshots/` in the app repository. Four
-sample-question illustrations are unmodified copies of its audited
-`assets/images/home/cinema_quote_scenes/` panoramas. The question clues and
-answers are the enabled records `g-c-01`, `g-a-01`, `r-f-01`, and `d-p-01` in
-`lib/data/soviet_questions.dart`; keep the web examples in sync if those
-records change.
+The landing page presents the full game with a static, searchable catalog of
+all 64 films and 215 enabled questions. `sovietkino/catalog.json` is the public
+catalog snapshot; `index.html` renders all 64 entries in ordinary HTML, so the
+catalog remains usable without JavaScript. Keep the counts, titles and years
+in sync with the enabled app content when that collection changes.
+
+`landing.css` contains the responsive cinema layout, six-film art mosaic,
+uncropped screenshot gallery and persistent mobile store choices. `landing.js`
+progressively enhances the film search and six playable sample questions,
+with Cyrillic answer entry, duplicate-aware letter feedback, honest answer
+reveals and accessible status messages. Its six selected records are
+`g-c-01`, `g-a-01`, `r-f-01`, `d-p-01`, `c-c-05`, and `m-c-01` from
+`lib/data/soviet_questions.dart`. Only these six samples are embedded; the
+full app answer database is not exported. The no-JavaScript fallback exposes
+native answer disclosures and keeps the store links and film catalog usable.
+The page does not save answers or send them to a server.
+
+The five poster screenshots come from the previously public approved store
+artwork. The panoramas are existing approved original app illustrations,
+not movie frames or new actor likenesses. Responsive, full uncropped WebP
+copies live in `sovietkino/assets/web/`. `asset-provenance.json` records each
+source/delivery hash, dimensions and size, with artwork approval references.
+The original public PNG/JPG paths remain available. No private native captures,
+QA images, soundtrack or new video is exported with this page update.
 
 The Russian store badges on the Soviet Kino page are unmodified official
 artwork, kept locally in `sovietkino/assets/`:
@@ -152,12 +169,20 @@ are removed by the daily maintenance command after their documented safety and
 confirmation windows; the pages must never claim managed TTL or immediate
 Cloud Function deletion.
 
-Run the static contract check before publishing:
+Run the static contracts and browser journey before publishing:
 
 ```sh
 python3 tests/verify_sovietkino_legal.py
 python3 tests/verify_sovietkino_marketing.py
+SITE_URL=http://127.0.0.1:8774/sovietkino/ node tests/verify_sovietkino_browser.cjs
 ```
+
+The browser journey uses installed Chrome via Playwright. Set `PLAYWRIGHT_MODULE`
+to your installed module path and `REPORT_DIR` to a private evidence folder.
+An optional `APP_QUESTIONS` JSON export enables source fidelity checks; it must
+remain outside this public repository. Coverage includes desktop, tablet,
+compact phones, quiz retry/win/reveal, search, no-JavaScript fallback,
+reduced motion, complete gallery delivery and footer access above the store bar.
 
 ## Echo Dare pages
 
