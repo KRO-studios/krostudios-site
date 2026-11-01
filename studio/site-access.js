@@ -7,7 +7,7 @@
   const assetBase=document.body.dataset.assetBase||'';
   const sites=Object.freeze({
     kino:assetBase+'assets/site-preview-kino.png',
-    echo:assetBase+'assets/site-preview-echo.png',
+    echo:assetBase+'assets/site-preview-blabflip.png',
     tanakh:assetBase+'assets/site-preview-tanakh.png'
   });
   const {apps,order}=catalog;

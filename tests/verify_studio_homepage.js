@@ -11,7 +11,7 @@ const source = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const expectedOrder = ['kino', 'echo', 'tanakh', 'half-life', 'dune', 'rap', 'beer', 'feed'];
 const expectedURLs = {
   kino: 'https://krostudios.com/sovietkino/',
-  echo: 'https://krostudios.com/echodare.html',
+  echo: 'https://krostudios.com/blabflip.html',
   tanakh: 'https://krostudios.com/tanakh-quiz/',
   'half-life': 'https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia',
   dune: 'https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks',
@@ -226,7 +226,7 @@ for (const key of catalog.order) {
   }
 }
 assert(catalog.order.some(key => catalog.apps[key].shots.length > 2), 'Production catalog must actually include the newly collected store screenshots');
-assert.equal(catalog.apps.echo.status, 'Coming soon · 18+', 'Echo Dare must not be advertised as released');
+assert.equal(catalog.apps.echo.status, 'Coming soon · 18+', 'BlabFlip must not be advertised as released');
 assert.equal(catalog.apps.kino.status, 'Android + iOS', 'SovietKino platform status must remain truthful');
 assert.equal(catalog.apps.tanakh.status, 'Android + iOS', 'Tanakh Quiz platform status must remain truthful');
 for (const key of expectedOrder.slice(3)) assert.equal(catalog.apps[key].status, 'Android', 'Other app platform status must remain truthful: ' + key);
@@ -245,13 +245,13 @@ const fallbackURLs = fallbackAnchors.map(tag => {
 });
 assert.equal(new Set(fallbackURLs).size, 8, 'No-JavaScript destinations must not be duplicated');
 assert.deepEqual(fallbackURLs.slice().sort(), Object.values(expectedURLs).sort(), 'No-JavaScript app links must use the eight verified destinations');
-for (const href of ['/sovietkino/', 'echodare.html', '/tanakh-quiz/']) {
+for (const href of ['/sovietkino/', 'blabflip.html', '/tanakh-quiz/']) {
   assert(tags('a').some(tag => attribute(tag, 'href') === href), 'App pages must remain discoverable in raw homepage HTML: ' + href);
 }
 
 const phoneFallback = tags('img').find(tag => (attribute(tag, 'class') || '').split(/\s+/).includes('phone-render-fallback'));
 assert(phoneFallback, 'Homepage must render a phone fallback before JavaScript initializes');
-assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-echo-0.webp', 'Initial phone must use the complete uncropped genuine Echo Dare handset render');
+assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-blabflip-0.webp', 'Initial phone must use the complete uncropped genuine BlabFlip handset render');
 localFile(attribute(phoneFallback, 'src'));
 for (const file of ['studio/vendor/three.module.min.js', 'studio/vendor/three.core.min.js',
   'studio/assets/space-grotesk-400.ttf', 'studio/assets/space-grotesk-500.ttf', 'studio/assets/ibm-plex-mono-400.ttf']) localFile(file);

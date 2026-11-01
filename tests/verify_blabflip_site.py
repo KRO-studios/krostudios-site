@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-free release checks for the Echo Dare website bundle."""
+"""Dependency-free release checks for the BlabFlip website bundle."""
 
 from __future__ import annotations
 
@@ -11,11 +11,17 @@ from urllib.parse import unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = (
-    "echodare.html",
-    "echodare-privacy.html",
-    "echodare-support.html",
+CANONICAL_PAGES = (
+    "blabflip.html",
+    "blabflip-privacy.html",
+    "blabflip-support.html",
 )
+REDIRECTS = {
+    "echodare.html": "blabflip.html",
+    "echodare-privacy.html": "blabflip-privacy.html",
+    "echodare-support.html": "blabflip-support.html",
+}
+PAGES = CANONICAL_PAGES + tuple(REDIRECTS)
 APP_ADS = b"google.com, pub-7516656455022740, DIRECT, f08c47fec0942fa0\n"
 
 
@@ -30,6 +36,8 @@ class PageParser(HTMLParser):
         self.main_count = 0
         self.description = ""
         self.canonical = ""
+        self.refresh = ""
+        self.robots = ""
         self.ids: list[str] = []
         self.links: list[dict[str, object]] = []
         self._anchor_stack: list[dict[str, object]] = []
@@ -50,6 +58,10 @@ class PageParser(HTMLParser):
             self.ids.append(identifier)
         if tag == "meta" and (values.get("name") or "").lower() == "description":
             self.description = values.get("content") or ""
+        if tag == "meta" and (values.get("http-equiv") or "").lower() == "refresh":
+            self.refresh = values.get("content") or ""
+        if tag == "meta" and (values.get("name") or "").lower() == "robots":
+            self.robots = values.get("content") or ""
         if tag == "link" and "canonical" in (values.get("rel") or "").lower().split():
             self.canonical = values.get("href") or ""
         if tag == "a":
@@ -110,8 +122,12 @@ def main() -> int:
     index_path = ROOT / "index.html"
     if not index_path.is_file():
         errors.append("index.html is missing")
-    elif not re.search(r'href=["\']echodare\.html["\']', index_path.read_text(encoding="utf-8")):
-        errors.append("index.html must contain a discoverable link to echodare.html")
+    else:
+        index_parser = PageParser()
+        index_parser.feed(index_path.read_text(encoding="utf-8"))
+        index_parser.close()
+        if not any(str(link["href"]) == "blabflip.html" for link in index_parser.links):
+            errors.append("index.html must contain a discoverable link to blabflip.html")
 
     for page in PAGES:
         path = ROOT / page
@@ -142,8 +158,18 @@ def main() -> int:
         nonempty_h1 = [normalized("".join(parts)) for parts in parser.h1_parts if normalized("".join(parts))]
         if len(nonempty_h1) != 1:
             fail(errors, page, "must contain exactly one nonempty h1")
-        if not parser.canonical.startswith("https://krostudios.com/"):
-            fail(errors, page, "canonical URL must use https://krostudios.com/")
+        expected_canonical = "https://krostudios.com/" + REDIRECTS.get(page, page)
+        if parser.canonical != expected_canonical:
+            fail(errors, page, f"canonical URL must equal {expected_canonical!r}")
+        if page in REDIRECTS:
+            if parser.refresh != "0;url=" + expected_canonical:
+                fail(errors, page, "legacy URL must immediately redirect to the canonical page")
+            if {value.strip() for value in parser.robots.split(",")} != {"noindex", "follow"}:
+                fail(errors, page, "legacy redirect must set noindex,follow")
+        elif parser.refresh:
+            fail(errors, page, "canonical page must not redirect")
+        if re.search(r"Echo\s*Dare|EchoDare|Echo\s*Match|Solo\s*Echo\s*Quest|three-Echo|com\.krostudios\.echodare|echodare(?:-privacy|-support)?\.html", source, re.IGNORECASE):
+            fail(errors, page, "contains superseded product branding or URLs")
         duplicate_ids = sorted({item for item in parser.ids if parser.ids.count(item) > 1})
         if duplicate_ids:
             fail(errors, page, f"duplicate IDs: {', '.join(duplicate_ids)}")
@@ -196,39 +222,45 @@ def main() -> int:
                 if destination_parser and target.fragment not in destination_parser.ids:
                     fail(errors, page, f"broken fragment in {href!r}")
 
-    landing = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare.html", "")))
+    landing = normalized(re.sub(r"<[^>]+>", " ", sources.get("blabflip.html", "")))
     landing_contract = (
-        "Echo Dare",
+        "BlabFlip",
         "reverse-voice party game",
         "pass-and-play",
-        "Voice clips are processed on your device and are not uploaded to an Echo Dare server.",
+        "Solo Flip Quest",
+        "Daily Dare",
+        "Voice clips are processed on your device and are not uploaded to a BlabFlip server.",
         "A clip leaves the App only if you choose to share it.",
         "Core gameplay works offline",
         "Add session-only names and inside jokes",
-        "Echo Match is a playful comparison of timing, sound shape, and pauses; it does not recognize words or meaning.",
+        "Flip Match is a playful comparison of timing, sound shape, and pauses; it does not recognize words or meaning.",
         "adults 18+",
     )
     for statement in landing_contract:
         if statement not in landing:
-            fail(errors, "echodare.html", f"missing product contract text: {statement!r}")
+            fail(errors, "blabflip.html", f"missing product contract text: {statement!r}")
     if not re.search(r"2\s*[–-]\s*12 players", landing):
-        fail(errors, "echodare.html", "missing the 2–12 players claim")
+        fail(errors, "blabflip.html", "missing the 2–12 players claim")
 
-    landing_links = {str(link["href"]) for link in parsed.get("echodare.html", PageParser()).links}
-    for required in {"echodare-privacy.html", "echodare-support.html", "/"}:
+    landing_links = {str(link["href"]) for link in parsed.get("blabflip.html", PageParser()).links}
+    for required in {"blabflip-privacy.html", "blabflip-support.html", "/"}:
         if required not in landing_links:
-            fail(errors, "echodare.html", f"missing required link to {required!r}")
+            fail(errors, "blabflip.html", f"missing required link to {required!r}")
+    for legacy, canonical in REDIRECTS.items():
+        legacy_links = {str(link["href"]) for link in parsed.get(legacy, PageParser()).links}
+        if canonical not in legacy_links:
+            fail(errors, legacy, "legacy page needs an accessible fallback link to its new page")
     generic_store_links = {
         "https://apps.apple.com/",
         "https://play.google.com/",
         "https://play.google.com/store/apps/developer",
     }
     if landing_links & generic_store_links:
-        fail(errors, "echodare.html", "contains a generic store link instead of an app listing")
+        fail(errors, "blabflip.html", "contains a generic store link instead of an app listing")
 
-    privacy = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-privacy.html", "")))
+    privacy = normalized(re.sub(r"<[^>]+>", " ", sources.get("blabflip-privacy.html", "")))
     privacy_contract = (
-        "Last updated: September 27, 2026",
+        "Last updated: November 1, 2026",
         "hello@krostudios.com",
         "Google Mobile Ads (AdMob)",
         "User Messaging Platform (UMP)",
@@ -244,25 +276,25 @@ def main() -> int:
     )
     for statement in privacy_contract:
         if statement not in privacy:
-            fail(errors, "echodare-privacy.html", f"missing privacy contract text: {statement!r}")
+            fail(errors, "blabflip-privacy.html", f"missing privacy contract text: {statement!r}")
 
-    support = normalized(re.sub(r"<[^>]+>", " ", sources.get("echodare-support.html", "")))
+    support = normalized(re.sub(r"<[^>]+>", " ", sources.get("blabflip-support.html", "")))
     support_contract = (
-        "Echo Dare is intended for adults aged 18 and older.",
+        "BlabFlip is intended for adults aged 18 and older.",
         "Open app settings",
         "Return to the game and tap Try this turn again.",
     )
     for statement in support_contract:
         if statement not in support:
-            fail(errors, "echodare-support.html", f"missing support contract text: {statement!r}")
+            fail(errors, "blabflip-support.html", f"missing support contract text: {statement!r}")
 
     if errors:
-        print("Echo Dare website verification failed:", file=sys.stderr)
+        print("BlabFlip website verification failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Echo Dare website verification passed ({len(PAGES)} pages + app-ads.txt).")
+    print(f"BlabFlip website verification passed ({len(CANONICAL_PAGES)} canonical pages + {len(REDIRECTS)} compatibility redirects + app-ads.txt).")
     return 0
 
 

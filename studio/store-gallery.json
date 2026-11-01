@@ -189,48 +189,50 @@
       }
     },
     "echo": {
-      "title": "Echo Dare",
+      "title": "BlabFlip",
       "status": "Coming soon · 18+",
       "images": [
         {
-          "path": "assets/bridge-echoHome.jpg",
+          "path": "assets/bridge-blabflip-home.jpg",
           "width": 1080,
           "height": 1920,
-          "bytes": 321861,
-          "sha256": "f21c8e80d8aae5ee10237fe87410ed844192199d48bac4b7016782eb11fd5bba",
+          "bytes": 318950,
+          "sha256": "f66d8f7adf69fe075a279e0420fac01d1481217c75f7f5638141572aa661dfe9",
           "format": "jpeg",
           "url": null,
           "store": "approved-local-capture",
-          "sourceListing": "https://krostudios.com/echodare.html",
+          "sourceListing": "https://krostudios.com/blabflip.html",
           "sourceIndex": 1,
           "sourceDimensions": {
             "width": 1080,
             "height": 1920
           },
-          "sourceBytes": 321861,
-          "sourceSha256": "f21c8e80d8aae5ee10237fe87410ed844192199d48bac4b7016782eb11fd5bba",
-          "device": "Phone",
-          "processing": "Existing genuine approved high-resolution app capture, unmodified"
+          "sourceBytes": 318950,
+          "sourceSha256": "f66d8f7adf69fe075a279e0420fac01d1481217c75f7f5638141572aa661dfe9",
+          "device": "Android phone",
+          "processing": "Fresh genuine Android UI capture from the rebranded app, unmodified",
+          "sourceCapture": "release/google-play/screenshots/phone/01-home.jpg"
         },
         {
-          "path": "assets/bridge-echoListen.jpg",
+          "path": "assets/bridge-blabflip-listen.jpg",
           "width": 1080,
           "height": 1920,
-          "bytes": 177617,
-          "sha256": "b9aec546bf0112e428e7cf18b9aa4bc7fe3d124c61b331a5f4342294a20b2f2e",
+          "bytes": 184741,
+          "sha256": "1a99191b34d3f30aba9d47911c570929dc3b429a59641cce6901bb8540957440",
           "format": "jpeg",
           "url": null,
           "store": "approved-local-capture",
-          "sourceListing": "https://krostudios.com/echodare.html",
-          "sourceIndex": 2,
+          "sourceListing": "https://krostudios.com/blabflip.html",
+          "sourceIndex": 6,
           "sourceDimensions": {
             "width": 1080,
             "height": 1920
           },
-          "sourceBytes": 177617,
-          "sourceSha256": "b9aec546bf0112e428e7cf18b9aa4bc7fe3d124c61b331a5f4342294a20b2f2e",
-          "device": "Phone",
-          "processing": "Existing genuine approved high-resolution app capture, unmodified"
+          "sourceBytes": 184741,
+          "sourceSha256": "1a99191b34d3f30aba9d47911c570929dc3b429a59641cce6901bb8540957440",
+          "device": "Android phone",
+          "processing": "Fresh genuine Android UI capture from the rebranded app, unmodified",
+          "sourceCapture": "release/google-play/screenshots/phone/06-listen-backwards.jpg"
         }
       ],
       "sourceCounts": {
@@ -238,7 +240,8 @@
         "appStoreIPhone": 0,
         "approvedLocalCaptures": 2
       },
-      "note": "No public Echo Dare listing was found in Google Play/App Store searches. The official Echo Dare promotional page labels both platforms coming soon. These two genuine previously approved app captures are preserved; no store listing or screenshot has been invented."
+      "note": "BlabFlip is not yet publicly released. Both platforms remain coming soon. These two genuine Android UI captures were recaptured from the rebranded app on November 1, 2026; they are not screenshots from a public store listing.",
+      "capturedAt": "2026-11-01"
     },
     "tanakh": {
       "title": "Tanakh Quiz",

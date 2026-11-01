@@ -9,10 +9,10 @@
       shots:['assets/kinoHome.jpg','assets/kinoFeedback.jpg']
     },
     echo: {
-      title:'Echo Dare', category:'Reverse-voice party game', status:'Coming soon · 18+',
-      short:'Say it. Flip it. Lose it.',
-      url:'https://krostudios.com/echodare.html', icon:'assets/echo-icon.png', color:'#ef9fc0', form:'echo',
-      shots:['assets/echoHome.jpg','assets/echoListen.jpg']
+      title:'BlabFlip', category:'Reverse-voice party game', status:'Coming soon · 18+',
+      short:'Say it. Flip it. Try not to laugh.',
+      url:'https://krostudios.com/blabflip.html', icon:'assets/blabflip-icon.png', color:'#ef9fc0', form:'echo',
+      shots:['assets/blabflip-home.jpg','assets/blabflip-listen.jpg']
     },
     tanakh: {
       title:'Tanakh Quiz', category:'Hebrew word puzzles', status:'Android + iOS',
@@ -58,7 +58,7 @@
   };
   const order = ['kino','echo','tanakh','half-life','dune','rap','beer','feed'];
   for (const key of order) {
-    apps[key].fallbacks = apps[key].shots.map((_,index) => 'assets/phone-'+key+'-'+index+'.webp');
+    apps[key].fallbacks = apps[key].shots.map((_,index) => 'assets/phone-'+(key==='echo'?'blabflip':key)+'-'+index+'.webp');
     Object.freeze(apps[key].shots); Object.freeze(apps[key].fallbacks); Object.freeze(apps[key]);
   }
   window.KROCatalog = Object.freeze({order:Object.freeze(order),apps:Object.freeze(apps),featuredOrder:Object.freeze(['kino','echo','tanakh'])});

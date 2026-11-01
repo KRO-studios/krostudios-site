@@ -4,7 +4,7 @@ Live preview path: `https://krostudios.com/concepts/`.
 
 Signal Field is the focused default direction, with a clean studio header and no design-lab switcher in its view. Earlier Obsidian Engine and Future Archive concepts remain accessible through explicit `design=engine|archive` links; they are preserved but no longer compete with the selected direction. The app selection, screenshots, navigation, motion pause, and outbound promotional links all work. `app=kino|echo|tanakh` selects an app. Display preferences stay in browser-local storage, but an older saved design no longer overrides Signal Field on the default page.
 
-Echo Dare is labelled coming soon, matching the published promotional page. SovietKino and Tanakh links point to their existing promotional pages, where users choose a platform. No fabricated downloads, ratings, or release dates are displayed.
+BlabFlip is labelled coming soon, matching the published promotional page. SovietKino and Tanakh links point to their existing promotional pages, where users choose a platform. No fabricated downloads, ratings, or release dates are displayed.
 
 The site uses local fonts and images, vanilla JavaScript, CSS, Canvas2D and a lazily loaded WebGL phone renderer; it requires no build tool or runtime API key. Its demo pages use `noindex,follow`, and the existing root website remains separate. All app screenshots are genuine captures copied from the app projects. Motion respects the OS preference and can be paused.
 

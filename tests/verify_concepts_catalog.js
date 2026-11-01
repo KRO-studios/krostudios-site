@@ -28,7 +28,7 @@ for (const key of order) {
     }
   }
 }
-assert.equal(apps.echo.status,'Coming soon · 18+','Echo Dare is not advertised as released');
+assert.equal(apps.echo.status,'Coming soon · 18+','BlabFlip is not advertised as released');
 assert(featuredOrder.every(key=>apps[key]),'Legacy views reference only registered apps');
 for(const removed of ['class="site-header"','class="app-inspector"','class="studio-section"','class="signal-device-tools"']) {
   assert(!html.includes(removed),'Previously removed UI must stay absent: '+removed);

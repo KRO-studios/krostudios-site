@@ -8,7 +8,7 @@ The local homepage now implements the approved Orbit Links design: all eight
 app orbits have separate preview controls and direct destination links, around
 the live gold/rose signal field and rotatable orange phone. The three owned
 app websites are labelled Website; the remaining five apps link to their
-actual Google Play listings. Echo Dare stays marked coming soon.
+actual Google Play listings. BlabFlip stays marked coming soon.
 
 `index.html` uses an isolated local bundle in `studio/`. It does not alter
 `concepts/` or any app-specific marketing, support or legal page. The old
@@ -41,8 +41,11 @@ The homepage has 61 distinct screens. `studio/store-gallery.json` records the
 with listing URLs, original/delivery hashes and dimensions. Its browser subset
 is `studio/store-gallery.js`. Existing real in-app captures remain first;
 store posters already represented by an existing image are not repeated.
-Echo Dare remains coming soon with its two approved captures, not an invented
-store gallery. Large store images use uncropped WebP delivery copies; gallery
+BlabFlip remains coming soon with two genuine Android UI captures refreshed on
+2026-11-01, not an invented store gallery. Its renamed icon, screenshots, preview
+and all six matching handset fallbacks use the new branding. The screenshot
+bytes and provenance are recorded under the stable `echo` entry in
+`studio/store-gallery.json`. Large store images use uncropped WebP delivery copies; gallery
 images are requested as selected rather than all at startup. Every screenshot
 has a matching same-model orange-phone render for browsers without WebGL.
 
@@ -86,7 +89,7 @@ performed by that script.
 The `/concepts/` preview's eight-app registry is `concepts/catalog.js`. Keep
 its selector nodes, real screenshots and same-model fallback images in sync.
 The app list includes the seven games on the official KRO Studios Google Play
-publisher page plus Echo Dare, which remains coming soon. Do not add invented
+publisher page plus BlabFlip, which remains coming soon. Do not add invented
 screens, availability claims, ratings or download counts.
 
 Run the catalog contract before publishing preview changes:
@@ -219,18 +222,42 @@ remain outside this public repository. Coverage includes desktop, tablet,
 compact phones, quiz retry/win/reveal, search, no-JavaScript fallback,
 reduced motion, complete gallery delivery and footer access above the store bar.
 
-## Echo Dare pages
+## BlabFlip pages
 
-The Echo Dare marketing, privacy, and support pages are maintained in:
+The BlabFlip marketing, privacy, and support pages are maintained in:
 
-- `echodare.html`
-- `echodare-privacy.html`
-- `echodare-support.html`
+- `blabflip.html`
+- `blabflip-privacy.html`
+- `blabflip-support.html`
+
+The three former `echodare*.html` URLs remain as immediate HTML redirects with
+visible BlabFlip fallback links and new canonical URLs. They are compatibility
+routes for saved links and older builds, not duplicate branded pages. They set
+`noindex,follow` and must be deployed alongside the canonical pages. These are
+browser-level redirects, not HTTP 301 responses.
 
 The app-specific privacy page must remain separate from `privacy.html`, which belongs to Tanakh Quiz. The root `app-ads.txt` record is shared across Kro Studios apps.
 
-Run the Echo Dare static contract, accessibility, link, and publisher-record check before publishing:
+Run the BlabFlip static contract, accessibility, link, and publisher-record check before publishing:
 
 ```sh
-python3 tests/verify_echodare_site.py
+python3 tests/verify_blabflip_site.py
+```
+
+The local browser check covers the three canonical pages at four viewport sizes,
+keyboard skip links, FAQ interaction, all three legacy redirects with JavaScript
+disabled, and the studio homepage in English, Hebrew, Russian and no-JavaScript
+mode. It does not contact a live website or store:
+
+```sh
+node tests/verify_blabflip_browser.cjs
+```
+
+After replacing the genuine BlabFlip Home/Listen captures, this scoped renderer
+refreshes only that app's six existing-model handset fallbacks and website
+preview. It uses local Chrome/Playwright and makes no publishing calls:
+
+```sh
+node tests/render_blabflip_artwork.cjs
+node tests/verify_blabflip_artwork.cjs
 ```
