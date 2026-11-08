@@ -47,7 +47,7 @@ def main() -> None:
     parser.feed(PAGE.read_text(encoding="utf-8"))
     parser.close()
     assert parser.current is None
-    assert len(parser.cards) == 4, "expected two store cards in both download sections"
+    assert len(parser.cards) == 8, "expected both official stores in hero, answer payoff, round result and final sections"
 
     for index, card in enumerate(parser.cards):
         is_apple = index % 2 == 0

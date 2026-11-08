@@ -69,7 +69,9 @@ async function visitWithMetrics(browser, viewport, options = {}) {
         .catch(error => failures.push(`Image body: ${response.url()} ${error.message}`)));
     }
   });
-  const response = await page.goto(SITE_URL, {waitUntil: 'networkidle'});
+  const response = await page.goto(SITE_URL, {waitUntil: 'domcontentloaded'});
+  if (options.javaScriptEnabled !== false) await page.waitForFunction(() => !document.getElementById('quiz-answer').disabled);
+  await page.evaluate(() => document.fonts.ready);
   assert(response && response.ok(), `page HTTP ${response?.status()}`);
   return {context, page, failures, imageBytes, imageResponses};
 }
@@ -99,7 +101,7 @@ async function testViewport(browser, spec) {
       await page.screenshot({path: path.join(REPORT_DIR, `${spec.name}-opening.png`)});
       assert(firstScreen.identity, 'exact app name must be visible in the page copy');
       const storeOptions = await page.locator('a.store-option').evaluateAll(items => items.map(a => a.href));
-      assert.equal(storeOptions.length, 4, 'two official store choices in both download sections');
+      assert.equal(storeOptions.length, 8, 'both official stores in all four download moments');
       assert(storeOptions.every(isStoreLink), 'every store card must open this exact app');
       const initiallyVisible = firstScreen.actions.map(a => a.href);
       const directStores = initiallyVisible.filter(url => /^https:\/\/(?:apps\.apple\.com|play\.google\.com)\//.test(url));
@@ -120,8 +122,8 @@ async function testViewport(browser, spec) {
 
     await check(`${spec.name}: real question data matches the app`, async () => {
       const questions = await getQuestions(page);
-      assert.equal(questions.length, 6, 'six playable questions');
-      assert.equal(new Set(questions.map(q => q.film)).size, 6, 'feature six different films');
+      assert.equal(questions.length, 7, 'seven curated sample questions');
+      assert.equal(new Set(questions.map(q => q.film)).size, 6, 'six different films remain represented');
       const catalogTitles = new Set(expectedCatalog.films.map(film => film.title));
       for (const question of questions) {
         assert(catalogTitles.has(question.film), `${question.film} must exist in the real film catalog`);
@@ -136,53 +138,77 @@ async function testViewport(browser, spec) {
       return {questionIds: questions.map(q => q.id), appSourceCompared: Boolean(sourceQuestions)};
     });
 
-    await check(`${spec.name}: wrong guess, keyboard win, next and honest reveal`, async () => {
+    await check(`${spec.name}: three-question challenge, hint, reveal and honest result`, async () => {
       const questions = await getQuestions(page);
       const input = page.locator('#quiz-answer');
       const status = page.locator('#quiz-status');
       const payoff = page.locator('#quiz-payoff');
-      assert(await input.evaluate(el => el.labels && el.labels.length > 0), 'answer input has a real accessible label');
-      assert.equal(await status.getAttribute('aria-live'), 'polite', 'quiz feedback is announced without interrupting');
+      const result = page.locator('#quiz-result');
+      const current = async () => {
+        const clue = (await page.locator('#quiz-clue').textContent()).trim();
+        const question = questions.find(q => q.clue === clue || q.campaignClue === clue);
+        assert(question, 'shown clue must come from curated source content');
+        return question;
+      };
+      assert(await input.evaluate(el => el.labels && el.labels.length > 0), 'answer has a real accessible label');
+      assert.equal(await status.getAttribute('aria-live'), 'polite');
+      assert(await payoff.isHidden());
+      assert(await result.isHidden());
       await input.scrollIntoViewIfNeeded();
       await input.focus();
       await page.keyboard.press('Tab');
-      assert.equal(await page.locator(':focus').getAttribute('id'), 'quiz-submit', 'Tab reaches submit from answer');
+      assert.equal(await page.locator(':focus').getAttribute('id'), 'quiz-submit');
       await page.keyboard.press('Shift+Tab');
-      assert.equal(await page.locator(':focus').getAttribute('id'), 'quiz-answer', 'Shift-Tab returns to answer');
-      assert(await payoff.isHidden(), 'answers start concealed');
-      const wrong = 'Я'.repeat(questions[0].answer.length);
-      assert(wrong !== questions[0].answer, 'test needs a wrong answer');
-      await input.fill(wrong);
+      assert.equal(await page.locator(':focus').getAttribute('id'), 'quiz-answer');
+      const first = await current();
+      assert(await page.locator('#quiz-next').isDisabled(), 'cannot skip an unresolved question');
+      await input.fill('Я'.repeat(first.answer.length));
       await input.press('Enter');
-      assert.equal(await status.getAttribute('data-state'), 'retry', 'wrong answer must allow retry');
-      assert(await payoff.isHidden(), 'wrong answer must not reveal or claim a win');
-      assert(await input.isEnabled(), 'input remains usable after wrong answer');
-      await input.fill(questions[0].answer.toLocaleLowerCase('ru').replace(/ё/g, 'е'));
+      assert.equal(await status.getAttribute('data-state'), 'retry');
+      assert(await payoff.isHidden());
+      assert(await input.isEnabled());
+      await input.fill(first.answer.toLocaleLowerCase('ru').replace(/ё/g, 'е'));
       await input.press('Enter');
       assert.equal(await status.getAttribute('data-state'), 'correct');
       assert(await payoff.isVisible());
-      assert((await page.locator('#quiz-film').textContent()).includes(questions[0].film));
-      assert.equal(await page.locator('#quiz-fact').textContent(), questions[0].funFact);
+      assert((await page.locator('#quiz-film').textContent()).includes(first.film));
+      assert.equal(await page.locator('#quiz-fact').textContent(), first.funFact);
+      assert.equal(await payoff.locator('a.store-option').count(), 2, 'answer payoff has both direct official stores');
       assert((await page.locator('#quiz-letters [data-state]').evaluateAll(items => items.map(x => x.dataset.state)))
-        .every(state => state === 'correct'), 'successful answer letters all marked correct');
+        .every(state => state === 'correct'));
       await page.screenshot({path: path.join(REPORT_DIR, `${spec.name}-quiz-success.png`)});
       await page.locator('#quiz-next').click();
+      const second = await current();
+      assert.notEqual(first.film, second.film, 'default round spans distinct films');
       assert.equal(await input.inputValue(), '');
-      assert(await payoff.isHidden(), 'next question conceals previous payoff');
-      assert.equal(await page.locator('#quiz-clue').textContent(), questions[1].clue);
-      assert.equal(await status.getAttribute('data-state'), '');
+      assert(await payoff.isHidden());
+      await page.locator('#quiz-hint').click();
+      assert(await page.locator('#quiz-hint').isDisabled(), 'one hint per question');
+      await input.fill(second.answer);
+      await input.press('Enter');
+      assert.equal(await status.getAttribute('data-state'), 'correct');
+      await page.locator('#quiz-next').click();
+      const third = await current();
+      assert.equal(new Set([first.film, second.film, third.film]).size, 3);
       await page.locator('#quiz-reveal').click();
-      assert.equal(await status.getAttribute('data-state'), 'revealed', 'revealed answer is distinct from a solved answer');
-      assert(!(await status.textContent()).includes('Верно!'), 'reveal must not claim a correct guess');
-      assert((await page.locator('#quiz-film').textContent()).includes(questions[1].film));
-      for (let index = 2; index < questions.length; index += 1) {
-        await page.locator('#quiz-next').click();
-        assert.equal(await page.locator('#quiz-clue').textContent(), questions[index].clue);
-        await input.fill(questions[index].answer);
-        await input.press('Enter');
-        assert.equal(await status.getAttribute('data-state'), 'correct', `question ${questions[index].id} accepts its real answer`);
+      assert.equal(await status.getAttribute('data-state'), 'revealed');
+      assert(!(await status.textContent()).includes('Верно!'), 'reveal is distinct from a solved answer');
+      await page.locator('#quiz-finish').click();
+      assert(await result.isVisible());
+      const totals = await result.evaluate(el => ({...el.dataset}));
+      for (const [key, expected] of Object.entries({answered:'2', unassisted:'1', assisted:'1', revealed:'1', hinted:'1', total:'3'})) {
+        assert.equal(totals[key], expected, `honest result ${key}`);
       }
-      return {wrongGuessRetried: true, allSixQuestionsPlayable: true, revealedNotScoredAsCorrect: true};
+      assert.equal(await result.locator('a.store-option').count(), 2);
+      await assertNoOverflow(page);
+      await result.evaluate(el => el.scrollIntoView({behavior: 'instant', block: 'start'}));
+      await page.screenshot({path: path.join(REPORT_DIR, `${spec.name}-result.png`)});
+      await page.locator('#quiz-restart').click();
+      assert(await result.isHidden());
+      assert(await input.isEnabled());
+      assert.equal(await input.inputValue(), '');
+      assert((await page.locator('#quiz-progress').textContent()).includes('1'));
+      return {threeDistinctFilms:true, wrongGuessRetried:true, solved:2, unassisted:1, assisted:1, revealed:1, storesAtResult:true};
     });
 
     await check(`${spec.name}: complete film catalog, search and empty-state recovery`, async () => {
@@ -294,7 +320,8 @@ async function testFallbackAndMotion(browser) {
       assert(await page.locator('#film-catalog').evaluate(el => el.open), 'native catalog remains usable without scripts');
       assert.equal(await page.locator('#film-list li.film-entry').count(), expectedCatalog.film_count);
       const links = await page.locator('a.store-option').evaluateAll(items => items.map(a => a.href));
-      assert.equal(links.length, 4);
+      assert.equal(links.length, 8, 'all download anchors retain valid targets');
+      assert.equal(await page.locator('a.store-option:visible').count(), 4, 'hero and final stores remain visible without scripts');
       assert(links.every(isStoreLink));
       await assertNoOverflow(page);
       assert.deepEqual(failures, []);

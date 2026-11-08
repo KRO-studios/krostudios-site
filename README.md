@@ -156,24 +156,60 @@ catalog snapshot; `index.html` renders all 64 entries in ordinary HTML, so the
 catalog remains usable without JavaScript. Keep the counts, titles and years
 in sync with the enabled app content when that collection changes.
 
-`landing.css` contains the responsive cinema layout, six-film art mosaic,
-uncropped screenshot gallery and persistent mobile store choices. `landing.js`
-progressively enhances the film search and six playable sample questions,
-with Cyrillic answer entry, duplicate-aware letter feedback, honest answer
-reveals and accessible status messages. Its six selected records are
-`g-c-01`, `g-a-01`, `r-f-01`, `d-p-01`, `c-c-05`, and `m-c-01` from
-`lib/data/soviet_questions.dart`. Only these six samples are embedded; the
-full app answer database is not exported. The no-JavaScript fallback exposes
-native answer disclosures and keeps the store links and film catalog usable.
-The page does not save answers or send them to a server.
+`landing.css` contains the responsive cinema layout, six-film illustrated
+preview controls, uncropped screenshot gallery and persistent mobile store
+choices. `landing.js` progressively enhances the film search and a definite
+three-question round, with Cyrillic answer entry, duplicate-aware letter
+feedback, an optional first-letter hint, honest answer reveals and accessible
+status messages. The result distinguishes independent answers, answers with a
+hint, and revealed answers; reveals earn no point. Both official stores are
+available immediately after an answer and on the result screen.
+
+Seven curated records across six films are embedded: `g-c-01`, `g-a-01`,
+`r-f-01`, `d-p-01`, `c-c-05`, `m-c-01` and `c-p-04` from
+`lib/data/soviet_questions.dart`. The city question keeps its canonical app
+clue and a separately owner-approved `campaignClue` for the Vasily promotion.
+Only these seven samples are embedded; the full app answer database is not
+exported. Each round selects three different films. The no-JavaScript fallback
+exposes native answer disclosures and keeps store links and the full 64-film
+catalog usable. The page does not save answers or send them to a server, and
+does not promise that web progress resumes inside the app.
+
+Campaign matching accepts only the fixed `?film=` values `diamond`, `irony`,
+`office`, `moscow`, `kin-dza-dza` and `gentlemen`. An explicit
+`?challenge=vasily-city` selects the approved city challenge and matching
+Vasily illustration. Unknown query values fall back to the collection;
+query strings cannot choose arbitrary assets or inject displayed text. Films
+without an embedded sample lead to their collection entry rather than an
+invented playable level.
 
 The five poster screenshots come from the previously public approved store
-artwork. The panoramas are existing approved original app illustrations,
-not movie frames or new actor likenesses. Responsive, full uncropped WebP
-copies live in `sovietkino/assets/web/`. `asset-provenance.json` records each
-source/delivery hash, dimensions and size, with artwork approval references.
-The original public PNG/JPG paths remain available. No private native captures,
-QA images, soundtrack or new video is exported with this page update.
+artwork. The existing panoramas are approved people-free app illustrations,
+not movie frames. Their responsive WebP copies remain uncropped in
+`sovietkino/assets/web/`. Separately approved Vasily character artwork from the
+published promotion is composed into a silent six-second scene. A silent
+ten-second collection loop combines existing panoramas with that scene. These
+are animated illustrations, not recorded film footage or an actor's recorded
+performance. The default collection hero represents multiple films; the city
+campaign can show the matching Vasily scene. Motion pauses outside the viewport
+or in a hidden tab, respects reduced motion and data saver, and has a manual
+pause control plus static poster fallback.
+
+The four new delivery assets are `assets/web/hero-vasily-poster.webp`,
+`assets/web/hero-cinema-poster.webp`, `media/hero-vasily-loop.mp4` and
+`media/hero-cinema-loop.mp4`. The already public approved promotional MP4 remains
+an optional native video player with sound only after the visitor plays it.
+`asset-provenance.json` records delivery hashes, dimensions, sizes and scoped
+artwork approvals. The original public PNG/JPG paths remain available. Raw
+creative sources, private native captures, QA evidence and the standalone
+soundtrack are not exported.
+
+The page emits local `funnel_event` DOM events for `page_view`, `demo_start`,
+`question_answered`, `demo_complete` and `store_click`. Fields are allowlisted;
+raw guesses and raw query strings are excluded. These events are integration
+hooks only: no analytics script, network collector, persistent answer storage
+or GA4 Measurement ID is configured. A future consent-aware collector needs
+separate setup. Store opens must not be reported as confirmed app installs.
 
 The desktop download area also offers a locally hosted QR code, visible above
 1000px. Scanning `assets/download-qr.svg` opens
@@ -213,6 +249,7 @@ Run the static contracts and browser journey before publishing:
 python3 tests/verify_sovietkino_legal.py
 python3 tests/verify_sovietkino_marketing.py
 SITE_URL=http://127.0.0.1:8774/sovietkino/ node tests/verify_sovietkino_browser.cjs
+SITE_URL=http://127.0.0.1:8774/sovietkino/ node tests/verify_sovietkino_funnel.cjs
 ```
 
 The browser journey uses installed Chrome via Playwright. Set `PLAYWRIGHT_MODULE`
@@ -221,6 +258,9 @@ An optional `APP_QUESTIONS` JSON export enables source fidelity checks; it must
 remain outside this public repository. Coverage includes desktop, tablet,
 compact phones, quiz retry/win/reveal, search, no-JavaScript fallback,
 reduced motion, complete gallery delivery and footer access above the store bar.
+The extended funnel check covers campaign selection, three-question rounds,
+independent/hinted/revealed scoring, restart state, result store choices,
+safe local measurement events and the silent hero controls.
 
 ## BlabFlip pages
 

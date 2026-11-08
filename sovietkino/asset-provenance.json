@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "created_on": "2026-11-01",
-  "purpose": "Optimized website variants of previously owner-approved app art and existing public game screenshots. All app films are represented by the complete text catalog; six different films feature in the hero mosaic, with additional illustrations available for sample questions.",
-  "content_boundary": "Original people-free cinema illustrations; not actual film frames or posters. Source content is preserved. No new imagery, no actor photography, no internet film stills, no generated edits.",
-  "source_approval_record": "App CLAUDE.md ratified complete artwork coverage; assets/images/home/cinema_quote_scenes/ARTWORK_AUDIT.md locks the seven panorama hashes. Existing site sample pictures and screenshots are retained as sources.",
+  "purpose": "Optimized website delivery of owner-approved app art, existing public game screenshots and approved illustrated promotional animation. All 64 app films remain represented by the complete text catalog; six featured films have preview controls and seven curated records form three-question rounds.",
+  "content_boundary": "The existing original_app_environment panoramas are approved people-free cinema illustrations, not actual film frames or posters. The four new hero delivery assets are deterministic compositions of those panoramas and separately owner-approved illustrated Vasily room/character artwork. They contain no actual film footage, actor photography or recorded actor performance. No new artwork is generated for this website update.",
+  "source_approval_record": "App CLAUDE.md ratified complete panorama coverage; assets/images/home/cinema_quote_scenes/ARTWORK_AUDIT.md locks the seven original panorama hashes. Existing public sample pictures and screenshots remain sources. The Vasily illustrated promotional scene was separately owner-approved on 2026-11-05; this update exports only composed browser delivery files.",
   "catalog": {
     "authoritative_source": "app:lib/data/soviet_questions.dart allQuestions where enabled=true",
     "source_sha256": "78162d29e0839b9e054c8fd9fd6fa8919527595076b5f8768aa06d4e8a459256",
@@ -12,8 +12,8 @@
     "film_count": 64,
     "delivered_file": "catalog.json"
   },
-  "total_optimized_bytes": 1960986,
-  "asset_count": 32,
+  "total_optimized_bytes": 2729096,
+  "asset_count": 36,
   "assets": [
     {
       "kind": "real_app_screenshot",
@@ -730,6 +730,176 @@
       "film_title": "Москва слезам не верит",
       "transformation": "Whole uncropped source, proportional Lanczos resize, WebP encoding. No generative or content edit.",
       "quality": 80
+    },
+    {
+      "kind": "approved_illustrated_promo_animation",
+      "delivered_file": "media/hero-vasily-loop.mp4",
+      "dimensions": [
+        768,
+        432
+      ],
+      "bytes": 246485,
+      "sha256": "e6c5d1d1d96f0e028df96718a547f88e5559674410d9ad5389d851ab723a1256",
+      "source_inputs": [
+        {
+          "source": "approved-promo:approved-illustrated-room",
+          "sha256": "9c0784335d8e5e667b1445d32751aef3ce7216e439e66af1447e2416627a8595",
+          "bytes": 2650401
+        },
+        {
+          "source": "approved-promo:approved-illustrated-Vasily-character-gestures",
+          "sha256": "3a4e54b42a0bee029e8bc7e4700769f9bc30d200c82cc57bd3b2181f12ea2f82",
+          "bytes": 2302105
+        }
+      ],
+      "film_id": "gentlemen_of_fortune",
+      "film_ids": [
+        "gentlemen_of_fortune"
+      ],
+      "film_title": "Джентльмены удачи",
+      "transformation": "Deterministic composition of the approved room and illustrated character gestures; silent 24 fps H.264 BT.709, faststart, 768x432. No new generated artwork, film footage, text, answer or call-to-action overlays.",
+      "new_generated_art": false,
+      "actual_film_frames_or_recorded_actor_performance": false,
+      "seconds": 6,
+      "fps": 24,
+      "audio_tracks": 0
+    },
+    {
+      "kind": "approved_illustrated_promo_poster",
+      "delivered_file": "assets/web/hero-vasily-poster.webp",
+      "dimensions": [
+        768,
+        432
+      ],
+      "bytes": 36902,
+      "sha256": "68fa841e41d38ba2ded8ccfbbb3c488d6f7982c182a2be75e492b17675cc049b",
+      "source_inputs": [
+        {
+          "source": "approved-promo:approved-illustrated-room",
+          "sha256": "9c0784335d8e5e667b1445d32751aef3ce7216e439e66af1447e2416627a8595",
+          "bytes": 2650401
+        },
+        {
+          "source": "approved-promo:approved-illustrated-Vasily-character-gestures",
+          "sha256": "3a4e54b42a0bee029e8bc7e4700769f9bc30d200c82cc57bd3b2181f12ea2f82",
+          "bytes": 2302105
+        }
+      ],
+      "film_id": "gentlemen_of_fortune",
+      "film_ids": [
+        "gentlemen_of_fortune"
+      ],
+      "film_title": "Джентльмены удачи",
+      "transformation": "Static 768x432 WebP poster from the same approved illustrated scene; no text, answer or call-to-action overlay.",
+      "new_generated_art": false,
+      "actual_film_frames_or_recorded_actor_performance": false
+    },
+    {
+      "kind": "approved_illustrated_collection_animation",
+      "delivered_file": "media/hero-cinema-loop.mp4",
+      "dimensions": [
+        768,
+        432
+      ],
+      "bytes": 429369,
+      "sha256": "c4b14749dbe139255909e30fe258b6133911b2031463f49bc22fb50e4bf59ade",
+      "source_inputs": [
+        {
+          "source": "site:assets/web/hero-diamond-arm-1200.webp",
+          "sha256": "a6f251ffa5caa6781cdd31ec3c734d410ccf5d777b82a50af4e0d136cac3491c",
+          "bytes": 145004
+        },
+        {
+          "source": "site:assets/web/hero-irony-of-fate-1200.webp",
+          "sha256": "086e4b80150623fa25fc0eb21d4ead68173c77540d3fc71f6b3464355da5128d",
+          "bytes": 119386
+        },
+        {
+          "source": "site:assets/web/hero-moscow-1200.webp",
+          "sha256": "ea2feb17f69e8f8479a080689a9b34c409e7f8d6488703b2dbcaa1e800c47742",
+          "bytes": 108592
+        },
+        {
+          "source": "site:assets/web/hero-kin-dza-dza-1200.webp",
+          "sha256": "3d8e0db49efbc6ca760d3058f52882e82e701951ddbf8605fdd8f8a4e06d462c",
+          "bytes": 88208
+        },
+        {
+          "source": "site:media/hero-vasily-loop.mp4",
+          "sha256": "e6c5d1d1d96f0e028df96718a547f88e5559674410d9ad5389d851ab723a1256",
+          "bytes": 246485
+        }
+      ],
+      "film_id": null,
+      "film_ids": [
+        "diamond_arm",
+        "irony_of_fate",
+        "moscow_does_not_believe_in_tears",
+        "kin_dza_dza",
+        "gentlemen_of_fortune"
+      ],
+      "film_title": null,
+      "transformation": "Deterministic sequential composition of four existing public panoramas and the approved illustrated Vasily delivery; all panorama edges remain visible. 350 ms smoothstep crossfades including loop boundary; silent 24 fps H.264 BT.709, faststart, 768x432. No new generated artwork, text, answer or call-to-action overlays.",
+      "new_generated_art": false,
+      "actual_film_frames_or_recorded_actor_performance": false,
+      "seconds": 10,
+      "fps": 24,
+      "audio_tracks": 0
+    },
+    {
+      "kind": "approved_illustrated_collection_poster",
+      "delivered_file": "assets/web/hero-cinema-poster.webp",
+      "dimensions": [
+        768,
+        432
+      ],
+      "bytes": 55354,
+      "sha256": "55a5d4a0dd7a458c0e1081d70e9e5279b5733996a7cdb6109b7bfa61b85df882",
+      "source_inputs": [
+        {
+          "source": "site:assets/web/hero-diamond-arm-1200.webp",
+          "sha256": "a6f251ffa5caa6781cdd31ec3c734d410ccf5d777b82a50af4e0d136cac3491c",
+          "bytes": 145004
+        },
+        {
+          "source": "site:assets/web/hero-irony-of-fate-1200.webp",
+          "sha256": "086e4b80150623fa25fc0eb21d4ead68173c77540d3fc71f6b3464355da5128d",
+          "bytes": 119386
+        },
+        {
+          "source": "site:assets/web/hero-moscow-1200.webp",
+          "sha256": "ea2feb17f69e8f8479a080689a9b34c409e7f8d6488703b2dbcaa1e800c47742",
+          "bytes": 108592
+        },
+        {
+          "source": "site:assets/web/hero-kin-dza-dza-1200.webp",
+          "sha256": "3d8e0db49efbc6ca760d3058f52882e82e701951ddbf8605fdd8f8a4e06d462c",
+          "bytes": 88208
+        },
+        {
+          "source": "site:media/hero-vasily-loop.mp4",
+          "sha256": "e6c5d1d1d96f0e028df96718a547f88e5559674410d9ad5389d851ab723a1256",
+          "bytes": 246485
+        }
+      ],
+      "film_id": null,
+      "film_ids": [
+        "diamond_arm",
+        "irony_of_fate",
+        "moscow_does_not_believe_in_tears",
+        "kin_dza_dza",
+        "gentlemen_of_fortune"
+      ],
+      "film_title": null,
+      "transformation": "Static 768x432 WebP poster for the approved multi-film collection animation. No new generated artwork, text, answer or call-to-action overlay.",
+      "new_generated_art": false,
+      "actual_film_frames_or_recorded_actor_performance": false
     }
-  ]
+  ],
+  "updated_on": "2026-11-08",
+  "approval_scopes": {
+    "existing_panorama_assets": "All existing assets with kind original_app_environment retain their prior people-free panorama approval, source hashes and uncropped delivery transformations.",
+    "illustrated_vasily_assets": "The hero-vasily delivery pair reuses the separately approved illustrated room and recognizable illustrated Vasily character from the approved promotion. This scope is distinct from the people-free panorama approval.",
+    "collection_assets": "The hero-cinema delivery pair combines four existing public panoramas with the approved illustrated Vasily delivery. Public files contain no editorial controls, answer text or call-to-action overlay."
+  }
 }
