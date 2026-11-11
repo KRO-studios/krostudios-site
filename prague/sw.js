@@ -1,7 +1,7 @@
 // Prague Pocket Guide: offline app shell only. Live maps and weather need internet.
 // This worker is scoped to /prague/ (or its installation directory) and
 // cleans up ONLY its own cache versions, preserving other apps on the domain.
-const CACHE='prague-pocket-guide-2026-v6-mobile-beer';
+const CACHE='prague-pocket-guide-2026-v8-green-red-route';
 const PREFIX='prague-pocket-guide-2026-';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});
