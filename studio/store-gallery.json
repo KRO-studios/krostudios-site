@@ -190,7 +190,8 @@
     },
     "echo": {
       "title": "BlabFlip",
-      "status": "Coming soon · 18+",
+      "status": "Android · 18+",
+      "googlePlayUrl": "https://play.google.com/store/apps/details?id=com.krostudios.blabflip",
       "images": [
         {
           "path": "assets/bridge-blabflip-home.jpg",
@@ -240,7 +241,7 @@
         "appStoreIPhone": 0,
         "approvedLocalCaptures": 2
       },
-      "note": "BlabFlip is not yet publicly released. Both platforms remain coming soon. These two genuine Android UI captures were recaptured from the rebranded app on November 1, 2026; they are not screenshots from a public store listing.",
+      "note": "BlabFlip is available on Google Play; the App Store release is coming soon. These two genuine Android UI captures were recaptured from the rebranded app on November 1, 2026; their source remains approved local captures, not a public store gallery scrape.",
       "capturedAt": "2026-11-01"
     },
     "tanakh": {

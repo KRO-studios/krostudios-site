@@ -12,7 +12,7 @@
   });
   const {apps,order}=catalog;
   function destination(key){
-    const app=apps[key],website=Object.hasOwn(sites,key),url=new URL(app.url);
+    const app=apps[key],url=new URL(app.url),website=Object.hasOwn(sites,key)&&url.hostname==='krostudios.com';
     return {app,website,url:app.url,kind:website?'Website':'Google Play',
       preview:website?sites[key]:app.shots[0],
       host:website?url.hostname+url.pathname:'play.google.com'};

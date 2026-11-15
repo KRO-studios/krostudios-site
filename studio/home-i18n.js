@@ -5,12 +5,12 @@
   const stage = document.querySelector('.prototype');
   if (!catalog || !stage) return;
   const languages = new Set(['en', 'he', 'ru']);
-  const websiteKeys = new Set(['kino', 'echo', 'tanakh']);
+  const websiteKeys = new Set(['kino', 'tanakh']);
   const storageKey = 'kro-studio-language';
   const copy = Object.freeze({
     en: {
       heroLead: 'Follow your', heroAccent: 'curiosity.', contact: 'Talk with us',
-      website: 'Website', visitWebsite: 'Visit website', comingSoon: 'COMING SOON',
+      website: 'Website', visitWebsite: 'Visit website', androidAvailable: 'ANDROID · 18+',
       title: 'KRO Studios — Follow your curiosity',
       description: 'Follow your curiosity with KRO Studios. Explore eight games and apps, from cinema and word puzzles to reverse-voice party play.',
       socialDescription: 'Eight worlds of unexpected play. Explore the games and apps of KRO Studios.',
@@ -32,12 +32,12 @@
       renderer: {webgl: 'Live 3D', loading: 'Preparing 3D preview…', fallback: 'Preview image · 3D unavailable'},
       selection: (name, status, shot, total) => `${name}. ${status}. Screenshot ${shot} of ${total}.`,
       paused: 'Motion paused. Press P to resume.', running: 'Motion resumed. Press P to pause.',
-      statusComingSoon: 'Coming soon · 18+',
+      statusAndroid: 'Android · 18+',
       imagePreview: (name, website) => name + (website ? ' website preview' : ' app screenshot')
     },
     he: {
       heroLead: 'תנו לסקרנות', heroAccent: 'להוביל.', contact: 'דברו איתנו',
-      website: 'לאתר', visitWebsite: 'לאתר', comingSoon: 'בקרוב',
+      website: 'לאתר', visitWebsite: 'לאתר', androidAvailable: 'אנדרואיד · 18+',
       title: 'KRO Studios — תנו לסקרנות להוביל',
       description: 'תנו לסקרנות להוביל עם KRO Studios. גלו שמונה משחקים ויישומים — מקולנוע וחידות מילים ועד משחקי מסיבה בקול הפוך.',
       socialDescription: 'שמונה עולמות של משחקים מפתיעים. גלו את המשחקים והיישומים של KRO Studios.',
@@ -59,13 +59,13 @@
       renderer: {webgl: 'תצוגת תלת־ממד חיה', loading: 'מכינים תצוגת תלת־ממד…', fallback: 'תמונה מקדימה · תלת־ממד לא זמין'},
       selection: (name, status, shot, total) => `${name}. ${status}. צילום מסך ${shot} מתוך ${total}.`,
       paused: 'התנועה הושהתה. לחצו על P כדי לחדש.', running: 'התנועה חודשה. לחצו על P כדי להשהות.',
-      statusComingSoon: 'בקרוב · 18+',
+      statusAndroid: 'אנדרואיד · 18+',
       imagePreview: (name, website) => (website ? 'תצוגה מקדימה של האתר של ' : 'צילום מסך של ') + name,
       categories: {kino: 'קולנוע רוסי', echo: 'משחק מסיבה בקול הפוך', tanakh: 'חידות מילים בעברית', 'half-life': 'טריוויה לא רשמית למעריצים', dune: 'טריוויה של אסטרטגיה קלאסית', rap: 'חידון תמונות של ראפרים', beer: 'חידון סמלי בירה', feed: 'משחק ארקייד ברוסית'}
     },
     ru: {
       heroLead: 'Доверьтесь', heroAccent: 'любопытству.', contact: 'Напишите нам',
-      website: 'На сайт', visitWebsite: 'На сайт', comingSoon: 'Скоро',
+      website: 'На сайт', visitWebsite: 'На сайт', androidAvailable: 'АНДРОИД · 18+',
       title: 'KRO Studios — Доверьтесь любопытству',
       description: 'Доверьтесь любопытству вместе с KRO Studios. Откройте восемь игр и приложений: от кино и словесных головоломок до вечеринок с голосом наоборот.',
       socialDescription: 'Восемь миров неожиданных открытий. Познакомьтесь с играми и приложениями KRO Studios.',
@@ -87,7 +87,7 @@
       renderer: {webgl: 'Интерактивный 3D-просмотр', loading: 'Подготовка 3D-просмотра…', fallback: 'Изображение · 3D недоступно'},
       selection: (name, status, shot, total) => `${name}. ${status}. Снимок экрана ${shot} из ${total}.`,
       paused: 'Анимация приостановлена. Нажмите P, чтобы продолжить.', running: 'Анимация возобновлена. Нажмите P, чтобы приостановить.',
-      statusComingSoon: 'Скоро · 18+',
+      statusAndroid: 'Андроид · 18+',
       imagePreview: (name, website) => (website ? 'Предпросмотр сайта ' : 'Снимок экрана приложения ') + name,
       categories: {kino: 'Русскоязычное кино', echo: 'Игра для вечеринок с голосом наоборот', tanakh: 'Словесные головоломки на иврите', 'half-life': 'Неофициальная викторина для поклонников', dune: 'Викторина о классической стратегии', rap: 'Угадайте рэпера по фото', beer: 'Викторина по пивным логотипам', feed: 'Аркада на русском языке'}
     }
@@ -126,7 +126,7 @@
     return {key, shot: normalizeShot(query.get('shot'), key), app: catalog.apps[key]};
   }
   const appLanguage = key => key === 'feed' ? 'ru' : 'en';
-  const translatedStatus = (key, app) => key === 'echo' ? copy[language].statusComingSoon : app.status;
+  const translatedStatus = (key, app) => key === 'echo' ? copy[language].statusAndroid : app.status;
   function selectionAnnouncement(key, shot, app) {
     const actual = catalog.apps[key] || app;
     if (!actual) return '';
@@ -179,7 +179,7 @@
       if (node.tagName === 'BUTTON') setAttribute(node, 'aria-label', t.preview(app.title));
       const title = node.querySelector('.app-title');
       setAttribute(title, 'lang', appLanguage(key)); setAttribute(title, 'dir', 'ltr');
-      if (key === 'echo') setText(node.querySelector('.app-status'), t.comingSoon);
+      if (key === 'echo') setText(node.querySelector('.app-status'), t.androidAvailable);
     }
     for (const title of stage.querySelectorAll('[data-active-title]')) {
       setAttribute(title, 'lang', appLanguage(selected.key)); setAttribute(title, 'dir', 'ltr');

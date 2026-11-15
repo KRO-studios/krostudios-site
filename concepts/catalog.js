@@ -9,9 +9,9 @@
       shots:['assets/kinoHome.jpg','assets/kinoFeedback.jpg']
     },
     echo: {
-      title:'BlabFlip', category:'Reverse-voice party game', status:'Coming soon · 18+',
+      title:'BlabFlip', category:'Reverse-voice party game', status:'Android · 18+',
       short:'Say it. Flip it. Try not to laugh.',
-      url:'https://krostudios.com/blabflip.html', icon:'assets/blabflip-icon.png', color:'#ef9fc0', form:'echo',
+      url:'https://play.google.com/store/apps/details?id=com.krostudios.blabflip', websiteUrl:'https://krostudios.com/blabflip.html', icon:'assets/blabflip-icon.png', color:'#ef9fc0', form:'echo',
       shots:['assets/blabflip-home.jpg','assets/blabflip-listen.jpg']
     },
     tanakh: {

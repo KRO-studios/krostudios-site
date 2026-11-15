@@ -126,8 +126,10 @@ def main() -> int:
         index_parser = PageParser()
         index_parser.feed(index_path.read_text(encoding="utf-8"))
         index_parser.close()
-        if not any(str(link["href"]) == "blabflip.html" for link in index_parser.links):
-            errors.append("index.html must contain a discoverable link to blabflip.html")
+        if not any(str(link["href"]) == "https://play.google.com/store/apps/details?id=com.krostudios.blabflip" for link in index_parser.links):
+            errors.append("index.html must contain a discoverable link to the published BlabFlip Android listing")
+        if "https://krostudios.com/blabflip.html" not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+            errors.append("the canonical BlabFlip website must remain discoverable through the sitemap")
 
     for page in PAGES:
         path = ROOT / page
@@ -257,6 +259,13 @@ def main() -> int:
     }
     if landing_links & generic_store_links:
         fail(errors, "blabflip.html", "contains a generic store link instead of an app listing")
+    google_play = "https://play.google.com/store/apps/details?id=com.krostudios.blabflip"
+    if google_play not in landing_links:
+        fail(errors, "blabflip.html", "missing the published app-specific Google Play download link")
+    if "Android · available on Google Play" not in landing or "App Store · coming soon" not in landing:
+        fail(errors, "blabflip.html", "must show live Android availability and coming-soon App Store status")
+    if any("apps.apple.com" in href for href in landing_links):
+        fail(errors, "blabflip.html", "must not invent an unpublished App Store download link")
 
     privacy = normalized(re.sub(r"<[^>]+>", " ", sources.get("blabflip-privacy.html", "")))
     privacy_contract = (
@@ -281,6 +290,8 @@ def main() -> int:
     support = normalized(re.sub(r"<[^>]+>", " ", sources.get("blabflip-support.html", "")))
     support_contract = (
         "BlabFlip is intended for adults aged 18 and older.",
+        "BlabFlip is available for Android on Google Play",
+        "App Store release is coming soon",
         "Open app settings",
         "Return to the game and tap Try this turn again.",
     )

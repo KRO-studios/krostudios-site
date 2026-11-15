@@ -13,7 +13,7 @@
   let paused=false;
   let screenshotFeedback=null;
   const cancelScreenshotFeedback=()=>{screenshotFeedback?.cancel();screenshotFeedback=null;};
-  nodeRoot.innerHTML=order.map((id,index)=>`<button type="button" class="app-node" data-world="${id}" aria-pressed="false" aria-label="Preview ${apps[id].title}"><span class="app-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span class="app-icon"><img src="${apps[id].icon}" alt="" width="76" height="76" draggable="false"></span><span class="app-title">${apps[id].title}</span><span class="app-status">${id==='echo'?'COMING SOON':''}</span></button>`).join('');
+  nodeRoot.innerHTML=order.map((id,index)=>`<button type="button" class="app-node" data-world="${id}" aria-pressed="false" aria-label="Preview ${apps[id].title}"><span class="app-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span class="app-icon"><img src="${apps[id].icon}" alt="" width="76" height="76" draggable="false"></span><span class="app-title">${apps[id].title}</span><span class="app-status">${id==='echo'?'ANDROID · 18+':''}</span></button>`).join('');
   phoneHost.innerHTML=`<div class="signal-device"><div class="signal-device-float"><div class="signal-device-rotator" tabindex="0" role="img" aria-label="Orange 3D phone displaying an app screenshot. Click the screen or press Enter to see the next screenshot. Drag or use arrow keys to rotate; Home resets; P pauses animation." aria-describedby="phone-accessible-hint"><img class="phone-render-fallback" src="${apps[key].fallbacks[shot]}" alt="" draggable="false"><span class="device-glass"><img class="signal-device-screen" src="${apps[key].shots[shot]}" alt="" draggable="false"></span></div></div><span class="sr-only" data-renderer-status></span><span class="phone-hint" aria-hidden="true">TAP SCREEN TO EXPLORE · DRAG TO ROTATE</span><span class="sr-only" id="phone-accessible-hint">Click or tap the screen to see the next screenshot. Select an app to change the gallery. Drag the phone horizontally to rotate it; vertical movement scrolls on touch screens. Arrow keys rotate. Enter or Space shows the next screenshot. Home resets. P pauses motion.</span></div>`;
   if(selected)selected.innerHTML='<div class="selected-identity"><strong class="selected-title"></strong><span class="selected-status"></span></div><a class="explore-link" target="_blank" rel="noopener noreferrer">Explore app ↗</a><button class="screen-next" type="button">Screen 1 / 2 →</button>';
   const designs=[['prism','prism-runway.html','Prism Runway'],['lab','signal-lab.html','Signal Lab'],['bridge','constellation-bridge.html','Constellation Bridge']];
@@ -43,7 +43,7 @@
       selected.querySelector('.selected-title').textContent=app.title;
       selected.querySelector('.selected-status').textContent=app.status;
       selected.querySelector('.explore-link').href=app.url;
-      selected.querySelector('.explore-link').setAttribute('aria-label','Explore '+app.title+(key==='echo'?' coming-soon page':''));
+      selected.querySelector('.explore-link').setAttribute('aria-label','Explore '+app.title+(key==='echo'?' on Google Play':''));
       selected.querySelector('.screen-next').textContent=`Screen ${shot+1} / ${app.shots.length} →`;
       selected.querySelector('.screen-next').setAttribute('aria-label',`Show screenshot ${(shot+1)%app.shots.length+1} of ${app.title}`);
     }

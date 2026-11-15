@@ -8,7 +8,8 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const app = JSON.parse(fs.readFileSync(path.join(root, 'studio/store-gallery.json'), 'utf8')).apps.echo;
 assert.equal(app.title, 'BlabFlip');
-assert.equal(app.status, 'Coming soon · 18+');
+assert.equal(app.status, 'Android · 18+');
+assert.equal(app.googlePlayUrl, 'https://play.google.com/store/apps/details?id=com.krostudios.blabflip');
 assert.equal(app.images.length, 2);
 for (const [index, image] of app.images.entries()) {
   const file = path.join(root, 'studio', image.path);

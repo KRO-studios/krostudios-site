@@ -28,7 +28,9 @@ for (const key of order) {
     }
   }
 }
-assert.equal(apps.echo.status,'Coming soon · 18+','BlabFlip is not advertised as released');
+assert.equal(apps.echo.status,'Android · 18+','BlabFlip Android availability remains truthful');
+assert.equal(apps.echo.url,'https://play.google.com/store/apps/details?id=com.krostudios.blabflip','BlabFlip opens its app-specific Google Play listing');
+assert(!/COMING SOON/.test(html.match(/<article class="collection-card echo-card">[\s\S]*?<\/article>/)[0]),'BlabFlip collection card no longer claims Android is unavailable');
 assert(featuredOrder.every(key=>apps[key]),'Legacy views reference only registered apps');
 for(const removed of ['class="site-header"','class="app-inspector"','class="studio-section"','class="signal-device-tools"']) {
   assert(!html.includes(removed),'Previously removed UI must stay absent: '+removed);

@@ -64,7 +64,7 @@
     const title=selector.querySelector('[data-world-preview-title]');
     if(title){title.textContent=app.title;title.lang=state.app==='feed'?'ru':'en';}
     const launch=selector.querySelector('.world-launch');
-    if(launch){launch.href=app.url;launch.setAttribute('aria-label','Open '+(app.englishTitle||app.title)+(state.app==='echo'?' coming-soon website':' app page'));}
+    if(launch){launch.href=app.url;launch.setAttribute('aria-label','Open '+(app.englishTitle||app.title)+(state.app==='echo'?' on Google Play':' app page'));}
     const selected=selector.querySelector('[data-world="'+state.app+'"]');
     const connection=selector.querySelector('[data-world-connection]');
     if(selected&&connection){
@@ -75,7 +75,7 @@
     const announcement=selector.querySelector('[data-world-announcement]');
     if(announcement)announcement.textContent=(app.englishTitle||app.title)+' selected. '+app.category+'. '+app.status+'. The phone preview has changed.';
     const label=selector.querySelector('.world-launch-label');
-    if(label)label.textContent=state.app==='echo'?'COMING SOON ↗':'OPEN WORLD ↗';
+    if(label)label.textContent=state.app==='echo'?'GOOGLE PLAY ↗':'OPEN WORLD ↗';
   }
   function renderConcept() {
     if(state.concept==='archive'&&!archiveOrder.includes(state.app)){state.app=archiveOrder[0];state.shot=0;renderApp();}

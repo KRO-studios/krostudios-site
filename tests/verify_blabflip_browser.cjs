@@ -55,9 +55,17 @@ const server = http.createServer((request, response) => {
         await page.keyboard.press('Tab');
         assert.equal(await page.evaluate(() => document.activeElement.classList.contains('skip')), true, 'Skip navigation is the first keyboard stop');
         if (name === 'blabflip-support.html') {
+          assert.equal(await page.locator('a[href="https://play.google.com/store/apps/details?id=com.krostudios.blabflip"]').count(), 1, 'Support links to the published Android app');
           const question = page.locator('details').first();
           await question.locator('summary').click();
           assert.equal(await question.getAttribute('open'), '', 'FAQ can be expanded');
+        }
+        if (name === 'blabflip.html') {
+          assert.equal(await page.locator('.actions .primary').getAttribute('href'), 'https://play.google.com/store/apps/details?id=com.krostudios.blabflip');
+          assert.match(await page.locator('.actions .primary').innerText(), /Google Play/);
+          assert.match(await page.locator('.availability').innerText(), /Android · available on Google Play/);
+          assert.match(await page.locator('.availability').innerText(), /App Store · coming soon/);
+          assert.equal(await page.locator('a[href*="apps.apple.com"]').count(), 0, 'No invented App Store listing');
         }
         checked++;
       }
@@ -76,9 +84,13 @@ const server = http.createServer((request, response) => {
         const node = page.locator('.app-node[data-world="echo"]');
         assert.equal(await node.locator('.app-title').textContent(), 'BlabFlip');
         assert.match(await node.getAttribute('aria-label'), /BlabFlip/);
-        assert.equal(await page.locator('.orbit-site-link[data-destination="echo"]').getAttribute('href'), 'https://krostudios.com/blabflip.html');
+        const destination = page.locator('.orbit-site-link[data-destination="echo"]');
+        assert.equal(await destination.getAttribute('href'), 'https://play.google.com/store/apps/details?id=com.krostudios.blabflip');
+        assert.match(await destination.innerText(), /Google Play/);
         assert.equal(await page.evaluate(() => window.KROCatalog.apps.echo.title), 'BlabFlip');
-        assert.equal(await page.evaluate(() => window.KROCatalog.apps.echo.status), 'Coming soon · 18+');
+        assert.equal(await page.evaluate(() => window.KROCatalog.apps.echo.status), 'Android · 18+');
+        const status = await node.locator('.app-status').innerText();
+        assert.equal(status, {en:'ANDROID · 18+',he:'אנדרואיד · 18+',ru:'АНДРОИД · 18+'}[language]);
         assert(await page.evaluate(() => window.KROCatalog.apps.echo.shots.every(source => source.includes('blabflip'))));
         assert(!/Echo\s*Dare/i.test(await page.locator('body').innerText()));
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Localized homepage has no horizontal overflow');
@@ -118,7 +130,8 @@ const server = http.createServer((request, response) => {
     await page.goto(base + '/', {waitUntil: 'networkidle'});
     const fallback = page.locator('.no-script-node[data-world="echo"]');
     assert.equal(await fallback.locator('.app-title').textContent(), 'BlabFlip');
-    assert.equal(await fallback.getAttribute('href'), 'blabflip.html');
+    assert.equal(await fallback.getAttribute('href'), 'https://play.google.com/store/apps/details?id=com.krostudios.blabflip');
+    assert.match(await fallback.locator('.app-status').innerText(), /ANDROID/);
     assert.match(await page.locator('.phone-render-fallback').getAttribute('alt'), /BlabFlip/);
     assert(await page.locator('.phone-render-fallback').evaluate(image => image.complete && image.naturalWidth > 0));
     checked++;
