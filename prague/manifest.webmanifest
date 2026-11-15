@@ -1,0 +1,22 @@
+{
+  "name": "Prague 2026 — Pocket Companion / מלווה הטיול בפראג",
+  "short_name": "Prague 2026",
+  "description": "Prague Pocket Guide 4.0: update checker, smart GPS sights, editable sightseeing route, opening-hours watch, shareable trip link, offline essentials and flight checklist, with 122 Prague locations.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b151e",
+  "theme_color": "#111c25",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
