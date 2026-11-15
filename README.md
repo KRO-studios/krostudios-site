@@ -2,11 +2,11 @@
 
 This repository is the static site served at `https://krostudios.com/`.
 
-## Selected homepage — Orbit Links
+## Selected homepage — Liquid Silk / Orbit Links
 
 The local homepage now implements the approved Orbit Links design: all eight
 app orbits have separate preview controls and direct destination links, around
-the live gold/rose signal field and rotatable orange phone. The three owned
+the Liquid Silk gold/rose field and rotatable orange phone. The three owned
 app websites are labelled Website; the remaining five apps link to their
 actual Google Play listings. BlabFlip stays marked coming soon.
 
@@ -55,16 +55,22 @@ aspect ratio differs. The original16 phone renders and45 matching frames in
 `studio/assets/gallery-phones/` provide the same uncropped fallback appearance.
 The screenshot-change energy wave and handset glow remain enabled.
 
-Screenshot taps and Enter/Space also send a1.18-second gold/rose energy wave
-through the larger, brighter ribbons, with a short glow around the handset.
-The signal uses a fixed32-spark pool; repeated taps restart the effect rather
-than stacking animations. Dragging and holding do not emit the signal.
+`studio/bridge-field.js` renders three depth-sorted metallic cloth ribbons with
+fine fibres, rolling highlights, pointer response and a fixed pool of 150
+ambient particles. Canvas2D runs independently of the phone's actual WebGL
+renderer, so the selected silk treatment also works when WebGL is unavailable.
+App artwork drifts gently and the headline gradient shifts slowly.
+
+Screenshot taps and Enter/Space send a 1.35-second gold/rose lightfront through
+the silk, with a short glow around the handset and a trail to the selected app.
+Repeated taps restart one effect rather than stacking animations or particles.
+Dragging and holding do not emit the signal.
 Paused/reduced-motion modes receive static field feedback with no phone glow.
 
 The hero heading and its container are transparent. The gold/rose gradient
 remains clipped to the text, while the live field, particles and tap signal
 continue behind the heading without a black rectangle or headline-shaped
-cutout in either the WebGL or Canvas2D renderer.
+cutout. The field stops when hidden, paused, or reduced motion is requested.
 
 Additional gallery QA and fallback generation live in the working project's
 `prototypes/world-atlas/tests/verify-phone-gallery.mjs`,
@@ -73,11 +79,15 @@ Additional gallery QA and fallback generation live in the working project's
 the additional45 `studio/assets/gallery-phones/` frames from the real local3D
 model; it never changes the original prototype renders or publishes the site.
 
-Run `node tests/verify_studio_homepage.js` and the existing app-page contracts
-before publishing. Browser coverage is in the working project’s
-`prototypes/world-atlas/tests/verify-homepage.mjs` and
-`prototypes/world-atlas/tests/verify-homepage-languages.mjs`. The main local
-homepage preview is `http://127.0.0.1:8771/`; the older standalone layout at
+Run `node tests/verify_studio_homepage.js`,
+`node tests/verify_liquid_silk_browser.cjs` (requires Playwright and Chrome),
+and the existing app-page contracts before publishing. The Liquid Silk browser
+contract covers the current app names, galleries, destinations, languages,
+phone gestures, responsive layouts and field lifecycle. Set `KRO_PLAYWRIGHT`
+and `KRO_CHROME` when using a different local browser installation. Earlier
+field checks under `prototypes/world-atlas/tests/` describe the previous
+renderer and particle model. The main local homepage preview is
+`http://127.0.0.1:8771/`; the older standalone layout at
 `prototypes/world-atlas/constellation-bridge.html` has no production top bar.
 `prototypes/world-atlas/tests/sync-homepage-bundle.mjs` mechanically syncs the
 approved shared runtime and assets into `studio/`; `home-catalog.js`,

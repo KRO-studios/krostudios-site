@@ -65,6 +65,23 @@ body[data-design="bridge"] .prototype {--bridge-scene-height:max(700px,calc(100s
 body[data-design="bridge"] .hero-copy,
 body[data-design="bridge"] .hero-copy h1 {background:transparent;box-shadow:none;}
 body[data-design="bridge"] .hero-copy h1 .hero-lead {padding-bottom:0;background:none;-webkit-background-clip:initial;background-clip:initial;color:#f3edde;}
+/* Liquid Silk: slow light across the headline and gently drifting app artwork. */
+body[data-design="bridge"] .hero-copy h1 span:not(.hero-lead) {
+  background-size:160% 100%;
+  animation:studio-silk-light 11s ease-in-out infinite alternate;
+}
+body[data-design="bridge"] .app-node .app-icon {
+  animation:studio-silk-drift 7s ease-in-out infinite;
+  animation-delay:var(--orbit-delay);
+}
+@keyframes studio-silk-light {
+  from {background-position:0% 50%;}
+  to {background-position:100% 50%;}
+}
+@keyframes studio-silk-drift {
+  0%,100% {translate:0 0;}
+  50% {translate:0 -4px;}
+}
 html[lang="ru"] body[data-design="bridge"] .hero-copy h1 {font-size:clamp(44px,5.1vw,88px);letter-spacing:-.045em;}
 html[lang="he"] body {font-family:Arial,system-ui,sans-serif;}
 html[lang="he"] body[data-design="bridge"] .hero-copy {left:auto;right:2.5%;text-align:right;}
@@ -83,8 +100,13 @@ html[lang="he"] body[data-design="bridge"] .phone-host {left:49%;}
   html[lang="he"] body[data-design="bridge"] .app-node[data-world="rap"] {left:20%;}
 }
 @media(min-width:1001px) and (max-width:1150px){
+  /* Keep the lower app labels and website pills clear of neighboring icons. */
+  body[data-design="bridge"] .app-node[data-world="beer"] {left:27%;}
+  body[data-design="bridge"] .app-node[data-world="rap"] {left:74%;}
   html[lang="he"] body[data-design="bridge"] .app-node[data-world="echo"] {left:88%;}
   html[lang="he"] body[data-design="bridge"] .app-node[data-world="half-life"] {left:10%;}
+  html[lang="he"] body[data-design="bridge"] .app-node[data-world="beer"] {left:73%;}
+  html[lang="he"] body[data-design="bridge"] .app-node[data-world="rap"] {left:26%;}
 }
 @media(max-width:1000px){
   html[lang="he"] body[data-design="bridge"] .hero-copy {inset:auto;text-align:center;}
