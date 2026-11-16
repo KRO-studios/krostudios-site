@@ -1,6 +1,0 @@
-{
-  "version": "4.8.2",
-  "released": "2026-11-15",
-  "app": "Prague 2026 Pocket Guide",
-  "notes": "Removed the redundant About the trip/how to use guide panel in My Day and moved the existing working Share button and its status to that spot just above More options. The duplicate share action in the route summary is gone. Beer and route data stay untouched."
-}
