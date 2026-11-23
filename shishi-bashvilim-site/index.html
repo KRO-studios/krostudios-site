@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f6f0">
+  <meta name="description" content="מתכננים את טיול שישי, עוקבים אחרי המסלול ומוצאים מקום לעצור בו אחרי ההליכה.">
+  <title>שישי בשבילים</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon-192.png">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="stylesheet" href="./styles.css?v=12">
+  <link rel="stylesheet" href="./map.css?v=11">
+  <link rel="stylesheet" href="./weather.css">
+  <link rel="stylesheet" href="./after-trip.css?v=7">
+  <script type="module" src="./app.js?v=12"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="#" data-view="plan" aria-label="שישי בשבילים, למסלול">
+        <img src="./assets/icon-192.png" width="38" height="38" alt="">
+        <span>שישי בשבילים</span>
+      </a>
+      <button class="button button-share" type="button" id="share-open"><span data-icon="share"></span><span id="share-open-label">שיתוף הטיול</span></button>
+    </div>
+  </header>
+
+  <main class="site-main" id="main">
+    <noscript><p class="notice">כדי להציג את תוכנית הטיול, יש להפעיל JavaScript בדפדפן.</p></noscript>
+    <nav class="category-banner" id="category-banner" aria-label="ניווט ראשי">
+      <button class="category-tile category-tile-hike" type="button" data-view="plan" aria-current="page" aria-controls="view-plan">
+        <span class="category-title"><span data-icon="route"></span>מסלול</span>
+      </button>
+      <button class="category-tile category-tile-after" type="button" data-view="after" aria-controls="view-after">
+        <span class="category-title"><span data-icon="beer"></span>אחרי המסלול</span>
+      </button>
+      <span class="category-image-note">תמונות להמחשה</span>
+    </nav>
+    <section class="plan-view" id="view-plan" aria-labelledby="friday-routes-title">
+      <section class="card friday-routes" id="friday-routes">
+        <div class="route-catalogue-header">
+          <div class="card-heading">
+            <span class="section-icon" data-icon="route"></span>
+            <div><h1 id="friday-routes-title" tabindex="-1">שלוש ההליכות בנחל עמוד</h1><p>כל הליכה מסתיימת בחניון שממנו יצאתם.</p></div>
+          </div>
+          <a class="source-link" id="amud-official-link" target="_blank" rel="noopener noreferrer">עדכוני השמורה ותיאום ביקור ↗</a>
+        </div>
+        <div class="friday-choice-groups">
+          <section class="friday-choice-group" aria-labelledby="two-walks-title">
+            <h2 id="two-walks-title">שתי הליכות עם נסיעה ביניהן</h2>
+            <p class="hint" id="two-walks-distance"></p>
+            <ol class="friday-walks" id="two-walks"></ol>
+          </section>
+          <section class="friday-choice-group" aria-labelledby="one-walk-title">
+            <h2 id="one-walk-title">הליכה אחת ארוכה</h2>
+            <p class="hint">אותו חניון בתחילת ההליכה ובסופה</p>
+            <div class="friday-walks" id="one-walk"></div>
+          </section>
+        </div>
+        <div class="trip-schedule">
+          <p><span data-icon="calendar"></span><span id="trip-date"></span></p>
+          <button class="button button-outline" type="button" id="edit-open"><span data-icon="edit"></span>שינוי מועד</button>
+        </div>
+      </section>
+
+      <div class="plan-grid">
+        <section class="card hike-card" aria-labelledby="hike-title">
+          <div class="card-heading">
+            <span class="section-icon" data-icon="route"></span>
+            <div><h2 id="hike-title" tabindex="-1">הטיול שלנו</h2><p id="hike-summary"></p></div>
+          </div>
+          <dl class="metrics" id="hike-metrics"></dl>
+          <div class="route-logistics" id="route-logistics"></div>
+          <div class="hike-actions">
+            <a class="button button-outline" id="details-map-link" data-view="map" data-map-link><span data-icon="map"></span>פתיחת מפה</a>
+            <a class="button button-outline" id="parking-link" target="_blank" rel="noopener noreferrer"><span data-icon="car"></span><span class="arrival-link-label">לחניה בתחילת המסלול</span></a>
+            <a class="button button-outline" id="finish-link" target="_blank" rel="noopener noreferrer" hidden><span data-icon="pin"></span>לנקודת הסיום</a>
+          </div>
+          <section class="hike-directions" id="hike-directions" aria-labelledby="hike-directions-title" hidden>
+            <h3 id="hike-directions-title">איך הולכים</h3>
+            <ul class="blaze-list" id="hike-blazes" aria-label="סימוני השביל"></ul>
+            <ol id="hike-steps" class="hike-steps"></ol>
+          </section>
+          <details class="hike-notes" id="hike-notes-panel">
+            <summary>נקודות לאורך המסלול והערות</summary>
+            <ol id="hike-stops" class="stop-list"></ol>
+            <ul id="hike-notes" class="notes-list"></ul>
+          </details>
+        </section>
+        <div class="card weather-card">
+          <p class="hint weather-location" id="weather-location"></p>
+          <div id="weather"></div>
+        </div>
+      </div>
+
+      <details class="card route-catalogue" id="route-catalogue">
+        <summary id="route-catalogue-title">עוד מסלולים באזור נחל עמוד</summary>
+        <div class="route-filters route-areas" role="group" aria-label="בחירת אזור או נקודת עניין">
+          <button type="button" class="route-filter" data-route-area="all">כל האזור</button>
+          <button type="button" class="route-filter" data-route-area="upper">נחל עמוד עליון</button>
+          <button type="button" class="route-filter" data-route-area="lower">נחל עמוד תחתון</button>
+          <button type="button" class="route-filter" data-route-area="pillar">סלע העמוד</button>
+        </div>
+        <div class="route-filters" role="group" aria-label="סינון לפי מרחק או סוג מסלול">
+          <button type="button" class="route-filter" data-route-filter="near"><bdi dir="ltr">8–12</bdi> ק״מ</button>
+          <button type="button" class="route-filter" data-route-filter="loop">מעגליים</button>
+          <button type="button" class="route-filter" data-route-filter="partial">חצי מעגליים</button>
+          <button type="button" class="route-filter" data-route-filter="linear">קוויים</button>
+          <button type="button" class="route-filter" data-route-filter="outback">הלוך וחזור</button>
+          <button type="button" class="route-filter" data-route-filter="all">הכול</button>
+        </div>
+        <div class="route-list" id="route-list"></div>
+        <p class="hint" id="route-filter-message" role="status"></p>
+        <button class="button text-button" type="button" id="show-route-details">לפרטי המסלול שנבחר <span data-icon="arrow"></span></button>
+      </details>
+    </section>
+
+    <section class="inner-view" id="view-map" aria-labelledby="map-title" hidden>
+      <button class="button button-outline map-back" type="button" data-view="plan">חזרה למסלול</button>
+      <div class="page-intro">
+        <span class="section-icon" data-icon="map"></span>
+        <div><h1 id="map-title" tabindex="-1">מפת המסלול</h1><p id="map-subtitle"></p></div>
+      </div>
+      <div class="card map-card" id="trail-map"></div>
+      <div class="map-actions">
+        <a class="button button-outline" id="map-parking-link" target="_blank" rel="noopener noreferrer"><span data-icon="car"></span><span class="arrival-link-label">לחניה בתחילת המסלול</span></a>
+        <a class="button button-outline" id="map-finish-link" target="_blank" rel="noopener noreferrer" hidden><span data-icon="pin"></span>לנקודת הסיום</a>
+        <button class="button button-outline" type="button" id="share-map"><span data-icon="share"></span>שיתוף קישור למפה</button>
+        <a class="button button-outline" id="route-link" target="_blank" rel="noopener noreferrer"><span data-icon="external"></span>מקור המסלול</a>
+        <a class="button button-outline" id="hiking-map-link" target="_blank" rel="noopener noreferrer"><span data-icon="mountain"></span><span id="hiking-map-label">מפת סימון שבילים</span></a>
+      </div>
+      <p class="hint" id="map-source-hint"></p>
+      <p class="map-credit"><bdi dir="ltr">© OpenStreetMap · ODbL</bdi></p>
+    </section>
+
+    <section class="inner-view" id="view-after" aria-labelledby="after-title" hidden>
+      <div class="page-intro">
+        <span class="section-icon section-icon-warm" data-icon="beer"></span>
+        <h1 id="after-title" tabindex="-1">אחרי המסלול</h1>
+      </div>
+      <div id="after-trip"></div>
+    </section>
+
+    <footer class="site-footer" id="network-footer" hidden><span aria-live="polite" id="network-status"></span></footer>
+  </main>
+
+  <dialog id="edit-dialog" aria-labelledby="edit-title">
+    <form id="edit-form">
+      <div class="dialog-heading"><h2 id="edit-title">מתי יוצאים?</h2><button class="icon-button" type="button" data-close-dialog aria-label="סגירה"><span data-icon="close"></span></button></div>
+      <label for="plan-date">תאריך הטיול (יום שישי)</label>
+      <input id="plan-date" name="date" type="date" required>
+      <label for="start-time">שעת יציאה מהחניה</label>
+      <input id="start-time" name="time" type="time" required>
+      <p class="form-message" id="edit-message" role="alert" hidden></p>
+      <button type="submit" class="button button-primary dialog-submit">שמירת מועד</button>
+    </form>
+  </dialog>
+
+  <dialog id="share-dialog" aria-labelledby="share-title">
+    <div class="dialog-heading"><h2 id="share-title">שיתוף הטיול</h2><button class="icon-button" type="button" data-close-dialog aria-label="סגירה"><span data-icon="close"></span></button></div>
+    <p id="share-summary"></p>
+    <label id="share-url-label" for="share-url">קישור לתוכנית</label>
+    <input id="share-url" type="url" readonly dir="ltr">
+    <p id="share-host-note" class="hint" hidden>זו תצוגה מקומית. כדי לפתוח את הקישור בטלפון אחר, צריך להעלות את האפליקציה לכתובת נגישה לשני הטלפונים.</p>
+    <div class="dialog-actions">
+      <button class="button button-primary" type="button" id="share-copy"><span data-icon="copy"></span>העתקת קישור</button>
+      <button class="button button-outline" type="button" id="share-native" hidden><span data-icon="share"></span>שליחה</button>
+    </div>
+    <p id="share-status" class="form-message" role="status" hidden></p>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Shishi Trails" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>אל עמוד הסלע ועין עמוד</name><desc>טיול קצר מהכניסה בכביש 8077 אל עמוד הסלע והמעיין העונתי שלמרגלותיו, וחזרה לחניון.</desc><link href="https://www.nakeb.co.il/hike/364"><text>תיאור המסלול · צוות נאקב</text></link><link href="https://www.openstreetmap.org/copyright"><text>© תורמי OpenStreetMap · ODbL</text></link><link href="https://www.openstreetmap.org/relation/282071"><text>מקור תוואי שביל ישראל</text></link><link href="https://www.openstreetmap.org/way/472878104"><text>חיבור לחניון כביש 85</text></link><link href="https://www.openstreetmap.org/way/1193698372"><text>חיבור לעין נון</text></link><link href="https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%98%D7%91%D7%A2-%D7%A0%D7%97%D7%9C-%D7%A2%D7%9E%D7%95%D7%93/"><text>כניסות, שעות והנחיות השמורה</text></link></metadata>
+  <wpt lat="32.8685956" lon="35.5024217"><name>כניסת השמורה · כביש 8077</name><desc>החניון ליד מפגש הכביש עם הנחל. היכנסו דרך השילוט של רשות הטבע והגנים.</desc><type>חניה</type></wpt>
+  <wpt lat="32.8723928" lon="35.5017152"><name>סלע העמוד ועין עמוד</name><desc>עמוד גיר בגובה כ־20 מ׳, שנתן לנחל את שמו. המעיין שלמרגלותיו עונתי.</desc><type>תצפית</type></wpt>
+  <trk><name>אל עמוד הסלע ועין עמוד</name><trkseg>
+      <trkpt lat="32.8685956" lon="35.5024217"/>
+      <trkpt lat="32.8686939" lon="35.5024082"/>
+      <trkpt lat="32.8688193" lon="35.5025403"/>
+      <trkpt lat="32.8691592" lon="35.5024364"/>
+      <trkpt lat="32.869432" lon="35.5023332"/>
+      <trkpt lat="32.869638" lon="35.5023068"/>
+      <trkpt lat="32.8698358" lon="35.502319"/>
+      <trkpt lat="32.870021" lon="35.5023861"/>
+      <trkpt lat="32.870215" lon="35.502368"/>
+      <trkpt lat="32.8703053" lon="35.5023908"/>
+      <trkpt lat="32.8704647" lon="35.5024995"/>
+      <trkpt lat="32.8705497" lon="35.5025094"/>
+      <trkpt lat="32.8708254" lon="35.5023559"/>
+      <trkpt lat="32.8710074" lon="35.5022294"/>
+      <trkpt lat="32.8712037" lon="35.5021523"/>
+      <trkpt lat="32.8713965" lon="35.5021225"/>
+      <trkpt lat="32.871478" lon="35.5021432"/>
+      <trkpt lat="32.8719645" lon="35.5020266"/>
+      <trkpt lat="32.8721545" lon="35.5020801"/>
+      <trkpt lat="32.8723389" lon="35.5020875"/>
+      <trkpt lat="32.872434" lon="35.5020359"/>
+      <trkpt lat="32.8723389" lon="35.5020875"/>
+      <trkpt lat="32.8721545" lon="35.5020801"/>
+      <trkpt lat="32.8719645" lon="35.5020266"/>
+      <trkpt lat="32.871478" lon="35.5021432"/>
+      <trkpt lat="32.8713965" lon="35.5021225"/>
+      <trkpt lat="32.8712037" lon="35.5021523"/>
+      <trkpt lat="32.8710074" lon="35.5022294"/>
+      <trkpt lat="32.8708254" lon="35.5023559"/>
+      <trkpt lat="32.8705497" lon="35.5025094"/>
+      <trkpt lat="32.8704647" lon="35.5024995"/>
+      <trkpt lat="32.8703053" lon="35.5023908"/>
+      <trkpt lat="32.870215" lon="35.502368"/>
+      <trkpt lat="32.870021" lon="35.5023861"/>
+      <trkpt lat="32.8698358" lon="35.502319"/>
+      <trkpt lat="32.869638" lon="35.5023068"/>
+      <trkpt lat="32.869432" lon="35.5023332"/>
+      <trkpt lat="32.8691592" lon="35.5024364"/>
+      <trkpt lat="32.8688193" lon="35.5025403"/>
+      <trkpt lat="32.8686939" lon="35.5024082"/>
+      <trkpt lat="32.8685956" lon="35.5024217"/>
+  </trkseg></trk>
+</gpx>

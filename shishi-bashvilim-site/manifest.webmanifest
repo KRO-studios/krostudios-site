@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "שישי בשבילים",
+  "short_name": "שישי בשבילים",
+  "lang": "he",
+  "dir": "rtl",
+  "description": "תוכנית, מסלול ומקומות לעצור בהם בטיול שישי בישראל",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f0",
+  "theme_color": "#f5f6f0",
+  "icons": [
+    {"src":"./assets/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./assets/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
