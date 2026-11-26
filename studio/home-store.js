@@ -9,6 +9,7 @@
   const languages = get('.studio-language-switch'), langButton = get('.lang-toggle');
   const phone = get('.phone-host'), orbit = get('.world-index'), dock = get('.store-dock'), scrim = get('.scrim');
   const tip = get('.gesture-tip'), website = get('.store-web'), apple = get('.store-ios'), play = get('.store-play');
+  const publisherApple = get('.publisher-ios'), publisherPlay = get('.publisher-play');
   const options = new Map();
   const words = {
     en: {
@@ -52,6 +53,14 @@
     if (url) { link.href = url; link.setAttribute('aria-label',label); }
     else { link.removeAttribute('href'); link.removeAttribute('aria-label'); }
   }
+  function setBadgeArtwork(links, file, alt) {
+    const path = 'studio/assets/store-badges/' + file;
+    for (const link of links) {
+      const image = link.firstElementChild;
+      if (image.getAttribute('src') !== path) image.src = path;
+      image.alt = alt;
+    }
+  }
   function updateAvailability() {
     orbit.inert = phone.inert = !picker.hidden;
     dock.inert = !picker.hidden || Boolean(stage.dataset.pendingApp);
@@ -69,15 +78,13 @@
     bind(apple,app.appStoreUrl,app.title + ' · ' + t.apple);
     bind(play,app.googlePlayUrl,app.title + ' · ' + t.play);
     website.firstElementChild.textContent = t.site;
-    for (const [link,asset,alt] of [[apple,'apple-'+lang+'.svg',t.apple],[play,'play-'+lang+'.webp',t.play]]) {
-      const image = link.firstElementChild, path = 'studio/assets/store-badges/'+asset;
-      if (image.getAttribute('src') !== path) image.src = path;
-      image.alt = alt;
-    }
+    setBadgeArtwork([apple,publisherApple], 'apple-'+lang+'.svg', t.apple);
+    setBadgeArtwork([play,publisherPlay], 'play-'+lang+'.webp', t.play);
     chooser.querySelector('span').textContent = get('.picker h2').textContent = t.choose;
     get('.close-picker').setAttribute('aria-label',t.close);
     get('.publishers strong').textContent = t.more;
-    for (const link of get('.publisher-sites').children) link.setAttribute('aria-label',t.browse+' · '+link.textContent.replace(' ↗',''));
+    publisherApple.setAttribute('aria-label', t.browse+' · App Store');
+    publisherPlay.setAttribute('aria-label', t.browse+' · Google Play');
     langButton.querySelector('span').textContent = t.code;
     langButton.setAttribute('aria-label',t.language+' · '+t.code);
     tip.textContent = t.hint;

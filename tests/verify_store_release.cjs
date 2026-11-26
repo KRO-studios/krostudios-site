@@ -51,6 +51,26 @@ async function checkBadge(link, basename) {
   return badge.height;
 }
 
+async function checkPublisherBadges(picker, language) {
+  const footer = picker.locator('.publisher-sites');
+  const apple = footer.getByRole('link', {name: /App Store/i});
+  const play = footer.getByRole('link', {name: /Google Play/i});
+  assert.equal(await footer.getByRole('link').count(), 2);
+  assert.equal(await apple.getAttribute('href'), 'https://apps.apple.com/developer/rostislav-krochak/id6797598423');
+  assert.equal(await play.getAttribute('href'), 'https://play.google.com/store/apps/dev?id=5253822086520008985');
+  assert.equal(await checkBadge(apple, 'apple-' + language + '.svg'), await checkBadge(play, 'play-' + language + '.webp'));
+  for (const link of [apple, play]) {
+    const fits = await link.evaluate(el => {
+      const badge = el.querySelector('img').getBoundingClientRect();
+      const menu = el.closest('#app-picker').getBoundingClientRect();
+      return badge.left >= Math.max(0, menu.left) && badge.right <= Math.min(innerWidth, menu.right) + 1
+        && badge.top >= Math.max(0, menu.top) && badge.bottom <= Math.min(innerHeight, menu.bottom) + 1;
+    });
+    assert.ok(fits, 'The entire publisher badge is visible as soon as the menu opens');
+    await link.click({trial: true});
+  }
+}
+
 async function checkDock(page, key, language) {
   const app = apps[key];
   const dock = page.locator('.store-dock');
@@ -89,10 +109,7 @@ async function checkStudio(page, width) {
 
   await choose.click();
   assert.equal(await picker.locator('.pick-option').count(), Object.keys(apps).length);
-  const links = await picker.locator('.publisher-sites a').evaluateAll(items => items.map(el => el.href));
-  assert.equal(links.length, 2);
-  assert.ok(links.some(href => new URL(href).hostname === 'apps.apple.com' && new URL(href).pathname.endsWith('/id6797598423')));
-  assert.ok(links.some(href => new URL(href).hostname === 'play.google.com' && new URL(href).searchParams.get('id') === '5253822086520008985'));
+  await checkPublisherBadges(picker, 'en');
   assert.ok(await page.locator('.store-dock').evaluate(el => !!el.closest('[inert]')), 'Background download controls are inactive while choosing');
   await capture(page, 'chooser-' + width);
   await page.keyboard.press('Escape');
@@ -115,6 +132,9 @@ async function checkStudio(page, width) {
     assert.equal(await page.locator('html').getAttribute('lang'), language);
     assert.equal(await page.locator('html').getAttribute('dir'), language === 'he' ? 'rtl' : 'ltr');
     await checkDock(page, 'tanakh', language);
+    await choose.click();
+    await checkPublisherBadges(picker, language);
+    await page.keyboard.press('Escape');
   }
 
   const phone = page.locator('.signal-device-rotator');
@@ -152,7 +172,8 @@ async function checkKino(page, width) {
 }
 
 async function run(browser, width) {
-  const context = await browser.newContext({viewport: {width, height: width > 690 ? 900 : 844}, hasTouch: width <= 690, reducedMotion: 'reduce'});
+  const height = width === 320 ? 568 : width <= 690 ? 844 : 900;
+  const context = await browser.newContext({viewport: {width, height}, hasTouch: width <= 690, reducedMotion: 'reduce'});
   try {
     const page = await context.newPage();
     page.setDefaultTimeout(9000);
