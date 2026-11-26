@@ -16,33 +16,47 @@
   <link rel="stylesheet" href="studio/common.css?v=orbit-home-1">
   <link rel="stylesheet" href="studio/constellation-bridge.css?v=orbit-home-1">
   <link rel="stylesheet" href="studio/bridge-orbit.css?v=orbit-home-1">
-  <link rel="stylesheet" href="studio/homepage.css?v=liquid-silk-1">
+  <link rel="stylesheet" href="studio/homepage.css?v=store-dock-1">
 </head>
-<body data-design="bridge" data-site-access="orbit" data-asset-base="studio/">
+<body id="studio-home" data-design="bridge" data-site-access="orbit" data-asset-base="studio/">
   <header class="studio-header" id="contact" aria-label="KRO Studios and contact">
     <div class="studio-header-brand" lang="en" dir="ltr">
       <img class="studio-header-logo" src="logo.png" width="1254" height="1254" alt="KRO Studios" decoding="async">
     </div>
     <div class="studio-header-actions">
-      <div class="studio-language-switch" role="group" aria-label="Website language" dir="ltr">
-        <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="true" disabled>ENG</button>
-        <button type="button" data-language="he" lang="he" aria-label="עברית" aria-pressed="false" disabled>HEB</button>
-        <button type="button" data-language="ru" lang="ru" aria-label="Русский" aria-pressed="false" disabled>RUS</button>
+      <div class="language">
+        <button class="lang-toggle" type="button" aria-controls="studio-languages" aria-expanded="false" aria-label="Language · ENG" hidden><span>ENG</span><i class="chevron" aria-hidden="true"></i></button>
+        <div id="studio-languages" class="studio-language-switch" hidden role="group" aria-label="Website language" dir="ltr">
+          <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="true" disabled>English</button>
+          <button type="button" data-language="he" lang="he" aria-label="עברית" aria-pressed="false" disabled>עברית</button>
+          <button type="button" data-language="ru" lang="ru" aria-label="Русский" aria-pressed="false" disabled>Русский</button>
+        </div>
       </div>
       <a class="studio-header-contact" href="mailto:hello@krostudios.com" aria-label="Talk with KRO Studios by email at hello@krostudios.com">
         <span data-i18n="contact">Talk with us</span><span class="studio-contact-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
   </header>
-  <main class="prototype signal-stage" data-app="echo">
+  <main class="prototype signal-stage" data-app="kino" data-default-app="kino">
     <canvas class="signal-field" aria-hidden="true"></canvas>
     <div class="bridge-halo" aria-hidden="true"></div>
-    <div class="hero-copy"><h1><span class="hero-lead" data-i18n="heroLead">Follow your</span><span data-i18n="heroAccent">curiosity.</span></h1></div>
+    <div class="hero-copy"><h1><span class="hero-lead" data-i18n="heroLead">Follow your</span><span data-i18n="heroAccent">curiosity.</span></h1>
+      <div class="choose-wrap" hidden>
+        <button class="choose" type="button" aria-expanded="false" aria-controls="app-picker"><i class="grid-symbol" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span>Choose an app</span><i class="chevron" aria-hidden="true"></i></button>
+        <section class="picker" id="app-picker" aria-labelledby="app-picker-heading" hidden>
+          <div class="picker-head"><h2 id="app-picker-heading">Choose an app</h2><button class="close-picker" type="button" aria-label="Close">×</button></div>
+          <div class="pick-grid"></div>
+          <div class="publishers"><strong>More from KRO Studios</strong><div class="publisher-sites"><a href="https://apps.apple.com/developer/rostislav-krochak/id6797598423" target="_blank" rel="noopener noreferrer">App Store ↗</a><a href="https://play.google.com/store/apps/dev?id=5253822086520008985" target="_blank" rel="noopener noreferrer">Google Play ↗</a></div></div>
+        </section>
+      </div>
+    </div>
     <div class="phone-host">
       <div class="signal-device"><div class="signal-device-float"><div class="signal-device-rotator">
-        <img class="phone-render-fallback" src="studio/assets/bridge-phone-blabflip-0.webp" alt="BlabFlip's actual app screen on an orange phone" draggable="false">
+        <img class="phone-render-fallback" src="studio/assets/bridge-phone-kino-0.webp" alt="SovietKino's actual app screen on an orange phone" draggable="false">
       </div></div></div>
     </div>
+    <div class="tip-row" hidden><span class="gesture-tip">Tap for next screen</span><span class="shot-count" dir="ltr"></span></div>
+    <div class="scrim" aria-hidden="true" hidden></div>
     <nav class="world-index" aria-label="Preview an app or open its website"></nav>
     <noscript>
       <nav class="no-script-apps" aria-label="Open a KRO Studios app website or store page">
@@ -58,14 +72,23 @@
     </noscript>
     <p class="sr-only selection-announcement" aria-live="polite" aria-atomic="true"></p>
   </main>
+  <section class="store-dock" aria-label="Download SovietKino">
+    <div class="download-identity"><span class="caption-icon"><img src="studio/assets/kino-icon.png" alt=""></span><div><strong class="current-name" dir="ltr" lang="en">SovietKino</strong><span class="current-kind">Classic cinema quiz</span></div></div>
+    <a class="store-web" href="https://krostudios.com/sovietkino/" target="_blank" rel="noopener noreferrer"><span>Visit app website</span><span aria-hidden="true">↗</span></a>
+    <div class="store-actions">
+      <a class="store-ios" href="https://apps.apple.com/app/id6812753192" target="_blank" rel="noopener noreferrer"><img src="studio/assets/store-badges/apple-en.svg" alt="Download on the App Store"></a>
+      <a class="store-play" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino" target="_blank" rel="noopener noreferrer"><img src="studio/assets/store-badges/play-en.webp" alt="Get it on Google Play"></a>
+    </div>
+  </section>
   <script defer src="studio/catalog.js?v=blabflip-android-live-1"></script>
   <script defer src="studio/bridge-catalog.js?v=orbit-home-1"></script>
   <script defer src="studio/store-gallery.js?v=phone-gallery-1"></script>
-  <script defer src="studio/home-catalog.js?v=contained-effects-3"></script>
-  <script defer src="studio/home-i18n.js?v=blabflip-android-live-1"></script>
+  <script defer src="studio/home-catalog.js?v=store-dock-1"></script>
+  <script defer src="studio/home-i18n.js?v=store-dock-1"></script>
   <script defer src="studio/bridge-phone.js?v=contained-effects-3"></script>
-  <script defer src="studio/bridge-field.js?v=liquid-silk-1"></script>
-  <script defer src="studio/common.js?v=blabflip-android-live-1"></script>
-  <script defer src="studio/site-access.js?v=blabflip-android-live-1"></script>
+  <script defer src="studio/bridge-field.js?v=store-dock-1"></script>
+  <script defer src="studio/common.js?v=store-dock-1"></script>
+  <script defer src="studio/site-access.js?v=store-dock-1"></script>
+  <script defer src="studio/home-store.js?v=store-dock-1"></script>
 </body>
 </html>

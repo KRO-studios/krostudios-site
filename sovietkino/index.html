@@ -19,52 +19,60 @@
   <meta name="twitter:card" content="summary_large_image">
   <title>Советское кино: Угадай слово — киновикторина по 64 фильмам</title>
   <link rel="stylesheet" href="landing.css?v=20261108-funnel">
+  <link rel="stylesheet" href="opening.css?v=store-gallery-1">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"MobileApplication","name":"Советское кино: Угадай слово","description":"Бесплатная русская игра в слова и киновикторина по 64 советским фильмам: герои, актёры, цитаты, кинофакты и слово дня.","applicationCategory":"GameApplication","operatingSystem":"Android, iOS","inLanguage":"ru","url":"https://krostudios.com/sovietkino/","downloadUrl":["https://play.google.com/store/apps/details?id=com.krostudios.sovietkino","https://apps.apple.com/app/id6812753192"],"image":"https://krostudios.com/sovietkino/assets/feature-graphic.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Kro Studios","url":"https://krostudios.com/"}}
   </script>
-  <script defer src="landing.js?v=20261108-funnel"></script>
+  <script defer src="landing.js?v=store-gallery-1"></script>
 </head>
 <body>
   <a class="skip" href="#main">Перейти к содержанию</a>
-  <header class="topbar">
+  <header class="topbar opening-header">
     <div class="shell header-inner">
-      <a class="brand" href="/" aria-label="Все игры KRO Studios"><img src="assets/icon.png" width="43" height="43" alt=""><span><strong>Советское кино</strong><small>KRO STUDIOS · УГАДАЙ СЛОВО</small></span></a>
-      <nav class="topnav" aria-label="Разделы страницы"><a href="#try">Попробовать</a><a href="#films">Фильмы</a><a href="#screenshots">Игра</a><a class="nav-cta" href="#download">Скачать бесплатно ↓</a></nav>
+      <div class="brand"><img src="assets/icon.png" width="42" height="42" alt=""><span><strong>Советское кино</strong><small>Угадай слово</small></span></div>
+      <a class="studio-home" href="/">KRO Studios <span aria-hidden="true">↗</span></a>
     </div>
   </header>
   <main id="main">
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div class="hero-intro">
-        <p class="eyebrow">ЛЮБИМОЕ КИНО. НОВЫЙ ПОВОД ВСПОМНИТЬ.</p>
-        <h1 id="hero-title">Помните эти<br>фильмы? <span>Проверим.</span></h1>
-        <p class="hero-identity"><img src="assets/icon.png" width="48" height="48" alt=""><span>Советское кино: Угадай слово<small>Бесплатная киновикторина на русском</small></span></p>
-        <a class="button hero-challenge" href="#try" data-start-challenge><span>Сыграть 3 вопроса</span><span aria-hidden="true">↗</span></a>
-        <p class="hero-challenge-note">Прямо здесь, без регистрации и скачивания</p>
-      </div>
-      <div class="hero-art">
-        <div class="cinema-frame">
-          <div class="cinema-topline"><span><i aria-hidden="true"></i>СЕАНС ВОСПОМИНАНИЙ</span><span>КИНО · В СЛОВАХ</span></div>
-          <figure class="cinema-scene"><div class="cinema-stage">
-            <img id="hero-scene" src="assets/web/hero-cinema-poster.webp" width="768" height="432" alt="Иллюстрированные сцены из коллекции советских фильмов" decoding="async" fetchpriority="high">
-            <video id="hero-motion" data-src="media/hero-cinema-loop.mp4" preload="none" muted playsinline loop aria-label="Анимированные иллюстрации из коллекции советских фильмов" hidden></video></div>
-            <figcaption class="cinema-caption"><span class="scene-label">УЗНАЁТЕ ЭТУ ИСТОРИЮ?</span><strong id="hero-film" tabindex="-1">Любимые фильмы. Знакомые истории.</strong></figcaption>
-          </figure>
-          <div class="cinema-foot"><a id="hero-preview-action" href="#try" data-start-challenge>Сыграть 3 вопроса ↗</a><button class="motion-toggle js-only" id="motion-toggle" type="button" aria-pressed="false" disabled>Включить движение</button></div>
-        </div>
-        <div class="scene-selector js-only"><div class="selector-heading"><p class="selector-label">Выберите знакомый фильм</p><button class="collection-preview" type="button" data-preview-film="collection" aria-pressed="true" disabled>Все фильмы ↻</button></div><div class="scene-thumbs" aria-label="Иллюстрации из фильмов"><button class="scene-thumb" type="button" data-preview-film="gentlemen" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Джентльмены удачи" disabled><img src="assets/web/hero-gentlemen-of-fortune-600.webp" width="600" height="222" alt="" decoding="async"><span>Джентльмены удачи</span></button><button class="scene-thumb" type="button" data-preview-film="diamond" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Бриллиантовая рука" disabled><img src="assets/web/hero-diamond-arm-600.webp" width="600" height="222" alt="" decoding="async"><span>Бриллиантовая рука</span></button><button class="scene-thumb" type="button" data-preview-film="irony" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Ирония судьбы" disabled><img src="assets/web/hero-irony-of-fate-600.webp" width="600" height="222" alt="" decoding="async"><span>Ирония судьбы</span></button><button class="scene-thumb" type="button" data-preview-film="office" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Служебный роман" disabled><img src="assets/web/hero-office-romance-600.webp" width="600" height="222" alt="" decoding="async"><span>Служебный роман</span></button><button class="scene-thumb" type="button" data-preview-film="moscow" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Москва слезам не верит" disabled><img src="assets/web/hero-moscow-600.webp" width="600" height="222" alt="" decoding="async"><span>Москва слезам не верит</span></button><button class="scene-thumb" type="button" data-preview-film="kin-dza-dza" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Кин-дза-дза!" disabled><img src="assets/web/hero-kin-dza-dza-600.webp" width="600" height="222" alt="" decoding="async"><span>Кин-дза-дза!</span></button></div></div>
-        <p class="art-note">Иллюстрации и анимация созданы для игры — это не кадры из кино.</p>
-      </div>
-      <div class="hero-copy hero-details">
-        <p class="hero-lead">Одна деталь — и целая история в памяти. Вспомните героев, актёров и цитаты. <strong>Каждый ответ — одно слово.</strong></p>
-        <div id="download"><p class="store-lead">Или сразу скачайте полную игру:</p><div class="store-actions" role="group" aria-label="Выберите магазин для своего устройства">
+    <section class="shell feature-opening" aria-labelledby="hero-title">
+      <div class="opening-intro">
+        <h1 id="hero-title">Помните эти<br>фильмы? <em>Проверим.</em></h1>
+        <div id="download" class="opening-download">
+          <p>Вспомните героев, актёров и цитаты из 64 советских фильмов. Каждый ответ — одно слово.</p>
+          <div class="store-actions" role="group" aria-label="Выберите магазин для своего устройства">
           <a class="store-option" data-cta-placement="hero" href="https://apps.apple.com/app/id6812753192"><span class="store-device">iPhone и iPad</span><img class="store-badge" src="assets/app-store-badge-ru.svg" width="152" height="51" alt="Загрузите игру в App Store"></a>
           <a class="store-option store-option--google" data-cta-placement="hero" href="https://play.google.com/store/apps/details?id=com.krostudios.sovietkino&amp;utm_source=krostudios&amp;utm_medium=website&amp;utm_campaign=sovietkino_landing"><span class="store-device">Телефоны и планшеты Android</span><img class="store-badge" src="assets/google-play-badge-ru.png" width="167" height="65" alt="Скачать игру из Google Play"></a>
         </div>
-          <aside class="desktop-qr" aria-labelledby="desktop-qr-title">
+        </div>
+      </div>
+      <div class="hero-art opening-gallery">
+        <figure class="opening-reel">
+          <div class="reel-strip"><div class="reel-stage">
+            <img id="hero-scene" src="assets/web/hero-diamond-arm-600.webp" srcset="assets/web/hero-diamond-arm-600.webp 600w, assets/web/hero-diamond-arm-1200.webp 1200w" sizes="(max-width: 1200px) 92vw, 1100px" width="1200" height="444" alt="Иллюстрация из игры по фильму «Бриллиантовая рука»" fetchpriority="high">
+            <video id="hero-motion" data-src="media/hero-cinema-loop.mp4" preload="none" muted playsinline loop aria-label="Анимированная иллюстрация из игры" hidden></video>
+          </div></div>
+          <figcaption class="reel-caption">
+            <div aria-live="polite" aria-atomic="true"><span>Иллюстрация из игры</span><strong id="hero-film" tabindex="-1">Бриллиантовая рука</strong></div>
+            <div class="reel-controls js-only">
+              <button type="button" id="previous-illustration" aria-label="Предыдущая иллюстрация" disabled>←</button>
+              <span id="illustration-count" aria-hidden="true">1 / 6</span>
+              <button type="button" id="next-illustration" aria-label="Следующая иллюстрация" disabled>→</button>
+            </div>
+          </figcaption>
+        </figure>
+        <div class="cinema-foot"><a id="hero-preview-action" href="#try" data-start-challenge>Сыграть вопрос из фильма →</a><button class="motion-toggle js-only" id="motion-toggle" type="button" aria-pressed="false" disabled>Включить анимацию</button></div>
+        <div class="scene-selector js-only"><div class="selector-heading"><p class="selector-label">Выберите знакомый фильм</p><button class="collection-preview" type="button" data-preview-film="collection" aria-pressed="false" disabled>Все фильмы ↻</button></div><div class="scene-thumbs" aria-label="Иллюстрации из фильмов"><button class="scene-thumb" type="button" data-preview-film="gentlemen" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Джентльмены удачи" disabled><img src="assets/web/hero-gentlemen-of-fortune-600.webp" width="600" height="222" alt="" decoding="async"><span>Джентльмены удачи</span></button><button class="scene-thumb" type="button" data-preview-film="diamond" aria-pressed="true" aria-label="Посмотреть иллюстрацию: Бриллиантовая рука" disabled><img src="assets/web/hero-diamond-arm-600.webp" width="600" height="222" alt="" decoding="async"><span>Бриллиантовая рука</span></button><button class="scene-thumb" type="button" data-preview-film="irony" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Ирония судьбы" disabled><img src="assets/web/hero-irony-of-fate-600.webp" width="600" height="222" alt="" decoding="async"><span>Ирония судьбы</span></button><button class="scene-thumb" type="button" data-preview-film="office" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Служебный роман" disabled><img src="assets/web/hero-office-romance-600.webp" width="600" height="222" alt="" decoding="async"><span>Служебный роман</span></button><button class="scene-thumb" type="button" data-preview-film="moscow" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Москва слезам не верит" disabled><img src="assets/web/hero-moscow-600.webp" width="600" height="222" alt="" decoding="async"><span>Москва слезам не верит</span></button><button class="scene-thumb" type="button" data-preview-film="kin-dza-dza" aria-pressed="false" aria-label="Посмотреть иллюстрацию: Кин-дза-дза!" disabled><img src="assets/web/hero-kin-dza-dza-600.webp" width="600" height="222" alt="" decoding="async"><span>Кин-дза-дза!</span></button></div></div>
+      </div>
+      <div class="opening-more">
+        <div>
+          <a class="button hero-challenge" href="#try" data-start-challenge><span>Сыграть 3 вопроса</span><span aria-hidden="true">↗</span></a>
+          <p class="hero-challenge-note">Прямо здесь, без регистрации и скачивания</p>
+          <nav class="topnav" aria-label="Разделы страницы"><a href="#films">Фильмы</a><a href="#screenshots">Игра</a><a class="nav-cta" href="#download">Скачать бесплатно ↓</a></nav>
+        </div>
+        <aside class="desktop-qr" aria-labelledby="desktop-qr-title">
             <a class="desktop-qr-link" href="https://krostudios.com/sovietkino/#download" aria-label="Открыть страницу игры с кнопками App Store и Google Play"><img src="assets/download-qr.svg" width="164" height="164" alt="QR-код для скачивания игры на телефон" decoding="async"></a>
             <div><p class="desktop-qr-title" id="desktop-qr-title">Продолжите на телефоне</p><p class="desktop-qr-copy">Наведите камеру на QR-код и выберите App Store или Google Play.</p><p class="desktop-qr-address">krostudios.com/sovietkino</p></div>
           </aside>
-        </div>
       </div>
     </section>
     <div class="shell breadth" aria-label="Что есть в игре"><p><strong>Ваши любимые фильмы</strong>От комедий Гайдая до историй Рязанова, Данелии, Меньшова и другой классики.</p><p><strong>Подсказки по буквам</strong>Зелёная — на месте. Жёлтая — в другом месте. Попробуйте ещё ход.</p><p><strong>Есть повод вернуться</strong>Слово дня, коллекции, кинофакты и доска почёта.</p></div>

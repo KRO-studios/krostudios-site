@@ -427,7 +427,7 @@
       link.addEventListener("click", (event) => {
         if (link.getAttribute("href") !== "#try") return;
         event.preventDefault();
-        const firstId = link.id === "hero-preview-action" ? chooseFilmQuestion(selectedFilm || "collection") : preferredId;
+        const firstId = link.id === "hero-preview-action" ? chooseFilmQuestion(link.dataset.activeFilm || selectedFilm || "collection") : preferredId;
         beginRound(firstId, campaignActive && firstId === "c-p-04", { focus: true, placement: "hero", track: true });
       });
     }
@@ -463,7 +463,9 @@
     if (!image || !caption || !buttons.length) return;
     const motionPreference = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
     const connection = navigator.connection;
-    let selected = selection.challenge === "vasily-city" && quiz?.hasQuestion("gentlemen") ? "gentlemen" : selection.film || "collection";
+    const illustrations = ["diamond", "gentlemen", "kin-dza-dza", "irony", "office", "moscow"];
+    const counter = document.getElementById("illustration-count");
+    let selected = selection.challenge === "vasily-city" && quiz?.hasQuestion("gentlemen") ? "gentlemen" : selection.film || "diamond";
     let userMotion = null;
     let mediaFailed = false;
     let playGeneration = 0;
@@ -521,14 +523,17 @@
         image.setAttribute("src", `assets/web/${film.art}-600.webp`);
         image.setAttribute("srcset", `assets/web/${film.art}-600.webp 600w, assets/web/${film.art}-1200.webp 1200w`);
       }
-      image.setAttribute("sizes", "(max-width:700px) 92vw, 640px");
+      image.setAttribute("sizes", "(max-width: 1200px) 92vw, 1100px");
       image.alt = slug === "collection" ? "Иллюстрации из игры по любимым советским фильмам" : `Иллюстрация из игры по фильму «${film.title}»`;
       caption.textContent = film.title;
+      const position = illustrations.indexOf(slug);
+      if (counter) counter.textContent = position < 0 ? "Все" : `${position + 1} / ${illustrations.length}`;
       for (const button of buttons) {
         button.disabled = false;
         button.setAttribute("aria-pressed", String(button.dataset.previewFilm === slug));
       }
       if (action) {
+        action.dataset.activeFilm = slug;
         const sample = quiz?.hasQuestion(slug);
         action.setAttribute("href", sample || slug === "collection" ? "#try" : "#films");
         action.textContent = slug === "collection" ? "Сыграть 3 вопроса →" : sample ? "Сыграть вопрос из фильма →" : "Найти фильм в коллекции →";
@@ -543,6 +548,22 @@
           showSection(document.querySelector(".hero-art") || image, caption);
         }
       });
+    }
+    for (const [id, step] of [["previous-illustration", -1], ["next-illustration", 1]]) {
+      const button = document.getElementById(id);
+      if (!button) continue;
+      button.disabled = false;
+      button.addEventListener("click", () => {
+        const index = illustrations.indexOf(selected);
+        const from = index === -1 && step === -1 ? 0 : index;
+        render(illustrations[(from + step + illustrations.length) % illustrations.length], true);
+      });
+    }
+    const opening = document.querySelector(".opening-intro");
+    if (opening && typeof IntersectionObserver === "function") {
+      new IntersectionObserver(([entry]) => {
+        document.body.classList.toggle("opening-in-view", entry.isIntersecting);
+      }).observe(opening);
     }
     if (toggle && video) {
       toggle.addEventListener("click", () => {
@@ -638,7 +659,7 @@
       link.addEventListener("click", () => {
         const placement = link.closest("#quiz-result") ? "result"
           : link.closest(".mobile-download") ? "sticky"
-            : link.closest(".hero") ? "hero"
+            : link.closest(".feature-opening") ? "hero"
               : link.closest("#quiz-payoff") ? "question"
                 : link.closest(".final") ? "footer" : "download";
         const film = placement === "question" ? quiz?.questionFilm()

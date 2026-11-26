@@ -4,7 +4,8 @@
   const catalog=window.KROCatalog,stage=document.querySelector('.prototype');
   if(!catalog||!stage)return;
   const {order,apps}=catalog,query=new URLSearchParams(location.search);
-  let key=order.includes(query.get('app'))?query.get('app'):'echo';
+  const defaultKey=order.includes(stage.dataset.defaultApp)?stage.dataset.defaultApp:'echo';
+  let key=order.includes(query.get('app'))?query.get('app'):defaultKey;
   const normalizeShot=(value,appKey)=>{const index=Number(value);return Number.isSafeInteger(index)&&index>=0&&index<apps[appKey].shots.length?index:0;};
   let shot=normalizeShot(query.get('shot'),key);
   const nodeRoot=document.querySelector('.world-index'),phoneHost=document.querySelector('.phone-host');
@@ -33,6 +34,8 @@
   const phone=window.KROPhone?.mount(device,{onRotate:rotation=>field?.setRotation(rotation),onScreenTap:()=>nextScreenshot()});
   function select(next,nextShot=0,announce=true,writeURL=true){
     if(!order.includes(next))return;
+    field?.cancelApproach?.();
+    delete stage.dataset.pendingApp;
     key=next;shot=normalizeShot(nextShot,key);stage.dataset.app=key;
     for(const node of nodeRoot.querySelectorAll('.app-node'))node.setAttribute('aria-pressed',String(node.dataset.world===key));
     const app=apps[key];
@@ -54,6 +57,7 @@
   }
   function nextScreenshot(){
     select(key,(shot+1)%apps[key].shots.length);
+    stage.dispatchEvent(new CustomEvent('kro:screenadvance',{bubbles:true}));
     field?.pulse?.({key,source:'screen'});
     cancelScreenshotFeedback();
     if(!paused&&!reduced.matches&&!document.hidden){
@@ -65,7 +69,22 @@
       ],{duration:680,easing:'cubic-bezier(.16,1,.3,1)'});
     }
   }
-  nodeRoot.addEventListener('click',event=>{const button=event.target.closest('.app-node[data-world]');if(button)select(button.dataset.world);});
+  function previewFrom(next,origin){
+    if(!order.includes(next))return;
+    if(!stage.dataset.defaultApp||!field?.approach||!origin){select(next);return;}
+    if(next===key){
+      if(stage.dataset.pendingApp)select(key,shot,false,false);
+      return;
+    }
+    stage.dataset.pendingApp=next;
+    stage.dispatchEvent(new CustomEvent('kro:previewrequest',{bubbles:true,detail:{key:next,origin}}));
+    field.approach(origin,()=>select(next));
+  }
+  nodeRoot.addEventListener('click',event=>{
+    const button=event.target.closest('.app-node[data-world]');if(!button)return;
+    const icon=button.querySelector('.app-icon').getBoundingClientRect();
+    previewFrom(button.dataset.world,{clientX:icon.left+icon.width/2,clientY:icon.top+icon.height/2});
+  });
   nodeRoot.addEventListener('keydown',event=>{
     const node=event.target.closest('.app-node[data-world]');if(!node)return;
     const index=order.indexOf(node.dataset.world),offset={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[event.key];
@@ -76,11 +95,11 @@
   });
   selected?.querySelector('.screen-next').addEventListener('click',nextScreenshot);
   document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='p'&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)){paused=!paused;document.body.dataset.motion=paused?'paused':'running';if(paused)cancelScreenshotFeedback();phone?.setPaused(paused);field?.setPaused(paused);if(announcement)announcement.textContent=window.KROHomeI18n?.motionAnnouncement(paused)||(paused?'Motion paused. Press P to resume.':'Motion resumed.');}});
-  window.addEventListener('popstate',()=>{const q=new URLSearchParams(location.search);select(order.includes(q.get('app'))?q.get('app'):'echo',q.get('shot'),true,false);});
+  window.addEventListener('popstate',()=>{const q=new URLSearchParams(location.search);select(order.includes(q.get('app'))?q.get('app'):defaultKey,q.get('shot'),true,false);});
   select(key,shot,false,false);
   // The small fallback is fully interactive if WebGL is disabled or the folder is opened directly.
   // Its rotation is intentionally constrained because it is a single render, not a second fake shell.
-  window.KROPrototype={select,nextScreenshot,getState:()=>({key,shot,paused,renderer:device.dataset.rendererState}),phone,field};
+  window.KROPrototype={select,previewFrom,nextScreenshot,getState:()=>({key,shot,paused,renderer:device.dataset.rendererState}),phone,field};
   reduced.addEventListener('change',()=>{if(reduced.matches)cancelScreenshotFeedback();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelScreenshotFeedback();});
 

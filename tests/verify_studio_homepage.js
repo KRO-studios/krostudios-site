@@ -22,7 +22,7 @@ const expectedURLs = {
 const expectedScripts = [
   'studio/catalog.js', 'studio/bridge-catalog.js', 'studio/store-gallery.js', 'studio/home-catalog.js',
   'studio/home-i18n.js', 'studio/bridge-phone.js', 'studio/bridge-field.js',
-  'studio/common.js', 'studio/site-access.js'
+  'studio/common.js', 'studio/site-access.js', 'studio/home-store.js'
 ];
 const expectedStyles = [
   'studio/common.css', 'studio/constellation-bridge.css',
@@ -109,17 +109,10 @@ const logoBytes = fs.readFileSync(localFile(attribute(headerLogo[0], 'src')));
 assert(logoBytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])), 'Existing studio logo is a genuine PNG');
 assert.equal(logoBytes.readUInt32BE(16), 1254, 'Existing PNG logo has the expected intrinsic width');
 assert.equal(logoBytes.readUInt32BE(20), 1254, 'Existing PNG logo has the expected intrinsic height');
-const homepageCSS = fs.readFileSync(path.join(studio, 'homepage.css'), 'utf8');
-const logoRule = homepageCSS.match(/\.studio-header-logo\s*\{([^}]+)\}/)?.[1] || '';
-assert(/\bwidth\s*:\s*112px\b/.test(logoRule) && /\bheight\s*:\s*112px\b/.test(logoRule),
-  'Desktop header must enlarge the real logo to 112px so its built-in wordmark remains readable');
-const mobileRules = homepageCSS.match(/@media\s*\(\s*max-width\s*:\s*680px\s*\)\s*\{([\s\S]*)/)?.[1] || '';
-const mobileLogoRule = mobileRules.match(/\.studio-header-logo\s*\{([^}]+)\}/)?.[1] || '';
-assert(/\bwidth\s*:\s*88px\b/.test(mobileLogoRule) && /\bheight\s*:\s*88px\b/.test(mobileLogoRule),
-  'Mobile header must enlarge the real logo to 88px');
-const headerRule = homepageCSS.match(/\.studio-header\s*\{([^}]+)\}/)?.[1] || '';
-assert(/\bmin-height\s*:\s*128px\b/.test(headerRule), 'Desktop header must accommodate the larger logo in 128px');
-assert(/100svh\s*-\s*128px/.test(homepageCSS), 'Main scene must reserve the actual 128px desktop header height');
+const disclosure = tags('button').find(tag => hasClass(tag, 'lang-toggle'));
+assert(disclosure && attribute(disclosure, 'aria-expanded') === 'false', 'Compact header provides a closed language picker');
+assert(tags('div').some(tag => attribute(tag, 'id') === attribute(disclosure, 'aria-controls') && hasClass(tag, 'studio-language-switch')),
+  'Language toggle references its language options');
 const contact = elements(header, 'a', tag => hasClass(tag, 'studio-header-contact'));
 assert.equal(contact.length, 1, 'Studio header has exactly one contact link');
 assert.equal(attribute(contact[0].tag, 'href'), 'mailto:hello@krostudios.com', 'Studio header uses the approved native email destination');
@@ -134,7 +127,7 @@ const languageButtons = elements(languageGroups[0].content, 'button', () => true
 assert.equal(languageButtons.length, 3, 'Language switch must use exactly three native buttons');
 assert.deepEqual(languageButtons.map(button => attribute(button.tag, 'data-language')), ['en', 'he', 'ru'],
   'Language buttons must retain English, Hebrew and Russian order');
-assert.deepEqual(languageButtons.map(button => textContent(button.content)), ['ENG', 'HEB', 'RUS'],
+assert.deepEqual(languageButtons.map(button => textContent(button.content)), ['English', 'עברית', 'Русский'],
   'Language buttons must retain their visible language labels');
 for (const button of languageButtons) {
   assert.equal(attribute(button.tag, 'type'), 'button', 'Language controls must be native non-submit buttons');
@@ -252,7 +245,7 @@ for (const href of ['/sovietkino/', expectedURLs.echo, '/tanakh-quiz/']) {
 
 const phoneFallback = tags('img').find(tag => (attribute(tag, 'class') || '').split(/\s+/).includes('phone-render-fallback'));
 assert(phoneFallback, 'Homepage must render a phone fallback before JavaScript initializes');
-assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-blabflip-0.webp', 'Initial phone must use the complete uncropped genuine BlabFlip handset render');
+assert.equal(attribute(phoneFallback, 'src'), 'studio/assets/bridge-phone-kino-0.webp', 'Initial phone must use the complete uncropped genuine SovietKino handset render');
 localFile(attribute(phoneFallback, 'src'));
 for (const file of ['studio/vendor/three.module.min.js', 'studio/vendor/three.core.min.js',
   'studio/assets/space-grotesk-400.ttf', 'studio/assets/space-grotesk-500.ttf', 'studio/assets/ibm-plex-mono-400.ttf']) localFile(file);

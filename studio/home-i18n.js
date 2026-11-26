@@ -243,6 +243,7 @@
     }
     refresh();
     relayout();
+    stage.dispatchEvent(new CustomEvent('kro:languagechange', {bubbles:true, detail:{language}}));
     if (options.announce && changed) {
       const selected = currentSelection();
       const paused = window.KROPrototype?.getState?.().paused;

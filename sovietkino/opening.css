@@ -1,0 +1,75 @@
+/* The download buttons and the film illustration form the first screen. */
+body {background:radial-gradient(ellipse 100% 860px at 84% 0%,#293827 0%,transparent 75%),#112219}
+.opening-header {background:transparent;border-color:#a88d6238}
+.opening-header .header-inner {min-height:74px}
+.opening-header .brand {gap:10px;min-width:0}
+.opening-header .brand span {min-width:0;overflow-wrap:anywhere}
+.opening-header .brand img {flex:none}
+.opening-header .brand img {width:42px;height:42px}
+.opening-header .brand strong {font:600 17px/1.15 Arial,sans-serif;letter-spacing:-.035em}
+.opening-header .brand small {font:400 11px/1.35 Arial,sans-serif;color:#c6c4aa;letter-spacing:0;margin-top:3px}
+.studio-home {flex:none;color:#e5d9c3;font:500 12px/1.4 Arial,sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:4px;min-height:44px}
+.studio-home:hover {color:#ecc274}
+.feature-opening {width:min(1100px,92%);padding-block:clamp(24px,3vw,38px) 0;color:#faecd3}
+.opening-intro {display:grid;grid-template-columns:1.12fr minmax(310px,.88fr);align-items:end;gap:clamp(14px,4vw,50px);padding:6px 0 clamp(22px,3.8vw,45px)}
+.opening-intro h1 {text-transform:none;font:500 clamp(42px,6.4vw,73px)/.98 Georgia,"Times New Roman",serif;letter-spacing:-.06em;margin:0}
+.opening-intro em {display:block;color:#ecc274;font-weight:400;letter-spacing:-.055em}
+.opening-download>p {margin:0;max-width:38ch;color:#eadfc9;font:400 clamp(14px,1.55vw,17px)/1.5 Arial,sans-serif}
+.opening-download .store-actions {--badge-height:44px;display:flex;align-items:center;flex-wrap:wrap;gap:clamp(14px,2vw,22px);margin-top:8px;padding-block:10px 11px}
+.opening-download .store-option {position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:44px;flex:none;padding:0;gap:0;border:0;background:none}
+.opening-download .store-option:hover {opacity:.87}
+.opening-download .store-device {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.opening-download .store-badge {height:var(--badge-height);width:auto;max-width:none;display:block}
+.opening-download .store-option--google .store-badge {height:calc(var(--badge-height) * 1.3021);margin-block:calc(var(--badge-height) * -.15105)}
+.opening-gallery {padding:0}
+.opening-reel {width:100%;margin:0;border:1px solid #9c916245;border-radius:3px;background:#0c1812;overflow:hidden}
+.reel-strip {position:relative;padding-block:10px;background:#141b15}
+.reel-strip::before,.reel-strip::after {content:'';position:absolute;left:6px;right:6px;height:4px;background:repeating-linear-gradient(90deg,#9f967e65 0 6px,transparent 6px 17px);pointer-events:none}
+.reel-strip::before {top:3px}
+.reel-strip::after {bottom:3px}
+.reel-stage {position:relative;background:#0d140e}
+.reel-stage img {display:block;width:100%;height:auto;aspect-ratio:2.7;max-height:360px;object-fit:contain}
+.reel-stage video {position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;background:#0d140e}
+.reel-caption {display:flex;justify-content:space-between;align-items:center;gap:9px;padding:17px clamp(12px,2.3vw,24px);border-top:1px solid #a88d622f}
+.reel-caption>div:first-child {min-width:0}
+.reel-caption>div:first-child>span {display:block;color:#cabe9d;font:400 11px/1.3 ui-monospace,monospace}
+.reel-caption strong {display:block;font:400 clamp(19px,2.5vw,27px)/1.15 Georgia,serif;letter-spacing:-.02em;margin-top:3px}
+.js .reel-controls {display:flex;align-items:center;gap:6px;flex-shrink:0}
+.reel-controls button {display:grid;place-items:center;width:44px;height:44px;border:1px solid #b6a57950;border-radius:50%;background:#1e3025;color:#f2dfb8;font:400 20px/1 Arial,sans-serif;padding:0}
+.reel-controls button:hover {background:#344833}
+#illustration-count {color:#c7bca1;font:400 11px/1 ui-monospace,monospace;white-space:nowrap}
+.opening-gallery .cinema-foot {border-top:0;padding-inline:0}
+.opening-gallery .motion-toggle:disabled {display:none}
+.opening-gallery .scene-thumbs {grid-template-columns:repeat(6,minmax(0,1fr))}
+.opening-gallery .scene-selector {margin-top:5px}
+.opening-more {margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.opening-more .hero-challenge {max-width:320px}
+.opening-more .hero-challenge-note {margin-bottom:8px}
+.opening-more .desktop-qr {margin:0}
+.opening-more .topnav {gap:18px;flex-wrap:wrap}
+.opening-more .topnav a {min-height:44px}
+.opening-in-view .mobile-download {visibility:hidden}
+@media(max-width:700px) {
+  .opening-header .header-inner {min-height:65px}
+  .feature-opening {width:calc(100% - clamp(28px,8vw,46px));padding-top:28px}
+  .opening-intro {grid-template-columns:minmax(0,1fr);gap:17px;padding:5px 0 20px}
+  .opening-intro h1 {font-size:clamp(46px,11.8vw,63px)}
+  .opening-intro em {display:inline}
+  .opening-download>p {font-size:15px}
+  .opening-download .store-actions {--badge-height:40px}
+  .reel-caption {align-items:start;flex-wrap:wrap;gap:15px}
+  .js .reel-controls {margin-inline-start:auto}
+  .opening-gallery .scene-thumbs {display:flex;overflow:auto;gap:8px;padding:3px 2px 8px;scroll-snap-type:x proximity}
+  .opening-gallery .scene-thumb {flex:0 0 min(135px,40%);scroll-snap-align:start}
+  .opening-more {display:block;margin-top:18px}
+  .opening-more .topnav {gap:14px}
+  .opening-more .topnav>a {display:inline-flex;font-size:12px}
+  .opening-more .topnav .nav-cta {border:0;padding:0}
+}
+@media(max-width:419px) {
+  .feature-opening {padding-top:24px}
+  .opening-intro em {display:block}
+  .reel-caption {min-height:90px;align-items:center}
+  .js .reel-controls {gap:4px}
+  #illustration-count {display:none}
+}

@@ -7,7 +7,7 @@ const http=require('node:http');
 const path=require('node:path');
 const {chromium}=require(process.env.KRO_PLAYWRIGHT||path.join(require('node:os').homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
 const root=path.resolve(__dirname,'..');
-const evidence=path.resolve(root,'../prototypes/current-upgrades/production-qa');
+const evidence=process.env.KRO_REPORT_DIR||path.join(require('node:os').tmpdir(),'kro-liquid-silk-qa');
 const counts={kino:10,echo:2,tanakh:19,'half-life':6,dune:5,rap:5,beer:6,feed:8};
 const urls={kino:'https://krostudios.com/sovietkino/',echo:'https://play.google.com/store/apps/details?id=com.krostudios.blabflip',tanakh:'https://krostudios.com/tanakh-quiz/','half-life':'https://play.google.com/store/apps/details?id=com.halflife.halflifequizvalvetrivia',dune:'https://play.google.com/store/apps/details?id=com.dunetanks.dunetanks',rap:'https://play.google.com/store/apps/details?id=com.hiphoprap.guessrapperhiphop',beer:'https://play.google.com/store/apps/details?id=com.beer.beergameguessthebeer',feed:'https://play.google.com/store/apps/details?id=com.krostudios.feedkirusha'};
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.ttf':'font/ttf','.svg':'image/svg+xml'};
@@ -70,13 +70,14 @@ async function fit(page){
 async function languages(page,width){
   for(const[language,lead]of[['he','תנו לסקרנות'],['ru','Доверьтесь'],['en','Follow your']]){
     const before=await state(page),pose=await page.evaluate(()=>window.KROPrototype.phone.getRotation());
+    await page.locator('.lang-toggle').click();
     await page.locator(`button[data-language="${language}"]`).click();
     assert.equal(await page.locator('html').getAttribute('lang'),language);assert.equal(await page.locator('html').getAttribute('dir'),language==='he'?'rtl':'ltr');
     assert.equal(await page.locator('[data-i18n="heroLead"]').textContent(),lead);assert.deepEqual(await state(page),before,'Language switches preserve app, shot, pause and phone renderer');
     const after=await page.evaluate(()=>window.KROPrototype.phone.getRotation());assert.equal(after.yaw,pose.yaw);assert.equal(after.pitch,pose.pitch);
     assert.equal(await page.locator('.studio-header-contact').getAttribute('href'),'mailto:hello@krostudios.com');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No locale creates horizontal overflow');
-    const header=await page.locator('.studio-header').evaluate(el=>[...el.querySelectorAll('button,a')].map(control=>{const r=control.getBoundingClientRect();return{left:r.left,right:r.right,width:r.width,height:r.height};}));
+    const header=await page.locator('.studio-header').evaluate(el=>[...el.querySelectorAll('button,a')].map(control=>{const r=control.getBoundingClientRect();return{left:r.left,right:r.right,width:r.width,height:r.height};}).filter(r=>r.width&&r.height));
     assert.ok(header.every(r=>r.left>=-1&&r.right<=width+1&&r.width>=43.5&&r.height>=43.5),'Header controls fit and stay touch sized');
     assert.ok(await page.locator('.signal-device-rotator').evaluate(el=>{
       for(let node=el;node;node=node.parentElement){const style=getComputedStyle(node),matrix=new DOMMatrixReadOnly(style.transform==='none'?undefined:style.transform);if(matrix.a<0||style.scale.startsWith('-'))return false;}return true;
@@ -156,8 +157,15 @@ async function motion(page){
         assert.equal(await page.locator('.app-node').count(),8);assert.equal(await page.locator('.orbit-site-link').count(),8);assert.equal(await page.locator('.app-node[data-world="echo"] .app-title').textContent(),'BlabFlip');
         for(const[key,url]of Object.entries(urls)){
           const button=page.locator(`.app-node[data-world="${key}"]`),link=page.locator(`.orbit-site-link[data-destination="${key}"]`);
-          await button.locator('.app-icon').click();assert.equal((await state(page)).key,key);assert.equal(await link.getAttribute('href'),url);
-          const r=await button.boundingBox();assert.ok(r.width>=44&&r.height>=44,'App previews retain touch targets');
+          let target=button;
+          if(!await button.isVisible()){
+            await page.locator('.choose').click();
+            target=page.locator(`#app-picker .pick-option[data-app="${key}"]`);
+          }
+          const r=await target.boundingBox();assert.ok(r.width>=44&&r.height>=44,'App previews retain touch targets');
+          await target.click();
+          await page.waitForFunction(key=>window.KROPrototype.getState().key===key,key);
+          assert.equal(await link.getAttribute('href'),url);
         }
         assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'The layout never overflows horizontally');
         await gestures(page,{fallback,touch:width<=600,reduced});

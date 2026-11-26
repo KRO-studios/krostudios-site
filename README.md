@@ -2,21 +2,18 @@
 
 This repository is the static site served at `https://krostudios.com/`.
 
-## Selected homepage — Liquid Silk / Orbit Links
+## Homepage and app downloads
 
-The local homepage now implements the approved Orbit Links design: all eight
-app orbits have separate preview controls and direct destination links, around
-the Liquid Silk gold/rose field and rotatable orange phone. The three owned
-app websites are labelled Website; the remaining five apps link to their
-actual Google Play listings. BlabFlip stays marked coming soon.
+The homepage opens on SovietKino. Visitors can preview eight apps in the
+rotatable phone using the desktop constellation or the app chooser. The
+download bar follows the selected app. All eight games link to Google Play.
+SovietKino and Tanakh Quiz also link to their individual App Store listings.
+SovietKino, Tanakh Quiz and BlabFlip have separate promotional website links.
+The chooser includes both public studio profiles.
 
-`index.html` uses an isolated local bundle in `studio/`. It does not alter
-`concepts/` or any app-specific marketing, support or legal page. The old
-navigation, bottom selected-app controls and design-switch footer stay removed.
-The real `logo.png`, KRO Studios name and contact link are now in a compact
-top bar, alongside functional ENG / HEB / RUS language buttons. There is no
-bottom footer. The contact action remains a native `mailto:hello@krostudios.com`
-link, not a contact form or automatic email sender.
+`studio/assets/store-badges/` contains the official English, Hebrew and Russian
+store artwork. The header includes the KRO logo, language selector and email
+contact link. The SovietKino landing page uses the Russian badges for downloads.
 
 `studio/home-i18n.js` translates interface text, accessible instructions and
 metadata while keeping product names, screenshots and destination URLs intact.
@@ -41,7 +38,7 @@ The homepage has 61 distinct screens. `studio/store-gallery.json` records the
 with listing URLs, original/delivery hashes and dimensions. Its browser subset
 is `studio/store-gallery.js`. Existing real in-app captures remain first;
 store posters already represented by an existing image are not repeated.
-BlabFlip remains coming soon with two genuine Android UI captures refreshed on
+BlabFlip is available on Google Play with two genuine Android UI captures refreshed on
 2026-11-01, not an invented store gallery. Its renamed icon, screenshots, preview
 and all six matching handset fallbacks use the new branding. The screenshot
 bytes and provenance are recorded under the stable `echo` entry in
@@ -61,6 +58,8 @@ ambient particles. Canvas2D runs independently of the phone's actual WebGL
 renderer, so the selected silk treatment also works when WebGL is unavailable.
 App artwork drifts gently and the headline gradient shifts slowly.
 
+Selecting an app sends a 420ms gold-to-rose highlight toward the phone. A newer
+selection replaces a pending one. With reduced motion, the preview changes immediately.
 Screenshot taps and Enter/Space send a 1.35-second gold/rose lightfront through
 the silk, with a short glow around the handset and a trail to the selected app.
 Repeated taps restart one effect rather than stacking animations or particles.
@@ -79,9 +78,12 @@ Additional gallery QA and fallback generation live in the working project's
 the additional45 `studio/assets/gallery-phones/` frames from the real local3D
 model; it never changes the original prototype renders or publishes the site.
 
-Run `node tests/verify_studio_homepage.js`,
-`node tests/verify_liquid_silk_browser.cjs` (requires Playwright and Chrome),
-and the existing app-page contracts before publishing. The Liquid Silk browser
+Run `node tests/verify_studio_homepage.js`, the existing app-page contracts,
+and both browser checks before publishing. With Playwright and Chrome
+installed, `node tests/verify_liquid_silk_browser.cjs` checks the phone and
+field. Point `SITE_URL` at the preview or deployed homepage when running
+`node tests/verify_store_release.cjs` to check the chooser, store badges
+and SovietKino download links at desktop and mobile widths. The Liquid Silk browser
 contract covers the current app names, galleries, destinations, languages,
 phone gestures, responsive layouts and field lifecycle. Set `KRO_PLAYWRIGHT`
 and `KRO_CHROME` when using a different local browser installation. Earlier

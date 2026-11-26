@@ -66,7 +66,7 @@ async function noOverflow(page) {
     await check('Invalid campaign cannot select an external source or inject copy',async()=>{
       const {context,page}=await open(browser,'?film=https%3A%2F%2Fevil.invalid%2Fimage.jpg&challenge=%3Csvg%20onload%3Dalert(1)%3E');
       try {
-        assert((await page.locator('#hero-film').textContent()).includes('Знакомые истории'));
+        assert((await page.locator('#hero-film').textContent()).includes('Бриллиантовая рука'));
         assert((await page.locator('#quiz-clue').textContent()).includes('Находчивый студент'));
         const sources=await page.locator('img,video,source').evaluateAll(els=>els.map(el=>el.getAttribute('src')||''));
         assert(sources.every(src=>!src.includes('evil.invalid')));
@@ -104,6 +104,8 @@ async function noOverflow(page) {
     await check('Silent hero plays on screen, pauses off screen, and honors explicit pause',async()=>{
       const {context,page}=await open(browser,'',{viewport:{width:1440,height:1000}});
       try {
+        await page.locator('.collection-preview').click();
+        await page.locator('#hero-scene').scrollIntoViewIfNeeded();
         await page.waitForFunction(()=>!document.getElementById('hero-motion').paused);
         const media=await page.locator('#hero-motion').evaluate(el=>({muted:el.muted,src:el.getAttribute('src')}));
         assert(media.muted && media.src==='media/hero-cinema-loop.mp4');

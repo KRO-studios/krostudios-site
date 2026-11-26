@@ -3,6 +3,7 @@
   'use strict';
   const mounted=new WeakMap();
   const EFFECT_DURATION=1.35;
+  const APPROACH_MS=420;
   const TAU=Math.PI*2;
   const clamp=(value,min=0,max=1)=>Math.max(min,Math.min(max,value));
   const mix=(a,b,t)=>a+(b-a)*t;
@@ -50,7 +51,7 @@
       const pulseAge=Number(scene.pulseAge),pulse=Number.isFinite(pulseAge)&&pulseAge>=0&&pulseAge<1.35;
       const progress=pulse?clamp(pulseAge/1.35):1;
       const pulsePower=pulse?Math.sin(progress*Math.PI)*Math.pow(1-progress,.3):0;
-      const selected=nodes.find(node=>node.key===scene.selectedKey)||nodes.find(node=>node.active);
+      const selected=nodes.find(node=>node.key===scene.selectedKey&&node.r>0);
       const sourceT=clamp(phone.x/w),direction=selected&&selected.x<phone.x?-1:1;
       function point(t,u,material,out){
         const a=t*TAU,flow=clock*.29;
@@ -158,7 +159,58 @@
     let anchor={x:0,y:0,width:300,height:630},links=[];
     let pointer={x:0,y:0},eased={x:0,y:0},rotation={x:0,y:0};
     let effectAge=EFFECT_DURATION,effectAnimated=false,pulseCount=0,selectionPulseCount=0,effectKey='',effectSource='';
+    let incoming=null;
     const canAnimate=()=>!destroyed&&!stopped&&!reduced.matches&&visible&&pageActive&&!document.hidden;
+
+    function cancelApproach(){
+      if(!incoming)return;
+      clearTimeout(incoming.timer);
+      incoming=null;
+    }
+    function finishApproach(){
+      if(!incoming)return;
+      const {onArrive}=incoming;
+      cancelApproach();
+      onArrive();
+    }
+    function approach(origin,onArrive){
+      cancelApproach();
+      if(typeof onArrive!=='function'||destroyed)return;
+      if(!canAnimate()||!Number.isFinite(origin?.clientX)||!Number.isFinite(origin?.clientY)){
+        onArrive();return;
+      }
+      const bounds=stage.getBoundingClientRect();
+      const from={x:origin.clientX-bounds.left,y:origin.clientY-bounds.top};
+      const side=from.x<anchor.x?-1:1;
+      const above=from.y<anchor.y-anchor.height*.44&&Math.abs(from.x-anchor.x)<anchor.width*.64;
+      const to=above
+        ?{x:anchor.x-anchor.width*.14,y:anchor.y-anchor.height*.50-3}
+        :{x:anchor.x+side*(anchor.width*.50+3),y:anchor.y+clamp((from.y-anchor.y)*.45,-anchor.height*.24,anchor.height*.22)};
+      incoming={from,to,onArrive,start:performance.now(),timer:setTimeout(finishApproach,APPROACH_MS)};
+      draw();
+    }
+    function drawApproach(){
+      if(!incoming)return;
+      const {from,to,start}=incoming;
+      const progress=clamp((performance.now()-start)/APPROACH_MS);
+      const t=progress*progress*(3-2*progress);
+      const dx=to.x-from.x,dy=to.y-from.y,distance=Math.max(1,Math.hypot(dx,dy));
+      const bend=clamp(distance*.23,18,95)*(dx<0?-1:1);
+      const cx=(from.x+to.x)/2+dy/distance*bend,cy=(from.y+to.y)/2-dx/distance*bend;
+      // Split the curve at the moving bead for a continuous illuminated thread.
+      const qx=mix(from.x,cx,t),qy=mix(from.y,cy,t);
+      const x=mix(qx,mix(cx,to.x,t),t),y=mix(qy,mix(cy,to.y,t),t);
+      ctx.save();
+      ctx.globalCompositeOperation='lighter';
+      ctx.beginPath();ctx.moveTo(from.x,from.y);ctx.quadraticCurveTo(cx,cy,to.x,to.y);
+      ctx.strokeStyle='rgba(231,170,159,.26)';ctx.lineWidth=.8;ctx.stroke();
+      const gradient=ctx.createLinearGradient(from.x,from.y,to.x+.01,to.y);
+      gradient.addColorStop(0,'#e8be78');gradient.addColorStop(1,'#f6a5ca');
+      ctx.strokeStyle=gradient;ctx.lineWidth=1.7;ctx.shadowBlur=6;ctx.shadowColor='#efa8c1';
+      ctx.beginPath();ctx.moveTo(from.x,from.y);ctx.quadraticCurveTo(qx,qy,x,y);ctx.stroke();
+      ctx.fillStyle='#fff2d4';ctx.shadowBlur=13;ctx.beginPath();ctx.arc(x,y,3,0,TAU);ctx.fill();
+      ctx.restore();
+    }
 
     function layout(){
       if(destroyed)return;
@@ -184,8 +236,9 @@
         w:width,h:height,time,dt:delta,
         mouse:{x:eased.x+rotation.x*.25,y:eased.y+rotation.y*.15},
         phone:anchor,nodes:links.map(link=>({x:link.x,y:link.y,r:link.r,key:link.key,active:link.key===key})),
-        selectedKey:key,pulseAge:effectAge,reduced:reduced.matches,motion:canAnimate(),intensity:1
+        selectedKey:key,pulseAge:effectSource==='selection'?EFFECT_DURATION:effectAge,reduced:reduced.matches,motion:canAnimate(),intensity:1
       });
+      drawApproach();
       canvas.dataset.world=String(targetWorld??0);canvas.dataset.frame=String(++renderCount);
     }
     function tick(timestamp){
@@ -200,6 +253,7 @@
     function sync(){
       if(destroyed)return;
       cancelAnimationFrame(frame);frame=0;previous=0;
+      if(!canAnimate())finishApproach();
       // Pausing or leaving the page cancels the burst; resuming never replays it.
       if(effectAnimated&&!canAnimate()){effectAnimated=false;effectAge=EFFECT_DURATION;}
       else if(!effectAnimated&&canAnimate())effectAge=EFFECT_DURATION;
@@ -229,7 +283,7 @@
         rotation={x:Number(value?.x)||0,y:Number(value?.y)||0};
         if(!canAnimate())draw();
       },
-      setPaused(value){if(destroyed)return;stopped=Boolean(value);sync();},refresh:layout,
+      setPaused(value){if(destroyed)return;stopped=Boolean(value);sync();},refresh:layout,approach,cancelApproach,
       pulse(options={}){
         if(destroyed)return;
         pulseCount++;effectKey=options?.key||selectedKey();effectSource=options?.source||'screen';
@@ -240,12 +294,12 @@
         return{renderer:'canvas2d',quality:'liquid-silk',frame:canvas.dataset.frame,layers:3,paused:stopped,reducedMotion:reduced.matches,
           pulseCount,selectionPulseCount,effectAge,effectDuration:EFFECT_DURATION,effectActive:effectAnimated&&effectAge<EFFECT_DURATION,effectAnimated,
           // Feedback uses two lightfronts and a travelling bead, not an expanding particle pool.
-          particleBudget:silk.particleBudget,effectParticles:0,activeParticles:0,effectWaves:2,activeWaves:effectAge<EFFECT_DURATION?2:0,
+          particleBudget:silk.particleBudget,effectParticles:0,activeParticles:0,effectWaves:2,activeWaves:effectSource==='screen'&&effectAge<EFFECT_DURATION?2:0,approaching:incoming!==null,
           effectSource,effectKey,selectedKey:selectedKey(),visible:visible&&pageActive&&!document.hidden,destroyed};
       },
       destroy(){
         if(destroyed)return;
-        destroyed=true;cancelAnimationFrame(frame);frame=0;
+        cancelApproach();destroyed=true;cancelAnimationFrame(frame);frame=0;
         observer.disconnect();intersection.disconnect();
         stage.removeEventListener('pointermove',onPointer);stage.removeEventListener('pointerleave',onLeave);
         document.removeEventListener('visibilitychange',sync);reduced.removeEventListener('change',sync);

@@ -34,7 +34,7 @@
       root.append(link);pairs.push({button,link});
     }
     orbitLayout=()=>{
-      const bounds=root.getBoundingClientRect(),compact=matchMedia('(max-width: 1000px)').matches;
+      const bounds=root.getBoundingClientRect(),compact=!stage.dataset.defaultApp && matchMedia('(max-width: 1000px)').matches;
       for(const {button,link} of pairs){
         const r=button.getBoundingClientRect();
         link.style.left=(r.left-bounds.left+r.width/2)+'px';
